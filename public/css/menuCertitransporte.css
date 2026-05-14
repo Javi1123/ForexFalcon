@@ -1,0 +1,62 @@
+/* Menu ------------------------------------------------- */
+
+/* Activos para el menu */
+.nav-link.active,
+#cursos.active {
+  color: var(--color-n-principal) !important;
+  font-weight: bold !important;
+}
+
+.dropdown-menu .dropdown-link.active {
+  color: var(--color-n-principal) !important;
+  font-weight: bold !important;
+}
+
+/* Hover para el menu */
+#linkAlumno:hover,
+.nav-link:hover,
+#cursos:hover,
+.dropdown-link:hover {
+  color: var(--color-n-principal) !important;
+}
+
+.dropdown-menu .dropdown-link:hover {
+  background-color: transparent !important;
+}
+
+.nav-item.dropdown.active .nav-link.dropdown-toggle {
+  color: var(--color-n-principal) !important;
+}
+
+.nav-item.dropdown.active .nav-link.dropdown-toggle::after {
+  border-top-color: var(--color-n-principal) !important;
+  border-bottom-color: var(--color-n-principal) !important;
+}
+
+
+.dropdown-menu {
+  background-color: rgba(0, 0, 0, 0.9) !important;
+}
+
+.dropdown-link {
+  color: white !important;
+  transition: color 0.2s ease !important;
+}
+
+.dropdown-link.active {
+  opacity: 0.8;
+  cursor: default !important;
+}
+
+.nav-link.dropdown-toggle.active,
+#cursos.active {
+  cursor: pointer !important;
+  opacity: 1;
+}
+
+.nav-link:focus,
+#cursos:focus,
+.dropdown-link:focus {
+  background-color: transparent !important;
+  outline: none !important;
+}

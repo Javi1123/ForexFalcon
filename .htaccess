@@ -1,0 +1,29 @@
+
+
+
+###### Encendemos el rewrite
+RewriteEngine On
+
+###### Redirigimos a de la URL_falsa URL_verdadera
+
+# Menu 
+RewriteRule cursos index.php
+RewriteRule sugerencias index.php
+RewriteRule quienes_somos index.php
+RewriteRule donde_estamos index.php
+RewriteRule registrarse index.php
+
+# Admins
+RewriteRule login index.php
+RewriteRule logout index.php
+RewriteRule admin index.php
+RewriteRule sugerenciaTabla index.php
+RewriteRule alumnosTabla index.php
+RewriteRule cursosTabla index.php
+RewriteRule matriculadosTabla index.php
+RewriteRule recibosTabla index.php
+
+# Pie de pagina
+RewriteRule privacidad index.php
+RewriteRule aviso_legal index.php
+RewriteRule mision_visionyvalores index.php

@@ -1,0 +1,92 @@
+[
+    {
+        "DNI": "11111111C",
+        "nombre": "Carlos",
+        "apellido": "S\u00e1nchez D\u00edaz"
+    },
+    {
+        "DNI": "12345678A",
+        "nombre": "Juan",
+        "apellido": "P\u00e9rez Garc\u00eda"
+    },
+    {
+        "DNI": "22222222D",
+        "nombre": "Ana",
+        "apellido": "Gonz\u00e1lez Mart\u00edn"
+    },
+    {
+        "DNI": "26380608Y",
+        "nombre": "Javier",
+        "apellido": "D\u00edaz Soriano"
+    },
+    {
+        "DNI": "26720608Y",
+        "nombre": "Javier",
+        "apellido": "D\u00edaz Soriano"
+    },
+    {
+        "DNI": "26780208Y",
+        "nombre": "Javier",
+        "apellido": "D\u00edaz Soriano"
+    },
+    {
+        "DNI": "26780608E",
+        "nombre": "Javier",
+        "apellido": "D\u00edaz Soriano"
+    },
+    {
+        "DNI": "26780608Y",
+        "nombre": "Javier",
+        "apellido": "D\u00edaz Soriano"
+    },
+    {
+        "DNI": "26783608Y",
+        "nombre": "Javier",
+        "apellido": "D\u00edaz Soriano"
+    },
+    {
+        "DNI": "33333333E",
+        "nombre": "Luis",
+        "apellido": "Fern\u00e1ndez Romero"
+    },
+    {
+        "DNI": "36780608E",
+        "nombre": "Javier",
+        "apellido": "D\u00edaz Soriano"
+    },
+    {
+        "DNI": "36783608E",
+        "nombre": "Javier",
+        "apellido": "D\u00edaz Soriano"
+    },
+    {
+        "DNI": "44444444F",
+        "nombre": "Laura",
+        "apellido": "Mart\u00ednez Serrano"
+    },
+    {
+        "DNI": "55555555G",
+        "nombre": "Pedro",
+        "apellido": "Ram\u00edrez G\u00f3mez"
+    },
+    {
+        "DNI": "66666666H",
+        "nombre": "Sofia",
+        "apellido": "Herrera Vega"
+    },
+    {
+        "DNI": "77777777I",
+        "nombre": "Javier",
+        "apellido": "Torres Ortiz"
+    },
+    {
+        "DNI": "87654321B",
+        "nombre": "Mar\u00eda",
+        "apellido": "L\u00f3pez Ruiz"
+    },
+    {
+        "DNI": "88888888J",
+        "nombre": "Elena",
+        "apellido": "Ruiz Jim\u00e9nez"
+    }
+]

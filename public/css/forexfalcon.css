@@ -1,0 +1,282 @@
+/* General ----------------------------------------- */
+
+*{
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+}
+
+:root{
+  --color-azul-principal:#070D25;
+  --color-azul-principal-not-pure:#0b143a;
+  --color-v-principal:#91DD4E;
+  --color-v-hover:#a0e069;
+  --color-n-principal:#FB8E37;
+  --color-n-hover:#fc9c4f;
+  --color-black:#121414;
+  --color-black-transparente2:#5c5c5c;
+  --color-white-not-pure:rgb(238, 238, 238);
+  --color-shadow-principio:#ccd1d1;
+  --color-shadow:#e2e6e6;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+}
+
+body{
+  font-family: "Inter",sans-serif;
+}
+
+.parrafosDescriptivos{font-size: 1.1rem;}
+.numeroTelefono{font-size: 1.2rem;}
+.imgConvocatoria{width: 35em;}
+.textoCarrusel{text-shadow: 1px 3px 1px var(--color-black);}
+.sombra{box-shadow: 0px 0px 20px 2px var(--color-shadow);}
+.white{color:var(--color-white-not-pure);}
+.white-background{background:var(--color-white-not-pure);}
+.green{color:var(--color-v-principal);}
+.black{background:var(--color-black);}
+.black-background{background:var(--color-black);}
+.orange{color: var(--color-n-principal);}
+.orange-background{background: var(--color-n-principal);}
+.negrita{font-weight: bold;}
+.noList::before{display: none;}
+
+/* Navbar -------------------------------------------- */
+
+nav{
+  background-color: var(--color-azul-principal) !important;
+}
+
+.btnInicioSesion{
+  background-color: var(--color-v-principal);
+  transition: all 0.5s ease;
+}
+
+.btnRegistrarse{
+  background-color: var(--color-n-principal);
+  transition: all 0.5s ease;
+}
+
+.btnInicioSesion:hover{
+  background-color: var(--color-v-hover);
+  cursor: pointer;
+  box-shadow: 0em 0em 1em var(--color-black-transparente2);
+}
+
+.btnRegistrarse:hover{
+  background-color: var(--color-n-hover);
+  cursor: pointer;
+  box-shadow: 0em 0em 1em var(--color-black-transparente2);
+}
+
+.offcanvas{
+  background-color: var(--color-azul-principal-not-pure);
+}
+
+#listaNosotros{
+  background-color: var(--color-azul-principal-not-pure) !important;
+}
+
+/* Tooltips ------------------------------------------ */
+
+.tooltip{
+  --bs-tooltip-bg: var(--color-black-transparente2);
+  --bs-tooltip-color: var(--bs-white);
+}
+
+.crear-tooltip{
+  --bs-tooltip-bg: rgb(102, 250, 102);
+  --bs-tooltip-color: var(--color-black-transparente);
+}
+
+.editar-tooltip{
+  --bs-tooltip-bg: rgb(250, 173, 102);
+  --bs-tooltip-color: var(--color-black-transparente);
+}
+
+.baja-tooltip{
+  --bs-tooltip-bg: rgb(250, 102, 102);
+  --bs-tooltip-color: var(--color-black-transparente);
+}
+
+/* Main index ----------------------------------------- */
+
+#principio{
+  box-shadow: 0px 0px 40px 2px var(--color-shadow-principio);
+}
+
+/* Efects ----------------------------------------- */
+.reveal {
+  opacity: 0;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal-left {
+  transform: translateX(-100px);
+}
+
+.reveal-up {
+  transform: translateY(100px);
+}
+
+.reveal-down {
+  transform: translateY(-100px);
+}
+
+.reveal-scale {
+  transform: scale(0.8);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
+
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.3s; }
+.delay-3 { transition-delay: 0.5s; }
+.delay-4 { transition-delay: 0.7s; }
+.delay-5 { transition-delay: 0.9s; }
+.delay-6 { transition-delay: 1.1s; }
+
+/* Zooms */
+.zoomIcons{
+  transform: rotate(0deg) scale(1,1);
+  transition: transform 1s;
+}
+.zoomCards:hover .zoomIcons{
+  transform: rotate(-10deg) scale(1.2,1.2);
+  transition: transform 1s;
+}
+
+.zoom{
+  transform: scale(1,1);
+  transition: transform 1s;
+}
+
+.zoom:hover{
+  transform: scale(1.1,1.1);
+  transition: transform 1s;
+}
+
+.zoomCards{
+  transform: scale(1,1);
+  box-shadow: none;
+  transition: transform 1s, box-shadow 1s;
+}
+
+.zoomCards:hover{
+  transform: scale(1.02,1.02);
+  box-shadow: 0px 0px 20px 2px var(--color-shadow);
+  transition: transform 1s, box-shadow 0.8s;
+}
+/* Parte carrusel ----------------------------------------- */
+
+.carruselImagen {
+  height: 100vh;
+  width: 100%;
+  max-height: none;
+  object-fit: cover;
+}
+
+.carousel-caption {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+@media (max-width: 435px) {
+  .carruselImagen {
+    height: auto;
+  }
+
+  .carousel-caption {
+    bottom: 10%;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0.8rem;
+    border-radius: 8px;
+  }
+}
+
+/* Formularios ----------------------------------------- */
+
+.btnEnviarFormulario{
+  padding: 7px 10px 7px 10px;
+  border-radius: 5px 5px 5px 5px;
+  border: 0px solid;
+  background-color: var(--color-n-principal);
+  transition: background-color 0.5s, color 0.5s;
+}
+
+.btnBorrarFormulario{
+  padding: 7px 10px 7px 10px;
+  border-radius: 5px 5px 5px 5px;
+  border: 0px solid;
+  background-color: #f04242;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+.btnEnviarFormulario:hover{
+  padding: 7px 10px 7px 10px;
+  border-radius: 5px 5px 5px 5px;
+  border: 0px solid;
+  background-color: #fc8530;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+.btnBorrarFormulario:hover{
+  padding: 7px 10px 7px 10px;
+  border-radius: 5px 5px 5px 5px;
+  border: 0px solid;
+  background-color: #f04242;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+
+/* Datatable responsive opcion ----------------------------------------------------- */
+table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:first-child {
+  white-space: nowrap !important;
+}
+
+table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:first-child::before {
+  display: inline-block !important;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+td.seleccion input.form-check-input {
+  vertical-align: middle;
+  margin: 0;
+}
+
+/* Dialog ------------------------------------ */
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.reciboCrearSeleccionado {
+  color: var(--color-v-principal);
+  border-bottom: 3px solid var(--color-v-principal);
+  font-weight: bold;
+}
+.reciboCrearNoSeleccionado {
+  color: #999;
+  border-bottom: 3px solid transparent;
+}
+.reciboCrearSeleccionado, .reciboCrearNoSeleccionado {
+  transition: all 0.2s ease;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.reciboCrearNoSeleccionado:hover {
+  color: var(--color-v-principal);
+  opacity: 60%;
+  transition: all 0.3s ease;
+}
