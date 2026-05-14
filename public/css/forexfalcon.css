@@ -9,6 +9,7 @@
 :root{
   --color-azul-principal:#070D25;
   --color-azul-principal-not-pure:#0b143a;
+  --color-azul-principal-not-pure2:#5f6375;
   --color-v-principal:#91DD4E;
   --color-v-hover:#a0e069;
   --color-n-principal:#FB8E37;
@@ -76,8 +77,17 @@ nav{
   background-color: var(--color-azul-principal-not-pure);
 }
 
-#listaNosotros{
-  background-color: var(--color-azul-principal-not-pure) !important;
+.dropdown-item:hover{
+  background-color: var(--color-azul-principal) !important;
+}
+
+#serviciosMovil{
+  background-color: var(--color-azul-principal) !important;
+  border: 1px var(--color-azul-principal-not-pure2) !important;
+}
+
+.dropdown-divider{
+  background-color: var(--color-azul-principal-not-pure2) !important;
 }
 
 /* Tooltips ------------------------------------------ */

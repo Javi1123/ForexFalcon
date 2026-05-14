@@ -7,8 +7,7 @@
   <meta name="keywords" content="<?php echo $CLAVES; ?>">
   <meta name="author" content="<?php echo $AUTOR; ?>">
   <title><?php echo $TITULO; ?></title>
-  <link rel="shortcut icon" href="<?= LINKS_PATH . "/imagenes/favicon-blanco.ico" ?>">
-  <link rel="certiTransporte" type="image/x-icon" href="<?= LINKS_PATH . "/imagenes/favicon-blanco.ico" ?>">
+  <link rel="shortcut icon" href="<?= LINKS_PATH . "/imagenes/favicon.ico" ?>">
 
   <!-- Bootstrap CSS -->
   <link href="<?= LINKS_PATH . "/css/bootstrap.min.css" ?>" rel="stylesheet">
@@ -33,8 +32,6 @@
   <script src="<?= LINKS_PATH . "/js/code_js_jquerys/certitransporte.js" ?>" defer></script>
 
 </head>
-
-<!-- <div style="padding-top: 56px;"></div> -->
 
 <!-- Mostar toast -->
 <div aria-live="polite p-3" aria-atomic="true" class="bg-body-secondary position-relative bd-example-toasts rounded-3">
