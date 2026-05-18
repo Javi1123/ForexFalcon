@@ -44,6 +44,7 @@ body{
 .orange-background{background: var(--color-n-principal);}
 .negrita{font-weight: bold;}
 .noList::before{display: none;}
+.bg-azul{background-color: var(--color-azul-principal) !important;}
 
 /* Navbar -------------------------------------------- */
 
@@ -53,24 +54,24 @@ nav{
 
 .btnInicioSesion{
   background-color: var(--color-v-principal);
-  transition: all 0.5s ease;
 }
 
 .btnRegistrarse{
   background-color: var(--color-n-principal);
-  transition: all 0.5s ease;
 }
 
 .btnInicioSesion:hover{
   background-color: var(--color-v-hover);
   cursor: pointer;
   box-shadow: 0em 0em 1em var(--color-black-transparente2);
+  transition: all 0.5s ease;
 }
 
 .btnRegistrarse:hover{
   background-color: var(--color-n-hover);
   cursor: pointer;
   box-shadow: 0em 0em 1em var(--color-black-transparente2);
+  transition: all 0.5s ease;
 }
 
 .offcanvas{
@@ -88,6 +89,12 @@ nav{
 
 .dropdown-divider{
   background-color: var(--color-azul-principal-not-pure2) !important;
+}
+
+#navegacion {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
 }
 
 /* Tooltips ------------------------------------------ */
@@ -116,6 +123,32 @@ nav{
 
 #principio{
   box-shadow: 0px 0px 40px 2px var(--color-shadow-principio);
+}
+
+.badge-gratis {
+  display: inline-block !important;
+  background-color: #71c02b; /* el verde que usas */
+  color: white;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 4px 12px;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.badge-precio {
+  display: inline-block !important;
+  background-color: var(--color-n-principal); /* el verde que usas */
+  color: white;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 4px 12px;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+#registroFinal{
+  font-size: 3.4em;
 }
 
 /* Efects ----------------------------------------- */

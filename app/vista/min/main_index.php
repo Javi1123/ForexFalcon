@@ -1,70 +1,166 @@
 <!-- Informcación main -->
 <main>
   <!-- Introducción -->
-  <div id="principio" class="container-fluid mt-2 py-5 bg-dark bg-opacity-10 reveal reveal-left" >
-    <h2 class="negrita text-center"><i class="fas fa-hand-point-right red"></i> Cursos de formación del sector de transporte</h2>
+  <section id="principio" class="container-fluid mt-2 py-5 bg-dark bg-opacity-10 reveal reveal-left" >
+    <h2 class="negrita text-center h1">Nuestra <span class="orange">esencia</span></h2>
 
     <div class="container text-justify">
       <div class="row m-1">
-        <div class="col">Cada día miles de personas se introducen al ámbito de empleo del sector de transporte. Por esto, ya puedes formarte con nuestras clases de formación para el <b class="text-dark">"Título en Competencias Profesionales para el Transporte"</b>. Desde CertiTransporte, pensamos que el sector de transporte de mercancías o viajeros se caracteriza de una gran seguridad y de una formación indicada y apta para el conductor.Deduciendo esta formación, es necesario realizar diferentes <b class=" text-dark">cursos especializados</b>, con el proposito de expandir más vuestras competencias, con el fin de formar profresionales concienciados y responsables.</div>
+        <p class="text-center">Más que una academia, somos tu socio en el camino hacia la libertad financiera.</p>
+        <!-- <div class="col">En ForexFalcon no solo aprendes trading. Te acompañamos paso a paso con asistencia 1:1 para que operes con seguridad y alcances la libertad financiera de forma cómoda, sin importar tu experiencia previa.</div> -->
       </div>
       <hr class="border border-2 rounded border-dark">
-      <div class="row m-1">
-        <div class="col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-7">
-          <p class="lead text-dark fw-bold">Desde CertiTransporte, le ofrecemos cursos:</p>
-          <ul class="list-unstyled"> 
-            <li><i class="fas fa-check red"></i> Formacion para el titulo de trasnportista de mercancia pesada.</li>
-            <li><i class="fas fa-check red"></i> Formacion para el titulo de trasnportista de viajeros.</li>
-            <li><i class="fas fa-check red"></i> Formacion para el titulo de trasnportista de mercancia pesada y transportista de viajeros.</li>
-          </ul>
-        </div>
-        <div class="my-auto mx-auto col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-5"><img src="<?= LINKS_PATH . "/imagenes/lema-certitransporte.png" ?>" width="500px" class="shadow me-lg-3 img-fluid img-thumbnail zoom" alt="Lema forexfalcon"/></div>
-      </div>
-    </div>
-  </div>
-  <!-- Requisitos -->
-  <p class="pb-5" id="requisitos"></p>
-  <div class="container pb-5">
-    <div class="row gy-4 gx-3 gx-md-4 gx-lg-5">
-      <div class="col-12 col-md-6 reveal reveal-down">
-        <div class="card p-3 p-sm-4 h-100 zoomCards">
-          <h2 class="negrita text-start text-md-justify"><i class="fas fa-book-open red zoomIcons"></i> El futuro se construye contigo</h2>
-          <p class="text-start text-md-justify">En la Unión Europea existen dos autorizaciones clave para el transporte de mercancías: la <span class="negrita">MDL</span> para vehículos ligeros (hasta <span class="negrita">3.500 kg de MMA</span>) y la <span class="negrita">MDP</span> para vehículos pesados. Las empresas que operan con flotas de más de 3.500 kg o autobuses deben contar con un <span class="negrita">Gestor de Transporte</span>, cuyo salario promedio en España es de <span class="negrita">25.620 € anuales</span>.</p>
-          <p class="text-start text-md-justify">La obtención de la <span class="negrita">Capacitación Profesional</span> es obligatoria para estas licencias, siendo equivalente al título de FP de <span class="negrita">Técnico Superior en Transporte y Logística</span>. Además, esta capacitación es necesaria para el servicio público de viajeros en vehículos de más de 9 plazas, incluyendo modalidades como el transporte discrecional, regular y privado complementario (<span class="negrita">VD y VPC</span>).</p>
-          
-          <div class="mt-auto pt-2 pt-sm-3 border-top border-dashed small text-secondary">
-            <i class="fas fa-info-circle red"></i> Actualizado 2026 · CertiTransporte
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+          <div class="card p-3 p-sm-4 h-100 zoomCards">
+            <h2 class="negrita text-start text-md-justify"><i class="fas fa-user-check orange zoomIcons"></i> Mentoría 1:1 real</h2>
+            <p class="text-start text-md-justify">Un mentor asignado solo para ti que revisa tus operaciones en vivo, corrige tu plan y responde dudas en minutos. No bots ni respuestas genéricas.</p>
+            
+            <div class="mt-auto pt-2 pt-sm-3 border-top border-dashed small text-secondary">
+              <i class="fas fa-info-circle green"></i> Actualizado 2026 · Forexfalcon
+            </div>
           </div>
         </div>
-      </div>
-      
-      <div class="col-12 col-md-6 reveal reveal-up">
-        <div class="card p-3 p-sm-4 h-100 zoomCards">
-          <h2 class="negrita text-start text-md-justify"><i class="fas fa-list-ol red zoomIcons"></i> Requisitos de los cursos</h2>
-          <p class="text-start text-md-justify">Con la entrada en vigor del <a href="https://www.boe.es/buscar/doc.php?id=BOE-A-2019-2289" class="text-decoration-none red negrita">Real Decreto 70/2019</a>, el requisito principal para obtener el Título de Transportista es contar con una <span class="negrita">FP de Grado Medio o Grado Superior</span>, o bien poseer el <span class="negrita">Título de Bachillerato</span> o similar. Si has cursado tus estudios fuera de España, es imprescindible solicitar y obtener previamente la <span class="negrita">homologación equivalente</span> a dichos títulos para poder presentarte al examen.</p>
-          <p class="text-start text-md-justify">Infórmate en detalle sobre los pasos para conseguir tu <span class="negrita">Tarjeta de Transporte</span> y para presentarte a las <span class="negrita">pruebas de Competencia</span> que convoca tu Comunidad Autónoma. Además, si tu objetivo es ser conductor profesional, aquí encontrarás información actualizada para obtener el <span class="negrita">carnet de camión, tráiler o autobús (CAP)</span>, así como el <span class="negrita">Certificado ADR</span> para el responsable de seguridad en el transporte de mercancías peligrosas.</p>
-          
-          <div class="mt-auto p-2 p-sm-3 bg-success bg-opacity-10 rounded small">
-            <div class="d-flex flex-wrap gap-2 gap-sm-3">
-              <span><i class="fas fa-check-circle red"></i> FP Grado Medio/Superior</span>
-              <span><i class="fas fa-check-circle red"></i> Bachillerato</span>
-              <span><i class="fas fa-check-circle red"></i> Homologación</span>
+        <div class="col">
+          <div class="card p-3 p-sm-4 h-100 zoomCards">
+            <h2 class="negrita text-start text-md-justify"><i class="fas fa-chalkboard-teacher orange zoomIcons"></i> Aprendizaje con operaciones en vivo</h2>
+            <p class="text-start text-md-justify">Bots automáticos configurables y copy trading selectivo. Operas mientras duermes o trabajas, manteniendo el control total del riesgo.</p>
+            
+            <div class="mt-auto pt-2 pt-sm-3 border-top border-dashed small text-secondary">
+              <i class="fas fa-info-circle green"></i> Actualizado 2026 · Forexfalcon
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card p-3 p-sm-4 h-100 zoomCards">
+            <h2 class="negrita text-start text-md-justify"><i class="fas fa-robot orange zoomIcons"></i> Bots automáticos + copy trading</h2>
+            <p class="text-start text-md-justify">Aprende de cientos de experiencias reales en grupos privados. Webinars mensuales con casos reales: aciertos, errores y correcciones en vivo.</p>
+            
+            <div class="mt-auto pt-2 pt-sm-3 border-top border-dashed small text-secondary">
+              <i class="fas fa-info-circle green"></i> Actualizado 2026 · Forexfalcon
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card p-3 p-sm-4 h-100 zoomCards">
+            <h2 class="negrita text-start text-md-justify"><i class="fas fa-users orange zoomIcons"></i> Comunidad colaborativa activa</h2>
+            <p class="text-start text-md-justify">Resultados sostenibles fase por fase: control emocional, consistencia y luego ingresos complementarios. Sin humo ni Lamborghinis en 3 meses.</p>
+            
+            <div class="mt-auto pt-2 pt-sm-3 border-top border-dashed small text-secondary">
+              <i class="fas fa-info-circle green"></i> Actualizado 2026 · Forexfalcon
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card p-3 p-sm-4 h-100 zoomCards">
+            <h2 class="negrita text-start text-md-justify"><i class="fas fa-chart-line orange zoomIcons"></i>Análisis semanal en formato ejecutivo</h2>
+            <p class="text-start text-md-justify">Olvida perder horas buscando noticias. Cada lunes recibe un informe claro con pares clave, niveles de interés y escenarios probables.</p>
+            
+            <div class="mt-auto pt-2 pt-sm-3 border-top border-dashed small text-secondary">
+              <i class="fas fa-info-circle green"></i> Actualizado 2026 · Forexfalcon
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card p-3 p-sm-4 h-100 zoomCards">
+            <h2 class="negrita text-start text-md-justify"><i class="fas fa-mountain orange zoomIcons"></i>Resultados sostenibles, paso a paso</h2>
+            <p class="text-start text-md-justify">Sin promesas falsas. Fase 1: controlar riesgo. Fase 2: consistencia. Fase 3: ingresos complementarios. Libertad financiera real y cómoda.</p>
+            
+            <div class="mt-auto pt-2 pt-sm-3 border-top border-dashed small text-secondary">
+              <i class="fas fa-info-circle green"></i> Actualizado 2026 · Forexfalcon
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Preguntas FAQs -->
-  <div class="container" id="preguntas">
-    <h2 class="negrita text-center mb-3"><i class="fas fa-question red"></i> FAQ</h2>
+  <!-- Servicios -->
+  <section class="container pb-5">
+    <p class="fs-1 pt-5 pb-2 text-center fw-bold" id="requisitos">Nuestros <span class="orange">servicios</span></p>
+    <div class="row gy-4 gx-3 gx-md-4 gx-lg-5">
 
-    <div class="accordion reveal reveal-scale" id="accordion">
+      <!-- CopyTrading -->
+      <div class="col-12 col-md-6 reveal reveal-down">
+        <div class="card p-3 p-sm-4 h-100 zoomCards bg-azul">
+          <h2 class="negrita text-white"><i class="fas fa-copy green"></i> CopyTrading</h2>
+          <div class="mb-2"><span class="badge-gratis">TOTALMENTE GRATIS</span></div>
+          <span class="text-white">Copia automáticamente las operaciones en tiempo real. Sin experiencia, sin estrés.</span>
+          <div class="mt-auto pt-3">
+            <div class="d-flex flex-column gap-1 text-white small mb-3">
+              <span><i class="fas fa-check-circle green"></i> Depósito mínimo $100</span>
+              <span><i class="fas fa-check-circle green"></i> Configuración en 5 minutos</span>
+              <span><i class="fas fa-check-circle green"></i> Sin comisiones adicionales</span>
+            </div>
+            <a class="btn btnRegistrarse fw-bold w-100" href="">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mentorías -->
+      <div class="col-12 col-md-6 reveal reveal-down">
+        <div class="card p-3 p-sm-4 h-100 zoomCards bg-azul">
+          <h2 class="negrita text-white"><i class="fas fa-user-graduate green"></i> Mentorías 1:1</h2>
+          <span class="text-white">Aprende la estrategia 100% funcional con acompañamiento personalizado.</span>
+          <div class="mt-auto pt-3">
+            <div class="mb-3">
+              <span class="text-white fw-bolder d-block mb-2">Planes disponibles:</span>
+              <div class="text-white d-flex flex-column gap-1">
+                <div class="d-flex justify-content-between"><span>1 Mes</span><span class="orange fw-bold">€150</span></div>
+                <div class="d-flex justify-content-between"><span>3 Meses</span><span class="orange fw-bold">€350</span></div>
+                <div class="d-flex justify-content-between"><span>1 Año</span><span class="orange fw-bold">€999</span></div>
+              </div>
+            </div>
+            <a class="btn btnRegistrarse fw-bold w-100" href="">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bots -->
+      <div class="col-12 col-md-6 reveal reveal-down">
+        <div class="card p-3 p-sm-4 h-100 zoomCards bg-azul">
+          <h2 class="negrita text-white"><i class="fas fa-microchip green"></i> Bots de Trading</h2>
+          <div class="mb-2"><span class="badge-precio">€75 / mes</span></div>
+          <span class="text-white">Algoritmos automatizados que operan por ti 24/7 de lunes a viernes.</span>
+          <div class="mt-auto pt-3">
+            <div class="d-flex flex-column gap-1 text-white small mb-3">
+              <span><i class="fas fa-check-circle green"></i> Opera sin descanso</span>
+              <span><i class="fas fa-check-circle green"></i> Basado en mi estrategia</span>
+              <span><i class="fas fa-check-circle green"></i> Resultados consistentes</span>
+            </div>
+            <a class="btn btnRegistrarse fw-bold w-100" href="">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Análisis Premium -->
+      <div class="col-12 col-md-6 reveal reveal-down">
+        <div class="card p-3 p-sm-4 h-100 zoomCards bg-azul">
+          <h2 class="negrita text-white"><i class="fas fa-gem green"></i> Análisis Premium</h2>
+          <div class="mb-2"><span class="badge-precio">€50 / mes</span></div>
+          <span class="text-white">Grupo exclusivo con mis predicciones diarias sobre materias primas y divisas.</span>
+          <div class="mt-auto pt-3">
+            <div class="d-flex flex-column gap-1 text-white small mb-3">
+              <span><i class="fas fa-check-circle green"></i> Señales claras de entrada/salida</span>
+              <span><i class="fas fa-check-circle green"></i> Análisis fundamental y técnico</span>
+              <span><i class="fas fa-check-circle green"></i> Soporte directo en el grupo</span>
+            </div>
+            <a class="btn btnRegistrarse fw-bold w-100" href="">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Preguntas FAQs //TODO CAMBIAR LAS FAQs-->
+  <section class="bg-azul" id="preguntas">
+    <h2 class="negrita text-center py-4 mb-0 text-white"> FAQ<span class="orange">s</span></h2>
+
+    <div class="container accordion reveal reveal-scale pb-5" id="accordion">
       <div class="accordion-item">
         <h2 class="accordion-header"> 
           <button class=" bg-body-secondary accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#text1accordion" aria-expanded="true" aria-controls="text1accordion">
-            <i class="fa-solid fa-caret-right orange"></i>&nbsp;
             ¿Qué es la competencia profesional para el transporte?
           </button>
         </h2>
@@ -85,7 +181,6 @@
       <div class="accordion-item">
         <h2 class="accordion-header">
           <button class="bg-body-secondary accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#text2accordion" aria-expanded="false" aria-controls="text2accordion">
-            <i class="fa-solid fa-caret-right orange"></i>&nbsp;
             ¿Qué diferencia existe entre transporte público y transporte privado?
           </button>
         </h2>
@@ -101,7 +196,6 @@
       <div class="accordion-item">
         <h2 class="accordion-header">
           <button class="bg-body-secondary accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#text3accordion" aria-expanded="false" aria-controls="text3accordion">
-            <i class="fa-solid fa-caret-right orange"></i>&nbsp;
             ¿Cómo se obtiene el certificado de competencia profesional para el transporte?
           </button>
         </h2>
@@ -137,7 +231,6 @@
       <div class="accordion-item">
         <h2 class="accordion-header">
           <button class="bg-body-secondary accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#text5accordion" aria-expanded="false" aria-controls="text2accordion">
-            <i class="fa-solid fa-caret-right orange"></i>&nbsp;
             ¿Cuál es el costo de los cursos y si hay opciones de financiación o descuentos disponibles?
           </button>
         </h2>
@@ -150,7 +243,6 @@
       <div class="accordion-item">
         <h2 class="accordion-header">
           <button class="bg-body-secondary accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#text6accordion" aria-expanded="false" aria-controls="text2accordion">
-            <i class="fa-solid fa-caret-right orange"></i>&nbsp;
             ¿Cuál es el horario de clases y la disponibilidad de horarios?
           </button>
         </h2>
@@ -169,7 +261,6 @@
       <div class="accordion-item">
         <h2 class="accordion-header">
           <button class="bg-body-secondary accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#text7accordion" aria-expanded="false" aria-controls="text2accordion">
-            <i class="fa-solid fa-caret-right orange"></i>&nbsp;
             ¿Cómo es el proceso de inscripción y cuándo puedo comenzar?
           </button>
         </h2>
@@ -183,5 +274,14 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <section class="container">
+    <div class="my-5 py-5 text-center">
+      <h2 id="registroFinal" class="text-center">¿Listo para cambiar tu <span class="green fw-bold">vida financiera</span>?</h2>
+      <p class="text-center fs-5">Únete hoy a ForexFalcon y descubre cómo el trading puede convertirse en tu camino hacia la libertad.</p>
+
+      <button type="button" class="btn fs-5 btnRegistrarse"><i class="fas fa-rocket mr-2"></i>Comienza tu viaje</button>
+    </div>
+  </section>
 </main>

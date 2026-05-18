@@ -1,10 +1,10 @@
-<header class="col-xl-auto" id="navegacion">
+<header class="col-xl-auto position-sticky" id="navegacion">
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
 
       <!-- Logo -->
       <a href="<?= BASE_PATH ?>" class="ps-3">
-        <img class="zoom" src="<?= LINKS_PATH . "/imagenes/logo.png" ?>" alt="Logo forexfalcon" width="70px">
+        <img src="<?= LINKS_PATH . "/imagenes/logo.png" ?>" alt="Logo forexfalcon" width="70px">
       </a>
 
       <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,25 +34,21 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href="<?= BASE_PATH . "/catalogo" ?>">Catálogo</a>
+              <a class="nav-link text-white" id="catalogo" href="<?= BASE_PATH . "/catalogo" ?>">Catálogo</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href="<?= BASE_PATH . "/quienes_somos" ?>">Quiénes somos</a>
+              <a class="nav-link text-white" id="quienes_somos" href="<?= BASE_PATH . "/quienes_somos" ?>">Quiénes somos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href="<?= BASE_PATH . "/ayuda" ?>">Ayuda</a>
+              <a class="nav-link text-white" id="ayuda" href="<?= BASE_PATH . "/ayuda" ?>">Ayuda</a>
             </li>
           </ul>
           <div class="d-flex align-items-center">
-            <button type="button" class="btn btnInicioSesion fw-bold me-2">Iniciar sesion</button>
-            <button type="button" class="btn btnRegistrarse fw-bold me-2">Registrarse</button>
+            <a type="button" class="btn btnInicioSesion fw-bold me-2" href="<?= BASE_PATH . "/login" ?>">Iniciar sesion</a>
+            <a type="button" class="btn btnRegistrarse fw-bold me-2" href="<?= BASE_PATH . "/registrarse" ?>">Registrarse</a>
           </div>
         </div>
       </div>
-  
-      <!-- Botones de sesión + hamburguesa -->
-      
-
     </div>
   </nav>
 </header>
