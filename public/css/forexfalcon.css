@@ -500,3 +500,14 @@ dialog::backdrop {
   opacity: 60%;
   transition: all 0.3s ease;
 }
+
+/* Acciones ----------------------------------------------------- */
+
+.nav-acciones.active {
+  background-color: var(--color-v-principal) !important;
+  color: var(--bs-white) !important;
+}
+
+.nav-acciones {
+  color: var(--color-azul-principal) !important;
+}

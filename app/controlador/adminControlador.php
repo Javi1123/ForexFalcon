@@ -40,6 +40,13 @@ class adminControlador{
     require __DIR__ . '/../vista/login_vista.php';
   }
     
+  public function crear_cuenta(){
+    session_unset();
+    session_destroy();
+    header("Location: " . BASE_PATH . '/login');
+    exit();
+  }
+
   public function logout(){
     session_unset();
     session_destroy();

@@ -27,6 +27,11 @@ switch ($uri){
     $controlador = new adminControlador();
     $controlador-> login();
     break;
+
+  case '/crear_cuenta':
+    $controlador = new adminControlador();
+    $controlador-> crear_cuenta();
+    break;
           
   case '/logout':
     $controlador = new adminControlador();

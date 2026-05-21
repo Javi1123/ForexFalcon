@@ -46,7 +46,7 @@
           </ul>
           <div class="d-flex align-items-center">
             <a type="button" class="btn btnInicioSesion fw-bold me-2" href="<?= BASE_PATH . "/login" ?>">Iniciar sesion</a>
-            <a type="button" class="btn btnRegistrarse fw-bold me-2" href="<?= BASE_PATH . "/registrarse" ?>">Registrarse</a>
+            <a type="button" class="btn btnRegistrarse fw-bold me-2" href="<?= BASE_PATH . "/login" ?>">Registrarse</a>
           </div>
         </div>
       </div>
