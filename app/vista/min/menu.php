@@ -3,7 +3,7 @@
     <div class="container-fluid">
 
       <!-- Logo -->
-      <a href="<?= BASE_PATH ?>" class="ps-3">
+      <a href="<?= BASE_PATH ?>" class="ms-3">
         <img src="<?= LINKS_PATH . "/imagenes/logo.png" ?>" alt="Logo forexfalcon" width="70px">
       </a>
 
@@ -23,6 +23,7 @@
               <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Servicios
               </a>
+              <!-- // TODO cambiar color de dropdown -->
               <ul class="dropdown-menu" id="serviciosMovil">
                 <li><a class="dropdown-item ps-2 text-white text-decoration-none" href="<?= BASE_PATH . "/copytrading" ?>">CopyTrading</a></li>
                 <hr class="dropdown-divider">

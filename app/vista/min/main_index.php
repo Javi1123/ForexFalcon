@@ -1,76 +1,88 @@
 <!-- Informcación main -->
 <main>
   <!-- Introducción -->
-  <section id="principio" class="container-fluid mt-2 py-5 bg-dark bg-opacity-10 reveal reveal-left" >
+  <section id="principio" class="container-fluid mt-2 py-5 bg-dark bg-opacity-10" >
     <h2 class="negrita text-center h1">Nuestra <span class="orange">esencia</span></h2>
 
     <div class="container text-justify">
       <div class="row m-1">
         <p class="text-center">Más que una academia, somos tu socio en el camino hacia la libertad financiera.</p>
-        <!-- <div class="col">En ForexFalcon no solo aprendes trading. Te acompañamos paso a paso con asistencia 1:1 para que operes con seguridad y alcances la libertad financiera de forma cómoda, sin importar tu experiencia previa.</div> -->
       </div>
       <hr class="border border-2 rounded border-dark">
-      <div class="row row-cols-1 row-cols-md-2 g-4">
-        <div class="col">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+
+        <div class="col reveal reveal-up delay-1-cards">
           <div class="card p-3 p-sm-4 h-100 zoomCards">
-            <h2 class="negrita text-start text-md-justify"><i class="fas fa-user-check orange zoomIcons"></i> Mentoría 1:1 real</h2>
-            <p class="text-start text-md-justify">Un mentor asignado solo para ti que revisa tus operaciones en vivo, corrige tu plan y responde dudas en minutos. No bots ni respuestas genéricas.</p>
-            
-            <div class="mt-auto pt-2 pt-sm-3 border-top border-dashed small text-secondary">
-              <i class="fas fa-info-circle green"></i> Actualizado 2026 · Forexfalcon
-            </div>
+
+            <i class="fas fa-user-check icon-bg"></i>
+
+            <h2 class="negrita text-start text-md-justify">
+              Mentoría 1:1 real
+            </h2>
+            <p class="text-start text-md-justify">Mentor exclusivo que revisa tus operaciones en vivo y responde en minutos. Sin bots ni respuestas genéricas.</p>
           </div>
         </div>
-        <div class="col">
+
+        <div class="col reveal reveal-up delay-2-cards">
           <div class="card p-3 p-sm-4 h-100 zoomCards">
-            <h2 class="negrita text-start text-md-justify"><i class="fas fa-chalkboard-teacher orange zoomIcons"></i> Aprendizaje con operaciones en vivo</h2>
-            <p class="text-start text-md-justify">Bots automáticos configurables y copy trading selectivo. Operas mientras duermes o trabajas, manteniendo el control total del riesgo.</p>
-            
-            <div class="mt-auto pt-2 pt-sm-3 border-top border-dashed small text-secondary">
-              <i class="fas fa-info-circle green"></i> Actualizado 2026 · Forexfalcon
-            </div>
+
+            <i class="fas fa-chalkboard-teacher icon-bg"></i>
+
+            <h2 class="negrita text-start text-md-justify">
+              Aprendizaje con operaciones en vivo
+            </h2>
+            <p class="text-start text-md-justify">Bots configurables y copy trading selectivo. Opera mientras duermes, con control total del riesgo.</p>
           </div>
         </div>
-        <div class="col">
+
+        <div class="col reveal reveal-up delay-3-cards">
           <div class="card p-3 p-sm-4 h-100 zoomCards">
-            <h2 class="negrita text-start text-md-justify"><i class="fas fa-robot orange zoomIcons"></i> Bots automáticos + copy trading</h2>
-            <p class="text-start text-md-justify">Aprende de cientos de experiencias reales en grupos privados. Webinars mensuales con casos reales: aciertos, errores y correcciones en vivo.</p>
-            
-            <div class="mt-auto pt-2 pt-sm-3 border-top border-dashed small text-secondary">
-              <i class="fas fa-info-circle green"></i> Actualizado 2026 · Forexfalcon
-            </div>
+
+            <i class="fas fa-robot icon-bg"></i>
+
+            <h2 class="negrita text-start text-md-justify">
+              Bots automáticos + copy trading
+            </h2>
+            <p class="text-start text-md-justify">Aprende de cientos de casos reales en grupos privados y webinars mensuales con aciertos, errores y correcciones en vivo.</p>
           </div>
         </div>
-        <div class="col">
+        
+        <div class="col reveal reveal-up delay-4-cards">
           <div class="card p-3 p-sm-4 h-100 zoomCards">
-            <h2 class="negrita text-start text-md-justify"><i class="fas fa-users orange zoomIcons"></i> Comunidad colaborativa activa</h2>
-            <p class="text-start text-md-justify">Resultados sostenibles fase por fase: control emocional, consistencia y luego ingresos complementarios. Sin humo ni Lamborghinis en 3 meses.</p>
-            
-            <div class="mt-auto pt-2 pt-sm-3 border-top border-dashed small text-secondary">
-              <i class="fas fa-info-circle green"></i> Actualizado 2026 · Forexfalcon
-            </div>
+
+            <i class="fas fa-users icon-bg"></i>
+
+            <h2 class="negrita text-start text-md-justify">
+              Comunidad colaborativa activa
+            </h2>
+            <p class="text-start text-md-justify">Resultados sostenibles fase por fase: control emocional, consistencia e ingresos complementarios. Sin promesas falsas ni atajos.</p>
           </div>
         </div>
-        <div class="col">
+
+        <div class="col reveal reveal-up delay-5-cards">
           <div class="card p-3 p-sm-4 h-100 zoomCards">
-            <h2 class="negrita text-start text-md-justify"><i class="fas fa-chart-line orange zoomIcons"></i>Análisis semanal en formato ejecutivo</h2>
-            <p class="text-start text-md-justify">Olvida perder horas buscando noticias. Cada lunes recibe un informe claro con pares clave, niveles de interés y escenarios probables.</p>
-            
-            <div class="mt-auto pt-2 pt-sm-3 border-top border-dashed small text-secondary">
-              <i class="fas fa-info-circle green"></i> Actualizado 2026 · Forexfalcon
-            </div>
+
+            <i class="fas fa-chart-line icon-bg"></i>
+
+            <h2 class="negrita text-start text-md-justify">
+              Análisis semanal en formato ejecutivo
+            </h2>
+            <p class="text-start text-md-justify">Cada lunes, informe claro con pares clave, niveles clave y escenarios probables. Olvida perder horas buscando noticias.</p>
           </div>
         </div>
-        <div class="col">
+
+        <div class="col reveal reveal-up delay-6-cards">
           <div class="card p-3 p-sm-4 h-100 zoomCards">
-            <h2 class="negrita text-start text-md-justify"><i class="fas fa-mountain orange zoomIcons"></i>Resultados sostenibles, paso a paso</h2>
-            <p class="text-start text-md-justify">Sin promesas falsas. Fase 1: controlar riesgo. Fase 2: consistencia. Fase 3: ingresos complementarios. Libertad financiera real y cómoda.</p>
-            
-            <div class="mt-auto pt-2 pt-sm-3 border-top border-dashed small text-secondary">
-              <i class="fas fa-info-circle green"></i> Actualizado 2026 · Forexfalcon
-            </div>
+
+            <i class="fas fa-mountain icon-bg"></i>
+
+            <h2 class="negrita text-start text-md-justify">
+              Resultados sostenibles, paso a paso
+            </h2>
+            <p class="text-start text-md-justify">Fase 1: controlar riesgo. Fase 2: consistencia. Fase 3: ingresos complementarios. Libertad financiera real, sin promesas falsas.</p>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -78,10 +90,10 @@
   <!-- Servicios -->
   <section class="container pb-5">
     <p class="fs-1 pt-5 pb-2 text-center fw-bold" id="requisitos">Nuestros <span class="orange">servicios</span></p>
-    <div class="row gy-4 gx-3 gx-md-4 gx-lg-5">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-4 gy-4 gx-3 gx-md-4 gx-lg-5">
 
       <!-- CopyTrading -->
-      <div class="col-12 col-md-6 reveal reveal-down">
+      <div class="col-12 col-md-6 reveal reveal-down delay-1">
         <div class="card p-3 p-sm-4 h-100 zoomCards bg-azul">
           <h2 class="negrita text-white"><i class="fas fa-copy green"></i> CopyTrading</h2>
           <div class="mb-2"><span class="badge-gratis">TOTALMENTE GRATIS</span></div>
@@ -89,16 +101,18 @@
           <div class="mt-auto pt-3">
             <div class="d-flex flex-column gap-1 text-white small mb-3">
               <span><i class="fas fa-check-circle green"></i> Depósito mínimo $100</span>
+              <hr class="m-1">
               <span><i class="fas fa-check-circle green"></i> Configuración en 5 minutos</span>
+              <hr class="m-1">
               <span><i class="fas fa-check-circle green"></i> Sin comisiones adicionales</span>
             </div>
-            <a class="btn btnRegistrarse fw-bold w-100" href="">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/copytrading" ?>">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
           </div>
         </div>
       </div>
 
       <!-- Mentorías -->
-      <div class="col-12 col-md-6 reveal reveal-down">
+      <div class="col-12 col-md-6 reveal reveal-down delay-2">
         <div class="card p-3 p-sm-4 h-100 zoomCards bg-azul">
           <h2 class="negrita text-white"><i class="fas fa-user-graduate green"></i> Mentorías 1:1</h2>
           <span class="text-white">Aprende la estrategia 100% funcional con acompañamiento personalizado.</span>
@@ -107,17 +121,19 @@
               <span class="text-white fw-bolder d-block mb-2">Planes disponibles:</span>
               <div class="text-white d-flex flex-column gap-1">
                 <div class="d-flex justify-content-between"><span>1 Mes</span><span class="orange fw-bold">€150</span></div>
+                <hr class="m-1">
                 <div class="d-flex justify-content-between"><span>3 Meses</span><span class="orange fw-bold">€350</span></div>
+                <hr class="m-1">
                 <div class="d-flex justify-content-between"><span>1 Año</span><span class="orange fw-bold">€999</span></div>
               </div>
             </div>
-            <a class="btn btnRegistrarse fw-bold w-100" href="">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/mentorias" ?>">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
           </div>
         </div>
       </div>
 
       <!-- Bots -->
-      <div class="col-12 col-md-6 reveal reveal-down">
+      <div class="col-12 col-md-6 reveal reveal-down delay-3">
         <div class="card p-3 p-sm-4 h-100 zoomCards bg-azul">
           <h2 class="negrita text-white"><i class="fas fa-microchip green"></i> Bots de Trading</h2>
           <div class="mb-2"><span class="badge-precio">€75 / mes</span></div>
@@ -125,16 +141,18 @@
           <div class="mt-auto pt-3">
             <div class="d-flex flex-column gap-1 text-white small mb-3">
               <span><i class="fas fa-check-circle green"></i> Opera sin descanso</span>
+              <hr class="m-1">
               <span><i class="fas fa-check-circle green"></i> Basado en mi estrategia</span>
+              <hr class="m-1">
               <span><i class="fas fa-check-circle green"></i> Resultados consistentes</span>
             </div>
-            <a class="btn btnRegistrarse fw-bold w-100" href="">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/bots" ?>">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
           </div>
         </div>
       </div>
 
       <!-- Análisis Premium -->
-      <div class="col-12 col-md-6 reveal reveal-down">
+      <div class="col-12 col-md-6 reveal reveal-down delay-4">
         <div class="card p-3 p-sm-4 h-100 zoomCards bg-azul">
           <h2 class="negrita text-white"><i class="fas fa-gem green"></i> Análisis Premium</h2>
           <div class="mb-2"><span class="badge-precio">€50 / mes</span></div>
@@ -142,10 +160,12 @@
           <div class="mt-auto pt-3">
             <div class="d-flex flex-column gap-1 text-white small mb-3">
               <span><i class="fas fa-check-circle green"></i> Señales claras de entrada/salida</span>
+              <hr class="m-1">
               <span><i class="fas fa-check-circle green"></i> Análisis fundamental y técnico</span>
+              <hr class="m-1">
               <span><i class="fas fa-check-circle green"></i> Soporte directo en el grupo</span>
             </div>
-            <a class="btn btnRegistrarse fw-bold w-100" href="">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/analisis" ?>">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
           </div>
         </div>
       </div>
@@ -276,12 +296,23 @@
     </div>
   </section>
 
-  <section class="container">
+  <?php if(isset($_SESSION['usuario'])) : ?>
+    <section class="container">
+      <div class="my-5 py-5 text-center">
+        <h2 id="registroFinal" class="text-center">Estas cambiando tu <span class="green fw-bold">vida financiera</span></h2>
+        <p class="text-center fs-5">Ya estás en ForexFalcon. Ahora descubre cómo el trading se convierte en tu camino real hacia la libertad.</p>
+
+        <a href="<?= BASE_PATH . "/recursos" ?>" type="button" class="btn fs-5 btnRegistrarse fw-bold">Ir a mis recursos</a>
+      </div>
+    </section>
+  <?php else : ?>
+    <section class="container">
     <div class="my-5 py-5 text-center">
       <h2 id="registroFinal" class="text-center">¿Listo para cambiar tu <span class="green fw-bold">vida financiera</span>?</h2>
       <p class="text-center fs-5">Únete hoy a ForexFalcon y descubre cómo el trading puede convertirse en tu camino hacia la libertad.</p>
 
-      <button type="button" class="btn fs-5 btnRegistrarse"><i class="fas fa-rocket mr-2"></i>Comienza tu viaje</button>
+      <a href="<?= BASE_PATH . "/registrarse" ?>" type="button" class="btn fs-5 btnRegistrarse fw-bold"><i class="fas fa-rocket mr-2"></i>Comienza tu viaje</a>
     </div>
   </section>
+  <?php endif; ?>
 </main>
