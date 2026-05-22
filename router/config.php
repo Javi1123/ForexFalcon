@@ -12,7 +12,7 @@ if ($uri === '' || $uri === '/' || $uri === '/index.php') {
   $uri = '/index';
 }
 
-$_SESSION['usuario'] = "asd";
+// $_SESSION['usuario'] = "asd";
 
 switch ($uri){
 

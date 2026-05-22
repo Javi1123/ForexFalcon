@@ -19,28 +19,25 @@
         </div>
         <div class="offcanvas-body">
           <ul class="navbar-nav flex-grow-1 justify-content-evenly">
+            <li class="nav-item">
+              <a class="nav-link text-white" href=".#catalogo">Catálogo</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#esencia">Esencia</a>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Servicios
+                Compañia
               </a>
               <ul class="dropdown-menu" id="serviciosMovil">
-                <li><a class="dropdown-item ps-2 text-white text-decoration-none" href="<?= BASE_PATH . "/copytrading" ?>">CopyTrading</a></li>
+                <li><a class="dropdown-item ps-2 text-white text-decoration-none" href="<?= BASE_PATH . "/quienes_somos" ?>">Quienes somos</a></li>
                 <hr class="dropdown-divider">
-                <li><a class="dropdown-item ps-2 text-white text-decoration-none" href="<?= BASE_PATH . "/mentorias" ?>">Mentorias</a></li>
+                <li><a class="dropdown-item ps-2 text-white text-decoration-none" href="<?= BASE_PATH . "/mentorias" ?>">Donde estamos</a></li>
                 <hr class="dropdown-divider">
-                <li><a class="dropdown-item ps-2 text-white text-decoration-none" href="<?= BASE_PATH . "/bots" ?>">Bots</a></li>
+                <li><a class="dropdown-item ps-2 text-white text-decoration-none" href="<?= BASE_PATH . "/contacto" ?>">Contacto</a></li>
                 <hr class="dropdown-divider">
-                <li><a class="dropdown-item ps-2 text-white text-decoration-none" href="<?= BASE_PATH . "/analisis" ?>">Análisis</a></li>
+                <li><a class="dropdown-item ps-2 text-white text-decoration-none" href="#FAQs">FAQs</a></li>
               </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" id="catalogo" href="<?= BASE_PATH . "/catalogo" ?>">Catálogo</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" id="quienes_somos" href="<?= BASE_PATH . "/quienes_somos" ?>">Quiénes somos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" id="ayuda" href="<?= BASE_PATH . "/ayuda" ?>">Ayuda</a>
             </li>
           </ul>
 

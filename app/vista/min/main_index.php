@@ -1,7 +1,7 @@
 <!-- Informcación main -->
 <main>
   <!-- Introducción -->
-  <section id="principio" class="container-fluid mt-2 py-5 bg-dark bg-opacity-10" >
+  <section id="esencia" class="container-fluid mt-2 py-5 bg-dark bg-opacity-10" >
     <h2 class="negrita text-center h1">Nuestra <span class="orange">esencia</span></h2>
 
     <div class="container text-justify">
@@ -89,7 +89,7 @@
 
   <!-- Servicios -->
   <section class="container pb-5">
-    <p class="fs-1 pt-5 pb-2 text-center fw-bold" id="requisitos">Nuestros <span class="orange">servicios</span></p>
+    <p class="fs-1 pt-5 pb-2 text-center fw-bold" id="catalogo">Catálogo</p>
     <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-4 gy-4 gx-3 gx-md-4 gx-lg-5">
 
       <!-- CopyTrading -->
@@ -174,7 +174,7 @@
   </section>
 
   <!-- Preguntas FAQs //TODO CAMBIAR LAS FAQs-->
-  <section class="bg-azul" id="preguntas">
+  <section class="bg-azul" id="FAQs">
     <h2 class="negrita text-center py-4 mb-0 text-white"> FAQ<span class="orange">s</span></h2>
 
     <div class="container accordion reveal reveal-scale pb-5" id="accordion">
