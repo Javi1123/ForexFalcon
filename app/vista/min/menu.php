@@ -1,4 +1,4 @@
-<header class="col-xl-auto position-sticky" id="navegacion">
+<header class="col-xl-auto" id="navegacion">
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
 
@@ -12,7 +12,7 @@
       </button>
       
         <!-- Offcanvas (móvil) -->
-      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
           <span class="h2 fw-bold green">Forexfalcon</span>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -46,7 +46,7 @@
           </ul>
           <div class="d-flex align-items-center">
             <a type="button" class="btn btnInicioSesion fw-bold me-2" href="<?= BASE_PATH . "/login" ?>">Iniciar sesion</a>
-            <a type="button" class="btn btnRegistrarse fw-bold me-2" href="<?= BASE_PATH . "/registrarse" ?>">Registrarse</a>
+            <a type="button" class="btn btnRegistrarse fw-bold me-2" href="<?= BASE_PATH . "/login" ?>">Registrarse</a>
           </div>
         </div>
       </div>

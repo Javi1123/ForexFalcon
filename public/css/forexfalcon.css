@@ -8,6 +8,7 @@
 
 :root{
   --color-azul-principal:#070D25;
+  --color-azul-principal-translucido:rgba(7, 13, 37, 0.72);
   --color-azul-principal-not-pure:#0b143a;
   --color-azul-principal-not-pure2:#5f6375;
   --color-v-principal:#91DD4E;
@@ -51,6 +52,7 @@ body{
 nav{
   background-color: var(--color-azul-principal) !important;
 }
+
 .btnInicioSesion {
   background-color: var(--color-v-principal);
   border-color: var(--color-v-principal);
@@ -113,9 +115,42 @@ nav{
 }
 
 #navegacion {
-  position: sticky;
-  top: 0;
-  z-index: 1030;
+  position: fixed;        /* era sticky */
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  transition: all 0.45s cubic-bezier(0.4,0,0.2,1);
+}
+
+#navegacion .navbar {
+  transition: all 0.45s cubic-bezier(0.4,0,0.2,1);
+  background: transparent !important;
+}
+
+#navegacion.nav--bubble {
+  top: 14px;
+  padding: 0 1.5rem;
+}
+
+#navegacion.nav--bubble .navbar {
+  background: var(--color-azul-principal-translucido) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 50px;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+}
+
+.hero__blur-bottom {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 0;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.15));
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  z-index: 2;
+  transition: height 0.3s ease;
+  pointer-events: none;
 }
 
 /* Tooltips ------------------------------------------ */
@@ -176,6 +211,7 @@ nav{
 
 /* ─── Hero wrapper ──────────────────────────────────────────── */
 .hero {
+  padding-top: 80px;
   position: relative;
   min-height: 92.6svh;
   /* full viewport height */
@@ -499,4 +535,15 @@ dialog::backdrop {
   color: var(--color-v-principal);
   opacity: 60%;
   transition: all 0.3s ease;
+}
+
+/* Acciones ----------------------------------------------------- */
+
+.nav-acciones.active {
+  background-color: var(--color-v-principal) !important;
+  color: var(--bs-white) !important;
+}
+
+.nav-acciones {
+  color: var(--color-azul-principal) !important;
 }
