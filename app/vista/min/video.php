@@ -1,5 +1,5 @@
 <!-- Video Principal -->
-<section class="hero">
+<section class="hero ">
 
   <div class="hero__video-wrap">
     <video autoplay muted loop playsinline preload="auto" aria-hidden="true">
@@ -44,5 +44,5 @@
 
     </div>
   </div>
-
+  <div class="hero__blur-bottom" id="heroBlurBottom"></div>
 </section>
