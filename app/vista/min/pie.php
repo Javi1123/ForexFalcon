@@ -22,9 +22,9 @@
         </div>
         <div class="col-4 col-sm-4 col-xl-3">
           <p class="h4 negrita">Redes</p>
-          <span class="d-block"><a class="green" href="">Instagram</a></span>
-          <span class="d-block"><a class="green" href="">TikTok</a></span>
-          <span class="d-block"><a class="green" href="">Telegram</a></span>
+          <span class="d-block"><a class="green" href="https://www.instagram.com/forex_falcon_oficial?igsh=Y3NiZm9oMWc0cHho">Instagram</a></span>
+          <span class="d-block"><a class="green" href="https://www.tiktok.com/@forexfalcon1?_r=1&_t=ZN-94PCJqE28G6">TikTok</a></span>
+          <span class="d-block"><a class="green" href="https://t.me/ForexFalconn">Telegram</a></span>
         </div>
         <div class="col-4 col-sm-4 col-xl-3">
           <p class="h4 negrita">Nosotros</p>

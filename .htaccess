@@ -14,7 +14,7 @@ RewriteRule donde_estamos index.php
 RewriteRule registrarse index.php
 
 # Admins
-RewriteRule login index.php
+RewriteRule acciones index.php
 RewriteRule logout index.php
 RewriteRule admin index.php
 RewriteRule sugerenciaTabla index.php

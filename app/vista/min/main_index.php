@@ -311,7 +311,7 @@
       <h2 id="registroFinal" class="text-center">¿Listo para cambiar tu <span class="green fw-bold">vida financiera</span>?</h2>
       <p class="text-center fs-5">Únete hoy a ForexFalcon y descubre cómo el trading puede convertirse en tu camino hacia la libertad.</p>
 
-      <a href="<?= BASE_PATH . "/registrarse" ?>" type="button" class="btn fs-5 btnRegistrarse fw-bold"><i class="fas fa-rocket mr-2"></i>Comienza tu viaje</a>
+      <a href="<?= BASE_PATH . "/acciones" ?>" type="button" class="btn fs-5 btnRegistrarse fw-bold"><i class="fas fa-rocket mr-2"></i>Comienza tu viaje</a>
     </div>
   </section>
   <?php endif; ?>

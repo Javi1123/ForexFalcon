@@ -43,20 +43,20 @@ class adminControlador{
   public function crear_cuenta(){
     session_unset();
     session_destroy();
-    header("Location: " . BASE_PATH . '/login');
+    header("Location: " . BASE_PATH . '/acciones');
     exit();
   }
 
   public function logout(){
     session_unset();
     session_destroy();
-    header("Location: " . BASE_PATH . '/login');
+    header("Location: " . BASE_PATH . '/acciones');
     exit();
   }
   
   public function adminIndex(){
     if(!isset($_SESSION['usuario'])){
-      header("Location: " . BASE_PATH . '/login');
+      header("Location: " . BASE_PATH . '/acciones');
       exit();
     }
     $usuario = $_SESSION['usuario'];

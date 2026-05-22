@@ -14,7 +14,7 @@
   --color-v-principal:#91DD4E;
   --color-v-hover:#a0e069;
   --color-n-principal:#FB8E37;
-  --color-n-hover:#fc9c4f;
+  --color-n-hover:#d9601a;
   --color-black:#121414;
   --color-black-transparente2:#5c5c5c;
   --color-white-not-pure:rgb(238, 238, 238);
@@ -54,51 +54,67 @@ nav{
 }
 
 .btnInicioSesion {
-  background-color: var(--color-v-principal);
-  border-color: var(--color-v-principal);
-  box-shadow: none;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 23px;
+  background: var(--color-v-principal);
+  color: var(--color-white-not-pure);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.3px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.25s, transform 0.2s;
 }
 
 .btnInicioSesion:active,
 .btnInicioSesion:active:focus {
-  background-color: var(--color-v-hover);
-  border-color: var(--color-v-hover);
-  box-shadow: 0em 0em 1em var(--color-black-transparente2);
   opacity: 75%;
+  background: var(--color-v-hover);
+  color: var(--color-white-not-pure);
 }
 
 .btnInicioSesion:hover,
 .btnInicioSesion:active {
-  background-color: var(--color-v-hover);
-  border-color: var(--color-v-hover);
-  box-shadow: 0em 0em 1em var(--color-black-transparente2);
-  transition: all 0.5s ease;
+  background: var(--color-v-hover);
+  color: var(--color-white-not-pure);
 }
 
 .btnRegistrarse {
-  background-color: var(--color-n-principal);
-  border-color: var(--color-n-principal);
-  box-shadow: none;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 23px;
+  background: var(--color-n-principal);
+  color: var(--color-white-not-pure);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.3px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.25s, transform 0.2s;
 }
 
 .btnRegistrarse:active,
 .btnRegistrarse:active:focus {
-  background-color: var(--color-n-hover);
-  border-color: var(--color-n-hover);
-  box-shadow: 0em 0em 1em var(--color-black-transparente2);
   opacity: 75%;
+  background: var(--color-n-hover);
+  color: var(--color-white-not-pure);
 }
 
 .btnRegistrarse:hover,
 .btnRegistrarse:active {
-  background-color: var(--color-n-hover);
-  border-color: var(--color-n-hover);
-  box-shadow: 0em 0em 1em var(--color-black-transparente2);
-  transition: all 0.5s ease;
+  background: var(--color-n-hover);
+  color: var(--color-white-not-pure);
 }
 
 .offcanvas{
-  background-color: var(--color-azul-principal-not-pure);
+  background-color: var(--color-azul-principal) !important;
 }
 
 .dropdown-item:hover{
@@ -106,7 +122,7 @@ nav{
 }
 
 #serviciosMovil{
-  background-color: var(--color-azul-principal) !important;
+  background-color: var(--color-azul-principal-not-pure) !important;
   border: 1px var(--color-azul-principal-not-pure2) !important;
 }
 
@@ -115,7 +131,7 @@ nav{
 }
 
 #navegacion {
-  position: fixed;        /* era sticky */
+  position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
   transition: all 0.45s cubic-bezier(0.4,0,0.2,1);
@@ -132,13 +148,23 @@ nav{
 }
 
 #navegacion.nav--bubble .navbar {
-  background: var(--color-azul-principal-translucido) !important;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.1);
+  position: relative;
   border-radius: 50px;
   padding-left: 1.2rem;
   padding-right: 1.2rem;
+}
+
+#navegacion.nav--bubble .navbar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50px;
+  background-color: var(--color-azul-principal-translucido);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .hero__blur-bottom {
@@ -213,7 +239,7 @@ nav{
 .hero {
   padding-top: 80px;
   position: relative;
-  min-height: 92.6svh;
+  min-height: 100svh;
   /* full viewport height */
   display: flex;
   align-items: center;

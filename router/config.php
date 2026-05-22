@@ -12,7 +12,7 @@ if ($uri === '' || $uri === '/' || $uri === '/index.php') {
   $uri = '/index';
 }
 
-// $_SESSION['usuario'] = "asd";
+$_SESSION['usuario'] = "asd";
 
 switch ($uri){
 
@@ -23,7 +23,7 @@ switch ($uri){
 
     
   // Vistas de la pagina admin
-  case '/login':
+  case '/acciones':
     $controlador = new adminControlador();
     $controlador-> login();
     break;
@@ -99,8 +99,8 @@ switch ($uri){
     require_once __DIR__ . '/../app/vista/mision_visionyvalores.php';
     break;
 
-  case '/registrarse':
-    require_once __DIR__ . '/../app/vista/registrarse.php';
+  case '/acciones':
+    require_once __DIR__ . '/../app/vista/acciones.php';
     break;
 
   default:

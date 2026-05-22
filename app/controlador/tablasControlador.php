@@ -12,7 +12,7 @@ class tablasControlador{
 
   public function indexSugerencias(){
     if(!isset($_SESSION['usuario'])){
-      header("Location: " . BASE_PATH . '/login');
+      header("Location: " . BASE_PATH . '/acciones');
       exit();
     }
     $usuario = $_SESSION['usuario'];
@@ -28,7 +28,7 @@ class tablasControlador{
 
   public function indexAlumnos(){
     if(!isset($_SESSION['usuario'])){
-      header("Location: " . BASE_PATH . '/login');
+      header("Location: " . BASE_PATH . '/acciones');
       exit();
     }
 
@@ -66,7 +66,7 @@ class tablasControlador{
 
   public function indexCursos(){
     if(!isset($_SESSION['usuario'])){
-      header("Location: " . BASE_PATH . '/login');
+      header("Location: " . BASE_PATH . '/acciones');
       exit();
     }
     
@@ -118,7 +118,7 @@ class tablasControlador{
 
   public function indexRecibos(){
     if(!isset($_SESSION['usuario'])){
-      header("Location: " . BASE_PATH . '/login');
+      header("Location: " . BASE_PATH . '/acciones');
       exit();
     }
 
@@ -174,7 +174,7 @@ class tablasControlador{
 
   public static function indexMatriculados() {
     if(!isset($_SESSION['usuario'])){
-      header("Location: " . BASE_PATH . '/login');
+      header("Location: " . BASE_PATH . '/acciones');
       exit();
     }
 

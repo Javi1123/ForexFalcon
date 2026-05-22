@@ -36,7 +36,7 @@
           Ir a mis recursos
         </a>
       <?php else : ?>
-        <a href="<?= BASE_PATH . "/registrarse" ?>" class="hero__cta fade-up">
+        <a href="<?= BASE_PATH . "/acciones" ?>" class="hero__cta fade-up">
           <i class="fa-solid fa-play"></i>
           Comienza ahora
         </a>
