@@ -1,7 +1,7 @@
 <!-- Informcación main -->
 <main>
   <!-- Introducción -->
-  <section id="esencia" class="container-fluid mt-2 py-5 bg-dark bg-opacity-10" >
+  <section id="esencia" class="container-fluid py-5 bg-dark bg-opacity-10 shadow">
     <h2 class="negrita text-center h1">Nuestra <span class="orange">esencia</span></h2>
 
     <div class="container text-justify">
@@ -315,4 +315,5 @@
     </div>
   </section>
   <?php endif; ?>
+  
 </main>

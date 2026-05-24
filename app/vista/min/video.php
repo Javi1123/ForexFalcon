@@ -18,16 +18,14 @@
     <div class="hero__content">
 
       <h1 class="hero__title fade-up">
-        Tu libertad<br>financiera
-        <span class="accent">comienza aquí</span>
+        Conviértete en trader
+        <span class="accent">HOY MISMO</span>
       </h1>
 
       <p class="hero__body fade-up">
         En <strong>ForexFalcon</strong> no solo aprendes trading.
-        Te acompañamos paso a paso con
-        <a href="#" class="link-orange">asistencia 1:1</a>
-        para que operes con seguridad y alcances la libertad financiera
-        de forma cómoda, sin importar tu experiencia previa.
+        Te acompañamos desde el primer día hasta que operes con total seguridad,
+         sin importar tu punto de partida.
       </p>
 
       <?php if(isset($_SESSION['usuario'])) : ?>
