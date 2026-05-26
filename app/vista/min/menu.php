@@ -28,13 +28,13 @@
           <!-- 2. Links de navegación en el centro -->
           <ul class="navbar-nav flex-grow-1 justify-content-evenly">
             <li class="nav-item">
-              <a class="nav-link text-white" id="btnCatalogo" href=".#catalogo">Catálogo</a>
+              <a class="nav-link hover-link text-white" id="btnCatalogo" href=".#catalogo">Catálogo</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" id="btnEsencia" href="#esencia">Esencia</a>
+              <a class="nav-link hover-link text-white" id="btnEsencia" href=".#esencia">Esencia</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-white" id="btnCompañia" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link hover-link dropdown-toggle text-white" id="btnCompañia" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Compañia
                 <i class="fa-solid fa-chevron-down"></i>
               </a>
@@ -45,15 +45,15 @@
                 <hr class="dropdown-divider">
                 <li><a class="dropdown-item ps-2 text-white text-decoration-none zona-centro" href="<?= BASE_PATH . "/contacto" ?>">Contacto</a></li>
                 <hr class="dropdown-divider">
-                <li><a class="dropdown-item ps-2 text-white text-decoration-none zona-centro" id="btnFAQ" href="#FAQs">FAQs</a></li>
+                <li><a class="dropdown-item ps-2 text-white text-decoration-none zona-centro" id="btnFAQ" href=".#FAQs">FAQs</a></li>
               </ul>
             </li>
           </ul>
 
           <!-- 3. Botones desktop a la derecha (ocultos en móvil) -->
           <div class="d-none d-lg-flex align-items-center">
-            <a class="btn btnInicioSesion fw-bold me-2" href="<?= BASE_PATH . "/acciones" ?>">Iniciar sesion</a>
-            <a class="btn btnRegistrarse fw-bold me-2" href="<?= BASE_PATH . "/acciones" ?>">Registrarse</a>
+            <a class="btn btnInicioSesion fw-bold me-2" href="<?= BASE_PATH . "/acciones?tipo=inicio" ?>">Iniciar sesion</a>
+            <a class="btn btnRegistrarse fw-bold me-2" href="<?= BASE_PATH . "/acciones?tipo=registro" ?>">Registrarse</a>
           </div>
 
         </div>

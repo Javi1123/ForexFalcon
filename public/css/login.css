@@ -1,0 +1,184 @@
+/* ===== VARIABLES DE COLOR ===== */
+:root {
+  --color-azul-principal: #070D25;
+  --color-azul-principal-translucido: rgba(7, 13, 37, 0.82);
+  --color-azul-principal-not-pure: #0b143a;
+  --color-azul-principal-not-pure2: #5f6375;
+  --color-v-principal: #91DD4E;
+  --color-v-hover: #a0e069;
+  --color-n-principal: #FB8E37;
+  --color-n-hover: #fc9c4f;
+  --color-black: #121414;
+  --color-black-transparente2: #5c5c5c;
+  --color-white-not-pure: rgb(238, 238, 238);
+  --color-shadow-principio: #ccd1d1;
+  --color-shadow: #e2e6e6;
+}
+
+/* ===== RESET Y FONDO ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-azul-principal);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* Canvas de fondo estilo fluido */
+#fluid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  display: block;
+  opacity: 0.65;
+  /* Opacidad para que se integre bien con el fondo oscuro */
+}
+
+/* Contenedor del login - centrado y con fondo translúcido */
+.login-box {
+  position: relative;
+  z-index: 10;
+  width: 400px;
+  max-width: 92%;
+  margin: 5% auto;
+  backdrop-filter: blur(12px);
+  background: var(--color-azul-principal-translucido);
+  border-radius: 24px;
+  border: 1px solid rgba(145, 221, 78, 0.25);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 576px) {
+  .login-box {
+    margin: 15% auto;
+  }
+}
+
+/* Targetas internas */
+.card {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.card-header {
+  background: transparent;
+  border-bottom: 1px solid rgba(145, 221, 78, 0.2);
+  padding: 1.5rem 1rem 0.5rem;
+}
+
+.card-body {
+  background: transparent;
+  padding: 1.8rem;
+}
+
+/* Estilo de las pestañas */
+.nav-pills .nav-link {
+  background: rgba(7, 13, 37, 0.6);
+  color: var(--color-white-not-pure);
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border-radius: 40px 40px 0 0;
+}
+
+.nav-pills .nav-link.active {
+  background: var(--color-v-principal);
+  color: var(--color-azul-principal);
+  box-shadow: 0 -2px 8px rgba(145, 221, 78, 0.3);
+}
+
+.nav-pills .nav-link:not(.active):hover {
+  background: rgba(145, 221, 78, 0.25);
+  color: var(--color-v-principal);
+}
+
+.nav-pills .nav-link:hover {
+  opacity: 75%;
+}
+
+/* Mensaje de bienvenida */
+.login-box-msg {
+  color: #eef2ff;
+  font-weight: 500;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+/* Input groups con estilo moderno */
+.input-group {
+  margin-bottom: 1rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(145, 221, 78, 0.3);
+  transition: all 0.2s;
+}
+
+.input-group:focus-within {
+  border-color: var(--color-v-principal);
+  box-shadow: 0 0 0 2px rgba(145, 221, 78, 0.3);
+}
+
+.form-floating>.form-control {
+  background: transparent;
+  border: none;
+  color: white;
+  padding-top: 1.2rem;
+  padding-bottom: 0.4rem;
+}
+
+.form-floating>.form-control:focus {
+  box-shadow: none;
+  background: transparent;
+  color: white;
+}
+
+.form-floating>label {
+  color: #b0b7d4;
+  font-weight: 400;
+}
+
+.form-control::placeholder {
+  color: rgba(200, 200, 220, 0.5);
+}
+
+.input-group-text {
+  background: transparent;
+  border: none;
+  color: var(--color-v-principal);
+  font-size: 1.1rem;
+}
+
+/* Links y extras */
+a {
+  color: var(--color-v-principal);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-v-hover);
+}
+
+/* Alertas adaptadas al tema oscuro */
+.alert-danger {
+  background: rgba(220, 53, 69, 0.2);
+  border: 1px solid rgba(220, 53, 69, 0.6);
+  color: #ffb3b3;
+  border-radius: 20px;
+}
+
+.invalid-feedback {
+  color: #ffa098;
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+}

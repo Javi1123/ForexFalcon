@@ -41,8 +41,8 @@ body{
 .green{color:var(--color-v-principal) !important;}
 .black{background:var(--color-black);}
 .black-background{background:var(--color-black);}
-.orange{color: var(--color-n-principal);}
-.orange-background{background: var(--color-n-principal);}
+.orange{color: var(--color-n-principal) !important;}
+.orange-background{background: var(--color-n-principal) !important;}
 .negrita{font-weight: bold;}
 .noList::before{display: none;}
 .bg-azul{background-color: var(--color-azul-principal) !important;}
@@ -132,7 +132,7 @@ nav{
   background-color: var(--color-azul-principal-not-pure2) !important;
 }
 
-.nav-link:hover{
+.hover-link:hover{
   color: var(--color-v-hover) !important;
 }
 

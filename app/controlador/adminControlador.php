@@ -37,6 +37,8 @@ class adminControlador{
       }
     }
     
+    $tipo = $_GET["tipo"];
+
     require __DIR__ . '/../vista/login_vista.php';
   }
     

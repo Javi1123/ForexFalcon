@@ -106,7 +106,11 @@
               <hr class="m-1">
               <span><i class="fas fa-check-circle green"></i> Sin comisiones adicionales</span>
             </div>
-            <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/copytrading" ?>">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            <?php if(isset($_SESSION['usuario'])) : ?>
+              <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/copytrading" ?>">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            <?php else : ?>
+              <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/acciones?tipo=registro" ?>">Activar cuenta <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            <?php endif; ?>
           </div>
         </div>
       </div>
@@ -127,7 +131,11 @@
                 <div class="d-flex justify-content-between"><span>1 Año</span><span class="orange fw-bold">€999</span></div>
               </div>
             </div>
-            <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/mentorias" ?>">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            <?php if(isset($_SESSION['usuario'])) : ?>
+              <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/mentorias" ?>">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            <?php else : ?>
+              <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/acciones?tipo=registro" ?>">Activar cuenta <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            <?php endif; ?>
           </div>
         </div>
       </div>
@@ -146,7 +154,11 @@
               <hr class="m-1">
               <span><i class="fas fa-check-circle green"></i> Resultados consistentes</span>
             </div>
-            <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/bots" ?>">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            <?php if(isset($_SESSION['usuario'])) : ?>
+              <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/bots" ?>">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            <?php else : ?>
+              <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/acciones?tipo=registro" ?>">Activar cuenta <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            <?php endif; ?>
           </div>
         </div>
       </div>
@@ -165,7 +177,11 @@
               <hr class="m-1">
               <span><i class="fas fa-check-circle green"></i> Soporte directo en el grupo</span>
             </div>
-            <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/analisis" ?>">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            <?php if(isset($_SESSION['usuario'])) : ?>
+              <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/analisis" ?>">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            <?php else : ?>
+              <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/acciones?tipo=registro" ?>">Activar cuenta <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            <?php endif; ?>
           </div>
         </div>
       </div>
@@ -311,7 +327,7 @@
       <h2 id="registroFinal" class="text-center">¿Listo para cambiar tu <span class="green fw-bold">vida financiera</span>?</h2>
       <p class="text-center fs-5">Únete hoy a ForexFalcon y descubre cómo el trading puede convertirse en tu camino hacia la libertad.</p>
 
-      <a href="<?= BASE_PATH . "/acciones" ?>" type="button" class="btn fs-5 btnRegistrarse fw-bold"><i class="fas fa-rocket mr-2"></i>Comienza tu viaje</a>
+      <a href="<?= BASE_PATH . "/acciones?tipo=registro" ?>" type="button" class="btn fs-5 btnRegistrarse fw-bold"><i class="fas fa-rocket mr-2"></i>Comienza tu viaje</a>
     </div>
   </section>
   <?php endif; ?>
