@@ -4,124 +4,64 @@
 // Functions exportadas
 ////////////////////////
 
-export const validacionesSugerencias = e =>{
+export const validacionesInicioSesion = e =>{
 
   e.preventDefault();
   
+  let formulario = e.target;
+
   // Pillamos el formulario entero
   const formData = new FormData(formulario);
 
   let errores = [];
   
-  const nombre = formData.get("nombre");
-  const apellido = formData.get("apellido");
-  const email = formData.get("email");
-  const telefono = formData.get("telefono");
-  const sugerencia = formData.get("sugerencia");
+  const usuario_gmail = formData.get("usuario_gmail");
+  const contraseña = formData.get("contraseña");
+
+  const invalid = document.querySelector(".invalid-feedback");
 
   // Validar nombre
-  if (nombre) {
-    const labelNombre = document.querySelector("#labelNombre");
-    if (nombre.length > 15 || !/^(([a-zA-ZáéíóúÁÉÍÓÚñÑ\s])+){3,}$/.test(nombre)) {
-
-      labelNombre.classList.add("red");
-
+  if (usuario_gmail) {
+    if (usuario_gmail.length >= 20 || !/^(([a-zA-ZáéíóúÁÉÍÓÚñÑ\s])+){3,}$/.test(usuario_gmail)) {
+      invalid.classList.remove("d-none");
+      
       errores.push({
         campo: "nombre",
         icon: "error",
         title: "Nombre no válido:",
         text: "Por favor, revise si su nombre contiene números o está vacío"
       });
-    } else {
-      labelNombre.classList.remove("red");
     }
   }
 
   // Validar apellido
-  if (apellido) {
-    const labelApellido = document.querySelector("#labelApellido");
-    if (apellido.length > 25 || !/^(([a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+){3,})?$/.test(apellido)) {
-      labelApellido.classList.add("red");
+  // if (apellido) {
+  //   const labelApellido = document.querySelector("#labelApellido");
+  //   if (apellido.length > 25 || !/^(([a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+){3,})?$/.test(apellido)) {
+  //     labelApellido.classList.add("red");
       
-      errores.push({
-        campo: "apellido",
-        icon: "error",
-        title: "Apellido no válido:",
-        text: "Por favor, revise si su apellido contiene números o está vacío"
-      });
-    } else {
-      labelApellido.classList.remove("red");
-    }
-  }
-
-  // Validar email
-  if (email) {
-    const labelEmail = document.querySelector("#labelEmail");
-    if (!/^([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})?$/.test(email)) {
-
-      labelEmail.classList.add("red");
-      
-      errores.push({
-        campo: "email",
-        icon: "error",
-        title: "Email no válido:",
-        text: "Por favor, revise si su email está mal escrito"
-      });
-    } else {
-      labelEmail.classList.remove("red");
-    }
-  }
-  
-  // Validar teléfono
-  if (telefono) {
-    const labelTelefono = document.querySelector("#labelTelefono");
-    if (!/^([0-9]{9})?$/.test(telefono)) {
-
-      labelTelefono.classList.add("red");
-      
-      errores.push({
-        campo: "telefono",
-        icon: "error",
-        title: "Teléfono no válido:",
-        text: "Por favor, revise si su número de teléfono es válido (9 dígitos)"
-      });
-    } else {
-      labelTelefono.classList.remove("red");
-    }
-  }
-  
-  // Validar intereses
-  if (sugerencia) {
-
-    let valorLimpio = quitarEtiquetasHTML(sugerencia);
-    const labelSugerencia = document.querySelector("#labelSugerencia");
-    
-    if (valorLimpio == "" || valorLimpio.length < 10) {
-
-      labelSugerencia.classList.add("red");
-      
-      errores.push({
-        campo: "interes",
-        icon: "error",
-        title: "Intereses poco extensos:",
-        text: "Por favor, asegúrese de que sus intereses contengan más de 10 caracteres"
-      });
-    } else {
-      labelSugerencia.classList.remove("red");
-    }
-  }
-
-
+  //     errores.push({
+  //       campo: "apellido",
+  //       icon: "error",
+  //       title: "Apellido no válido:",
+  //       text: "Por favor, revise si su apellido contiene números o está vacío"
+  //     });
+  //   } else {
+  //     labelApellido.classList.remove("red");
+  //   }
+  // }
+// console.log(errores);
   if(errores.length == 1){
-    popErrores(errores[0].icon, errores[0].title, errores[0].text);
+    return false;
+    // popErrores(errores[0].icon, errores[0].title, errores[0].text);
   } else if (errores.length > 1){
-    popErrores(
-      "error",
-      "Datos de Entrada Erróneos:",
-      "Por favor, revise los datos e introdúzcalos correctamente"
-    );
+    // popErrores(
+    //   "error",
+    //   "Datos de Entrada Erróneos:",
+    //   "Por favor, revise los datos e introdúzcalos correctamente"
+    // );
   } else if(errores.length == 0) {
-    formulario.submit();
+    return true;
   }
 
 }
@@ -131,8 +71,10 @@ export const validacionesSugerencias = e =>{
 
 
 export const validacionesFormacion = e =>{
-
+alert("regi")
   e.preventDefault();
+
+  let formulario = e.target;
 
   // Pillamos el formulario entero
   const formData = new FormData(formulario);
@@ -322,11 +264,11 @@ const quitarEtiquetasHTML = (html) => {
   return doc.body.textContent || "";
 }
 
-const popErrores = (icon,title,text) =>{
-  Swal.fire({
-    icon: icon,
-    title: title,
-    text: text,
-  });
-}
+// const popErrores = (icon,title,text) =>{
+//   Swal.fire({
+//     icon: icon,
+//     title: title,
+//     text: text,
+//   });
+// }
 

@@ -155,6 +155,7 @@ body {
 .input-group-text {
   background: transparent;
   border: none;
+  border-left: 1px solid rgba(145, 221, 78, 0.3);
   color: var(--color-v-principal);
   font-size: 1.1rem;
 }

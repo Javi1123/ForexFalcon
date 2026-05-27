@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/forexfalcon.css" ?>">
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/menuForexFalcon.css" ?>">
   <script src="<?= LINKS_PATH . "/js/code_js_jquerys/gestion_de_nav.js" ?>" defer></script>
-  <script src="<?= LINKS_PATH . "/js/code_js_jquerys/certitransporte.js" ?>" defer></script>
+  <script src="<?= LINKS_PATH . "/js/code_js_jquerys/forexfalcon.js" ?>" defer></script>
 
 </head>
 

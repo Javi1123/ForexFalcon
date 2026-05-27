@@ -1,6 +1,6 @@
 <?php
 
-use App\controlador\adminControlador;
+use App\controlador\formulariosControlador;
 use App\controlador\tablasControlador;
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -24,23 +24,23 @@ switch ($uri){
     
   // Vistas de la pagina admin
   case '/acciones':
-    $controlador = new adminControlador();
-    $controlador-> login();
+    $controlador = new formulariosControlador();
+    $controlador-> acciones();
+    break;
+
+  case '/inicio_sesion':
+    $controlador = new formulariosControlador();
+    $controlador-> inicio();
     break;
 
   case '/crear_cuenta':
-    $controlador = new adminControlador();
+    $controlador = new formulariosControlador();
     $controlador-> crear_cuenta();
     break;
           
   case '/logout':
-    $controlador = new adminControlador();
+    $controlador = new formulariosControlador();
     $controlador-> logout();
-    break;
-
-  case '/admin':
-    $controlador = new adminControlador();
-    $controlador-> adminIndex();
     break;
   
   case '/sugerenciaTabla':

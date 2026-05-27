@@ -126,43 +126,6 @@ const tinymceInitial = () =>{
   }
 }
 
-
-// Llamada dinamiaca a las validaciones para los formularios
-const validaciones = async () =>{
-  const URL = window.location.pathname;
-
-  if(URL.includes("sugerencias")){
-    const formulario = document.querySelector("#formulario");
-    const btnBorrarFormulario = document.querySelector(".btnBorrarFormulario");
-    const btnEnviarFormulario = document.querySelector(".btnEnviarFormulario");
-
-    const {validacionesSugerencias} = await import ("./validaciones.js");
-
-    formulario.addEventListener("submit", (e) => {
-      btnEnviarFormulario.textContent = "Comprobando...";
-      btnEnviarFormulario.disabled = true;
-      btnBorrarFormulario.remove();
-      validacionesSugerencias(e);
-    });
-  }
-
-  if(URL.includes("registrarse")){
-    const formulario = document.querySelector("#formulario");
-    const btnEnviarFormulario = document.querySelector(".btnEnviarFormulario");
-    const btnBorrarFormulario = document.querySelector(".btnBorrarFormulario");
-
-    const {validacionesFormacion} = await import ("./validaciones.js");
-
-    formulario.addEventListener("submit", (e) => {
-      btnEnviarFormulario.textContent = "Comprobando...";
-      btnEnviarFormulario.disabled = true;
-      btnBorrarFormulario.remove();
-      validacionesFormacion(e);
-    });
-  }
-
-}
-
 ///////////////////
 // Main
 ///////////////////
@@ -174,9 +137,6 @@ popPublicidad();
 
 // Textarea de los formularios
 tinymceInitial();
-
-// Valicadiones
-validaciones();
 
 // Animar secciones
 animationSeccions();

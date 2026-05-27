@@ -16,16 +16,14 @@
 
   <script src="<?= LINKS_PATH . "/js/all.min.js" ?>" defer></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-rc3/dist/css/adminlte.min.css" crossorigin="anonymous" />
-
+  
   <!-- ForexFalcon - Login -->
+  <script src="<?= LINKS_PATH . "/js/code_js_jquerys/fomularios.js" ?>" defer></script>
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/login.css" ?>">
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/forexfalcon.css" ?>">
 </head>
 
 <body>
-
-  <!-- CANVAS DE FONDO FLUIDO (integración completa) -->
-  <canvas id="fluid"></canvas>
 
   <div class="login-box">
     <div class="card card-outline">
@@ -62,22 +60,22 @@
           <div class="tab-pane fade <?= $tipo == "inicio" ? 'show active' : '' ?>" id="tab-login">
             <p class="login-box-msg">Inicia sesión para comenzar tu sesión.</p>
 
-            <form action="<?= BASE_PATH . "/login" ?>" method="post">
+            <form action="<?= BASE_PATH . "/inicio_sesion?tipo=inicio" ?>" method="post">
               <!-- Usuario -->
               <div class="input-group mb-1">
                 <div class="form-floating">
                   <input id="loginEmail" type="text"
                     class="form-control <?= isset($errores['usuario']) ? 'is-invalid' : '' ?>"
-                    name="usuario" placeholder=""
-                    value="<?= htmlspecialchars($usuario ?? '') ?>" />
-                  <label for="loginEmail" class="red">Usuario</label>
+                    name="usuario_gmail" placeholder=""
+                    value="<?= htmlspecialchars($usuario ?? '') ?>" required/>
+                  <label for="loginEmail" class="red">Usuario o email</label>
                 </div>
               </div>
-              <?php if (isset($errores['usuario'])): ?>
-                <div class="invalid-feedback d-block mb-2">
+
+                <div id="errorUsuario" class="invalid-feedback d-block mb-2 d-none">
                   El campo usuario es obligatorio
                 </div>
-              <?php endif; ?>
+
 
               <!-- Contraseña -->
               <div class="input-group mb-1">
@@ -87,22 +85,24 @@
                     name="contraseña" placeholder="" />
                   <label for="loginPassword">Contraseña</label>
                 </div>
+                <div class="input-group-text">
+                  <i class="fa-solid fa-eye white"></i>
+                </div>
               </div>
-              <?php if (isset($errores['contraseña'])): ?>
-                <div class="invalid-feedback d-block mb-2">
+
+                <div id="errorContraseña" class="invalid-feedback d-block mb-2 d-none">
                   El campo contraseña es obligatorio
                 </div>
-              <?php endif; ?>
+
 
               <!-- Error de credenciales -->
-              <?php if (isset($errores['login'])): ?>
-                <div class="alert alert-danger mt-2" role="alert">
+                <div id="errorCredenciales" class="alert alert-danger mt-2 d-none" role="alert">
                   <i class="fa-solid fa-triangle-exclamation me-2"></i>
                   Usuario o contraseña incorrectos
                 </div>
-              <?php endif; ?>
 
-              <button type="submit" class="btn btnInicioSesion w-100 my-3">
+
+              <button type="submit" id="btnInicioSesion" class="btn btnRegistrarse w-100 my-3">
                 Iniciar sesión
               </button>
             </form>
@@ -112,7 +112,7 @@
           <div class="tab-pane fade <?= $tipo == "registro" ? 'show active' : '' ?>" id="tab-registro">
             <p class="login-box-msg">Crea tu cuenta y empieza hoy.</p>
 
-            <form action="<?= BASE_PATH . "/crear_cuenta" ?>" method="post">
+            <form action="<?= BASE_PATH . "/crear_cuenta?tipo=registro" ?>" method="post">
               <!-- Nombre de usuario -->
               <div class="input-group mb-1">
                 <div class="form-floating">
@@ -123,11 +123,10 @@
                   <label for="regUsuario">Usuario</label>
                 </div>
               </div>
-              <?php if (isset($erroresReg['usuario'])): ?>
-                <div class="invalid-feedback d-block mb-2">
-                  <?= htmlspecialchars($erroresReg['usuario']) ?>
-                </div>
-              <?php endif; ?>
+
+              <div id="errorUsuarioRegistro" class="alert alert-danger mt-2 d-none">
+                <i class="fa-solid fa-triangle-exclamation me-2"></i>
+              </div>
 
               <!-- Email -->
               <div class="input-group mb-1">
@@ -139,11 +138,10 @@
                   <label for="regEmail">Correo electrónico</label>
                 </div>
               </div>
-              <?php if (isset($erroresReg['email'])): ?>
-                <div class="invalid-feedback d-block mb-2">
-                  <?= htmlspecialchars($erroresReg['email']) ?>
-                </div>
-              <?php endif; ?>
+
+              <div id="errorEmailRegistro" class="alert alert-danger mt-2 d-none">
+                <i class="fa-solid fa-triangle-exclamation me-2"></i>
+              </div>
 
               <!-- Contraseña -->
               <div class="input-group mb-1">
@@ -154,11 +152,10 @@
                   <label for="regPassword">Contraseña</label>
                 </div>
               </div>
-              <?php if (isset($erroresReg['contraseña'])): ?>
-                <div class="invalid-feedback d-block mb-2">
-                  <?= htmlspecialchars($erroresReg['contraseña']) ?>
-                </div>
-              <?php endif; ?>
+
+              <div id="errorContraseñaRegistro" class="alert alert-danger mt-2 d-none">
+                <i class="fa-solid fa-triangle-exclamation me-2"></i>
+              </div>
 
               <!-- Confirmar contraseña -->
               <div class="input-group mb-1">
@@ -168,22 +165,16 @@
                     name="confirmar_contraseña" placeholder="" />
                   <label for="regPasswordConfirm">Confirmar contraseña</label>
                 </div>
+                <div class="input-group-text">
+                  <i class="fa-solid fa-eye white"></i>
+                </div>
               </div>
-              <?php if (isset($erroresReg['confirmar_contraseña'])): ?>
-                <div class="invalid-feedback d-block mb-2">
-                  <?= htmlspecialchars($erroresReg['confirmar_contraseña']) ?>
-                </div>
-              <?php endif; ?>
 
-              <!-- Error general de registro -->
-              <?php if (isset($erroresReg['registro'])): ?>
-                <div class="alert alert-danger mt-2" role="alert">
-                  <i class="fa-solid fa-triangle-exclamation me-2"></i>
-                  <?= htmlspecialchars($erroresReg['registro']) ?>
-                </div>
-              <?php endif; ?>
+              <div id="errorConfirmaContraseñaRegistro" class="alert alert-danger mt-2 d-none">
+                <i class="fa-solid fa-triangle-exclamation me-2"></i>
+              </div>
 
-              <button type="submit" class="btn btnRegistrarse w-100 my-3">
+              <button type="submit" id="btnRegistrarse" class="btn btnRegistrarse w-100 my-3">
                 Crear cuenta
               </button>
             </form>
