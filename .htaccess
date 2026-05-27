@@ -15,7 +15,6 @@ RewriteRule registrarse index.php
 
 # Admins
 RewriteRule acciones index.php
-RewriteRule acciones index.php
 RewriteRule inicio_sesion index.php
 RewriteRule crear_cuenta index.php
 RewriteRule logout index.php

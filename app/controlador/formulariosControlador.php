@@ -42,7 +42,11 @@ class formulariosControlador{
           $_SESSION['usuario'] = $usuarioBase['usuario'];
           $_SESSION['nombre'] = $usuarioBase['nombre'];
           $_SESSION['apellido'] = $usuarioBase['apellido'];
+<<<<<<< HEAD
           header("Location: " . BASE_PATH . 'recursos');
+=======
+          header("Location: " . BASE_PATH . '/recursos');
+>>>>>>> 6d4c6c7 (Cambios varios y empezado con el inicio de sesion / registro)
           exit();
         }else{
           $errores['login'] = true;
@@ -80,7 +84,11 @@ class formulariosControlador{
         if($usuarioBase && hash('sha256', $contraseña) === $usuarioBase['contrasena']){
           $_SESSION['usuario'] = $usuarioBase['usuario'];
           $_SESSION['nombre_completo'] = $usuarioBase['nombre_completo'];
+<<<<<<< HEAD
           header("Location: " . BASE_PATH . 'admin');
+=======
+          header("Location: " . BASE_PATH . '/admin');
+>>>>>>> 6d4c6c7 (Cambios varios y empezado con el inicio de sesion / registro)
           exit();
         }else{
           $errores['login'] = true;
@@ -96,7 +104,11 @@ class formulariosControlador{
   public function logout(){
     session_unset();
     session_destroy();
+<<<<<<< HEAD
     header("Location: " . BASE_PATH . 'acciones');
+=======
+    header("Location: " . BASE_PATH . '/acciones');
+>>>>>>> 6d4c6c7 (Cambios varios y empezado con el inicio de sesion / registro)
     exit();
   }
 

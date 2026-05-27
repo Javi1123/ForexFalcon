@@ -21,8 +21,13 @@
 
           <!-- 1. Botones arriba en columna -->
           <div class="d-flex flex-column gap-2 mb-4 d-lg-none">
+<<<<<<< HEAD
             <a class="btn btnInicioSesion fw-bold text-center" href="<?= BASE_PATH . "acciones?tipo=inicio" ?>">Iniciar sesion</a>
             <a class="btn btnRegistrarse fw-bold text-center" href="<?= BASE_PATH . "acciones?tipo=registro" ?>">Registrarse</a>
+=======
+            <a class="btn btnInicioSesion fw-bold text-center" href="<?= BASE_PATH . "/acciones?tipo=inicio" ?>">Iniciar sesion</a>
+            <a class="btn btnRegistrarse fw-bold text-center" href="<?= BASE_PATH . "/acciones?tipo=registro" ?>">Registrarse</a>
+>>>>>>> 6d4c6c7 (Cambios varios y empezado con el inicio de sesion / registro)
           </div>
 
           <!-- 2. Links de navegación en el centro -->
