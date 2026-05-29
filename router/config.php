@@ -10,61 +10,61 @@ $uri = str_replace("/forexfalcon/", '', $uri);
 $uri = str_replace('', '', $uri);
 
 if ($uri === '' || $uri === '/' || $uri === '/forexfalcon/') {
-  $uri = 'index';
+  $uri = '/index';
 }
 
 // $_SESSION['usuario'] = "asd";
 // echo $uri;
 switch ($uri){
 
-  case 'index':
+  case '/index':
     require_once __DIR__ . '/../app/vista/index_vista.php';
     break;
       
 
     
   // Vistas de la pagina admin
-  case 'acciones':
+  case '/acciones':
     $controlador = new formulariosControlador();
     $controlador-> acciones();
     break;
 
-  case 'inicio_sesion':
+  case '/inicio_sesion':
     $controlador = new formulariosControlador();
     $controlador-> inicio();
     break;
 
-  case 'crear_cuenta':
+  case '/crear_cuenta':
     $controlador = new formulariosControlador();
     $controlador-> crear_cuenta();
     break;
           
-  case 'logout':
+  case '/logout':
     $controlador = new formulariosControlador();
     $controlador-> logout();
     break;
   
-  case 'sugerenciaTabla':
+  case '/sugerenciaTabla':
     $controladorTablas = new tablasControlador();
     $controladorTablas-> indexSugerencias();
     break;
 
-  case 'alumnosTabla':
+  case '/alumnosTabla':
     $controladorTablas = new tablasControlador();
     $controladorTablas-> indexAlumnos();
     break;
 
-  case 'cursosTabla':
+  case '/cursosTabla':
     $controladorTablas = new tablasControlador();
     $controladorTablas-> indexCursos();
     break;
 
-  case 'matriculadosTabla':
+  case '/matriculadosTabla':
     $controladorTablas = new tablasControlador();
     $controladorTablas-> indexMatriculados();
     break;
 
-  case 'recibosTabla':
+  case '/recibosTabla':
     $controladorTablas = new tablasControlador();
     $controladorTablas-> indexRecibos();
     break;
@@ -72,31 +72,31 @@ switch ($uri){
 
 
   // Vistas de la pagina principal
-  case 'cursos':
+  case '/cursos':
     require_once __DIR__ . '/../app/vista/cursos.php';
     break;
 
-  case 'sugerencias':
+  case '/sugerencias':
     require_once __DIR__ . '/../app/vista/sugerencias.php';
     break;
 
-  case 'quienes_somos':
+  case '/quienes_somos':
     require_once __DIR__ . '/../app/vista/quienes_somos.php';
     break;
 
-  case 'donde_estamos':
+  case '/donde_estamos':
     require_once __DIR__ . '/../app/vista/donde_estamos.php';
     break;
 
-  case 'privacidad':
+  case '/privacidad':
     require_once __DIR__ . '/../app/vista/privacidad.php';
     break;
   
-  case 'aviso_legal':
+  case '/aviso_legal':
     require_once __DIR__ . '/../app/vista/aviso_legal.php';
     break;
 
-  case 'mision_visionyvalores':
+  case '/mision_visionyvalores':
     require_once __DIR__ . '/../app/vista/mision_visionyvalores.php';
     break;
 
