@@ -60,7 +60,7 @@
           <div class="tab-pane fade <?= $tipo == "inicio" ? 'show active' : '' ?>" id="tab-login">
             <p class="login-box-msg">Inicia sesión para comenzar tu sesión.</p>
 
-            <form action="<?= BASE_PATH . "/inicio_sesion?tipo=inicio" ?>" method="post">
+            <form action="<?= BASE_PATH . "inicio_sesion?tipo=inicio" ?>" method="post">
               <!-- Usuario -->
               <div class="input-group mb-1">
                 <div class="form-floating">
@@ -112,7 +112,7 @@
           <div class="tab-pane fade <?= $tipo == "registro" ? 'show active' : '' ?>" id="tab-registro">
             <p class="login-box-msg">Crea tu cuenta y empieza hoy.</p>
 
-            <form action="<?= BASE_PATH . "/crear_cuenta?tipo=registro" ?>" method="post">
+            <form action="<?= BASE_PATH . "crear_cuenta?tipo=registro" ?>" method="post">
               <!-- Nombre de usuario -->
               <div class="input-group mb-1">
                 <div class="form-floating">

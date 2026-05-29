@@ -127,7 +127,7 @@
     <div class="container mt-5">
       <div class="row justify-content-center">
         <div class="card col-11 col-sm-9 col-md-10 col-xl-10 p-3">
-          <form id="formulario" action="<?= BASE_PATH . "/acciones" ?> " method="post">
+          <form id="formulario" action="<?= BASE_PATH . "acciones" ?> " method="post">
 
             <div class="row mb-3">
               <div class="col-sm-12 col-md-6 col-xl-6 mb-2">

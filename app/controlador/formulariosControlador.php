@@ -42,7 +42,7 @@ class formulariosControlador{
           $_SESSION['usuario'] = $usuarioBase['usuario'];
           $_SESSION['nombre'] = $usuarioBase['nombre'];
           $_SESSION['apellido'] = $usuarioBase['apellido'];
-          header("Location: " . BASE_PATH . '/recursos');
+          header("Location: " . BASE_PATH . 'recursos');
           exit();
         }else{
           $errores['login'] = true;
@@ -80,7 +80,7 @@ class formulariosControlador{
         if($usuarioBase && hash('sha256', $contraseña) === $usuarioBase['contrasena']){
           $_SESSION['usuario'] = $usuarioBase['usuario'];
           $_SESSION['nombre_completo'] = $usuarioBase['nombre_completo'];
-          header("Location: " . BASE_PATH . '/admin');
+          header("Location: " . BASE_PATH . 'admin');
           exit();
         }else{
           $errores['login'] = true;
@@ -96,7 +96,7 @@ class formulariosControlador{
   public function logout(){
     session_unset();
     session_destroy();
-    header("Location: " . BASE_PATH . '/acciones');
+    header("Location: " . BASE_PATH . 'acciones');
     exit();
   }
 
