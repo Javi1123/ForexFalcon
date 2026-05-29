@@ -6,14 +6,15 @@ use App\controlador\tablasControlador;
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 $uri = str_replace(BASE_PATH, '', $uri);
+$uri = str_replace("/forexfalcon/", '', $uri);
 $uri = str_replace('', '', $uri);
 
-if ($uri === '' || $uri === '/' || $uri === '/index.php') {
+if ($uri === '' || $uri === '/' || $uri === '/forexfalcon/') {
   $uri = 'index';
 }
 
 // $_SESSION['usuario'] = "asd";
-
+// echo $uri;
 switch ($uri){
 
   case 'index':
