@@ -14,7 +14,7 @@ if ($uri === '' || $uri === '/' || $uri === '/forexfalcon/') {
 }
 
 // $_SESSION['usuario'] = "asd";
-// echo $uri;
+echo $uri;
 switch ($uri){
 
   case '/index':
