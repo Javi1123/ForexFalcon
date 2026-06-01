@@ -6,18 +6,13 @@
   <title>Forexfalcon - Acceso</title>
 
   <link rel="shortcut icon" href="<?= LINKS_PATH . "/imagenes/favicon.ico" ?>">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-
   <meta name="title" content="Forexfalcon | Acceso" />
   <meta name="author" content="Forexfalcon" />
-  <meta name="description" content="">
-  <meta name="keywords" content="">
 
   <script src="<?= LINKS_PATH . "/js/all.min.js" ?>" defer></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-rc3/dist/css/adminlte.min.css" crossorigin="anonymous" />
-  
-  <!-- ForexFalcon - Login -->
+
   <script src="<?= LINKS_PATH . "/js/code_js_jquerys/fomularios.js" ?>" defer></script>
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/login.css" ?>">
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/forexfalcon.css" ?>">
@@ -27,6 +22,8 @@
 
   <div class="login-box">
     <div class="card card-outline">
+
+      <!-- Logo -->
       <div class="card-header text-center">
         <a href="<?= BASE_PATH ?>">
           <h1 class="mb-0">
@@ -35,160 +32,171 @@
         </a>
       </div>
 
-      <!-- PESTAÑAS -->
+      <!-- ── Tabs nav ──────────────────────────────────────── -->
       <div class="card-header p-0 border-bottom-0">
-        <ul class="nav nav-pills nav-justified">
-          <li class="nav-item">
-            <a id="tab-login-btn" class="nav-link <?= $tipo == "inicio" ? 'active' : '' ?> rounded-0 rounded-top-start"
-              data-bs-toggle="tab" href="#tab-login">
-              <i class="fa-solid fa-right-to-bracket me-1"></i> Iniciar sesión
-            </a>
-          </li>
-          <li class="nav-item">
-            <a id="tab-registro-btn" class="nav-link <?= $tipo == "registro" ? 'active' : '' ?> rounded-0 rounded-top-end"
-              data-bs-toggle="tab" href="#tab-registro">
-              <i class="fa-solid fa-user-plus me-1"></i> Registrarse
-            </a>
-          </li>
-        </ul>
+        <div class="ff-tabs-nav">
+          <button
+            class="ff-tab-btn <?= $tipo == 'inicio'   ? 'ff-active' : '' ?>"
+            data-ff-target="ff-panel-login">
+            <i class="fa-solid fa-right-to-bracket"></i> Iniciar sesión
+          </button>
+          <button
+            class="ff-tab-btn <?= $tipo == 'registro' ? 'ff-active' : '' ?>"
+            data-ff-target="ff-panel-registro">
+            <i class="fa-solid fa-user-plus"></i> Registrarse
+          </button>
+        </div>
       </div>
 
       <div class="card-body login-card-body">
-        <div class="tab-content">
 
-          <!-- ── PESTAÑA LOGIN ───────────────────────────────────── -->
-          <div class="tab-pane fade <?= $tipo == "inicio" ? 'show active' : '' ?>" id="tab-login">
-            <p class="login-box-msg">Inicia sesión para comenzar tu sesión.</p>
+        <!-- ── Panel: Login ─────────────────────────────────── -->
+        <div id="ff-panel-login" class="ff-panel <?= $tipo != 'inicio' ? 'd-none' : '' ?>">
+          <p class="login-box-msg">Inicia sesión para comenzar tu sesión.</p>
 
-<<<<<<< HEAD
-            <form action="<?= BASE_PATH . "inicio_sesion?tipo=inicio" ?>" method="post">
-=======
-            <form action="<?= BASE_PATH . "/inicio_sesion?tipo=inicio" ?>" method="post">
->>>>>>> 6d4c6c7 (Cambios varios y empezado con el inicio de sesion / registro)
-              <!-- Usuario -->
-              <div class="input-group mb-1">
-                <div class="form-floating">
-                  <input id="loginEmail" type="text"
-                    class="form-control <?= isset($errores['usuario']) ? 'is-invalid' : '' ?>"
-                    name="usuario_gmail" placeholder=""
-                    value="<?= htmlspecialchars($usuario ?? '') ?>" required/>
-                  <label for="loginEmail" class="red">Usuario o email</label>
-                </div>
+          <form action="<?= BASE_PATH . "/acciones?tipo=inicio" ?>" method="post">
+
+            <div class="input-group mb-1">
+              <div class="form-floating">
+                <input id="loginEmail" type="email"
+                  class="form-control <?= isset($errores['email']) ? 'is-invalid' : '' ?>"
+                  name="email" placeholder=""
+                  value="<?= htmlspecialchars($email ?? '') ?>"/>
+                <label for="loginEmail">Email</label>
               </div>
+            </div>
+            <div id="emailVacio" class="invalid-feedback d-block mb-2 d-none">
+              El campo email es obligatorio
+            </div>
+            
+            <div id="errorEmail" class="invalid-feedback d-block mb-2 d-none">
+              Por favor, inserta un email valido.
+            </div>
 
-                <div id="errorUsuario" class="invalid-feedback d-block mb-2 d-none">
-                  El campo usuario es obligatorio
-                </div>
-
-
-              <!-- Contraseña -->
-              <div class="input-group mb-1">
-                <div class="form-floating">
-                  <input id="loginPassword" type="password"
-                    class="form-control <?= isset($errores['contraseña']) ? 'is-invalid' : '' ?>"
-                    name="contraseña" placeholder="" />
-                  <label for="loginPassword">Contraseña</label>
-                </div>
-                <div class="input-group-text">
-                  <i class="fa-solid fa-eye white"></i>
-                </div>
+            <div class="input-group mb-1">
+              <div class="form-floating">
+                <input id="loginPassword" type="password"
+                  class="form-control <?= isset($errores['contraseña']) ? 'is-invalid' : '' ?>"
+                  name="contraseña" placeholder="" />
+                <label for="loginPassword">Contraseña</label>
               </div>
-
-                <div id="errorContraseña" class="invalid-feedback d-block mb-2 d-none">
-                  El campo contraseña es obligatorio
-                </div>
-
-
-              <!-- Error de credenciales -->
-                <div id="errorCredenciales" class="alert alert-danger mt-2 d-none" role="alert">
-                  <i class="fa-solid fa-triangle-exclamation me-2"></i>
-                  Usuario o contraseña incorrectos
-                </div>
-
-
-              <button type="submit" id="btnInicioSesion" class="btn btnRegistrarse w-100 my-3">
-                Iniciar sesión
-              </button>
-            </form>
-          </div>
-
-          <!-- ── PESTAÑA REGISTRO ───────────────────────────────── -->
-          <div class="tab-pane fade <?= $tipo == "registro" ? 'show active' : '' ?>" id="tab-registro">
-            <p class="login-box-msg">Crea tu cuenta y empieza hoy.</p>
-
-<<<<<<< HEAD
-            <form action="<?= BASE_PATH . "crear_cuenta?tipo=registro" ?>" method="post">
-=======
-            <form action="<?= BASE_PATH . "/crear_cuenta?tipo=registro" ?>" method="post">
->>>>>>> 6d4c6c7 (Cambios varios y empezado con el inicio de sesion / registro)
-              <!-- Nombre de usuario -->
-              <div class="input-group mb-1">
-                <div class="form-floating">
-                  <input id="regUsuario" type="text"
-                    class="form-control <?= isset($erroresReg['usuario']) ? 'is-invalid' : '' ?>"
-                    name="usuario" placeholder=""
-                    value="<?= htmlspecialchars($regUsuario ?? '') ?>" />
-                  <label for="regUsuario">Usuario</label>
-                </div>
+              <div class="input-group-text">
+                <i class="fa-solid fa-eye white"></i>
               </div>
+            </div>
+            <div id="contraseñaVacio" class="invalid-feedback d-block mb-2 d-none">
+              El campo contraseña es obligatorio
+            </div>
 
-              <div id="errorUsuarioRegistro" class="alert alert-danger mt-2 d-none">
-                <i class="fa-solid fa-triangle-exclamation me-2"></i>
-              </div>
+            <div id="errorContraseña" class="invalid-feedback d-block mb-2 d-none">
+              Por favor, inserta una contraseña valida.
+            </div>
 
-              <!-- Email -->
-              <div class="input-group mb-1">
-                <div class="form-floating">
-                  <input id="regEmail" type="email"
-                    class="form-control <?= isset($erroresReg['email']) ? 'is-invalid' : '' ?>"
-                    name="email" placeholder=""
-                    value="<?= htmlspecialchars($regEmail ?? '') ?>" />
-                  <label for="regEmail">Correo electrónico</label>
-                </div>
-              </div>
+            <button type="submit" id="btnInicioSesion" class="btn btnInicioSesion w-100 my-3">
+              Iniciar sesión
+            </button>
+          </form>
+        </div>
 
-              <div id="errorEmailRegistro" class="alert alert-danger mt-2 d-none">
-                <i class="fa-solid fa-triangle-exclamation me-2"></i>
-              </div>
+        <!-- ── Panel: Registro ──────────────────────────────── -->
+<div id="ff-panel-registro" class="ff-panel <?= $tipo != 'registro' ? 'd-none' : '' ?>">
+  <p class="login-box-msg">Crea tu cuenta y empieza hoy.</p>
 
-              <!-- Contraseña -->
-              <div class="input-group mb-1">
-                <div class="form-floating">
-                  <input id="regPassword" type="password"
-                    class="form-control <?= isset($erroresReg['contraseña']) ? 'is-invalid' : '' ?>"
-                    name="contraseña" placeholder="" />
-                  <label for="regPassword">Contraseña</label>
-                </div>
-              </div>
+  <form action="<?= BASE_PATH . "/acciones?tipo=registro" ?>" method="post">
 
-              <div id="errorContraseñaRegistro" class="alert alert-danger mt-2 d-none">
-                <i class="fa-solid fa-triangle-exclamation me-2"></i>
-              </div>
+    <!-- Email -->
+    <div class="input-group mb-1">
+      <div class="form-floating">
+        <input id="regEmail" type="email"
+          class="form-control <?= isset($erroresReg['email']) ? 'is-invalid' : '' ?>"
+          name="email" placeholder=""
+          value="<?= htmlspecialchars($regEmail ?? '') ?>" />
+        <label for="regEmail">Correo electrónico</label>
+      </div>
+    </div>
+    <div id="errorEmailRegistro" class="alert alert-danger mt-2 d-none">
+      <i class="fa-solid fa-triangle-exclamation me-2"></i>
+    </div>
 
-              <!-- Confirmar contraseña -->
-              <div class="input-group mb-1">
-                <div class="form-floating">
-                  <input id="regPasswordConfirm" type="password"
-                    class="form-control <?= isset($erroresReg['confirmar_contraseña']) ? 'is-invalid' : '' ?>"
-                    name="confirmar_contraseña" placeholder="" />
-                  <label for="regPasswordConfirm">Confirmar contraseña</label>
-                </div>
-                <div class="input-group-text">
-                  <i class="fa-solid fa-eye white"></i>
-                </div>
-              </div>
+    <!-- Teléfono -->
+    <div class="input-group mb-1">
+      <div class="form-floating">
+        <input id="regTelefono" type="tel"
+          class="form-control <?= isset($erroresReg['telefono']) ? 'is-invalid' : '' ?>"
+          name="telefono" placeholder=""
+          value="<?= htmlspecialchars($regTelefono ?? '') ?>" />
+        <label for="regTelefono">Teléfono</label>
+      </div>
+    </div>
+    <div id="errorTelefonoRegistro" class="alert alert-danger mt-2 d-none">
+      <i class="fa-solid fa-triangle-exclamation me-2"></i>
+    </div>
 
-              <div id="errorConfirmaContraseñaRegistro" class="alert alert-danger mt-2 d-none">
-                <i class="fa-solid fa-triangle-exclamation me-2"></i>
-              </div>
+    <!-- País -->
+     <div class="form-floating mb-1">
+      <select id="regPais" name="pais"
+        class="form-select <?= isset($erroresReg['pais']) ? 'is-invalid' : '' ?>"
+        style="height: 58px; padding-top: 1.625rem; padding-bottom: .625rem;">
+        <option value="" disabled <?= empty($regPais) ? 'selected' : '' ?>>Selecciona un país</option>
+        <?php foreach ($paises as $pais): ?>
+          <option value="<?= htmlspecialchars($pais) ?>"
+            <?= (isset($regPais) && $regPais === $pais) ? 'selected' : '' ?>>
+            <?= htmlspecialchars($pais) ?>
+          </option>
+        <?php endforeach; ?>
+      </select>
+      <label for="regPais">País</label>
+    </div>
 
-              <button type="submit" id="btnRegistrarse" class="btn btnRegistrarse w-100 my-3">
-                Crear cuenta
-              </button>
-            </form>
-          </div>
+    <!-- Fecha de nacimiento -->
+    <div class="input-group mb-1">
+      <div class="form-floating">
+        <input id="regDate" type="date"
+          class="form-control <?= isset($erroresReg['fecha_nacimiento']) ? 'is-invalid' : '' ?>"
+          name="fecha_nacimiento" placeholder=""
+          value="<?= htmlspecialchars($regFecha ?? '') ?>" />
+        <label for="regDate">Fecha de nacimiento</label>
+      </div>
+    </div>
+    <div id="errorFechaRegistro" class="alert alert-danger mt-2 d-none">
+      <i class="fa-solid fa-triangle-exclamation me-2"></i>
+    </div>
 
-        </div><!-- /tab-content -->
+    <!-- Contraseña -->
+    <div class="input-group mb-1">
+      <div class="form-floating">
+        <input id="regPassword" type="password"
+          class="form-control <?= isset($erroresReg['contraseña']) ? 'is-invalid' : '' ?>"
+          name="contraseña" placeholder="" />
+        <label for="regPassword">Contraseña</label>
+      </div>
+    </div>
+    <div id="errorContraseñaRegistro" class="alert alert-danger mt-2 d-none">
+      <i class="fa-solid fa-triangle-exclamation me-2"></i>
+    </div>
+
+    <!-- Confirmar contraseña -->
+    <div class="input-group mb-1">
+      <div class="form-floating">
+        <input id="regPasswordConfirm" type="password"
+          class="form-control <?= isset($erroresReg['confirmar_contraseña']) ? 'is-invalid' : '' ?>"
+          name="confirmar_contraseña" placeholder="" />
+        <label for="regPasswordConfirm">Confirmar contraseña</label>
+      </div>
+      <div class="input-group-text">
+        <i class="fa-solid fa-eye white"></i>
+      </div>
+    </div>
+    <div id="errorConfirmaContraseñaRegistro" class="alert alert-danger mt-2 d-none">
+      <i class="fa-solid fa-triangle-exclamation me-2"></i>
+    </div>
+
+    <button type="submit" id="btnRegistrarse" class="btn btnRegistrarse w-100 my-3">
+      Crear cuenta
+    </button>
+  </form>
+</div>
+
       </div><!-- /card-body -->
     </div><!-- /card -->
   </div><!-- /login-box -->

@@ -1,18 +1,18 @@
 /* ===== VARIABLES DE COLOR ===== */
-:root {
-  --color-azul-principal: #070D25;
-  --color-azul-principal-translucido: rgba(7, 13, 37, 0.82);
-  --color-azul-principal-not-pure: #0b143a;
-  --color-azul-principal-not-pure2: #5f6375;
-  --color-v-principal: #91DD4E;
-  --color-v-hover: #a0e069;
-  --color-n-principal: #FB8E37;
-  --color-n-hover: #fc9c4f;
-  --color-black: #121414;
-  --color-black-transparente2: #5c5c5c;
-  --color-white-not-pure: rgb(238, 238, 238);
-  --color-shadow-principio: #ccd1d1;
-  --color-shadow: #e2e6e6;
+:root{
+  --color-azul-principal:#070D25;
+  --color-azul-principal-translucido:rgba(7, 13, 37, 0.72);
+  --color-azul-principal-not-pure:#0b143a;
+  --color-azul-principal-not-pure2:#5f6375;
+  --color-v-principal:#91DD4E;
+  --color-v-hover:#a0e069;
+  --color-n-principal:#FB8E37;
+  --color-n-hover:#d9601a;
+  --color-black:#121414;
+  --color-black-transparente2:#5c5c5c;
+  --color-white-not-pure:rgb(238, 238, 238);
+  --color-shadow-principio:#ccd1d1;
+  --color-shadow:#e2e6e6;
 }
 
 /* ===== RESET Y FONDO ===== */
@@ -182,4 +182,57 @@ a:hover {
   color: #ffa098;
   font-size: 0.75rem;
   margin-left: 0.5rem;
+}
+
+/* ── Tabs personalizadas ───────────────────────────────── */
+
+.ff-tabs-nav {
+  display: flex;
+  border-bottom: 1px solid rgba(0,0,0,.12);
+}
+
+.ff-tab-btn {
+  flex: 1;
+  padding: .65rem 1rem;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-size: .9rem;
+  color: #6c757d;
+  transition: color .2s, border-color .2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+}
+
+.ff-tab-btn:first-child {
+  border-radius: var(--bs-border-radius) 0 0 0;
+}
+
+.ff-tab-btn:last-child {
+  border-radius: 0 var(--bs-border-radius) 0 0;
+}
+
+.ff-tab-btn.ff-active {
+  color: var(--color-n-principal);
+  border-bottom-color: var(--color-n-principal);
+  font-weight: 500;
+}
+
+.ff-tab-btn:hover:not(.ff-active) {
+  color: #343a40;
+  border-bottom-color: rgba(0,0,0,.15);
+}
+
+/* ── Paneles ───────────────────────────────────────────── */
+
+.ff-panel {
+  animation: ffFadeIn .22s ease;
+}
+
+@keyframes ffFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }

@@ -7,8 +7,8 @@ require_once __DIR__ . '/app/modelo/funciones.php';
 require_once __DIR__ . '/vendor/autoload.php';
 // require_once '../config.htaccess';
 
-define('BASE_PATH', './');
-define('LINKS_PATH', './public');
+define('BASE_PATH', '/forexfalcon');
+define('LINKS_PATH', '/forexfalcon/public');
 define('VIEWS_BACK_PATH', '/../../app/vista');
 // define('VIEWS_PATH', '/app/vista');
 

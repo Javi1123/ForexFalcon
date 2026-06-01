@@ -4,252 +4,63 @@
 // Functions exportadas
 ////////////////////////
 
-export const validacionesInicioSesion = e =>{
-
+export const validacionesInicioSesion = e => {
   e.preventDefault();
-  
+
   let formulario = e.target;
 
-  // Pillamos el formulario entero
   const formData = new FormData(formulario);
 
-  let errores = [];
-  
-  const usuario_gmail = formData.get("usuario_gmail");
+  let errores = false;
+
+  const email      = formData.get("email");
   const contraseña = formData.get("contraseña");
 
-  const invalid = document.querySelector(".invalid-feedback");
+  const emailVacio      = document.querySelector("#emailVacio");
+  const errorEmail      = document.querySelector("#errorEmail");
+  const contraseñaVacio = document.querySelector("#contraseñaVacio");
+  const errorContraseña = document.querySelector("#errorContraseña");
 
-  // Validar nombre
-  if (usuario_gmail) {
-    if (usuario_gmail.length >= 20 || !/^(([a-zA-ZáéíóúÁÉÍÓÚñÑ\s])+){3,}$/.test(usuario_gmail)) {
-      invalid.classList.remove("d-none");
-      
-      errores.push({
-        campo: "nombre",
-        icon: "error",
-        title: "Nombre no válido:",
-        text: "Por favor, revise si su nombre contiene números o está vacío"
-      });
-    }
+  formulario.querySelector('[name="email"]').addEventListener('input', () => {
+    emailVacio.classList.add('d-none');
+    errorEmail.classList.add('d-none');
+  });
+
+  formulario.querySelector('[name="contraseña"]').addEventListener('input', () => {
+    contraseñaVacio.classList.add('d-none');
+    errorContraseña.classList.add('d-none');
+  });
+
+  const resultEmail      = validarEmail(email);
+  const resultContraseña = validarContraseña(contraseña);
+
+  if (!resultEmail.ok) {
+    emailVacio.textContent = resultEmail.msg;
+    emailVacio.classList.remove("d-none");
+    errores = true;
   }
 
-  // Validar apellido
-  // if (apellido) {
-  //   const labelApellido = document.querySelector("#labelApellido");
-  //   if (apellido.length > 25 || !/^(([a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+){3,})?$/.test(apellido)) {
-  //     labelApellido.classList.add("red");
-      
-  //     errores.push({
-  //       campo: "apellido",
-  //       icon: "error",
-  //       title: "Apellido no válido:",
-  //       text: "Por favor, revise si su apellido contiene números o está vacío"
-  //     });
-  //   } else {
-  //     labelApellido.classList.remove("red");
-  //   }
-  // }
-// console.log(errores);
-  if(errores.length == 1){
+  if (!resultContraseña.ok) {
+    contraseñaVacio.textContent = resultContraseña.msg;
+    contraseñaVacio.classList.remove("d-none");
+    errores = true;
+  }
+
+  if (errores) {
     return false;
-    // popErrores(errores[0].icon, errores[0].title, errores[0].text);
-  } else if (errores.length > 1){
-    // popErrores(
-    //   "error",
-    //   "Datos de Entrada Erróneos:",
-    //   "Por favor, revise los datos e introdúzcalos correctamente"
-    // );
-  } else if(errores.length == 0) {
+  } else {
     return true;
   }
-
 }
 
 
 
 
-
 export const validacionesFormacion = e =>{
-alert("regi")
   e.preventDefault();
 
   let formulario = e.target;
 
-  // Pillamos el formulario entero
-  const formData = new FormData(formulario);
-
-  let errores = [];
-
-  const documento = formData.get("documento");
-  const DNI = formData.get("DNI");
-  const nombre = formData.get("nombre");
-  const apellido = formData.get("apellido");
-  const email = formData.get("email");
-  const telefono = formData.get("telefono");
-  const direccion = formData.get("direccion");
-  const interes = formData.get("interes");
-
-  // Validar DNI
-  if(documento && DNI){
-    const labelDNI = document.querySelector("#labelDNI");
-    if(documento == "NIF"){
-      if(!/^[0-9]{8}[A-Z]+$/.test(DNI)){
-        errores.push({
-          campo: "DNI",
-          icon: "error",
-          title: "NIF no valido:",
-          text: "Por favor, revise si su NIF tiene los caracteres basicos"
-        });
-        labelDNI.classList.add("red");
-      }
-    } else if(documento == "NIE"){
-      if(!/^[XYZxyz][0-9]{7,8}[A-Za-z]$/.test(DNI)){
-        errores.push({
-          campo: "DNI",
-          icon: "error",
-          title: "NIE no válido:",
-          text: "Por favor, revise si su NIE tiene los caracteres basicos"
-        });
-        labelDNI.classList.add("red");
-      }
-    } else if(documento == "pasaporte"){
-      if(!/^[A-Za-z]{1,2}[0-9]{6,9}$/.test(DNI)){
-        errores.push({
-          campo: "DNI",
-          icon: "error",
-          title: "Pasaporte no valido:",
-          text: "Por favor, revise si su pasaporte tiene los caracteres basicos"
-        });
-        labelDNI.classList.add("red");
-      }
-    } else {
-      labelDNI.classList.remove("red");
-    }
-  }
-
-  // Validar nombre
-  if (nombre) {
-    const labelNombre = document.querySelector("#labelNombre");
-    if (nombre.length > 15 || !/^(([a-zA-ZáéíóúÁÉÍÓÚñÑ\s])+){3,}$/.test(nombre)) {
-
-      labelNombre.classList.add("red");
-
-      errores.push({
-        campo: "nombre",
-        icon: "error",
-        title: "Nombre no válido:",
-        text: "Por favor, revise si su nombre contiene números o está vacío"
-      });
-    } else {
-      labelNombre.classList.remove("red");
-    }
-  }
-
-  // Validar apellido
-  if (apellido) {
-    const labelApellido = document.querySelector("#labelApellido");
-    if (apellido.length > 25 || !/^([a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+){3,}$/.test(apellido)) {
-
-      labelApellido.classList.add("red");
-      
-      errores.push({
-        campo: "apellido",
-        icon: "error",
-        title: "Apellido no válido:",
-        text: "Por favor, revise si su apellido contiene números o está vacío"
-      });
-    } else {
-      labelApellido.classList.remove("red");
-    }
-  }
-
-  // Validar email
-  if (email) {
-    const labelEmail = document.querySelector("#labelEmail");
-    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
-
-      labelEmail.classList.add("red");
-      
-      errores.push({
-        campo: "email",
-        icon: "error",
-        title: "Email no válido:",
-        text: "Por favor, revise si su email está mal escrito"
-      });
-    } else {
-      labelEmail.classList.remove("red");
-    }
-  }
-  
-  // Validar teléfono
-  if (telefono) {
-    const labelTelefono = document.querySelector("#labelTelefono");
-    if (!/^[0-9]{9}$/.test(telefono)) {
-
-      labelTelefono.classList.add("red");
-      
-      errores.push({
-        campo: "telefono",
-        icon: "error",
-        title: "Teléfono no válido:",
-        text: "Por favor, revise si su número de teléfono es válido (9 dígitos)"
-      });
-    } else {
-      labelTelefono.classList.remove("red");
-    }
-  }
-
-  if(direccion){
-    const labelDireccion = document.querySelector("#labelDireccion");
-     if (!/^C:\s*[^,]+(?:,\s*Nº\s*[^,]+)?(?:,\s*Piso\s*[^,]+)?(?:,\s*Puerta\s*[^,]+)?$/i.test(direccion)) {
-
-      labelDireccion.classList.add("red");
-      
-      errores.push({
-        campo: "direccion",
-        icon: "error",
-        title: "La direccion no esta bien escrita:",
-        text: "Por favor, mire el siguinte ejemplo C: Valle de Lora, Nº 1"
-      });
-    } else {
-      labelDireccion.classList.remove("red");
-    }
-  }
-
-
-  // Validar intereses
-  if (interes) {
-
-    let valorLimpio = quitarEtiquetasHTML(interes);
-    const labelInteres = document.querySelector("#labelInteres");
-    
-    if (valorLimpio == "" || valorLimpio.length < 10) {
-
-      labelInteres.classList.add("red");
-      
-      errores.push({
-        campo: "interes",
-        icon: "error",
-        title: "Intereses poco extensos:",
-        text: "Por favor, asegúrese de que sus intereses contengan más de 10 caracteres"
-      });
-    } else {
-      labelInteres.classList.remove("red");
-    }
-  }
-
-  if(errores.length == 1){
-    popErrores(errores[0].icon, errores[0].title, errores[0].text);
-  } else if (errores.length > 1){
-    popErrores(
-      "error",
-      "Datos de Entrada Erróneos:",
-      "Por favor, revise los datos e introdúzcalos correctamente"
-    );
-  } else if(errores.length == 0) {
-    formulario.submit();
-  }
 
 }
 
@@ -259,16 +70,30 @@ alert("regi")
 // Functions 
 ////////////////////////
 
-const quitarEtiquetasHTML = (html) => {
-  const doc = new DOMParser().parseFromString(html, 'text/html');
-  return doc.body.textContent || "";
-}
+// ── Email ────────────────────────────────────────────────
+const regexEmail = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
 
-// const popErrores = (icon,title,text) =>{
-//   Swal.fire({
-//     icon: icon,
-//     title: title,
-//     text: text,
-//   });
-// }
+const validarEmail = (email) => {
+  if (!email || email.trim() === "")      return { ok: false, msg: "El email es obligatorio" };
+  if (!regexEmail.test(email.trim()))     return { ok: false, msg: "El email no es válido" };
+  if (email.length > 254)                 return { ok: false, msg: "El email es demasiado largo" };
+  return { ok: true };
+};
 
+// ── Contraseña ───────────────────────────────────────────
+const regexMayuscula  = /[A-Z]/;
+const regexMinuscula  = /[a-z]/;
+const regexNumero     = /[0-9]/;
+const regexEspecial   = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+
+const validarContraseña = (pass) => {
+  if (!pass || pass.trim() === "")        return { ok: false, msg: "La contraseña es obligatoria" };
+  if (pass.length < 8)                    return { ok: false, msg: "Mínimo 8 caracteres" };
+  if (pass.length > 64)                   return { ok: false, msg: "Máximo 64 caracteres" };
+  if (!regexMayuscula.test(pass))         return { ok: false, msg: "Debe contener al menos una mayúscula" };
+  if (!regexMinuscula.test(pass))         return { ok: false, msg: "Debe contener al menos una minúscula" };
+  if (!regexNumero.test(pass))            return { ok: false, msg: "Debe contener al menos un número" };
+  if (!regexEspecial.test(pass))          return { ok: false, msg: "Debe contener al menos un carácter especial (!@#$...)" };
+  if (/\s/.test(pass))                    return { ok: false, msg: "No puede contener espacios" };
+  return { ok: true };
+};

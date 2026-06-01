@@ -268,7 +268,7 @@
         </div>
         <div class=" pt-5 container">
           <p class="lead text-center">
-            <a href="<?= BASE_PATH . "acciones"?>" class="btn btn-lg btn-dark ">Registrate aqui, para emprezar tu formación</a>
+            <a href="<?= BASE_PATH . "/acciones"?>" class="btn btn-lg btn-dark ">Registrate aqui, para emprezar tu formación</a>
           </p>
         </div>
       </div>

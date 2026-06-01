@@ -15,10 +15,10 @@
       <div class="row p-3">
         <div class="col-4 col-sm-4 col-xl-3">
           <p class="h4 negrita">Catalogo</p>
-          <span class="d-block"><a class="green" href="<?= BASE_PATH . "copytrading" ?>">CopyTrading</a></span>
-          <span class="d-block"><a class="green" href="<?= BASE_PATH . "mentorias" ?>">Mentorias</a></span>
-          <span class="d-block"><a class="green" href="<?= BASE_PATH . "bots" ?>">Bots</a></span>
-          <span class="d-block"><a class="green" href="<?= BASE_PATH . "analisis" ?>">Análisis</a></span>
+          <span class="d-block"><a class="green" href="<?= BASE_PATH . "/copytrading" ?>">CopyTrading</a></span>
+          <span class="d-block"><a class="green" href="<?= BASE_PATH . "/mentorias" ?>">Mentorias</a></span>
+          <span class="d-block"><a class="green" href="<?= BASE_PATH . "/bots" ?>">Bots</a></span>
+          <span class="d-block"><a class="green" href="<?= BASE_PATH . "/analisis" ?>">Análisis</a></span>
         </div>
         <div class="col-4 col-sm-4 col-xl-3">
           <p class="h4 negrita">Redes</p>
@@ -28,8 +28,8 @@
         </div>
         <div class="col-4 col-sm-4 col-xl-3">
           <p class="h4 negrita">Nosotros</p>
-          <span class="d-block"><a class="green" href="<?= BASE_PATH . "quienes_somos" ?>">Quienes somos</a></span>
-          <span class="d-block"><a class="green" href="<?= BASE_PATH . "contacto" ?>">Contacto</a></span>
+          <span class="d-block"><a class="green" href="<?= BASE_PATH . "/quienes_somos" ?>">Quienes somos</a></span>
+          <span class="d-block"><a class="green" href="<?= BASE_PATH . "/contacto" ?>">Contacto</a></span>
         </div>
       </div>
 

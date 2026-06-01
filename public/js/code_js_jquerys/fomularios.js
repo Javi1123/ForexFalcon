@@ -4,62 +4,56 @@
 // Functions
 ///////////////////
 
-const seleccionarSecciones = () =>{
-
-
-
-
-}
-
 const validaciones = async () =>{
-  const URL = window.location.pathname;
+  const formularioInicio = document.querySelector('form[action*="tipo=inicio"]')
+  const formularioRegistro = document.querySelector('form[action*="tipo=registro"]')
+  
+  const btnInicioSesion = document.querySelector("#btnInicioSesion");
+  const btnRegistrarse = document.querySelector("#btnRegistrarse");
 
-  if(URL.includes("inicio_sesion")){
-    // alert(1)
-    const formulario = document.querySelector("form");
-    const btnEnviarFormulario = document.querySelector("#btnInicioSesion");
+  const {validacionesInicioSesion,validacionesFormacion} = await import ("./validaciones.js");
 
-    const {validacionesInicioSesion} = await import ("./validaciones.js");
+  formularioInicio.addEventListener("submit", (e) => {
+    console.log(validacionesInicioSesion(e));
+    if(validacionesInicioSesion(e)){
+      btnInicioSesion.textContent = "Comprobando...";
+      btnInicioSesion.disabled = true;
+      btnInicioSesion.classList.add("text-white");
+      formularioInicio.submit();
+    }
+  });
 
-    formulario.addEventListener("submit", (e) => {
-      if(validacionesInicioSesion(e)){
-        btnEnviarFormulario.textContent = "Comprobando...";
-        btnEnviarFormulario.disabled = true;
-        formulario.submit();
-      }
-    });
-  }
 
-  if(URL.includes("crear_cuenta")){
-    const formulario = document.querySelector("form");
-    const btnEnviarFormulario = document.querySelector("#btnRegistrarse");
-
-    const {validacionesFormacion} = await import ("./validaciones.js");
-
-    formulario.addEventListener("submit", (e) => {
-      if(validacionesFormacion(e)){
-        btnEnviarFormulario.textContent = "Comprobando...";
-        btnEnviarFormulario.disabled = true;
-        formulario.submit();
-      }
-    });
-  }
-
+  formularioRegistro.addEventListener("click", (e) => {
+    if(validacionesFormacion(e)){
+      btnRegistrarse.textContent = "Comprobando...";
+      btnRegistrarse.disabled = true;
+      btnRegistrarse.classList.add("text-white");
+      formularioRegistro.submit();
+    }
+  });
 }
+
+const ffShowTab = (targetId) =>{
+  document.querySelectorAll('.ff-tab-btn').forEach(btn => {
+    btn.classList.toggle('ff-active', btn.dataset.ffTarget === targetId);
+  });
+  document.querySelectorAll('.ff-panel').forEach(panel => {
+    panel.classList.toggle('d-none', panel.id !== targetId);
+  });
+}
+
 
 ///////////////////
 // Main
 ///////////////////
+
+document.querySelectorAll('.ff-tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => ffShowTab(btn.dataset.ffTarget));
+});
 
 const tab_login = document.querySelector("#tab-login-btn");
 const tab_registro = document.querySelector("#tab-registro-btn");
 
 // Valicadiones
 validaciones();
-
-//TODO VER BIEN ESTO
-tab_login.addEventListener("click", e => {
-  if(tab_login.classList.contains("active")){
-    window.location.href = `./acciones?tipo=inicio`;
-  }
-})

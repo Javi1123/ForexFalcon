@@ -21,13 +21,8 @@
 
           <!-- 1. Botones arriba en columna -->
           <div class="d-flex flex-column gap-2 mb-4 d-lg-none">
-<<<<<<< HEAD
-            <a class="btn btnInicioSesion fw-bold text-center" href="<?= BASE_PATH . "acciones?tipo=inicio" ?>">Iniciar sesion</a>
-            <a class="btn btnRegistrarse fw-bold text-center" href="<?= BASE_PATH . "acciones?tipo=registro" ?>">Registrarse</a>
-=======
             <a class="btn btnInicioSesion fw-bold text-center" href="<?= BASE_PATH . "/acciones?tipo=inicio" ?>">Iniciar sesion</a>
             <a class="btn btnRegistrarse fw-bold text-center" href="<?= BASE_PATH . "/acciones?tipo=registro" ?>">Registrarse</a>
->>>>>>> 6d4c6c7 (Cambios varios y empezado con el inicio de sesion / registro)
           </div>
 
           <!-- 2. Links de navegación en el centro -->
@@ -44,11 +39,11 @@
                 <i class="fa-solid fa-chevron-down"></i>
               </a>
               <ul class="dropdown-menu" id="serviciosMovil">
-                <li><a class="dropdown-item ps-2 text-white text-decoration-none zona-sobre" href="<?= BASE_PATH . "quienes_somos" ?>">Quienes somos</a></li>
+                <li><a class="dropdown-item ps-2 text-white text-decoration-none zona-sobre" href="<?= BASE_PATH . "/quienes_somos" ?>">Quienes somos</a></li>
                 <hr class="dropdown-divider">
-                <li><a class="dropdown-item ps-2 text-white text-decoration-none zona-sobre" href="<?= BASE_PATH . "donde_estamos" ?>">Donde estamos</a></li>
+                <li><a class="dropdown-item ps-2 text-white text-decoration-none zona-sobre" href="<?= BASE_PATH . "/donde_estamos" ?>">Donde estamos</a></li>
                 <hr class="dropdown-divider">
-                <li><a class="dropdown-item ps-2 text-white text-decoration-none zona-centro" href="<?= BASE_PATH . "contacto" ?>">Contacto</a></li>
+                <li><a class="dropdown-item ps-2 text-white text-decoration-none zona-centro" href="<?= BASE_PATH . "/contacto" ?>">Contacto</a></li>
                 <hr class="dropdown-divider">
                 <li><a class="dropdown-item ps-2 text-white text-decoration-none zona-centro" id="btnFAQ" href=".#FAQs">FAQs</a></li>
               </ul>
@@ -57,8 +52,8 @@
 
           <!-- 3. Botones desktop a la derecha (ocultos en móvil) -->
           <div class="d-none d-lg-flex align-items-center">
-            <a class="btn btnInicioSesion fw-bold me-2" href="<?= BASE_PATH . "acciones?tipo=inicio" ?>">Iniciar sesion</a>
-            <a class="btn btnRegistrarse fw-bold me-2" href="<?= BASE_PATH . "acciones?tipo=registro" ?>">Registrarse</a>
+            <a class="btn btnInicioSesion fw-bold me-2" href="<?= BASE_PATH . "/acciones?tipo=inicio" ?>">Iniciar sesion</a>
+            <a class="btn btnRegistrarse fw-bold me-2" href="<?= BASE_PATH . "/acciones?tipo=registro" ?>">Registrarse</a>
           </div>
 
         </div>
