@@ -1,335 +1,321 @@
-<!-- Informcación main -->
+<?php /* min/main_index.php — Rediseño ForexFalcon */ ?>
+
 <main>
-  <!-- Introducción -->
-  <section id="esencia" class="container-fluid py-5 bg-dark bg-opacity-10 shadow">
-    <h2 class="negrita text-center h1">Nuestra <span class="orange">esencia</span></h2>
 
-    <div class="container text-justify">
-      <div class="row m-1">
-        <p class="text-center">Más que una academia, somos tu socio en el camino hacia la libertad financiera.</p>
+  <!-- ═══════════════════════════════════════════
+       ESENCIA
+  ═══════════════════════════════════════════ -->
+  <section id="esencia" class="container-fluid py-0">
+    <div class="container py-5" style="padding-top:80px !important; padding-bottom:80px !important;">
+
+      <!-- Cabecera -->
+      <div class="reveal reveal-up">
+        <p class="section-eyebrow">Por qué elegirnos</p>
+        <h2 class="section-heading">Nuestra <span>esencia</span></h2>
+        <p class="section-sub">Más que una academia — somos tu socio en el camino hacia la libertad financiera.</p>
       </div>
-      <hr class="border border-2 rounded border-dark">
-      <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
 
-        <div class="col reveal reveal-up delay-1-cards">
-          <div class="card p-3 p-sm-4 h-100 zoomCards">
+      <!-- Grid de features -->
+      <div class="features-grid">
 
-            <i class="fas fa-user-check icon-bg"></i>
-
-            <h2 class="negrita text-start text-md-justify">
-              Mentoría 1:1 real
-            </h2>
-            <p class="text-start text-md-justify">Mentor exclusivo que revisa tus operaciones en vivo y responde en minutos. Sin bots ni respuestas genéricas.</p>
+        <div class="feature-card reveal reveal-up delay-1-cards">
+          <div class="feature-icon-wrap">
+            <i class="fas fa-user-check"></i>
           </div>
+          <h3>Mentoría 1:1 real</h3>
+          <p>Mentor exclusivo que revisa tus operaciones en vivo y responde en minutos. Sin bots ni respuestas genéricas.</p>
         </div>
 
-        <div class="col reveal reveal-up delay-2-cards">
-          <div class="card p-3 p-sm-4 h-100 zoomCards">
-
-            <i class="fas fa-chalkboard-teacher icon-bg"></i>
-
-            <h2 class="negrita text-start text-md-justify">
-              Aprendizaje con operaciones en vivo
-            </h2>
-            <p class="text-start text-md-justify">Bots configurables y copy trading selectivo. Opera mientras duermes, con control total del riesgo.</p>
+        <div class="feature-card reveal reveal-up delay-2-cards">
+          <div class="feature-icon-wrap">
+            <i class="fas fa-chalkboard-teacher"></i>
           </div>
+          <h3>Aprende con operaciones en vivo</h3>
+          <p>Cientos de casos reales en grupos privados y webinars mensuales con aciertos, errores y correcciones en directo.</p>
         </div>
 
-        <div class="col reveal reveal-up delay-3-cards">
-          <div class="card p-3 p-sm-4 h-100 zoomCards">
-
-            <i class="fas fa-robot icon-bg"></i>
-
-            <h2 class="negrita text-start text-md-justify">
-              Bots automáticos + copy trading
-            </h2>
-            <p class="text-start text-md-justify">Aprende de cientos de casos reales en grupos privados y webinars mensuales con aciertos, errores y correcciones en vivo.</p>
+        <div class="feature-card reveal reveal-up delay-3-cards">
+          <div class="feature-icon-wrap">
+            <i class="fas fa-robot"></i>
           </div>
-        </div>
-        
-        <div class="col reveal reveal-up delay-4-cards">
-          <div class="card p-3 p-sm-4 h-100 zoomCards">
-
-            <i class="fas fa-users icon-bg"></i>
-
-            <h2 class="negrita text-start text-md-justify">
-              Comunidad colaborativa activa
-            </h2>
-            <p class="text-start text-md-justify">Resultados sostenibles fase por fase: control emocional, consistencia e ingresos complementarios. Sin promesas falsas ni atajos.</p>
-          </div>
+          <h3>Bots automáticos + copy trading</h3>
+          <p>Algoritmos configurables y copy trading selectivo. Opera mientras duermes, con control total del riesgo.</p>
         </div>
 
-        <div class="col reveal reveal-up delay-5-cards">
-          <div class="card p-3 p-sm-4 h-100 zoomCards">
-
-            <i class="fas fa-chart-line icon-bg"></i>
-
-            <h2 class="negrita text-start text-md-justify">
-              Análisis semanal en formato ejecutivo
-            </h2>
-            <p class="text-start text-md-justify">Cada lunes, informe claro con pares clave, niveles clave y escenarios probables. Olvida perder horas buscando noticias.</p>
+        <div class="feature-card reveal reveal-up delay-4-cards">
+          <div class="feature-icon-wrap">
+            <i class="fas fa-users"></i>
           </div>
+          <h3>Comunidad colaborativa activa</h3>
+          <p>Red de traders activos que comparten alertas, ideas y estrategias. Aprende de todos, no solo del mentor.</p>
         </div>
 
-        <div class="col reveal reveal-up delay-6-cards">
-          <div class="card p-3 p-sm-4 h-100 zoomCards">
-
-            <i class="fas fa-mountain icon-bg"></i>
-
-            <h2 class="negrita text-start text-md-justify">
-              Resultados sostenibles, paso a paso
-            </h2>
-            <p class="text-start text-md-justify">Fase 1: controlar riesgo. Fase 2: consistencia. Fase 3: ingresos complementarios. Libertad financiera real, sin promesas falsas.</p>
+        <div class="feature-card reveal reveal-up delay-5-cards">
+          <div class="feature-icon-wrap">
+            <i class="fas fa-chart-line"></i>
           </div>
+          <h3>Análisis semanal ejecutivo</h3>
+          <p>Cada lunes, informe claro con pares clave, niveles y escenarios probables. Olvida perder horas buscando noticias.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-up delay-6-cards">
+          <div class="feature-icon-wrap">
+            <i class="fas fa-mountain"></i>
+          </div>
+          <h3>Resultados sostenibles, paso a paso</h3>
+          <p>Fase 1: control del riesgo. Fase 2: consistencia. Fase 3: ingresos complementarios. Libertad financiera real.</p>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- Servicios -->
-  <section class="container pb-5">
-    <p class="fs-1 pt-5 pb-2 text-center fw-bold" id="catalogo">Catálogo</p>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-4 gy-4 gx-3 gx-md-4 gx-lg-5">
 
-      <!-- CopyTrading -->
-      <div class="col-12 col-md-6 reveal reveal-down delay-1">
-        <div class="card p-3 p-sm-4 h-100 zoomCards bg-azul">
-          <h2 class="negrita text-white"><i class="fas fa-copy green"></i> CopyTrading</h2>
-          <div class="mb-2"><span class="badge-gratis">TOTALMENTE GRATIS</span></div>
-          <span class="text-white">Copia automáticamente las operaciones en tiempo real. Sin experiencia, sin estrés.</span>
-          <div class="mt-auto pt-3">
-            <div class="d-flex flex-column gap-1 text-white small mb-3">
-              <span><i class="fas fa-check-circle green"></i> Depósito mínimo $100</span>
-              <hr class="m-1">
-              <span><i class="fas fa-check-circle green"></i> Configuración en 5 minutos</span>
-              <hr class="m-1">
-              <span><i class="fas fa-check-circle green"></i> Sin comisiones adicionales</span>
-            </div>
-            <?php if(isset($_SESSION['usuario'])) : ?>
-              <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/copytrading" ?>">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
-            <?php else : ?>
-              <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/acciones?tipo=registro" ?>">Activar cuenta <i class="fa-solid fa-arrow-right ms-2"></i></a>
-            <?php endif; ?>
-          </div>
-        </div>
+  <!-- ═══════════════════════════════════════════
+       CATÁLOGO
+  ═══════════════════════════════════════════ -->
+  <section id="catalogo" class="container-fluid">
+    <div class="container" style="padding-top:80px; padding-bottom:80px;">
+
+      <!-- Cabecera -->
+      <div class="reveal reveal-up">
+        <p class="section-eyebrow" style="color:var(--verde)">Nuestros servicios</p>
+        <h2 class="section-heading" style="color:#fff">Catálogo</h2>
+        <p class="section-sub" style="color:var(--blanco-dim)">Elige el plan que encaja con tu momento y tus objetivos.</p>
       </div>
 
-      <!-- Mentorías -->
-      <div class="col-12 col-md-6 reveal reveal-down delay-2">
-        <div class="card p-3 p-sm-4 h-100 zoomCards bg-azul">
-          <h2 class="negrita text-white"><i class="fas fa-user-graduate green"></i> Mentorías 1:1</h2>
-          <span class="text-white">Aprende la estrategia 100% funcional con acompañamiento personalizado.</span>
-          <div class="mt-auto pt-3">
-            <div class="mb-3">
-              <span class="text-white fw-bolder d-block mb-2">Planes disponibles:</span>
-              <div class="text-white d-flex flex-column gap-1">
-                <div class="d-flex justify-content-between"><span>1 Mes</span><span class="orange fw-bold">€150</span></div>
-                <hr class="m-1">
-                <div class="d-flex justify-content-between"><span>3 Meses</span><span class="orange fw-bold">€350</span></div>
-                <hr class="m-1">
-                <div class="d-flex justify-content-between"><span>1 Año</span><span class="orange fw-bold">€999</span></div>
+      <!-- Grid de planes -->
+      <div class="plans-grid">
+
+        <!-- CopyTrading -->
+        <div class="plan-card reveal reveal-down delay-1">
+          <span class="plan-badge green">Totalmente gratis</span>
+          <div class="plan-icon">
+            <i class="fas fa-copy"></i>
+          </div>
+          <h3>CopyTrading</h3>
+          <div class="plan-price">€0</div>
+          <p class="plan-desc">Copia operaciones reales en tiempo real. Sin experiencia previa ni estrés.</p>
+          <ul class="plan-features">
+            <li>Depósito mínimo $100</li>
+            <li>Activo en 5 minutos</li>
+            <li>Sin comisiones adicionales</li>
+          </ul>
+          <?php if(isset($_SESSION['usuario'])) : ?>
+            <a class="plan-btn primary" href="<?= BASE_PATH . "copytrading" ?>">Activar ahora →</a>
+          <?php else : ?>
+            <a class="plan-btn primary" href="<?= BASE_PATH . "acciones?tipo=registro" ?>">Activar cuenta →</a>
+          <?php endif; ?>
+        </div>
+
+        <!-- Mentorías -->
+        <div class="plan-card featured reveal reveal-down delay-2">
+          <span class="plan-badge popular">⭐ Más popular</span>
+          <div class="plan-icon orange">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <h3>Mentorías 1:1</h3>
+          <p class="plan-desc">Aprende la estrategia 100% funcional con acompañamiento personalizado.</p>
+          <div class="mentoria-precios">
+            <div class="mentoria-row">
+              <span class="label">1 mes</span>
+              <span class="precio">€150</span>
+            </div>
+            <div class="mentoria-row">
+              <span class="label">3 meses</span>
+              <span class="precio">€350</span>
+            </div>
+            <div class="mentoria-row">
+              <span class="label">1 año</span>
+              <span class="precio">€999</span>
+            </div>
+          </div>
+          <?php if(isset($_SESSION['usuario'])) : ?>
+            <a class="plan-btn primary" href="<?= BASE_PATH . "mentorias" ?>">Ver planes →</a>
+          <?php else : ?>
+            <a class="plan-btn primary" href="<?= BASE_PATH . "acciones?tipo=registro" ?>">Activar cuenta →</a>
+          <?php endif; ?>
+        </div>
+
+        <!-- Bots -->
+        <div class="plan-card reveal reveal-down delay-3">
+          <span class="plan-badge orange">€75 / mes</span>
+          <div class="plan-icon orange">
+            <i class="fas fa-microchip"></i>
+          </div>
+          <h3>Bots de trading</h3>
+          <p class="plan-desc">Algoritmos que operan por ti 24/7 de lunes a viernes basados en nuestra estrategia.</p>
+          <ul class="plan-features">
+            <li>Opera sin descanso</li>
+            <li>Basado en estrategia probada</li>
+            <li>Resultados consistentes</li>
+          </ul>
+          <?php if(isset($_SESSION['usuario'])) : ?>
+            <a class="plan-btn" href="<?= BASE_PATH . "bots" ?>">Activar bot →</a>
+          <?php else : ?>
+            <a class="plan-btn" href="<?= BASE_PATH . "acciones?tipo=registro" ?>">Activar cuenta →</a>
+          <?php endif; ?>
+        </div>
+
+        <!-- Análisis Premium -->
+        <div class="plan-card reveal reveal-down delay-4">
+          <span class="plan-badge orange">€50 / mes</span>
+          <div class="plan-icon">
+            <i class="fas fa-gem"></i>
+          </div>
+          <h3>Análisis Premium</h3>
+          <p class="plan-desc">Predicciones diarias sobre materias primas y divisas en un grupo exclusivo.</p>
+          <ul class="plan-features">
+            <li>Señales claras de entrada/salida</li>
+            <li>Análisis fundamental y técnico</li>
+            <li>Soporte directo en el grupo</li>
+          </ul>
+          <?php if(isset($_SESSION['usuario'])) : ?>
+            <a class="plan-btn" href="<?= BASE_PATH . "analisis" ?>">Suscribirse →</a>
+          <?php else : ?>
+            <a class="plan-btn" href="<?= BASE_PATH . "acciones?tipo=registro" ?>">Activar cuenta →</a>
+          <?php endif; ?>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       FAQs
+  ═══════════════════════════════════════════ -->
+  <section id="FAQs" class="container-fluid">
+    <div class="container" style="padding-top:80px; padding-bottom:80px;">
+
+      <div class="reveal reveal-up mb-5">
+        <p class="section-eyebrow" style="color:var(--verde)">Dudas frecuentes</p>
+        <h2 class="section-heading" style="color:#fff">FAQ<span>s</span></h2>
+        <p class="section-sub" style="color:var(--blanco-dim)">Todo lo que necesitas saber antes de empezar.</p>
+      </div>
+
+      <div class="accordion reveal reveal-scale" id="accordion">
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true">
+              ¿Necesito experiencia previa para empezar?
+            </button>
+          </h2>
+          <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#accordion">
+            <div class="accordion-body">
+              No. Tenemos rutas de aprendizaje diseñadas desde cero. El CopyTrading te permite generar resultados desde el primer día mientras vas aprendiendo la estrategia a tu ritmo.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+              ¿Cuánto dinero necesito para empezar?
+            </button>
+          </h2>
+          <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#accordion">
+            <div class="accordion-body">
+              El CopyTrading solo requiere un depósito mínimo de $100 en tu bróker. El precio de las mentorías y suscripciones es independiente del capital que decidas operar.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+              ¿Los bots son seguros? ¿Puedo perder todo mi capital?
+            </button>
+          </h2>
+          <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#accordion">
+            <div class="accordion-body">
+              Los bots incluyen gestión de riesgo integrada. Tú controlas el porcentaje máximo de exposición por operación y puedes detenerlos en cualquier momento. El trading siempre conlleva riesgo: nunca inviertas dinero que no puedas permitirte perder.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+              ¿Cuál es el costo de los planes y hay descuentos?
+            </button>
+          </h2>
+          <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#accordion">
+            <div class="accordion-body">
+              El CopyTrading es totalmente gratuito. Las mentorías van desde €150/mes hasta €999 al año (el más económico por mes). Los bots cuestan €75/mes y el análisis premium €50/mes. Para más información escríbenos a <strong style="color:var(--naranja)">info@forexfalcon.com</strong>.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+              ¿Qué diferencia ForexFalcon de otras academias?
+            </button>
+          </h2>
+          <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#accordion">
+            <div class="accordion-body">
+              Combinamos formación real, bots automáticos, análisis premium y mentoría 1:1 en un solo ecosistema. No vendemos promesas vacías ni atajos — enseñamos a operar con método, disciplina y resultados sostenibles.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+              ¿Cómo es el proceso de inscripción?
+            </button>
+          </h2>
+          <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#accordion">
+            <div class="accordion-body">
+              Crea tu cuenta gratuita en minutos, elige el plan que mejor encaje con tus objetivos y empieza. Si tienes dudas, contáctanos directamente y te guiamos sin compromiso.
+              <div class="mt-3">
+                <a href="<?= BASE_PATH . "acciones?tipo=registro" ?>" class="btnRegistrarse">Registrarse gratis →</a>
               </div>
             </div>
-            <?php if(isset($_SESSION['usuario'])) : ?>
-              <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/mentorias" ?>">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
-            <?php else : ?>
-              <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/acciones?tipo=registro" ?>">Activar cuenta <i class="fa-solid fa-arrow-right ms-2"></i></a>
-            <?php endif; ?>
           </div>
         </div>
-      </div>
 
-      <!-- Bots -->
-      <div class="col-12 col-md-6 reveal reveal-down delay-3">
-        <div class="card p-3 p-sm-4 h-100 zoomCards bg-azul">
-          <h2 class="negrita text-white"><i class="fas fa-microchip green"></i> Bots de Trading</h2>
-          <div class="mb-2"><span class="badge-precio">€75 / mes</span></div>
-          <span class="text-white">Algoritmos automatizados que operan por ti 24/7 de lunes a viernes.</span>
-          <div class="mt-auto pt-3">
-            <div class="d-flex flex-column gap-1 text-white small mb-3">
-              <span><i class="fas fa-check-circle green"></i> Opera sin descanso</span>
-              <hr class="m-1">
-              <span><i class="fas fa-check-circle green"></i> Basado en mi estrategia</span>
-              <hr class="m-1">
-              <span><i class="fas fa-check-circle green"></i> Resultados consistentes</span>
-            </div>
-            <?php if(isset($_SESSION['usuario'])) : ?>
-              <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/bots" ?>">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
-            <?php else : ?>
-              <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/acciones?tipo=registro" ?>">Activar cuenta <i class="fa-solid fa-arrow-right ms-2"></i></a>
-            <?php endif; ?>
-          </div>
-        </div>
-      </div>
-
-      <!-- Análisis Premium -->
-      <div class="col-12 col-md-6 reveal reveal-down delay-4">
-        <div class="card p-3 p-sm-4 h-100 zoomCards bg-azul">
-          <h2 class="negrita text-white"><i class="fas fa-gem green"></i> Análisis Premium</h2>
-          <div class="mb-2"><span class="badge-precio">€50 / mes</span></div>
-          <span class="text-white">Grupo exclusivo con mis predicciones diarias sobre materias primas y divisas.</span>
-          <div class="mt-auto pt-3">
-            <div class="d-flex flex-column gap-1 text-white small mb-3">
-              <span><i class="fas fa-check-circle green"></i> Señales claras de entrada/salida</span>
-              <hr class="m-1">
-              <span><i class="fas fa-check-circle green"></i> Análisis fundamental y técnico</span>
-              <hr class="m-1">
-              <span><i class="fas fa-check-circle green"></i> Soporte directo en el grupo</span>
-            </div>
-            <?php if(isset($_SESSION['usuario'])) : ?>
-              <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/analisis" ?>">Activar ahora <i class="fa-solid fa-arrow-right ms-2"></i></a>
-            <?php else : ?>
-              <a class="btn btnRegistrarse fw-bold w-100" href="<?= BASE_PATH . "/acciones?tipo=registro" ?>">Activar cuenta <i class="fa-solid fa-arrow-right ms-2"></i></a>
-            <?php endif; ?>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Preguntas FAQs //TODO CAMBIAR LAS FAQs-->
-  <section class="bg-azul" id="FAQs">
-    <h2 class="negrita text-center py-4 mb-0 text-white"> FAQ<span class="orange">s</span></h2>
-
-    <div class="container accordion reveal reveal-scale pb-5" id="accordion">
-      <div class="accordion-item">
-        <h2 class="accordion-header"> 
-          <button class=" bg-body-secondary accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#text1accordion" aria-expanded="true" aria-controls="text1accordion">
-            ¿Qué es la competencia profesional para el transporte?
-          </button>
-        </h2>
-
-        <div id="text1accordion" class="accordion-collapse collapse show" data-bs-parent="#accordion">
-          <div class="accordion-body text-justify">
-            <p class="text-justify">Por competencia profesional para el transporte nos referimos a la capacitación para la realización del transporte público de viajeros en autobús (a partir de 9 plazas, incluida la del conductor), o bien el transporte de mercancías en vehículos de más de 3.500 Kg. A esta capacitación también se la conoce como <b>capacitación profesional de transporte</b>.</p>
-            <p class="text-justify">Esta capacitación puede ser obtenida de tres formas diferentes:</p>
-            <ol class="">
-              <li>Obteniendo el certificado de competencial profesional que habilita para el ejercicio de la actividad de transporte público de mercancías por carretera / transporte público de viajeros por carretera.</li>
-              <li>Con el grado superior de logística y transporte (FP reglada).</li>
-              <li>O bien disponer dentro de la empresa en la que se ejerce el trabajo, de un profesional acreditado como <b>gestor de transporte</b>, que pueda capacitar a la empresa aportando dicho título.</li>
-            </ol>
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="bg-body-secondary accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#text2accordion" aria-expanded="false" aria-controls="text2accordion">
-            ¿Qué diferencia existe entre transporte público y transporte privado?
-          </button>
-        </h2>
-        <div id="text2accordion" class="accordion-collapse collapse" data-bs-parent="#accordion">
-          <div class="accordion-body">
-            <p class="text-justify">El Transporte es una actividad reglada y regulada a través de LOTT y ROTT. Y que podríamos diferenciar o dividir en público y privado:</p>
-            <p class="text-justify"><i class="fas fa-thumbtack red"></i> <b>Público:</b> que vas a cobrar por realizar el transporte (persona o mercancías). Cualquier persona/empresa puede contratar ese servicio.</p>
-            <p class="text-justify"><i class="fas fa-thumbtack red"></i> <b>Privado:</b> Significa que tu actividad principal no es el transporte, pero necesitas desplazar mercancías o personas para desarrollar tu actividad como un Transporte Privado Complementario. Un ejemplo puede ser un supermercado, su actividad no es el transporte, pero tiene flota propia para mover sus mercancías, y no puede ser contratada para que realice transportes. Por ello no es un servicio público.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="bg-body-secondary accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#text3accordion" aria-expanded="false" aria-controls="text3accordion">
-            ¿Cómo se obtiene el certificado de competencia profesional para el transporte?
-          </button>
-        </h2>
-        <div id="text3accordion" class="accordion-collapse collapse" data-bs-parent="#accordion">
-            <div class="accordion-body">    
-              <p>Para poder acreditar dicho certificado, es necesario realizar <b>2 pruebas:</b></p>
-              <ol >
-                <li><b>Examen tipo Test: 200 preguntas,</b> cada una de las cuales contará con <b>4 respuestas alternativas</b>, sobre las materias que integran el programa, indicado más arriba. Esta prueba tendrá una puntuación máxima de 200 puntos. Cada pregunta <b>correctamente respondida puntuará 1 punto y cada respuesta errónea se penalizará con 1/3 del valor de la respuesta correcta</b>.</li>
-                <li><b>Prueba de supuestos prácticos: 4 supuestos prácticos</b> que requieran aplicar el conocimiento de las materias que integran el programa a casos particulares. El candidato deberá <b>elegir entre ocho respuestas alternativas en cada uno de los supuestos</b>. La prueba de supuestos prácticos tendrá igualmente una <b>puntuación máxima de 200 puntos</b>. Cada supuesto correctamente resuelto puntuará 50 puntos <i>(A cada respuesta errónea se penalizará con 1/3 del valor de las respuestas correctas)</i>. Estos supuestos estarán diferenciados según el tipo de modalidad que se desee certificar:</li>
-                <ul>
-                  <li>Interior e internacional de mercancías.</li>
-                  <li>Interior e internacional de viajeros.</li>
-                </ul>
-              </ol>
-              <p>Para <b>aprobar el examen</b> deberá obtenerse una <b>puntuación no inferior a 100 puntos, en cada una de las dos partes y sumar entre ambas un 60% de la puntuación total</b>. El tiempo para la realización de cada una de las pruebas de que consta el examen será de <b>2 horas</b>.</p>
-              <p>Las preguntas versarán sobre los contenidos del temario, anteriormente indicado:</p>
-              <ul>
-                <li>Elementos del derecho privado.</li>
-                <li>El transportista como empresario mercantil.</li>
-                <li>Derecho social.</li>
-                <li>Derecho fiscal.</li>
-                <li>Gestión comercial y financiera de la empresa.</li>
-                <li>Acceso al Mercado.</li>
-                <li>Normas de explotación y técnicas.</li>
-                <li>La Seguridad en carretera.</li>
-              </ul>
-              <p>Actualmente es <b>requisito</b> obligatorio para presentarse a las diferentes convocatorias, estar en posesión de alguna de las siguientes titulaciones:</p>
-              <p><i>Título de Bachiller o equivalente; Título de Técnico, acreditativo de haber superado las enseñanzas de una formación profesional de Grado Medio, independientemente de la profesión a que se encuentre referido; Título de Técnico Superior, acreditativo de haber superado las enseñanzas de una formación profesional de Grado Superior, sin importar la profesión a que se encuentre referido; Cualquier título acreditativo de haber superado una enseñanza Universitaria de Grado o Postgrado</i>.</p>
-            </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="bg-body-secondary accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#text5accordion" aria-expanded="false" aria-controls="text2accordion">
-            ¿Cuál es el costo de los cursos y si hay opciones de financiación o descuentos disponibles?
-          </button>
-        </h2>
-        <div id="text5accordion" class="accordion-collapse collapse" data-bs-parent="#accordion">
-          <div class="accordion-body text-justify">
-            Se cobrar una matrícula 100€ y se realizara una cuota mensual de 100€ a lo largo del año. La cantidad anual fija es de 1.100€. Para mayor información sobre el costo de la matricula hablanos al el correo info@forexfalcon.com o llegar a Avda. San Francisco Javier, 24 - Edif. HERMES 41018 - Sevilla.</p>
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="bg-body-secondary accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#text6accordion" aria-expanded="false" aria-controls="text2accordion">
-            ¿Cuál es el horario de clases y la disponibilidad de horarios?
-          </button>
-        </h2>
-        <div id="text6accordion" class="accordion-collapse collapse" data-bs-parent="#accordion">
-          <div class="accordion-body">
-            <p class="text-justify">El horario de las dichas clases es principalmente on-line, tambien habra clases presenciales o videoconferencias para resolver dudas y supuestos.</p>
-            <p>Las horas de dichas clases son:</p>
-            <ul>
-              <li>40 presenciales</li>
-              <li>120 tele presenciales (on-line)</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="bg-body-secondary accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#text7accordion" aria-expanded="false" aria-controls="text2accordion">
-            ¿Cómo es el proceso de inscripción y cuándo puedo comenzar?
-          </button>
-        </h2>
-        <div id="text7accordion" class="accordion-collapse collapse" data-bs-parent="#accordion">
-          <div class="accordion-body">
-            <p class="text-justify">El proceso de inscripción es a través de un formulario a completar con tus credenciales, con esto podremos contactar contigo y poder infomarte sobre toda la formación.</p>
-            <div class=" d-sm-grid col-sm-3 d-grid gap-2 col-2 mx-auto pb-3">
-              <a role="button" href="inscribirte.php" class="btn btn-danger">!Inscribete aquí¡</a>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
-  <?php if(isset($_SESSION['usuario'])) : ?>
-    <section class="container">
-      <div class="my-5 py-5 text-center">
-        <h2 id="registroFinal" class="text-center">Estas cambiando tu <span class="green fw-bold">vida financiera</span></h2>
-        <p class="text-center fs-5">Ya estás en ForexFalcon. Ahora descubre cómo el trading se convierte en tu camino real hacia la libertad.</p>
 
-        <a href="<?= BASE_PATH . "/recursos" ?>" type="button" class="btn fs-5 btnRegistrarse fw-bold">Ir a mis recursos</a>
-      </div>
-    </section>
-  <?php else : ?>
-    <section class="container">
-    <div class="my-5 py-5 text-center">
-      <h2 id="registroFinal" class="text-center">¿Listo para cambiar tu <span class="green fw-bold">vida financiera</span>?</h2>
-      <p class="text-center fs-5">Únete hoy a ForexFalcon y descubre cómo el trading puede convertirse en tu camino hacia la libertad.</p>
+  <!-- ═══════════════════════════════════════════
+       CTA FINAL
+  ═══════════════════════════════════════════ -->
+  <section id="registroFinal-section" class="container-fluid">
+    <div class="cta-ring cta-ring-1"></div>
+    <div class="cta-ring cta-ring-2"></div>
+    <div class="cta-ring cta-ring-3"></div>
+    <div class="container text-center" style="position:relative; z-index:2; padding-top:100px; padding-bottom:100px;">
 
-      <a href="<?= BASE_PATH . "/acciones?tipo=registro" ?>" type="button" class="btn fs-5 btnRegistrarse fw-bold"><i class="fas fa-rocket mr-2"></i>Comienza tu viaje</a>
+      <?php if(isset($_SESSION['usuario'])) : ?>
+        <h2 class="reveal reveal-up">
+          Estás cambiando tu <span class="green">vida financiera</span>
+        </h2>
+        <p class="reveal reveal-up" style="color:var(--blanco-dim); font-size:1.1rem; margin-top:14px;">
+          Ya estás en ForexFalcon. Ahora descubre cómo el trading se convierte en tu camino real hacia la libertad.
+        </p>
+        <a href="<?= BASE_PATH . "recursos" ?>" class="hero__cta reveal reveal-up" style="margin-top:32px;">
+          <i class="fa-solid fa-play"></i>
+          Ir a mis recursos
+        </a>
+      <?php else : ?>
+        <h2 class="reveal reveal-up">
+          ¿Listo para cambiar tu <span class="green">vida financiera</span>?
+        </h2>
+        <p class="reveal reveal-up" style="color:var(--blanco-dim); font-size:1.1rem; margin-top:14px;">
+          Únete hoy a ForexFalcon y descubre cómo el trading puede convertirse en tu camino hacia la libertad.
+        </p>
+        <a href="<?= BASE_PATH . "acciones?tipo=registro" ?>" class="hero__cta reveal reveal-up" style="margin-top:32px;">
+          <i class="fas fa-rocket"></i>
+          Comienza tu viaje
+        </a>
+      <?php endif; ?>
+
     </div>
   </section>
-  <?php endif; ?>
-  
+
 </main>
