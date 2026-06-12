@@ -54,7 +54,7 @@
         <div id="ff-panel-login" class="ff-panel <?= $tipo != 'inicio' ? 'd-none' : '' ?>">
           <p class="login-box-msg">Inicia sesión para comenzar tu sesión.</p>
 
-          <form action="<?= BASE_PATH . "/acciones?tipo=inicio" ?>" method="post">
+          <form action="<?= BASE_PATH . "/inicio_sesion" ?>" method="post">
 
             <div class="input-group mb-1">
               <div class="form-floating">
@@ -65,13 +65,7 @@
                 <label for="loginEmail">Email</label>
               </div>
             </div>
-            <div id="emailVacio" class="invalid-feedback d-block mb-2 d-none">
-              El campo email es obligatorio
-            </div>
-            
-            <div id="errorEmail" class="invalid-feedback d-block mb-2 d-none">
-              Por favor, inserta un email valido.
-            </div>
+            <div id="errorEmail" class="invalid-feedback d-block mb-2 d-none"></div>
 
             <div class="input-group mb-1">
               <div class="form-floating">
@@ -80,17 +74,12 @@
                   name="contraseña" placeholder="" />
                 <label for="loginPassword">Contraseña</label>
               </div>
-              <div class="input-group-text">
-                <i class="fa-solid fa-eye white"></i>
+              <div id="eye-contraseña" class="input-group-text">
+                <i id="eye-contraseña-login" class="fa-solid fa-eye white"></i>
               </div>
             </div>
-            <div id="contraseñaVacio" class="invalid-feedback d-block mb-2 d-none">
-              El campo contraseña es obligatorio
-            </div>
 
-            <div id="errorContraseña" class="invalid-feedback d-block mb-2 d-none">
-              Por favor, inserta una contraseña valida.
-            </div>
+            <div id="errorContraseña" class="invalid-feedback d-block mb-2 d-none"></div>
 
             <button type="submit" id="btnInicioSesion" class="btn btnInicioSesion w-100 my-3">
               Iniciar sesión
@@ -99,103 +88,94 @@
         </div>
 
         <!-- ── Panel: Registro ──────────────────────────────── -->
-<div id="ff-panel-registro" class="ff-panel <?= $tipo != 'registro' ? 'd-none' : '' ?>">
-  <p class="login-box-msg">Crea tu cuenta y empieza hoy.</p>
+        <div id="ff-panel-registro" class="ff-panel <?= $tipo != 'registro' ? 'd-none' : '' ?>">
+          <p class="login-box-msg">Crea tu cuenta y empieza hoy.</p>
 
-  <form action="<?= BASE_PATH . "/acciones?tipo=registro" ?>" method="post">
+          <form action="<?= BASE_PATH . "/crear_cuenta" ?>" method="post">
 
-    <!-- Email -->
-    <div class="input-group mb-1">
-      <div class="form-floating">
-        <input id="regEmail" type="email"
-          class="form-control <?= isset($erroresReg['email']) ? 'is-invalid' : '' ?>"
-          name="email" placeholder=""
-          value="<?= htmlspecialchars($regEmail ?? '') ?>" />
-        <label for="regEmail">Correo electrónico</label>
-      </div>
-    </div>
-    <div id="errorEmailRegistro" class="alert alert-danger mt-2 d-none">
-      <i class="fa-solid fa-triangle-exclamation me-2"></i>
-    </div>
+            <!-- Email -->
+            <div class="input-group mb-1">
+              <div class="form-floating">
+                <input id="regEmail" type="email"
+                  class="form-control <?= isset($erroresReg['email']) ? 'is-invalid' : '' ?>"
+                  name="email" placeholder=""
+                  value="<?= htmlspecialchars($regEmail ?? '') ?>" />
+                <label for="regEmail">Correo electrónico</label>
+              </div>
+            </div>
+            <div id="errorEmailRegistro" class="invalid-feedback d-block mb-2 d-none"></div>
 
-    <!-- Teléfono -->
-    <div class="input-group mb-1">
-      <div class="form-floating">
-        <input id="regTelefono" type="tel"
-          class="form-control <?= isset($erroresReg['telefono']) ? 'is-invalid' : '' ?>"
-          name="telefono" placeholder=""
-          value="<?= htmlspecialchars($regTelefono ?? '') ?>" />
-        <label for="regTelefono">Teléfono</label>
-      </div>
-    </div>
-    <div id="errorTelefonoRegistro" class="alert alert-danger mt-2 d-none">
-      <i class="fa-solid fa-triangle-exclamation me-2"></i>
-    </div>
+            <!-- Teléfono -->
+            <div class="input-group mb-1">
+              <div class="form-floating">
+                <input id="regTelefono" type="tel"
+                  class="form-control <?= isset($erroresReg['telefono']) ? 'is-invalid' : '' ?>"
+                  name="telefono" placeholder=""
+                  value="<?= htmlspecialchars($regTelefono ?? '') ?>" />
+                <label for="regTelefono">Teléfono</label>
+              </div>
+            </div>
+            <div id="errorTelefonoRegistro" class="invalid-feedback d-block mb-2 d-none"></div>
 
-    <!-- País -->
-     <div class="form-floating mb-1">
-      <select id="regPais" name="pais"
-        class="form-select <?= isset($erroresReg['pais']) ? 'is-invalid' : '' ?>"
-        style="height: 58px; padding-top: 1.625rem; padding-bottom: .625rem;">
-        <option value="" disabled <?= empty($regPais) ? 'selected' : '' ?>>Selecciona un país</option>
-        <?php foreach ($paises as $pais): ?>
-          <option value="<?= htmlspecialchars($pais) ?>"
-            <?= (isset($regPais) && $regPais === $pais) ? 'selected' : '' ?>>
-            <?= htmlspecialchars($pais) ?>
-          </option>
-        <?php endforeach; ?>
-      </select>
-      <label for="regPais">País</label>
-    </div>
+            <!-- País -->
+            <div class="form-floating mb-1">
+              <select id="regPais" name="pais"
+                class="form-select <?= isset($erroresReg['pais']) ? 'is-invalid' : '' ?>"
+                style="height: 58px; padding-top: 1.625rem; padding-bottom: .625rem;">
+                <option value="" disabled <?= empty($regPais) ? 'selected' : '' ?>>Selecciona un país</option>
+                <?php foreach ($paises as $pais): ?>
+                  <option value="<?= htmlspecialchars($pais) ?>"
+                    <?= (isset($regPais) && $regPais === $pais) ? 'selected' : '' ?>>
+                    <?= htmlspecialchars($pais) ?>
+                  </option>
+                <?php endforeach; ?>
+              </select>
+              <label for="regPais">País</label>
+            </div>
+            <div id="errorPaisRegistro" class="invalid-feedback d-block mb-2 d-none"></div>
 
-    <!-- Fecha de nacimiento -->
-    <div class="input-group mb-1">
-      <div class="form-floating">
-        <input id="regDate" type="date"
-          class="form-control <?= isset($erroresReg['fecha_nacimiento']) ? 'is-invalid' : '' ?>"
-          name="fecha_nacimiento" placeholder=""
-          value="<?= htmlspecialchars($regFecha ?? '') ?>" />
-        <label for="regDate">Fecha de nacimiento</label>
-      </div>
-    </div>
-    <div id="errorFechaRegistro" class="alert alert-danger mt-2 d-none">
-      <i class="fa-solid fa-triangle-exclamation me-2"></i>
-    </div>
+            <!-- Fecha de nacimiento -->
+            <div class="input-group mb-1">
+              <div class="form-floating">
+                <input id="regDate" type="date"
+                  class="form-control <?= isset($erroresReg['fecha_nacimiento']) ? 'is-invalid' : '' ?>"
+                  name="fecha_nacimiento" placeholder=""
+                  value="<?= htmlspecialchars($regFecha ?? '') ?>" min="<?= $minFecha ?>" max="<?=  $maxFecha ?>" />
+                <label for="regDate">Fecha de nacimiento</label>
+              </div>
+            </div>
+            <div id="errorFechaRegistro" class="invalid-feedback d-block mb-2 d-none"></div>
 
-    <!-- Contraseña -->
-    <div class="input-group mb-1">
-      <div class="form-floating">
-        <input id="regPassword" type="password"
-          class="form-control <?= isset($erroresReg['contraseña']) ? 'is-invalid' : '' ?>"
-          name="contraseña" placeholder="" />
-        <label for="regPassword">Contraseña</label>
-      </div>
-    </div>
-    <div id="errorContraseñaRegistro" class="alert alert-danger mt-2 d-none">
-      <i class="fa-solid fa-triangle-exclamation me-2"></i>
-    </div>
+            <!-- Contraseña -->
+            <div class="input-group mb-1">
+              <div class="form-floating">
+                <input id="regPassword" type="password"
+                  class="form-control <?= isset($erroresReg['contraseña']) ? 'is-invalid' : '' ?>"
+                  name="contraseña" placeholder="" />
+                <label for="regPassword">Contraseña</label>
+              </div>
+            </div>
+            <div id="errorContraseñaRegistro" class="invalid-feedback d-block mb-2 d-none"></div>
 
-    <!-- Confirmar contraseña -->
-    <div class="input-group mb-1">
-      <div class="form-floating">
-        <input id="regPasswordConfirm" type="password"
-          class="form-control <?= isset($erroresReg['confirmar_contraseña']) ? 'is-invalid' : '' ?>"
-          name="confirmar_contraseña" placeholder="" />
-        <label for="regPasswordConfirm">Confirmar contraseña</label>
-      </div>
-      <div class="input-group-text">
-        <i class="fa-solid fa-eye white"></i>
-      </div>
-    </div>
-    <div id="errorConfirmaContraseñaRegistro" class="alert alert-danger mt-2 d-none">
-      <i class="fa-solid fa-triangle-exclamation me-2"></i>
-    </div>
+            <!-- Confirmar contraseña -->
+            <div class="input-group mb-1">
+              <div class="form-floating">
+                <input id="regPasswordConfirm" type="password"
+                  class="form-control <?= isset($erroresReg['confirmar_contraseña']) ? 'is-invalid' : '' ?>"
+                  name="confirmar_contraseña" placeholder="" />
+                <label for="regPasswordConfirm">Confirmar contraseña</label>
+              </div>
+              <div id="eye-confirmar-contraseña" class="input-group-text">
+                <i id="eye-contraseña-registrarse" class="fa-solid fa-eye white"></i>
+              </div>
+            </div>
+            <div id="errorConfirmaContraseñaRegistro" class="invalid-feedback d-block mb-2 d-none"></div>
 
-    <button type="submit" id="btnRegistrarse" class="btn btnRegistrarse w-100 my-3">
-      Crear cuenta
-    </button>
-  </form>
-</div>
+            <button type="submit" id="btnRegistrarse" class="btn btnRegistrarse w-100 my-3">
+              Crear cuenta
+            </button>
+          </form>
+        </div>
 
       </div><!-- /card-body -->
     </div><!-- /card -->

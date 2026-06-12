@@ -13,36 +13,27 @@ export const validacionesInicioSesion = e => {
 
   let errores = false;
 
+  // Valores formulario
   const email      = formData.get("email");
   const contraseña = formData.get("contraseña");
 
-  const emailVacio      = document.querySelector("#emailVacio");
+  // Campo errores
   const errorEmail      = document.querySelector("#errorEmail");
-  const contraseñaVacio = document.querySelector("#contraseñaVacio");
   const errorContraseña = document.querySelector("#errorContraseña");
 
-  formulario.querySelector('[name="email"]').addEventListener('input', () => {
-    emailVacio.classList.add('d-none');
-    errorEmail.classList.add('d-none');
-  });
-
-  formulario.querySelector('[name="contraseña"]').addEventListener('input', () => {
-    contraseñaVacio.classList.add('d-none');
-    errorContraseña.classList.add('d-none');
-  });
-
+  // Valores del formulario validados
   const resultEmail      = validarEmail(email);
   const resultContraseña = validarContraseña(contraseña);
 
   if (!resultEmail.ok) {
-    emailVacio.textContent = resultEmail.msg;
-    emailVacio.classList.remove("d-none");
+    errorEmail.textContent = resultEmail.msg;
+    errorEmail.classList.remove("d-none");
     errores = true;
   }
 
   if (!resultContraseña.ok) {
-    contraseñaVacio.textContent = resultContraseña.msg;
-    contraseñaVacio.classList.remove("d-none");
+    errorContraseña.textContent = resultContraseña.msg;
+    errorContraseña.classList.remove("d-none");
     errores = true;
   }
 
@@ -56,12 +47,80 @@ export const validacionesInicioSesion = e => {
 
 
 
-export const validacionesFormacion = e =>{
+export const validacionesRegistrarse = e =>{
   e.preventDefault();
 
   let formulario = e.target;
 
+  const formData = new FormData(formulario);
 
+  let errores = false;
+
+  // Valores formulario
+  const email                = formData.get("email");
+  const telefono             = formData.get("telefono");
+  const pais                 = formData.get("pais");
+  const fecha_nacimiento     = formData.get("fecha_nacimiento");
+  const contraseña           = formData.get("contraseña");
+  const confirmar_contraseña = formData.get("confirmar_contraseña");
+
+  // Campo errores
+  const errorEmailRegistro              = document.querySelector("#errorEmailRegistro");
+  const errorTelefonoRegistro           = document.querySelector("#errorTelefonoRegistro");
+  const errorPaisRegistro               = document.querySelector("#errorPaisRegistro");
+  const errorFechaRegistro              = document.querySelector("#errorFechaRegistro");
+  const errorContraseñaRegistro         = document.querySelector("#errorContraseñaRegistro");
+  const errorConfirmaContraseñaRegistro = document.querySelector("#errorConfirmaContraseñaRegistro");
+
+  // Valores del formulario validados
+  const resultEmail      = validarEmail(email);
+  const resultTelefono   = validarTelefono(telefono);
+  const resultPais       = validarPais(pais);
+  const resultFecha      = validarFechaNacimiento(fecha_nacimiento);
+  const resultContraseña = validarContraseña(contraseña);
+  const resultConfirmarContraseña = validarContraseña(confirmar_contraseña);
+
+  if (!resultEmail.ok) {
+    errorEmailRegistro.textContent = resultEmail.msg;
+    errorEmailRegistro.classList.remove("d-none");
+    errores = true;
+  }
+
+  if (!resultTelefono.ok) {
+    errorTelefonoRegistro.textContent = resultTelefono.msg;
+    errorTelefonoRegistro.classList.remove("d-none");
+    errores = true;
+  }
+
+  if (!resultPais.ok) {
+    errorPaisRegistro.textContent = resultPais.msg;
+    errorPaisRegistro.classList.remove("d-none");
+    errores = true;
+  }
+
+  if (!resultFecha.ok) {
+    errorFechaRegistro.textContent = resultFecha.msg;
+    errorFechaRegistro.classList.remove("d-none");
+    errores = true;
+  }
+
+  if (!resultContraseña.ok) {
+    errorContraseñaRegistro.textContent = resultContraseña.msg;
+    errorContraseñaRegistro.classList.remove("d-none");
+    errores = true;
+  }
+
+  if (!resultConfirmarContraseña.ok) {
+    errorConfirmaContraseñaRegistro.textContent = resultConfirmarContraseña.msg;
+    errorConfirmaContraseñaRegistro.classList.remove("d-none");
+    errores = true;
+  }
+
+  if (errores) {
+    return false;
+  } else {
+    return true;
+  }
 }
 
 
@@ -70,7 +129,7 @@ export const validacionesFormacion = e =>{
 // Functions 
 ////////////////////////
 
-// ── Email ────────────────────────────────────────────────
+// ── Email 
 const regexEmail = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
 
 const validarEmail = (email) => {
@@ -80,7 +139,7 @@ const validarEmail = (email) => {
   return { ok: true };
 };
 
-// ── Contraseña ───────────────────────────────────────────
+// ── Contraseña 
 const regexMayuscula  = /[A-Z]/;
 const regexMinuscula  = /[a-z]/;
 const regexNumero     = /[0-9]/;
@@ -95,5 +154,73 @@ const validarContraseña = (pass) => {
   if (!regexNumero.test(pass))            return { ok: false, msg: "Debe contener al menos un número" };
   if (!regexEspecial.test(pass))          return { ok: false, msg: "Debe contener al menos un carácter especial (!@#$...)" };
   if (/\s/.test(pass))                    return { ok: false, msg: "No puede contener espacios" };
+  return { ok: true };
+};
+
+// ── Telefono
+const validarTelefono = (tel) => {
+  if (!tel || tel.trim() === "")        return { ok: false, msg: "El teléfono es obligatorio" };
+  if (!/^\d+$/.test(tel))               return { ok: false, msg: "Solo se permiten dígitos" };
+  if (tel.length < 9)                   return { ok: false, msg: "Mínimo 9 dígitos" };
+  if (tel.length > 15)                  return { ok: false, msg: "Máximo 15 dígitos (estándar E.164)" };
+  return { ok: true };
+};
+
+// ── Pais
+const PAISES_VALIDOS = new Set([
+  "Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda",
+  "Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain",
+  "Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia",
+  "Bosnia and Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina Faso",
+  "Burundi","Cabo Verde","Cambodia","Cameroon","Canada","Central African Republic",
+  "Chad","Chile","China","Colombia","Comoros","Congo (Congo-Brazzaville)",
+  "Costa Rica","Croatia","Cuba","Cyprus","Czechia","Denmark","Djibouti","Dominica",
+  "Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea",
+  "Estonia","Eswatini","Ethiopia","Fiji","Finland","France","Gabon","Gambia",
+  "Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea",
+  "Guinea-Bissau","Guyana","Haiti","Honduras","Hungary","Iceland","India",
+  "Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan",
+  "Kazakhstan","Kenya","Kiribati","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon",
+  "Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Madagascar",
+  "Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania",
+  "Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro",
+  "Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands",
+  "New Zealand","Nicaragua","Niger","Nigeria","North Korea","North Macedonia",
+  "Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea",
+  "Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russia",
+  "Rwanda","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines",
+  "Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia",
+  "Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands",
+  "Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","Sudan",
+  "Suriname","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania",
+  "Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey",
+  "Turkmenistan","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom",
+  "United States","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela",
+  "Vietnam","Yemen","Zambia","Zimbabwe"
+]);
+
+const validarPais = (pais) => {
+  if (!pais || pais.trim() === "") return { ok: false, msg: "El país es obligatorio" };
+  if (!PAISES_VALIDOS.has(pais.trim()))    return { ok: false, msg: "Selecciona un país válido" };
+  return { ok: true };
+};
+
+// ── Fecha de nacimineto
+const validarFechaNacimiento = (fecha) => {
+  if (!fecha || fecha.trim() === "")  return { ok: false, msg: "La fecha de nacimiento es obligatoria" };
+
+  const fechaNac  = new Date(fecha);
+  if (isNaN(fechaNac.getTime()))      return { ok: false, msg: "La fecha no es válida" };
+
+  const hoy       = new Date();
+  const mayorEdad = new Date(fechaNac);
+  mayorEdad.setFullYear(mayorEdad.getFullYear() + 18);
+
+  if (mayorEdad > hoy)                return { ok: false, msg: "Debes ser mayor de 18 años" };
+
+  const hace120   = new Date();
+  hace120.setFullYear(hoy.getFullYear() - 120);
+  if (fechaNac < hace120)             return { ok: false, msg: "La fecha introducida no es válida" };
+
   return { ok: true };
 };
