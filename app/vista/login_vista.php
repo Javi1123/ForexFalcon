@@ -54,7 +54,7 @@
         <div id="ff-panel-login" class="ff-panel <?= $tipo != 'inicio' ? 'd-none' : '' ?>">
           <p class="login-box-msg">Inicia sesión para comenzar tu sesión.</p>
 
-          <form action="<?= BASE_PATH . "/inicio_sesion" ?>" method="post">
+          <form action="<?= BASE_PATH . "/acciones?tipo=inicio" ?>" method="post">
 
             <div class="input-group mb-1">
               <div class="form-floating">
@@ -91,7 +91,7 @@
         <div id="ff-panel-registro" class="ff-panel <?= $tipo != 'registro' ? 'd-none' : '' ?>">
           <p class="login-box-msg">Crea tu cuenta y empieza hoy.</p>
 
-          <form action="<?= BASE_PATH . "/crear_cuenta" ?>" method="post">
+          <form action="<?= BASE_PATH . "/acciones?tipo=registro" ?>" method="post">
 
             <!-- Email -->
             <div class="input-group mb-1">

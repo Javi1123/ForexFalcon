@@ -26,31 +26,119 @@ const animationSeccions = () =>{
   });
 }
 
-const popPublicidad = () =>{
+const popPublicidad = () => {
+  const yaAbierto = document.querySelector("dialog[open]");
 
-  const publicidad = document.querySelector(".swal2-popup");
-  
-  let pasoLaHora = fechaDeAhora - localStorage.publicidad;
+  const ultimaVez = localStorage.getItem("publicidad"); // getItem, no .publicidad
+  const pasoLaHora = fechaDeAhora - Number(ultimaVez);  // Number() evita NaN
 
-  if(publicidad || pasoLaHora < 1800000){
+  if (yaAbierto || (ultimaVez && pasoLaHora < 1800000)) {
     toastCookies();
     return;
-  } 
-  
-  Swal.fire({
-    background: "rgba(0, 0, 0, 0.6)",
-    imageUrl: "public/imagenes/convocatoria_2026.jpeg",
-    imageWidth: 400,
-    imageHeight: 500,
-    imageAlt: "Convocatoria   del 2026 de forexfalcon.",
-    confirmButtonText: "De acuerdo",
-    confirmButtonColor: "#FF6B00",
-  }).then( () => {
-    localStorage.setItem("publicidad",fechaDeAhora);
+  }
+
+  dialogDeDescuento();
+};
+
+const dialogDeDescuento = () => {
+  const dialog = document.createElement("dialog");
+  dialog.setAttribute("style", "padding: 0; border: none; border-radius: 12px; max-width: 460px; width: 90%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);");
+
+  // Backdrop con blur
+  const backdrop = document.createElement("div");
+  backdrop.classList.add("modal-backdrop", "fade", "show");
+  backdrop.setAttribute("style", "backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);");
+
+  // Contenedor principal
+  const modalContent = document.createElement("div");
+  modalContent.classList.add("modal-content", "p-4");
+
+  // Header
+  const header = document.createElement("div");
+  header.classList.add("modal-header", "border-0", "pb-1");
+
+  const titulo = document.createElement("h2");
+  titulo.classList.add("modal-title", "fw-bold", "fs-4");
+  titulo.textContent = "BIENVENIDO";
+
+  header.append(titulo);
+
+  // Body
+  const body = document.createElement("div");
+  body.classList.add("modal-body", "pt-2");
+
+  const descripcion = document.createElement("p");
+  descripcion.classList.add("text-muted", "mb-3");
+  descripcion.textContent = "Si nos das tu correo corporativo tendrás un 10% de descuento en el servicio que quieras.";
+
+  const label = document.createElement("label");
+  label.classList.add("form-label", "fw-semibold");
+  label.setAttribute("for", "emailCorporativo");
+  label.textContent = "Correo corporativo";
+
+  const input = document.createElement("input");
+  input.classList.add("form-control", "mb-1");
+  input.setAttribute("type", "email");
+  input.setAttribute("id", "emailCorporativo");
+  input.setAttribute("placeholder", "nombre@empresa.com");
+  input.setAttribute("autocomplete", "email");
+
+  const feedbackMsg = document.createElement("div");
+  feedbackMsg.classList.add("invalid-feedback");
+  feedbackMsg.textContent = "Por favor, introduce un correo válido.";
+
+  body.append(descripcion, label, input, feedbackMsg);
+
+  // Footer
+  const footer = document.createElement("div");
+  footer.classList.add("modal-footer", "border-0", "pt-1", "gap-2");
+
+  const btnCerrar = document.createElement("button");
+  btnCerrar.classList.add("btn", "btn-outline-secondary");
+  btnCerrar.textContent = "Cerrar";
+
+  const btnAceptar = document.createElement("button");
+  btnAceptar.classList.add("btn", "btn-primary");
+  btnAceptar.textContent = "Quiero mi 10% 🎉";
+
+  footer.append(btnCerrar, btnAceptar);
+
+  // Ensamblar
+  modalContent.append(header, body, footer);
+  dialog.append(modalContent);
+
+  // Cerrar
+  const cerrarDialog = () => {
+    localStorage.setItem("publicidad", fechaDeAhora);
     toastCookies();
+    dialog.close();
+    dialog.remove();
+    backdrop.remove();
+  };
+
+  btnCerrar.addEventListener("click", cerrarDialog);
+
+  btnAceptar.addEventListener("click", () => {
+    const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value);
+    if (!emailValido) {
+      input.classList.add("is-invalid");
+      return;
+    }
+    input.classList.remove("is-invalid");
+    input.classList.add("is-valid");
+
+    // Aquí va tu lógica con el email: input.value
+    console.log("Email enviado:", input.value);
+    cerrarDialog();
   });
-  
-}
+
+  input.addEventListener("input", () => {
+    input.classList.remove("is-invalid");
+  });
+
+  document.body.append(backdrop, dialog);
+  dialog.showModal();
+};
 
 // Toast de publicidad y coockies
 const toastCookies = () => {
