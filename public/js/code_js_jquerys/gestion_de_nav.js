@@ -6,7 +6,6 @@
 
 const PAGE_MAP = {
   'quienes_somos': { zone: 'sobre',  color: 'orange' },
-  'donde_estamos': { zone: 'sobre',  color: 'orange' },
   'contacto':      { zone: 'centro', color: 'green'  },
 };
 
@@ -21,6 +20,11 @@ const isHomePage = () => {
   const p = window.location.pathname;
   return ['', '/', 'index_vista.php'].includes(p) || ['', 'index_vista.php'].includes(getCurrentPage());
 };
+
+// Páginas que siempre deben mostrar el nav en formato bubble
+const FORCE_BUBBLE_PAGES = ['quienes_somos', 'contacto'];
+
+const shouldForceBubble = () => FORCE_BUBBLE_PAGES.includes(getCurrentPage());
 
 ///////////////////
 // Estado activo
@@ -128,7 +132,7 @@ function setupEvents() {
 const onScroll = () => {
   const scrollY = window.scrollY || window.pageYOffset;
 
-  nav.classList.toggle('nav--bubble', scrollY >= 80);
+  nav.classList.toggle('nav--bubble', scrollY >= 80 || shouldForceBubble());
 
   if (hero) {
     const heroHeight = hero.offsetHeight;
@@ -176,6 +180,20 @@ offcanvas.addEventListener('hidden.bs.offcanvas', () => {
 });
 
 ///////////////////
+// Compensar altura del nav fijo
+///////////////////
+
+const ajustarEspacioNav = () => {
+  if (!nav) return;
+  const altura = nav.offsetHeight;
+
+  // Solo en páginas sin hero (donde el nav no flota sobre una imagen)
+  if (!hero) {
+    document.body.style.paddingTop = `${altura}px`;
+  }
+};
+
+///////////////////
 // Main
 ///////////////////
 
@@ -188,6 +206,8 @@ const btnCompañia = document.querySelector('#btnCompañia');
 
 initMenuState();
 setupEvents();
+ajustarEspacioNav();
 
 window.addEventListener('scroll', onScroll, { passive: true });
+window.addEventListener('resize', ajustarEspacioNav, { passive: true }); // <-- y aquí
 onScroll();

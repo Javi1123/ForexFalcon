@@ -10,7 +10,6 @@ RewriteEngine On
 RewriteRule cursos index.php
 RewriteRule sugerencias index.php
 RewriteRule quienes_somos index.php
-RewriteRule donde_estamos index.php
 RewriteRule registrarse index.php
 
 # Admins

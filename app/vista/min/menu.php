@@ -41,7 +41,7 @@
               <ul class="dropdown-menu" id="serviciosMovil">
                 <li><a class="dropdown-item ps-2 text-white text-decoration-none zona-sobre" href="<?= BASE_PATH . "/quienes_somos" ?>">Quienes somos</a></li>
                 <hr class="dropdown-divider">
-                <li><a class="dropdown-item ps-2 text-white text-decoration-none zona-sobre" href="<?= BASE_PATH . "/donde_estamos" ?>">Donde estamos</a></li>
+                <li></li>
                 <hr class="dropdown-divider">
                 <li><a class="dropdown-item ps-2 text-white text-decoration-none zona-centro" href="<?= BASE_PATH . "/contacto" ?>">Contacto</a></li>
                 <hr class="dropdown-divider">

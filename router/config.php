@@ -84,10 +84,6 @@ switch ($uri){
     require_once __DIR__ . '/../app/vista/quienes_somos.php';
     break;
 
-  case '/donde_estamos':
-    require_once __DIR__ . '/../app/vista/donde_estamos.php';
-    break;
-
   case '/privacidad':
     require_once __DIR__ . '/../app/vista/privacidad.php';
     break;

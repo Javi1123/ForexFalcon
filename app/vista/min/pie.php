@@ -40,7 +40,6 @@
         <p class="footer-col-title">Compañía</p>
         <div class="footer-col">
           <a href="<?= BASE_PATH . "quienes_somos" ?>" class="green">Quiénes somos</a>
-          <a href="<?= BASE_PATH . "donde_estamos" ?>"  class="green">Dónde estamos</a>
           <a href="<?= BASE_PATH . "contacto" ?>"       class="green">Contacto</a>
           <a href=".#FAQs"                              class="green">FAQs</a>
         </div>

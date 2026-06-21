@@ -102,9 +102,9 @@
             <li>Sin comisiones adicionales</li>
           </ul>
           <?php if(isset($_SESSION['usuario'])) : ?>
-            <a class="plan-btn primary" href="<?= BASE_PATH . "copytrading" ?>">Activar ahora →</a>
+            <a class="plan-btn primary" href="<?= BASE_PATH . "/copytrading" ?>">Activar ahora →</a>
           <?php else : ?>
-            <a class="plan-btn primary" href="<?= BASE_PATH . "acciones?tipo=registro" ?>">Activar cuenta →</a>
+            <a class="plan-btn primary" href="<?= BASE_PATH . "/acciones?tipo=registro" ?>">Activar cuenta →</a>
           <?php endif; ?>
         </div>
 
@@ -131,9 +131,9 @@
             </div>
           </div>
           <?php if(isset($_SESSION['usuario'])) : ?>
-            <a class="plan-btn primary" href="<?= BASE_PATH . "mentorias" ?>">Ver planes →</a>
+            <a class="plan-btn primary" href="<?= BASE_PATH . "/mentorias" ?>">Ver planes →</a>
           <?php else : ?>
-            <a class="plan-btn primary" href="<?= BASE_PATH . "acciones?tipo=registro" ?>">Activar cuenta →</a>
+            <a class="plan-btn primary" href="<?= BASE_PATH . "/acciones?tipo=registro" ?>">Activar cuenta →</a>
           <?php endif; ?>
         </div>
 
@@ -151,9 +151,9 @@
             <li>Resultados consistentes</li>
           </ul>
           <?php if(isset($_SESSION['usuario'])) : ?>
-            <a class="plan-btn" href="<?= BASE_PATH . "bots" ?>">Activar bot →</a>
+            <a class="plan-btn" href="<?= BASE_PATH . "/bots" ?>">Activar bot →</a>
           <?php else : ?>
-            <a class="plan-btn" href="<?= BASE_PATH . "acciones?tipo=registro" ?>">Activar cuenta →</a>
+            <a class="plan-btn" href="<?= BASE_PATH . "/acciones?tipo=registro" ?>">Activar cuenta →</a>
           <?php endif; ?>
         </div>
 
@@ -171,9 +171,9 @@
             <li>Soporte directo en el grupo</li>
           </ul>
           <?php if(isset($_SESSION['usuario'])) : ?>
-            <a class="plan-btn" href="<?= BASE_PATH . "analisis" ?>">Suscribirse →</a>
+            <a class="plan-btn" href="<?= BASE_PATH . "/analisis" ?>">Suscribirse →</a>
           <?php else : ?>
-            <a class="plan-btn" href="<?= BASE_PATH . "acciones?tipo=registro" ?>">Activar cuenta →</a>
+            <a class="plan-btn" href="<?= BASE_PATH . "/acciones?tipo=registro" ?>">Activar cuenta →</a>
           <?php endif; ?>
         </div>
 
@@ -271,7 +271,7 @@
             <div class="accordion-body">
               Crea tu cuenta gratuita en minutos, elige el plan que mejor encaje con tus objetivos y empieza. Si tienes dudas, contáctanos directamente y te guiamos sin compromiso.
               <div class="mt-3">
-                <a href="<?= BASE_PATH . "acciones?tipo=registro" ?>" class="btnRegistrarse">Registrarse gratis →</a>
+                <a href="<?= BASE_PATH . "/acciones?tipo=registro" ?>" class="btnRegistrarse">Registrarse gratis →</a>
               </div>
             </div>
           </div>
@@ -298,7 +298,7 @@
         <p class="reveal reveal-up" style="color:var(--blanco-dim); font-size:1.1rem; margin-top:14px;">
           Ya estás en ForexFalcon. Ahora descubre cómo el trading se convierte en tu camino real hacia la libertad.
         </p>
-        <a href="<?= BASE_PATH . "recursos" ?>" class="hero__cta reveal reveal-up" style="margin-top:32px;">
+        <a href="<?= BASE_PATH . "/recursos" ?>" class="hero__cta reveal reveal-up" style="margin-top:32px;">
           <i class="fa-solid fa-play"></i>
           Ir a mis recursos
         </a>
@@ -309,7 +309,7 @@
         <p class="reveal reveal-up" style="color:var(--blanco-dim); font-size:1.1rem; margin-top:14px;">
           Únete hoy a ForexFalcon y descubre cómo el trading puede convertirse en tu camino hacia la libertad.
         </p>
-        <a href="<?= BASE_PATH . "acciones?tipo=registro" ?>" class="hero__cta reveal reveal-up" style="margin-top:32px;">
+        <a href="<?= BASE_PATH . "/acciones?tipo=registro" ?>" class="hero__cta reveal reveal-up" style="margin-top:32px;">
           <i class="fas fa-rocket"></i>
           Comienza tu viaje
         </a>
