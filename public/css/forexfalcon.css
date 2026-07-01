@@ -553,6 +553,78 @@ nav { background-color: var(--azul) !important; }
 @media (max-width: 575px)   { .plans-grid { grid-template-columns: 1fr; } }
 
 /* ══════════════════════════════════════════════════════════
+   QUIENES SOMOS
+══════════════════════════════════════════════════════════ */
+#quienesSomos {
+  padding: 90px 0 80px;
+  background: #f7f8fc;
+}
+
+.qs-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 40px;
+}
+.qs-header .section-eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Párrafos de introducción */
+.qs-text {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.75;
+  max-width: 780px;
+  margin: 0 auto 16px;
+  text-align: left;
+}
+.qs-text .negrita { color: var(--azul); }
+
+/* Grid de equipo */
+.team-grid { margin-top: 56px; }
+
+.team-card {
+  background: #fff;
+  border: 1px solid #e4e7f0;
+  border-radius: var(--radio-lg);
+  overflow: hidden;
+  text-align: center;
+  height: 100%;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+.team-card:hover {
+  border-color: var(--naranja);
+  box-shadow: var(--sombra-hover);
+  transform: translateY(-4px);
+}
+
+.team-card__img-wrap { padding: 28px 28px 0; }
+.team-card__img-wrap img {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--naranja-dim);
+  transition: border-color 0.25s;
+}
+.team-card:hover .team-card__img-wrap img { border-color: var(--naranja); }
+
+.team-card__body { padding: 18px 20px 26px; }
+.team-card__name {
+  font-size: 1rem; font-weight: 700;
+  color: var(--azul); margin-bottom: 6px;
+}
+.team-card__role {
+  font-size: 0.85rem; color: #777; line-height: 1.5;
+}
+
+@media (max-width: 575.98px) {
+  #quienesSomos { padding: 90px 0 60px; }
+}
+
+/* ══════════════════════════════════════════════════════════
    FAQs
 ══════════════════════════════════════════════════════════ */
 #FAQs {
@@ -663,6 +735,7 @@ footer a:hover { color: var(--verde) !important; }
 .footer-divider { border-color: rgba(255,255,255,0.07) !important; margin: 28px 0 20px; }
 .footer-copy { font-size: 0.8rem; color: rgba(238,238,238,0.25); }
 .footer-email { font-size: 0.8rem; color: rgba(238,238,238,0.2); }
+
 
 /* ══════════════════════════════════════════════════════════
    ANIMACIONES DE SCROLL (reveal)
