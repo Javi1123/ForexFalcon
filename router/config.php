@@ -17,13 +17,16 @@ if ($uri === '' || $uri === '/' || $uri === '/index.php') {
 
 switch ($uri){
 
+  // Acciones para la pagina principal
   case '/index':
     require_once __DIR__ . '/../app/vista/index_vista.php';
     break;
-      
 
-    
-  // Vistas de la pagina admin
+  case '/quienes_somos':
+    require_once __DIR__ . '/../app/vista/quienes_somos_vista.php';
+    break;    
+
+  // Acciones para formulario de inicio_de_sesion/registrarse
   case '/acciones':
     $controlador = new formulariosControlador();
     $controlador-> acciones();
@@ -42,58 +45,6 @@ switch ($uri){
   case '/logout':
     $controlador = new formulariosControlador();
     $controlador-> logout();
-    break;
-  
-  case '/sugerenciaTabla':
-    $controladorTablas = new tablasControlador();
-    $controladorTablas-> indexSugerencias();
-    break;
-
-  case '/alumnosTabla':
-    $controladorTablas = new tablasControlador();
-    $controladorTablas-> indexAlumnos();
-    break;
-
-  case '/cursosTabla':
-    $controladorTablas = new tablasControlador();
-    $controladorTablas-> indexCursos();
-    break;
-
-  case '/matriculadosTabla':
-    $controladorTablas = new tablasControlador();
-    $controladorTablas-> indexMatriculados();
-    break;
-
-  case '/recibosTabla':
-    $controladorTablas = new tablasControlador();
-    $controladorTablas-> indexRecibos();
-    break;
-
-
-
-  // Vistas de la pagina principal
-  case '/cursos':
-    require_once __DIR__ . '/../app/vista/cursos.php';
-    break;
-
-  case '/sugerencias':
-    require_once __DIR__ . '/../app/vista/sugerencias.php';
-    break;
-
-  case '/quienes_somos':
-    require_once __DIR__ . '/../app/vista/quienes_somos.php';
-    break;
-
-  case '/privacidad':
-    require_once __DIR__ . '/../app/vista/privacidad.php';
-    break;
-  
-  case '/aviso_legal':
-    require_once __DIR__ . '/../app/vista/aviso_legal.php';
-    break;
-
-  case '/mision_visionyvalores':
-    require_once __DIR__ . '/../app/vista/mision_visionyvalores.php';
     break;
 
   default:
