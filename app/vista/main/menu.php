@@ -1,3 +1,18 @@
+<div class="ticker-bar">
+  <div class="ticker-track">
+    <span class="ticker-item up"><span class="pair">EUR/USD</span><span class="price mono">1.0847</span><span class="delta mono">0.12%</span></span>
+    <span class="ticker-item down"><span class="pair">GBP/JPY</span><span class="price mono">198.32</span><span class="delta mono">0.34%</span></span>
+    <span class="ticker-item up"><span class="pair">USD/CHF</span><span class="price mono">0.8912</span><span class="delta mono">0.08%</span></span>
+    <span class="ticker-item up"><span class="pair">AUD/USD</span><span class="price mono">0.6621</span><span class="delta mono">0.21%</span></span>
+    <span class="ticker-item down"><span class="pair">USD/CAD</span><span class="price mono">1.3654</span><span class="delta mono">0.15%</span></span>
+    <span class="ticker-item up"><span class="pair">EUR/GBP</span><span class="price mono">0.8503</span><span class="delta mono">0.05%</span></span>
+    <span class="ticker-item down"><span class="pair">NZD/USD</span><span class="price mono">0.6034</span><span class="delta mono">0.19%</span></span>
+    <!-- Duplica los mismos items una vez más aquí para que el loop del marquee no deje huecos -->
+    <span class="ticker-item up"><span class="pair">EUR/USD</span><span class="price mono">1.0847</span><span class="delta mono">0.12%</span></span>
+    <span class="ticker-item down"><span class="pair">GBP/JPY</span><span class="price mono">198.32</span><span class="delta mono">0.34%</span></span>
+    <span class="ticker-item up"><span class="pair">USD/CHF</span><span class="price mono">0.8912</span><span class="delta mono">0.08%</span></span>
+  </div>
+</div>
 <header class="col-xl-auto" id="navegacion">
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
