@@ -16,56 +16,46 @@
       </div>
 
       <!-- Grid de features -->
+      
       <div class="features-grid">
-
+      
         <div class="feature-card reveal reveal-up delay-1-cards">
-          <div class="feature-icon-wrap">
-            <i class="fas fa-user-check"></i>
-          </div>
-          <h3>Mentoría 1:1 real</h3>
-          <p>Mentor exclusivo que revisa tus operaciones en vivo y responde en minutos. Sin bots ni respuestas genéricas.</p>
+          <svg class="feature-card__chart" viewBox="0 0 200 56" preserveAspectRatio="none" aria-hidden="true">
+            <polyline points="0,40 20,35 40,42 60,28 80,32 100,15 120,22 140,10 160,18 180,5 200,12"
+              fill="none" stroke="#91DD4E" stroke-width="2" />
+          </svg>
+          <h3>Experiencia real en mercados</h3>
+          <p>Formadores que operan activamente, no solo enseñan teoría desde diapositivas.</p>
+          <span class="metric pos">+ Rentabilidad consistente</span>
         </div>
-
+      
         <div class="feature-card reveal reveal-up delay-2-cards">
-          <div class="feature-icon-wrap">
-            <i class="fas fa-chalkboard-teacher"></i>
-          </div>
-          <h3>Aprende con operaciones en vivo</h3>
-          <p>Cientos de casos reales en grupos privados y webinars mensuales con aciertos, errores y correcciones en directo.</p>
+          <svg class="feature-card__chart" viewBox="0 0 200 56" preserveAspectRatio="none" aria-hidden="true">
+            <rect x="10"  y="20" width="10" height="30" fill="#FB8E37" rx="1"/>
+            <rect x="30"  y="10" width="10" height="40" fill="#91DD4E" rx="1"/>
+            <rect x="50"  y="25" width="10" height="25" fill="#FB8E37" rx="1"/>
+            <rect x="70"  y="5"  width="10" height="45" fill="#91DD4E" rx="1"/>
+            <rect x="90"  y="18" width="10" height="32" fill="#91DD4E" rx="1"/>
+            <rect x="110" y="12" width="10" height="38" fill="#91DD4E" rx="1"/>
+            <rect x="130" y="22" width="10" height="28" fill="#FB8E37" rx="1"/>
+            <rect x="150" y="8"  width="10" height="42" fill="#91DD4E" rx="1"/>
+            <rect x="170" y="15" width="10" height="35" fill="#91DD4E" rx="1"/>
+          </svg>
+          <h3>Formación práctica y aplicable</h3>
+          <p>Casos reales de mercado, no lecciones genéricas repetidas de curso en curso.</p>
+          <span class="metric pos">92% completa el curso</span>
         </div>
-
+      
         <div class="feature-card reveal reveal-up delay-3-cards">
-          <div class="feature-icon-wrap">
-            <i class="fas fa-robot"></i>
-          </div>
-          <h3>Bots automáticos + copy trading</h3>
-          <p>Algoritmos configurables y copy trading selectivo. Opera mientras duermes, con control total del riesgo.</p>
+          <svg class="feature-card__chart" viewBox="0 0 200 56" preserveAspectRatio="none" aria-hidden="true">
+            <polyline points="0,10 20,18 40,12 60,25 80,20 100,35 120,28 140,40 160,33 180,45 200,38"
+              fill="none" stroke="#FB8E37" stroke-width="2" />
+          </svg>
+          <h3>Gestión del riesgo desde el día uno</h3>
+          <p>Aprende primero a proteger el capital; la rentabilidad viene después, no al revés.</p>
+          <span class="metric neg">Riesgo controlado</span>
         </div>
-
-        <div class="feature-card reveal reveal-up delay-4-cards">
-          <div class="feature-icon-wrap">
-            <i class="fas fa-users"></i>
-          </div>
-          <h3>Comunidad colaborativa activa</h3>
-          <p>Red de traders activos que comparten alertas, ideas y estrategias. Aprende de todos, no solo del mentor.</p>
-        </div>
-
-        <div class="feature-card reveal reveal-up delay-5-cards">
-          <div class="feature-icon-wrap">
-            <i class="fas fa-chart-line"></i>
-          </div>
-          <h3>Análisis semanal ejecutivo</h3>
-          <p>Cada lunes, informe claro con pares clave, niveles y escenarios probables. Olvida perder horas buscando noticias.</p>
-        </div>
-
-        <div class="feature-card reveal reveal-up delay-6-cards">
-          <div class="feature-icon-wrap">
-            <i class="fas fa-mountain"></i>
-          </div>
-          <h3>Resultados sostenibles, paso a paso</h3>
-          <p>Fase 1: control del riesgo. Fase 2: consistencia. Fase 3: ingresos complementarios. Libertad financiera real.</p>
-        </div>
-
+      
       </div>
     </div>
   </section>

@@ -2,7 +2,7 @@
    FOREXFALCON — CSS Rediseño Completo
    ═══════════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800;900&family=Barlow:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800;900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
 /* ── Variables ─────────────────────────────────────────── */
 * {
@@ -36,6 +36,7 @@ body {
   font-family: 'Barlow', sans-serif;
   background: #fff;
   color: #1a1f36;
+  padding-top: 30px; /* compensa el .ticker-bar fijo, en TODAS las páginas por igual */
 }
 
 /* ── Utilidades ────────────────────────────────────────── */
@@ -44,6 +45,9 @@ body {
 .negrita { font-weight: 700; }
 .bg-azul { background-color: var(--azul) !important; }
 .white  { color: var(--blanco); }
+
+/* Utilidad tipográfica nueva — para cifras, precios, datos (punto 4) */
+.mono { font-family: 'JetBrains Mono', monospace; }
 
 /* ── Botones globales ───────────────────────────────────── */
 .btnInicioSesion {
@@ -80,6 +84,59 @@ body {
 .btnRegistrarse:active { opacity: 0.85; transform: translateY(0); }
 
 /* ══════════════════════════════════════════════════════════
+   TICKER DE DIVISAS (punto 2 — sustituye la parte "glass bubble")
+══════════════════════════════════════════════════════════ */
+.ticker-bar {
+  background: #04081a;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  overflow: hidden;
+  white-space: nowrap;
+  position: fixed; /* antes: en flujo normal — causaba el solape con el navbar en páginas sin hero */
+  top: 0; left: 0; right: 0;
+  z-index: 1001; /* por encima de #navegacion (1000) */
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+.ticker-track {
+  display: inline-flex;
+  gap: 36px;
+  padding-left: 100%;
+  animation: ticker-scroll 32s linear infinite;
+}
+.ticker-bar:hover .ticker-track { animation-play-state: paused; }
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+.ticker-item {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--blanco-muted);
+}
+.ticker-item .pair  { color: rgba(238,238,238,0.55); font-weight: 500; }
+.ticker-item .price { color: var(--blanco-dim); }
+.ticker-item.up   .delta { color: var(--verde); }
+.ticker-item.down .delta { color: var(--naranja); }
+.ticker-item .delta::before { margin-right: 2px; }
+.ticker-item.up .delta::before   { content: '▲'; font-size: 8px; }
+.ticker-item.down .delta::before { content: '▼'; font-size: 8px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation: none; }
+}
+@media (max-width: 575.98px) {
+  .ticker-bar { display: none; } /* en móvil el espacio vertical importa más que el ticker */
+  body { padding-top: 0; }
+  #navegacion { top: 0; }
+  #navegacion.nav--bubble { top: 14px; }
+}
+
+/* ══════════════════════════════════════════════════════════
    NAVBAR
 ══════════════════════════════════════════════════════════ */
 nav { background-color: var(--azul) !important; }
@@ -102,9 +159,12 @@ nav { background-color: var(--azul) !important; }
 }
 .dropdown-toggle[aria-expanded="true"] .fa-chevron-down { transform: rotate(180deg); }
 
-/* Navbar flotante con efecto burbuja */
+/* Navbar flotante con efecto burbuja (recuperado tal cual estaba).
+   El ticker va ANTES de #navegacion en el HTML, en flujo normal:
+   se ve al cargar la página y desaparece al hacer scroll, momento en
+   el que el navbar flotante en burbuja toma el relevo como siempre. */
 #navegacion {
-  position: fixed; top: 0; left: 0; right: 0;
+  position: fixed; top: 30px; left: 0; right: 0; /* 30px = altura del .ticker-bar, así no lo tapa al inicio */
   z-index: 1000;
   transition: all 0.45s cubic-bezier(0.4,0,0.2,1);
 }
@@ -112,7 +172,7 @@ nav { background-color: var(--azul) !important; }
   transition: all 0.45s cubic-bezier(0.4,0,0.2,1);
   background: transparent !important;
 }
-#navegacion.nav--bubble { top: 14px; padding: 0 1.5rem; }
+#navegacion.nav--bubble { top: 44px; padding: 0 1.5rem; } /* 44 = 30 (ticker) + 14 (gap original de la burbuja) */
 #navegacion.nav--bubble .navbar {
   position: relative; border-radius: 50px;
   padding-left: 1.2rem; padding-right: 1.2rem;
@@ -226,15 +286,18 @@ nav { background-color: var(--azul) !important; }
    HERO
 ══════════════════════════════════════════════════════════ */
 .hero {
-  padding-top: 80px;
+  padding-top: 80px; /* compensa el navbar fixed que vuelve a estar activo */
   position: relative;
-  min-height: 100svh;
+  min-height: 90svh;
   display: flex;
   align-items: center;
   overflow: hidden;
+  background: var(--azul);
 }
 
-/* Video */
+/* Video (opcional — si mantienes el vídeo de fondo, baja su opacidad
+   o quita el bloque .hero__chart de tu HTML, ya que ambos compiten
+   por el mismo espacio visual a la derecha del hero) */
 .hero__video-wrap { position: absolute; inset: 0; z-index: 0; }
 .hero__video-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; }
 .hero__overlay {
@@ -252,21 +315,39 @@ nav { background-color: var(--azul) !important; }
   background-size: 48px 48px;
 }
 
-/* Orbe decorativo */
-.hero__orb {
-  position: absolute; right: 8%; top: 50%;
-  transform: translateY(-50%);
-  width: 420px; height: 420px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(251,142,55,0.06) 0%, transparent 70%);
-  border: 1px solid rgba(251,142,55,0.10);
+/* Gráfico de velas japonesas (punto 1 — sustituye a .hero__orb / .hero__orb2) */
+.hero__chart {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 55%;
   z-index: 1;
+  opacity: 0.9;
+  mask-image: linear-gradient(to left, black 40%, transparent 95%);
+  -webkit-mask-image: linear-gradient(to left, black 40%, transparent 95%);
+  pointer-events: none;
 }
-.hero__orb2 {
-  position: absolute; right: 12%; top: 50%;
-  transform: translateY(-50%);
-  width: 250px; height: 250px; border-radius: 50%;
-  border: 1px solid rgba(251,142,55,0.07);
-  z-index: 1;
+.hero__chart .candle {
+  transform-origin: bottom center;
+  animation: candle-grow 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.hero__chart .wick { animation: wick-fade 1.4s ease both; }
+.hero__chart .chart-line {
+  fill: none;
+  stroke: var(--verde);
+  stroke-width: 1.5;
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  opacity: 0.5;
+  animation: draw-line 2.6s ease-out 0.3s forwards;
+}
+@keyframes candle-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes wick-fade   { from { opacity: 0; } to { opacity: 1; } }
+@keyframes draw-line   { to { stroke-dashoffset: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__chart .candle, .hero__chart .wick, .hero__chart .chart-line { animation: none; opacity: 1; }
 }
 
 /* Contenido */
@@ -336,13 +417,16 @@ nav { background-color: var(--azul) !important; }
 }
 .hero__cta:hover { background: var(--naranja-hover); transform: translateY(-2px); color: #fff; }
 
-/* Stats */
+/* Stats — cifras ahora en monoespaciada (punto 4) */
 .hero__stats {
   display: flex; gap: 36px;
   margin-top: 40px; padding-top: 32px;
   border-top: 1px solid rgba(255,255,255,0.08);
 }
-.hero__stat-num { font-size: 28px; font-weight: 800; color: var(--verde); font-family: 'Barlow Condensed', sans-serif; }
+.hero__stat-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 26px; font-weight: 700; color: var(--verde);
+}
 .hero__stat-label { font-size: 12px; color: var(--blanco-muted); margin-top: 2px; letter-spacing: 0.3px; }
 
 /* Animaciones de entrada */
@@ -370,7 +454,10 @@ nav { background-color: var(--azul) !important; }
 @media (max-width: 575.98px) {
   .hero__content { padding: 60px 20px; }
   .hero__stats { gap: 20px; flex-wrap: wrap; }
-  .hero__orb, .hero__orb2 { display: none; }
+  .hero__chart { display: none; }
+}
+@media (max-width: 900px) {
+  .hero__chart { display: none; } /* el gráfico compite demasiado con el texto en pantallas estrechas */
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -429,19 +516,29 @@ nav { background-color: var(--azul) !important; }
 .feature-card:hover { border-color: var(--naranja); box-shadow: var(--sombra-hover); transform: translateY(-3px); }
 .feature-card:hover::before { opacity: 1; }
 
-.feature-icon-wrap {
-  width: 48px; height: 48px;
-  background: var(--naranja-dim);
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px; color: var(--naranja);
+/* Mini gráfico por card (punto 3 — sustituye a .feature-icon-wrap con icono FA) */
+.feature-card__chart {
+  width: 100%;
+  height: 56px;
   margin-bottom: 18px;
-  transition: background 0.2s, transform 0.2s;
+  display: block;
 }
-.feature-card:hover .feature-icon-wrap { background: rgba(251,142,55,0.18); transform: scale(1.08) rotate(-5deg); }
 
 .feature-card h3 { font-size: 1rem; font-weight: 700; color: var(--azul); margin-bottom: 8px; }
 .feature-card p  { font-size: 0.88rem; color: #666; line-height: 1.65; }
+
+/* Chip de métrica en mono, bajo el texto de la card */
+.feature-card .metric {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 500;
+  margin-top: 12px;
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 5px;
+}
+.feature-card .metric.pos { color: var(--verde);   background: var(--verde-dim); }
+.feature-card .metric.neg { color: var(--naranja); background: var(--naranja-dim); }
 
 @media (max-width: 991px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 575px)  { .features-grid { grid-template-columns: 1fr; } }
@@ -513,10 +610,14 @@ nav { background-color: var(--azul) !important; }
 .plan-card h3  { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
 .plan-desc     { font-size: 0.84rem; color: var(--blanco-dim); line-height: 1.55; margin-bottom: 20px; }
 
-/* Precio */
-.plan-price { font-size: 2.2rem; font-weight: 800; color: var(--naranja); margin: 10px 0 4px; font-family: 'Barlow Condensed', sans-serif; }
+/* Precio — en mono, coherente con el resto de cifras del sitio (punto 4) */
+.plan-price {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 2.1rem; font-weight: 700; color: var(--naranja);
+  margin: 10px 0 4px;
+}
 .plan-price sup { font-size: 1.1rem; vertical-align: super; }
-.plan-price .period { font-size: 0.9rem; font-weight: 400; color: var(--blanco-muted); }
+.plan-price .period { font-size: 0.85rem; font-weight: 400; color: var(--blanco-muted); font-family: 'Barlow', sans-serif; }
 
 /* Tabla precios mentoría */
 .mentoria-precios { margin: 12px 0 20px; }
@@ -527,7 +628,7 @@ nav { background-color: var(--azul) !important; }
 }
 .mentoria-row:last-child { border-bottom: none; }
 .mentoria-row .label  { color: var(--blanco-dim); }
-.mentoria-row .precio { font-weight: 700; color: var(--naranja); }
+.mentoria-row .precio { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--naranja); }
 
 /* Lista de features */
 .plan-features { list-style: none; margin-bottom: 24px; display: flex; flex-direction: column; gap: 8px; }
