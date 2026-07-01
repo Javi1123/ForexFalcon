@@ -8,7 +8,7 @@ class DB {
 
     public static function getInstance(){
         if (!self::$instance) {
-        self::$instance = new \PDO('mysql:host=localhost;dbname=certitransporte', 'root', '');
+        self::$instance = new \PDO('mysql:host=localhost;dbname=forexfalcon', 'root', '');
         }
         return self::$instance;
     }

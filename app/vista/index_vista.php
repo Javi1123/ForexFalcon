@@ -3,7 +3,7 @@
 /* Iniciamos las varialbles del fichero */
 $DESCRIPCION = "forexfalcon.com";
 $CLAVES = "formaci&oacute;n, cursos, certificado, 'certificado de transporte', Sevilla, Transporte, Transportista";
-$AUTOR = "TrainingTIC";
+$AUTOR = "ForexFalcon";
 $TITULO = "ForexFalcon";
 $ACTIVO = 10;
 

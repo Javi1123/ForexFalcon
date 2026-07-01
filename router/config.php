@@ -1,7 +1,6 @@
 <?php
 
 use App\controlador\formulariosControlador;
-use App\controlador\tablasControlador;
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
@@ -45,6 +44,10 @@ switch ($uri){
   case '/logout':
     $controlador = new formulariosControlador();
     $controlador-> logout();
+    break;
+
+  case '/eaaa':
+    require_once __DIR__ . '/../app/vista/recursos_vista.php';
     break;
 
   default:
