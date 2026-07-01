@@ -28,10 +28,10 @@
       <div class="col-6 col-md-2">
         <p class="footer-col-title">Catálogo</p>
         <div class="footer-col">
-          <a href="<?= BASE_PATH . "copytrading" ?>" class="green">CopyTrading</a>
-          <a href="<?= BASE_PATH . "mentorias" ?>"   class="green">Mentorías</a>
-          <a href="<?= BASE_PATH . "bots" ?>"        class="green">Bots</a>
-          <a href="<?= BASE_PATH . "analisis" ?>"    class="green">Análisis</a>
+          <a href="<?= BASE_PATH . "/copytrading" ?>" class="green">CopyTrading</a>
+          <a href="<?= BASE_PATH . "/mentorias" ?>"   class="green">Mentorías</a>
+          <a href="<?= BASE_PATH . "/bots" ?>"        class="green">Bots</a>
+          <a href="<?= BASE_PATH . "/analisis" ?>"    class="green">Análisis</a>
         </div>
       </div>
 
@@ -39,14 +39,13 @@
       <div class="col-6 col-md-2">
         <p class="footer-col-title">Compañía</p>
         <div class="footer-col">
-          <a href="<?= BASE_PATH . "quienes_somos" ?>" class="green">Quiénes somos</a>
-          <a href="<?= BASE_PATH . "contacto" ?>"       class="green">Contacto</a>
+          <a href="<?= BASE_PATH . "/quienes_somos" ?>" class="green">Quiénes somos</a>
           <a href=".#FAQs"                              class="green">FAQs</a>
         </div>
       </div>
 
       <!-- Contacto -->
-      <div class="col-12 col-md-4 col-lg-3 ms-lg-auto">
+      <div class="col-12 col-md-4 col-lg-3 ms-lg-auto" id="contacto">
         <p class="footer-col-title">¿Tienes dudas?</p>
         <p class="footer-tagline" style="max-width:none;">
           Escríbenos y te respondemos sin compromiso.
@@ -63,7 +62,7 @@
     <hr class="footer-divider">
     <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2 pb-2">
       <span class="footer-copy">© <?= date('Y') ?> ForexFalcon · Todos los derechos reservados</span>
-      <a href="#navegacion" class="footer-copy" style="text-decoration:none;" title="Volver arriba">
+      <a href="#subir" class="footer-copy" style="text-decoration:none;" title="Volver arriba">
         Subir ↑
       </a>
     </div>

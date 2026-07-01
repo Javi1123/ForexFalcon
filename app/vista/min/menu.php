@@ -28,10 +28,10 @@
           <!-- 2. Links de navegación en el centro -->
           <ul class="navbar-nav flex-grow-1 justify-content-evenly">
             <li class="nav-item">
-              <a class="nav-link hover-link text-white" id="btnCatalogo" href=".#catalogo">Catálogo</a>
+              <a class="nav-link hover-link text-white" id="btnEsencia" href=".#esencia">Esencia</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link hover-link text-white" id="btnEsencia" href=".#esencia">Esencia</a>
+              <a class="nav-link hover-link text-white" id="btnCatalogo" href=".#catalogo">Catálogo</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link hover-link dropdown-toggle text-white" id="btnCompañia" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -43,7 +43,7 @@
                 <hr class="dropdown-divider">
                 <li></li>
                 <hr class="dropdown-divider">
-                <li><a class="dropdown-item ps-2 text-white text-decoration-none zona-centro" href="<?= BASE_PATH . "/contacto" ?>">Contacto</a></li>
+                <li><a class="dropdown-item ps-2 text-white text-decoration-none zona-centro" href="#contacto">Contacto</a></li>
                 <hr class="dropdown-divider">
                 <li><a class="dropdown-item ps-2 text-white text-decoration-none zona-centro" id="btnFAQ" href=".#FAQs">FAQs</a></li>
               </ul>
