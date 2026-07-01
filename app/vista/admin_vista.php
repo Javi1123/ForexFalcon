@@ -8,14 +8,9 @@
     <link rel="certiTransporte" type="image/x-icon" href="<?= LINKS_PATH . "/imagenes/favicon-blanco.ico" ?>">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-    <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#007bff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
 
-    <meta name="title" content="AdminLTE | Dashboard v3" />
-    <meta name="author" content="ColorlibHQ" />
-    <meta name="description" content="Panel de administración de Certitransporte. Gestiona sugerencias, alumnos, cursos, recibos y matriculados de forma centralizada.">
-    <meta name="keywords" content="Certitransporte, administración, gestión de cursos, gestión de alumnos, matriculados, recibos, sugerencias, panel admin, transporte educativo">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"/>
 
