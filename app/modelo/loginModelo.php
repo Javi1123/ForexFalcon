@@ -6,11 +6,11 @@ use \App\core\DB;
 
 class loginModelo {
 
-  public static function getUsuario($usuario){
+  public static function getUsuario($email){
 
     $pdo = DB::getInstance();
-    $stmt = $pdo->prepare("SELECT * FROM administradores WHERE usuario = :usuario");
-    $stmt->bindParam(":usuario", $usuario);
+    $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
+    $stmt->bindParam(":email", $email);
     $stmt->execute();
     return $stmt->fetch(\PDO::FETCH_ASSOC);
   }

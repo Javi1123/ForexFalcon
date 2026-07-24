@@ -60,7 +60,7 @@
               <div class="form-floating">
                 <input id="loginEmail" type="email"
                   class="form-control <?= isset($errores['email']) ? 'is-invalid' : '' ?>"
-                  name="email" placeholder=""
+                  name="email_login" placeholder=""
                   value="<?= htmlspecialchars($email ?? '') ?>"/>
                 <label for="loginEmail">Email</label>
               </div>
@@ -71,7 +71,7 @@
               <div class="form-floating">
                 <input id="loginPassword" type="password"
                   class="form-control <?= isset($errores['contraseña']) ? 'is-invalid' : '' ?>"
-                  name="contraseña" placeholder="" />
+                  name="contraseña_login" placeholder="" />
                 <label for="loginPassword">Contraseña</label>
               </div>
               <div id="eye-contraseña" class="input-group-text">
@@ -79,8 +79,8 @@
               </div>
             </div>
 
-            <div id="errorContraseña" class="invalid-feedback d-block mb-2 d-none"></div>
-
+            <div id="errorContraseña" class="invalid-feedback d-block mb-2 <?= empty($errorLogin) ? 'd-none' : '' ?>"><?= htmlspecialchars($errorLogin) ?></div>
+            
             <button type="submit" id="btnInicioSesion" class="btn btnInicioSesion w-100 my-3">
               Iniciar sesión
             </button>
@@ -93,12 +93,36 @@
 
           <form action="<?= BASE_PATH . "/acciones?tipo=registro" ?>" method="post">
 
+            <!-- Nombre -->
+            <div class="input-group mb-1">
+              <div class="form-floating">
+                <input id="regNombre" type="nombre"
+                  class="form-control <?= isset($erroresReg['nombre']) ? 'is-invalid' : '' ?>"
+                  name="nombre_registro" placeholder=""
+                  value="<?= htmlspecialchars($regNombre ?? '') ?>" />
+                <label for="regNombre">Nombre</label>
+              </div>
+            </div>
+            <div id="errorNombreRegistro" class="invalid-feedback d-block mb-2 d-none"></div>
+            
+            <!-- Apellido -->
+            <div class="input-group mb-1">
+              <div class="form-floating">
+                <input id="regApellido" type="apellido"
+                  class="form-control <?= isset($erroresReg['apellido']) ? 'is-invalid' : '' ?>"
+                  name="apellido_registro" placeholder=""
+                  value="<?= htmlspecialchars($regApellido ?? '') ?>" />
+                <label for="regApellido">Apellido</label>
+              </div>
+            </div>
+            <div id="errorApellidoRegistro" class="invalid-feedback d-block mb-2 d-none"></div>
+            
             <!-- Email -->
             <div class="input-group mb-1">
               <div class="form-floating">
                 <input id="regEmail" type="email"
                   class="form-control <?= isset($erroresReg['email']) ? 'is-invalid' : '' ?>"
-                  name="email" placeholder=""
+                  name="email_registro" placeholder=""
                   value="<?= htmlspecialchars($regEmail ?? '') ?>" />
                 <label for="regEmail">Correo electrónico</label>
               </div>
@@ -110,7 +134,7 @@
               <div class="form-floating">
                 <input id="regTelefono" type="tel"
                   class="form-control <?= isset($erroresReg['telefono']) ? 'is-invalid' : '' ?>"
-                  name="telefono" placeholder=""
+                  name="telefono_registro" placeholder=""
                   value="<?= htmlspecialchars($regTelefono ?? '') ?>" />
                 <label for="regTelefono">Teléfono</label>
               </div>
@@ -119,7 +143,7 @@
 
             <!-- País -->
             <div class="form-floating mb-1">
-              <select id="regPais" name="pais"
+              <select id="regPais" name="pais_registro"
                 class="form-select <?= isset($erroresReg['pais']) ? 'is-invalid' : '' ?>"
                 style="height: 58px; padding-top: 1.625rem; padding-bottom: .625rem;">
                 <option value="" disabled <?= empty($regPais) ? 'selected' : '' ?>>Selecciona un país</option>
@@ -139,7 +163,7 @@
               <div class="form-floating">
                 <input id="regDate" type="date"
                   class="form-control <?= isset($erroresReg['fecha_nacimiento']) ? 'is-invalid' : '' ?>"
-                  name="fecha_nacimiento" placeholder=""
+                  name="fecha_nacimiento_registro" placeholder=""
                   value="<?= htmlspecialchars($regFecha ?? '') ?>" min="<?= $minFecha ?>" max="<?=  $maxFecha ?>" />
                 <label for="regDate">Fecha de nacimiento</label>
               </div>
@@ -151,7 +175,7 @@
               <div class="form-floating">
                 <input id="regPassword" type="password"
                   class="form-control <?= isset($erroresReg['contraseña']) ? 'is-invalid' : '' ?>"
-                  name="contraseña" placeholder="" />
+                  name="contraseña_registro" placeholder="" />
                 <label for="regPassword">Contraseña</label>
               </div>
             </div>
@@ -162,7 +186,7 @@
               <div class="form-floating">
                 <input id="regPasswordConfirm" type="password"
                   class="form-control <?= isset($erroresReg['confirmar_contraseña']) ? 'is-invalid' : '' ?>"
-                  name="confirmar_contraseña" placeholder="" />
+                  name="confirmar_contraseña_registro" placeholder="" />
                 <label for="regPasswordConfirm">Confirmar contraseña</label>
               </div>
               <div id="eye-confirmar-contraseña" class="input-group-text">

@@ -1,6 +1,7 @@
 <?php
 
 use App\controlador\formulariosControlador;
+use App\controlador\principalControlador;
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
@@ -18,12 +19,19 @@ switch ($uri){
 
   // Acciones para la pagina principal
   case '/index':
-    require_once __DIR__ . '/../app/vista/index_vista.php';
+    $controlador = new principalControlador();
+    $controlador-> index();
     break;
 
   case '/quienes_somos':
-    require_once __DIR__ . '/../app/vista/quienes_somos_vista.php';
+    $controlador = new principalControlador();
+    $controlador-> quienes_somos();
     break;    
+
+  case '/recursos':
+    $controlador = new principalControlador();
+    $controlador-> recursos();
+    break;
 
   // Acciones para formulario de inicio_de_sesion/registrarse
   case '/acciones':
@@ -44,10 +52,6 @@ switch ($uri){
   case '/logout':
     $controlador = new formulariosControlador();
     $controlador-> logout();
-    break;
-
-  case '/eaaa':
-    require_once __DIR__ . '/../app/vista/recursos_vista.php';
     break;
 
   default:

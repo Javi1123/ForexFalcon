@@ -14,8 +14,8 @@ export const validacionesInicioSesion = e => {
   let errores = false;
 
   // Valores formulario
-  const email      = formData.get("email");
-  const contraseña = formData.get("contraseña");
+  const email      = formData.get("email_login");
+  const contraseña = formData.get("contraseña_login");
 
   // Campo errores
   const errorEmail      = document.querySelector("#errorEmail");
@@ -57,14 +57,18 @@ export const validacionesRegistrarse = e =>{
   let errores = false;
 
   // Valores formulario
-  const email                = formData.get("email");
-  const telefono             = formData.get("telefono");
-  const pais                 = formData.get("pais");
-  const fecha_nacimiento     = formData.get("fecha_nacimiento");
-  const contraseña           = formData.get("contraseña");
-  const confirmar_contraseña = formData.get("confirmar_contraseña");
+  const nombre               = formData.get("nombre_registro");
+  const apellido             = formData.get("apellido_registro");
+  const email                = formData.get("email_registro");
+  const telefono             = formData.get("telefono_registro");
+  const pais                 = formData.get("pais_registro");
+  const fecha_nacimiento     = formData.get("fecha_nacimiento_registro");
+  const contraseña           = formData.get("contraseña_registro");
+  const confirmar_contraseña = formData.get("confirmar_contraseña_registro");
 
   // Campo errores
+  const errorNombreRegistro             = document.querySelector("#errorNombreRegistro");
+  const errorApellidoRegistro           = document.querySelector("#errorApellidoRegistro");
   const errorEmailRegistro              = document.querySelector("#errorEmailRegistro");
   const errorTelefonoRegistro           = document.querySelector("#errorTelefonoRegistro");
   const errorPaisRegistro               = document.querySelector("#errorPaisRegistro");
@@ -73,12 +77,26 @@ export const validacionesRegistrarse = e =>{
   const errorConfirmaContraseñaRegistro = document.querySelector("#errorConfirmaContraseñaRegistro");
 
   // Valores del formulario validados
+  const resultNombre     = validarNombre(email);
+  const resultApellido   = validarApellido(email);
   const resultEmail      = validarEmail(email);
   const resultTelefono   = validarTelefono(telefono);
   const resultPais       = validarPais(pais);
   const resultFecha      = validarFechaNacimiento(fecha_nacimiento);
   const resultContraseña = validarContraseña(contraseña);
   const resultConfirmarContraseña = validarContraseña(confirmar_contraseña);
+
+  if (!resultNombre.ok) {
+    errorNombreRegistro.textContent = resultNombre.msg;
+    errorNombreRegistro.classList.remove("d-none");
+    errores = true;
+  }
+
+  if (!resultApellido.ok) {
+    errorApellidoRegistro.textContent = resultApellido.msg;
+    errorApellidoRegistro.classList.remove("d-none");
+    errores = true;
+  }
 
   if (!resultEmail.ok) {
     errorEmailRegistro.textContent = resultEmail.msg;
@@ -128,6 +146,29 @@ export const validacionesRegistrarse = e =>{
 ////////////////////////
 // Functions 
 ////////////////////////
+
+// ── Nombre y Apellido
+const regexNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ'\-\s]+$/;
+
+const validarNombre = (nombre) => {
+  if (!nombre || nombre.trim() === "")   return { ok: false, msg: "El nombre es obligatorio" };
+  const valor = nombre.trim();
+  if (valor.length < 2)                  return { ok: false, msg: "Mínimo 2 caracteres" };
+  if (valor.length > 50)                 return { ok: false, msg: "Máximo 50 caracteres" };
+  if (!regexNombre.test(valor))          return { ok: false, msg: "El nombre solo puede contener letras" };
+  if (/\s{2,}/.test(valor))              return { ok: false, msg: "No puede contener espacios dobles" };
+  return { ok: true };
+};
+
+const validarApellido = (apellido) => {
+  if (!apellido || apellido.trim() === "")   return { ok: false, msg: "El apellido es obligatorio" };
+  const valor = apellido.trim();
+  if (valor.length < 2)                      return { ok: false, msg: "Mínimo 2 caracteres" };
+  if (valor.length > 50)                     return { ok: false, msg: "Máximo 50 caracteres" };
+  if (!regexNombre.test(valor))              return { ok: false, msg: "El apellido solo puede contener letras" };
+  if (/\s{2,}/.test(valor))                  return { ok: false, msg: "No puede contener espacios dobles" };
+  return { ok: true };
+};
 
 // ── Email 
 const regexEmail = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;

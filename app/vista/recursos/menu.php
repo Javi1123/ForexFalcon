@@ -22,21 +22,23 @@
 
       <li class="nav-item dropdown user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-          <img
-            src="<?= LINKS_PATH . "/imagenes/persona.png" ?>"
-            class="user-image rounded-circle shadow"
-            alt="User Image"
-          />
-          <span class="d-none d-md-inline">Nombre usuario</span>
+          <span class="user-image rounded-circle shadow avatar-inicial" style="background-color: <?= $colorAvatar ?>;">
+            <?= $inicial ?>
+          </span>
+          <span class="d-none d-md-inline"><?= $_SESSION['nombre'] . " " . $_SESSION['apellido']?></span>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
           <li class="user-header text-bg-primary">
-            <img src="<?= LINKS_PATH . "/imagenes/persona.png" ?>" class="rounded-circle shadow" alt="User Image"/>
+            <span class="rounded-circle shadow avatar-inicial avatar-inicial-lg">
+              <?= $inicial ?>
+            </span>
             <p>
-              Nombre usuario
-              <small>Perfil de ---</small>
+              Perfil de <?= $_SESSION['nombre'] . " " . $_SESSION['apellido']?>
             </p>
           </li>
+
+          <!-- PONER CONFIGURACIÓN DE PERFIL Y DE MAS COSAS -->
+
           <li class="user-footer text-center">
             <a href="<?= BASE_PATH . "/logout"?> " class="btn btn-outline-danger">Cerrar sesión</a>
           </li>
@@ -45,6 +47,29 @@
     </ul>
   </div>
 </nav>
+
+<!-- QUIITAR Y PONER EN UN CSS EXTERNO -->
+<style>
+  .avatar-inicial {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.avatar-inicial-lg {
+  width: 90px;
+  height: 90px;
+  font-size: 36px;
+  background-color: #007bff; /* el grande se queda fijo */
+}
+</style>
+
 <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
   <div class="sidebar-brand">
     <a href=" /forexfalcon" class="brand-link">

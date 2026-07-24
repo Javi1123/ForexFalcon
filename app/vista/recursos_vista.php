@@ -10,7 +10,7 @@ $ACTIVO = 10;
 // Empezamos
 echo '<!DOCTYPE html><html lang="es-es" dir="ltr">';
     include_once("recursos/cabecera.php");                                               // <head>...</head>
-    echo '<body class="layout-fixed sidebar-expand-lg bg-body-tertiary">';
+    echo '<body class="layout-fixed sidebar-expand-lg bg-body-tertiary p-0">';
     echo '<div class="app-wrapper">';
         include_once("recursos/menu.php");                                               // Menú superior fijo
         include_once("recursos/main_recursos.php");                                      // Bloque central
