@@ -205,8 +205,36 @@
     </div><!-- /card -->
   </div><!-- /login-box -->
 
+  <?php if (isset($_SESSION['toast'])): 
+      $toast = $_SESSION['toast'];
+      unset($_SESSION['toast']); // Se elimina para que no vuelva a aparecer al refrescar
+  ?>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
+    <div id="registroToast" class="toast align-items-center text-white <?= $toast['tipo'] === 'error' ? 'bg-danger' : 'bg-success' ?> border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">
+          <i class="fa-solid <?= $toast['tipo'] === 'error' ? 'fa-circle-exclamation' : 'fa-circle-check' ?> me-2"></i>
+          <?= htmlspecialchars($toast['mensaje']) ?>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toastEl = document.getElementById('registroToast');
+      if (toastEl) {
+        const toast = new bootstrap.Toast(toastEl, { delay: 4000 });
+        toast.show();
+      }
+    });
+  </script>
+
+  <?php endif; ?>
+
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
-
 </body>
 </html>

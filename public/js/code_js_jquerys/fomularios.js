@@ -93,9 +93,6 @@ for (const btn of document.querySelectorAll('.ff-tab-btn')) {
 }
 
 // Cambio de ojo para ver las contraseñas
-const regPasswordConfirm = document.querySelector("#regPasswordConfirm");
-const eyeIconRegistrarse = document.querySelector('#eye-contraseña-registrarse');
-
 document.querySelector("#eye-contraseña").addEventListener("click", () => {
   const input = document.querySelector("#loginPassword");
   const visible = input.type === "text";

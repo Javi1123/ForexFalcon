@@ -77,14 +77,14 @@ export const validacionesRegistrarse = e =>{
   const errorConfirmaContraseñaRegistro = document.querySelector("#errorConfirmaContraseñaRegistro");
 
   // Valores del formulario validados
-  const resultNombre     = validarNombre(email);
-  const resultApellido   = validarApellido(email);
-  const resultEmail      = validarEmail(email);
-  const resultTelefono   = validarTelefono(telefono);
-  const resultPais       = validarPais(pais);
-  const resultFecha      = validarFechaNacimiento(fecha_nacimiento);
-  const resultContraseña = validarContraseña(contraseña);
-  const resultConfirmarContraseña = validarContraseña(confirmar_contraseña);
+  const resultNombre              = validarNombre(nombre);
+  const resultApellido            = validarApellido(apellido);
+  const resultEmail               = validarEmail(email);
+  const resultTelefono            = validarTelefono(telefono);
+  const resultPais                = validarPais(pais);
+  const resultFecha               = validarFechaNacimiento(fecha_nacimiento);
+  const resultContraseña          = validarContraseña(contraseña);
+  const resultConfirmarContraseña = validarConfirmarContraseña(contraseña,confirmar_contraseña);
 
   if (!resultNombre.ok) {
     errorNombreRegistro.textContent = resultNombre.msg;
@@ -195,6 +195,12 @@ const validarContraseña = (pass) => {
   if (!regexNumero.test(pass))            return { ok: false, msg: "Debe contener al menos un número" };
   if (!regexEspecial.test(pass))          return { ok: false, msg: "Debe contener al menos un carácter especial (!@#$...)" };
   if (/\s/.test(pass))                    return { ok: false, msg: "No puede contener espacios" };
+  return { ok: true };
+};
+
+const validarConfirmarContraseña = (pass, c_pass) => {
+  if (!c_pass || c_pass.trim() === "")        return { ok: false, msg: "La contraseña es obligatoria" };
+  if (c_pass.trim() != pass.trim())        return { ok: false, msg: "La contraseña no es igual" };
   return { ok: true };
 };
 
