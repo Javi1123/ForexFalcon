@@ -2,9 +2,18 @@
 
 namespace App\controlador;
 
+use \App\modelo\loginModelo;
+
 class principalControlador{
   
   public function index() {
+
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+      $email = $_POST['email'];
+      
+      loginModelo::setCorreoDescuento($email);
+    }
+
     require_once __DIR__ . '/../../app/vista/index_vista.php';
   }
 

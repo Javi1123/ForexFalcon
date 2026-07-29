@@ -26,16 +26,13 @@ const animationSeccions = () =>{
   });
 }
 
-const popPublicidad = () => {
+const popCorreoDescuento = () => {
   const yaAbierto = document.querySelector("dialog[open]");
 
-  const ultimaVez = localStorage.getItem("publicidad"); // getItem, no .publicidad
-  const pasoLaHora = fechaDeAhora - Number(ultimaVez);  // Number() evita NaN
+  const ultimaVez = localStorage.getItem("correoDescuento");
+  const pasoLaHora = fechaDeAhora - Number(ultimaVez);
 
-  if (yaAbierto || (ultimaVez && pasoLaHora < 1800000)) {
-    // toastCookies();
-    return;
-  }
+  if (yaAbierto || (ultimaVez && pasoLaHora < 1800000)) return;
 
   dialogDeDescuento();
 };
@@ -80,6 +77,10 @@ const dialogDeDescuento = () => {
   descripcion.setAttribute("style", "color: #B8B8C8; font-size: 14px; line-height: 1.6;");
   descripcion.innerHTML = `Si nos das tu correo corporativo tendrás un <span style="color:#FF6B00; font-weight:600;">10% de descuento</span> en el servicio que quieras.`;
 
+  const form = document.createElement("form");
+  form.method = "post";
+  form.action = "/forexfalcon/";
+
   const label = document.createElement("label");
   label.classList.add("form-label", "fw-semibold");
   label.setAttribute("for", "emailCorporativo");
@@ -87,6 +88,7 @@ const dialogDeDescuento = () => {
   label.textContent = "Correo corporativo";
 
   const input = document.createElement("input");
+  input.name = "email";
   input.classList.add("form-control", "mb-1");
   input.setAttribute("type", "email");
   input.setAttribute("id", "emailCorporativo");
@@ -97,8 +99,6 @@ const dialogDeDescuento = () => {
   const feedbackMsg = document.createElement("div");
   feedbackMsg.classList.add("invalid-feedback");
   feedbackMsg.textContent = "Por favor, introduce un correo válido.";
-
-  body.append(descripcion, label, input, feedbackMsg);
 
   // Footer
   const footer = document.createElement("div");
@@ -114,16 +114,19 @@ const dialogDeDescuento = () => {
   btnAceptar.classList.add("btn", "fw-bold");
   btnAceptar.setAttribute("style", "background: #FF6B00; color: #fff; border: none; border-radius: 8px;");
   btnAceptar.textContent = "Quiero mi 10% 🎉";
+  btnAceptar.type = "submit";
 
   footer.append(btnCerrar, btnAceptar);
+  form.append(label, input, footer);
+  body.append(descripcion, form, feedbackMsg);
 
   // Ensamblar
-  modalContent.append(ribbon, header, body, footer);
+  modalContent.append(ribbon, header, body);
   dialog.append(modalContent);
 
   // Cerrar
   const cerrarDialog = () => {
-    localStorage.setItem("publicidad", fechaDeAhora);
+    localStorage.setItem("correoDescuento", fechaDeAhora);
     // toastCookies();
     dialog.close();
     dialog.remove();
@@ -133,7 +136,7 @@ const dialogDeDescuento = () => {
   btnCerrar.addEventListener("click", cerrarDialog);
 
   btnAceptar.addEventListener("click", () => {
-    const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value);
+    const emailValido = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(input.value);
     if (!emailValido) {
       input.classList.add("is-invalid");
       input.style.borderColor = "#E24B4A";
@@ -142,7 +145,7 @@ const dialogDeDescuento = () => {
     input.classList.remove("is-invalid");
     input.style.borderColor = "#8CFF6B";
 
-    console.log("Email enviado:", input.value);
+    form.submit();
     cerrarDialog();
   });
 
@@ -236,7 +239,7 @@ const tinymceInitial = () =>{
 const fechaDeAhora = new Date().getTime();
 
 // Publicidad y coockies
-popPublicidad();
+popCorreoDescuento();
 
 // Textarea de los formularios
 tinymceInitial();

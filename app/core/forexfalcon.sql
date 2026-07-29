@@ -1,115 +1,150 @@
 -- ============================================================
---  TRADING PLATFORM — Orden correcto
+-- BASE DE DATOS: ForexFalcon
+-- Motor: InnoDB (transacciones + claves foráneas)
+-- Charset: utf8mb4 (soporte completo Unicode, emojis)
 -- ============================================================
 
-SET FOREIGN_KEY_CHECKS = 0;
+CREATE DATABASE IF NOT EXISTS ForexFalcon
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci;
 
--- 1. PRIMERO: Usuarios (no tiene FK a nadie)
-CREATE TABLE usuarios (
-    id              INT             NOT NULL AUTO_INCREMENT,
-    nombre          VARCHAR(150)    NOT NULL,
-    email           VARCHAR(255)    NOT NULL,
-    password_hash   TEXT            NOT NULL,
-    rol             VARCHAR(30)     NOT NULL DEFAULT 'alumno',
-    creado_en       DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    UNIQUE KEY uq_usuarios_email (email)
-);
+USE ForexFalcon;
 
--- 2. Imagenes (sus FK pueden ser NULL por ahora)
-CREATE TABLE imagenes (
-    id              INT             NOT NULL AUTO_INCREMENT,
-    url             TEXT            NOT NULL,
-    alt_text        VARCHAR(255)    NULL,
-    tipo            VARCHAR(50)     NULL,
-    referencia_id   INT             NULL,
-    referencia_tipo VARCHAR(50)     NULL,
-    subida_en       DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    KEY idx_imagenes_referencia (referencia_id, referencia_tipo)
-);
+-- ------------------------------------------------------------
+-- Tabla: Correo_descuento
+-- Mejoras:
+--   - Correo: VARCHAR(100) con CHECK para formato email (opcional, pero se recomienda validación en app).
+--   - Porciento_descuento: DECIMAL(5,2) para almacenar 0.00–100.00 (más preciso que INT).
+--   - Fecha_creacion: DATETIME con DEFAULT CURRENT_TIMESTAMP (incluye hora).
+--   - Activado: TINYINT(1) con DEFAULT 0.
+--   - Fecha_activacion: DATETIME (puede ser NULL hasta activación).
+--   - Índice en Activado para búsquedas rápidas.
+-- ------------------------------------------------------------
+CREATE TABLE Correo_descuento (
+    Correo VARCHAR(100) NOT NULL,
+    Cupon_descuento VARCHAR(50) NOT NULL,
+    Porciento_descuento DECIMAL(5,2) NOT NULL CHECK (Porciento_descuento BETWEEN 0 AND 100),
+    Fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    Activado TINYINT(1) NOT NULL DEFAULT 0,
+    Fecha_activacion DATETIME NULL DEFAULT NULL,
+    PRIMARY KEY (Correo),
+    INDEX idx_activado (Activado)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- 3. Cursos (depende de usuarios e imagenes)
-CREATE TABLE cursos (
-    id              INT             NOT NULL AUTO_INCREMENT,
-    instructor_id   INT             NOT NULL,
-    titulo          VARCHAR(255)    NOT NULL,
-    slug            VARCHAR(255)    NOT NULL,
-    nivel           VARCHAR(30)     NOT NULL DEFAULT 'principiante',
-    categoria       VARCHAR(100)    NULL,
-    es_premium      TINYINT(1)      NOT NULL DEFAULT 0,
-    imagen_id       INT             NULL,
-    publicado_en    DATETIME        NULL,
-    PRIMARY KEY (id),
-    UNIQUE KEY uq_cursos_slug (slug),
-    CONSTRAINT fk_cur_instructor FOREIGN KEY (instructor_id) REFERENCES usuarios (id) ON DELETE RESTRICT,
-    CONSTRAINT fk_cur_imagen     FOREIGN KEY (imagen_id)     REFERENCES imagenes (id) ON DELETE SET NULL
-);
+-- ------------------------------------------------------------
+-- Tabla: Usuarios
+-- Mejoras:
+--   - Contraseña: VARCHAR(64) para almacenar SHA-256 (hash hexadecimal de 64 chars). 
+--     En la aplicación usar SHA2(contraseña, 256) o mejor bcrypt (recomendación en comentarios).
+--   - Teléfono: VARCHAR(20) en lugar de NUMBER (los números pueden tener prefijos +, espacios).
+--   - Rol: ENUM('Administrador','Superusuario','Usuario') con valor por defecto 'Usuario'.
+--   - Fecha_nacimiento: DATE (solo fecha, sin hora).
+--   - Fecha_creacion: DATETIME con DEFAULT CURRENT_TIMESTAMP.
+--   - Índices en Nombre, Apellido para búsquedas.
+--   - CHECK para formato de email (validación adicional).
+-- ------------------------------------------------------------
+CREATE TABLE Usuarios (
+    Correo VARCHAR(100) NOT NULL,
+    Nombre VARCHAR(50) NOT NULL,
+    Apellido VARCHAR(50) NOT NULL,
+    Telefono VARCHAR(20) NOT NULL,          -- Para soportar +34 600 000 000
+    Pais VARCHAR(50) NOT NULL,
+    Rol ENUM('Administrador','Superusuario','Usuario') NOT NULL DEFAULT 'Usuario',
+    Fecha_nacimiento DATE NOT NULL,
+    contraseña VARCHAR(64) NOT NULL,         -- Hash SHA-256 (64 hex) / o usar CHAR(64)
+    Fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (Correo),
+    INDEX idx_nombre (Nombre),
+    INDEX idx_apellido (Apellido),
+    -- Validación básica de email (no 100% fiable pero ayuda)
+    CONSTRAINT chk_correo CHECK (Correo LIKE '%_@__%.__%')
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- 4. Videos (depende de cursos e imagenes)
-CREATE TABLE videos (
-    id                  INT             NOT NULL AUTO_INCREMENT,
-    curso_id            INT             NOT NULL,
-    titulo              VARCHAR(255)    NOT NULL,
-    orden               SMALLINT        NOT NULL DEFAULT 1,
-    duracion_segundos   INT             NULL,
-    video_url           TEXT            NOT NULL,
-    es_preview          TINYINT(1)      NOT NULL DEFAULT 0,
-    imagen_id           INT             NULL,
-    PRIMARY KEY (id),
-    CONSTRAINT fk_vid_curso  FOREIGN KEY (curso_id)  REFERENCES cursos  (id) ON DELETE CASCADE,
-    CONSTRAINT fk_vid_imagen FOREIGN KEY (imagen_id) REFERENCES imagenes (id) ON DELETE SET NULL
-);
+-- ------------------------------------------------------------
+-- Tabla: Servicios
+-- Mejoras:
+--   - Id_servicio: VARCHAR(20) PK, podría ser un código corto (ej. 'BASIC', 'PREMIUM').
+--   - Nombre_servicio: VARCHAR(100) NOT NULL.
+--   - Descripcion_servicio: TEXT (para descripciones largas).
+--   - Fecha_creacion: DATETIME con DEFAULT CURRENT_TIMESTAMP.
+--   - Metodo_pago: ENUM('Mensual','Semanal','Anual') con valor por defecto 'Mensual'.
+--   - Activado: TINYINT(1) NOT NULL DEFAULT 1.
+-- ------------------------------------------------------------
+CREATE TABLE Servicios (
+    Id_servicio VARCHAR(20) NOT NULL,
+    Nombre_servicio VARCHAR(100) NOT NULL,
+    Descripcion_servicio TEXT NOT NULL,
+    Fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    Metodo_pago ENUM('Mensual','Semanal','Anual') NOT NULL DEFAULT 'Mensual',
+    Activado TINYINT(1) NOT NULL DEFAULT 1,
+    PRIMARY KEY (Id_servicio)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- 5. Inscripciones (depende de usuarios y cursos)
-CREATE TABLE inscripciones (
-    id              INT             NOT NULL AUTO_INCREMENT,
-    usuario_id      INT             NOT NULL,
-    curso_id        INT             NOT NULL,
-    progreso_pct    DECIMAL(5,2)    NOT NULL DEFAULT 0.00,
-    inscrito_en     DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    UNIQUE KEY uq_inscripcion (usuario_id, curso_id),
-    CONSTRAINT fk_ins_usuario FOREIGN KEY (usuario_id) REFERENCES usuarios (id) ON DELETE CASCADE,
-    CONSTRAINT fk_ins_curso   FOREIGN KEY (curso_id)   REFERENCES cursos  (id) ON DELETE CASCADE
-);
+-- ------------------------------------------------------------
+-- Tabla: Suscripciones
+-- Mejoras:
+--   - Id_suscripciones: INT AUTO_INCREMENT PK.
+--   - Activado: TINYINT(1) NOT NULL DEFAULT 1.
+--   - Fecha_inicio y Fecha_fin: DATETIME (incluyen hora).
+--   - Claves foráneas con ON DELETE RESTRICT (evita borrar servicios o usuarios con suscripciones activas).
+--   - Índice compuesto en (Correo, Id_servicio) para búsquedas rápidas.
+--   - Trigger para actualizar Fecha_fin al desactivar (ver más abajo).
+-- ------------------------------------------------------------
+CREATE TABLE Suscripciones (
+    Id_suscripciones INT AUTO_INCREMENT,
+    Activado TINYINT(1) NOT NULL DEFAULT 1,
+    Fecha_inicio DATETIME NOT NULL,
+    Fecha_fin DATETIME NULL DEFAULT NULL,
+    Id_servicio VARCHAR(20) NOT NULL,
+    Correo VARCHAR(100) NOT NULL,
+    PRIMARY KEY (Id_suscripciones),
+    FOREIGN KEY (Id_servicio) REFERENCES Servicios(Id_servicio)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    FOREIGN KEY (Correo) REFERENCES Usuarios(Correo)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    INDEX idx_usuario_servicio (Correo, Id_servicio),
+    INDEX idx_activado (Activado)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- 6. Suscripciones (depende de usuarios)
-CREATE TABLE suscripciones (
-    id              INT             NOT NULL AUTO_INCREMENT,
-    usuario_id      INT             NOT NULL,
-    plan            VARCHAR(50)     NOT NULL,
-    estado          VARCHAR(30)     NOT NULL DEFAULT 'activa',
-    precio_pagado   DECIMAL(10,2)   NULL,
-    cupon_aplicado  VARCHAR(50)     NULL,
-    inicio          DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    fin             DATETIME        NULL,
-    creado_en       DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    CONSTRAINT fk_sus_usuario FOREIGN KEY (usuario_id) REFERENCES usuarios (id) ON DELETE CASCADE
-);
+-- ------------------------------------------------------------
+-- Trigger: Al desactivar una suscripción (Activado = 0), 
+--           actualiza Fecha_fin al momento exacto del cambio.
+-- ------------------------------------------------------------
+DELIMITER //
+CREATE TRIGGER trg_suscripcion_desactivar
+BEFORE UPDATE ON Suscripciones
+FOR EACH ROW
+BEGIN
+    IF NEW.Activado = 0 AND OLD.Activado = 1 THEN
+        SET NEW.Fecha_fin = NOW();
+    END IF;
+END//
+DELIMITER ;
 
--- 7. ÚLTIMA: Correo_descuento (depende de usuarios)
-CREATE TABLE correo_descuento (
-    id              INT             NOT NULL AUTO_INCREMENT,
-    email           VARCHAR(255)    NOT NULL,
-    cupon_codigo    VARCHAR(50)     NOT NULL,
-    descuento_pct   TINYINT         NOT NULL DEFAULT 10,
-    usado           TINYINT(1)      NOT NULL DEFAULT 0,
-    usuario_id      INT             NULL,
-    creado_en       DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    usado_en        DATETIME        NULL,
-    PRIMARY KEY (id),
-    UNIQUE KEY uq_cd_email       (email),
-    UNIQUE KEY uq_cd_cupon       (cupon_codigo),
-    CONSTRAINT fk_cd_usuario     FOREIGN KEY (usuario_id) REFERENCES usuarios (id) ON DELETE SET NULL
-);
-
--- ÍNDICES
-CREATE INDEX idx_suscripciones_usuario  ON suscripciones (usuario_id);
-CREATE INDEX idx_inscripciones_usuario  ON inscripciones (usuario_id);
-CREATE INDEX idx_inscripciones_curso    ON inscripciones (curso_id);
-CREATE INDEX idx_videos_curso_orden     ON videos (curso_id, orden);
-CREATE INDEX idx_correo_descuento_email ON correo_descuento (email);
-
-SET FOREIGN_KEY_CHECKS = 1;
+-- ------------------------------------------------------------
+-- Tabla: Videos
+-- Mejoras:
+--   - Id: INT AUTO_INCREMENT PK.
+--   - Nombre_video: VARCHAR(200) NOT NULL.
+--   - Duracion_segundos: INT UNSIGNED (no negativo).
+--   - Video_url: TEXT (o VARCHAR(2048) si prefieres, pero TEXT es seguro para URLs largas).
+--   - Fecha_subida: DATETIME con DEFAULT CURRENT_TIMESTAMP.
+--   - Id_servicios: FK a Servicios con ON DELETE CASCADE (si se borra servicio, se borran sus videos) 
+--     o RESTRICT según prefieras; pongo CASCADE para mantener limpieza.
+--   - Índice en Id_servicios para joins rápidos.
+-- ------------------------------------------------------------
+CREATE TABLE Videos (
+    Id INT AUTO_INCREMENT,
+    Nombre_video VARCHAR(200) NOT NULL,
+    Duracion_segundos INT UNSIGNED NOT NULL,
+    Video_url TEXT NOT NULL,
+    Fecha_subida DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    Id_servicios VARCHAR(20) NOT NULL,
+    PRIMARY KEY (Id),
+    FOREIGN KEY (Id_servicios) REFERENCES Servicios(Id_servicio)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    INDEX idx_servicio (Id_servicios)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
