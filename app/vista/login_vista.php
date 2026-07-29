@@ -15,10 +15,17 @@
 
   <script src="<?= LINKS_PATH . "/js/code_js_jquerys/fomularios.js" ?>" defer></script>
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/login.css" ?>">
-  <link rel="stylesheet" href="<?= LINKS_PATH . "/css/forexfalcon.css" ?>">
+  
 </head>
 
 <body>
+
+  <div class="gradient-mesh">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 
   <div class="login-box">
     <div class="card card-outline">
@@ -144,8 +151,7 @@
             <!-- País -->
             <div class="form-floating mb-1">
               <select id="regPais" name="pais_registro"
-                class="form-select <?= isset($erroresReg['pais']) ? 'is-invalid' : '' ?>"
-                style="height: 58px; padding-top: 1.625rem; padding-bottom: .625rem;">
+              class="form-select <?= isset($erroresReg['pais']) ? 'is-invalid' : '' ?>">
                 <option value="" disabled <?= empty($regPais) ? 'selected' : '' ?>>Selecciona un país</option>
                 <?php foreach ($paises as $pais): ?>
                   <option value="<?= htmlspecialchars($pais) ?>"
