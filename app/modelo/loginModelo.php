@@ -39,6 +39,17 @@ class loginModelo {
   // CORREO DESCUENTO
   /////////////////////////////////
 
+  public static function getCorreoDescuento($email){
+    $codigo = self::generarCupon();
+
+    $pdo = DB::getInstance();
+    $stmt = $pdo->prepare("SELECT * FROM  Correo_descuento WHERE Correo = :email");
+    $stmt->execute([
+      ":email" => $email
+    ]);
+    return $stmt->fetch(\PDO::FETCH_ASSOC);
+  }
+
   public static function setCorreoDescuento($email){
     $codigo = self::generarCupon();
 

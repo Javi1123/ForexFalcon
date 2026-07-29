@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/forexfalcon.css" ?>">
   <script src="<?= LINKS_PATH . "/js/code_js_jquerys/gestion_de_nav.js" ?>" defer></script>
   <script src="<?= LINKS_PATH . "/js/code_js_jquerys/forexfalcon.js" ?>" defer></script>
+  <script src="<?= LINKS_PATH . "/js/code_js_jquerys/frankfurter.js" ?>" defer></script>
 
 </head>
 

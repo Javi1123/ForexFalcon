@@ -12,7 +12,7 @@ define('LINKS_PATH', '/forexfalcon/public');
 define('VIEWS_BACK_PATH', '/../../app/vista');
 // define('VIEWS_PATH', '/app/vista');
 
-// 1. PRIMERO: Obtener la ruta completa de la URL
+// PRIMERO: Obtener la ruta completa de la URL
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH); 
 
 // echo "URI: " . $uri . "<br>";
