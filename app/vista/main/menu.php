@@ -1,4 +1,4 @@
-<div class="ticker-bar">
+<div class="ticker-bar" id="tasasMoneda">
   <div class="ticker-track">
     <span class="ticker-item up"><span class="pair">EUR/USD</span><span class="price mono">1.0847</span><span class="delta mono">0.12%</span></span>
     <span class="ticker-item down"><span class="pair">GBP/JPY</span><span class="price mono">198.32</span><span class="delta mono">0.34%</span></span>
