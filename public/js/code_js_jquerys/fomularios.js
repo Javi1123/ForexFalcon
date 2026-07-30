@@ -83,6 +83,65 @@ const limpiarError = (e) => {
     errorDiv.textContent = ''; // por si el mensaje se inyecta dinámicamente
   }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('formRegistro');
+  if (!form) return;
+
+  const steps = form.querySelectorAll('.ff-step');
+  const dots  = document.querySelectorAll('.ff-step-dot');
+
+  function goToStep(stepNumber) {
+    steps.forEach(step => {
+      step.classList.toggle('d-none', step.dataset.step != stepNumber);
+    });
+    dots.forEach(dot => {
+      const dotStep = Number(dot.dataset.step);
+      dot.classList.toggle('active', dotStep === stepNumber);
+      dot.classList.toggle('done', dotStep < stepNumber);
+    });
+  }
+
+  // Botones de Atrás y Siguiente en Registro en form
+  function validarPaso(stepNumber) {
+    const step = form.querySelector(`.ff-step[data-step="${stepNumber}"]`);
+    const campos = step.querySelectorAll('input[required], input:not([type=hidden]), select');
+    let valido = true;
+
+    campos.forEach(campo => {
+      if (campo.hasAttribute('required') || campo.value.trim() !== '') {
+        // Validación básica: campo vacío si es obligatorio
+      }
+      if (!campo.checkValidity()) {
+        campo.classList.add('is-invalid');
+        valido = false;
+      } else {
+        campo.classList.remove('is-invalid');
+      }
+    });
+
+    return valido;
+  }
+
+  // Botones "Siguiente"
+  form.querySelectorAll('.ff-next').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const pasoActual = btn.closest('.ff-step').dataset.step;
+      if (validarPaso(pasoActual)) {
+        goToStep(Number(btn.dataset.next));
+      }
+    });
+  });
+
+  // Botones "Atrás"
+  form.querySelectorAll('.ff-back').forEach(btn => {
+    btn.addEventListener('click', () => {
+      goToStep(Number(btn.dataset.back));
+    });
+  });
+});
+
+
 ///////////////////
 // Main
 ///////////////////
