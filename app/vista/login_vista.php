@@ -166,6 +166,9 @@
               <div id="errorEmailRegistro" class="invalid-feedback d-block mb-2 d-none"></div>
 
               <div class="input-group mb-1">
+                <select id="regTelPrefijo" class="form-select ff-tel-prefijo" aria-label="Prefijo telefónico">
+                  <!-- Se rellena por JS -->
+                </select>
                 <div class="form-floating">
                   <input id="regTelefono" type="tel"
                     class="form-control <?= isset($erroresReg['telefono']) ? 'is-invalid' : '' ?>"
@@ -196,7 +199,7 @@
                 <button type="button" class="btn ff-back w-50" data-back="1">
                   <span>Atrás</span>
                 </button>
-                <button type="button" class="btn btnInicioSesion w-50" data-next="3">
+                <button type="button" class="btn btnInicioSesion w-50 ff-next" data-next="3">
                   <span>Siguiente</span>
                 </button>
               </div>
@@ -212,6 +215,9 @@
                     class="form-control <?= isset($erroresReg['contraseña']) ? 'is-invalid' : '' ?>"
                     name="contraseña_registro" placeholder="" />
                   <label for="regPassword">Contraseña</label>
+                </div>
+                <div id="eye-contraseña-registro" class="input-group-text">
+                  <i id="eye-icon-registro" class="fa-solid fa-eye"></i>
                 </div>
               </div>
               <div id="errorContraseñaRegistro" class="invalid-feedback d-block mb-2 d-none"></div>
@@ -230,7 +236,7 @@
               <div id="errorConfirmaContraseñaRegistro" class="invalid-feedback d-block mb-2 d-none"></div>
 
               <div class="d-flex gap-2 my-3">
-                <button type="button" class="btn ff-back" data-back="2">
+                <button type="button" class="btn ff-back w-50" data-back="2">
                   <span>Atrás</span>
                 </button>
                 <button type="submit" id="btnRegistrarse" class="btn btnInicioSesion w-50">
