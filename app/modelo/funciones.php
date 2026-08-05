@@ -203,11 +203,10 @@ function es_ip($ip){
 /*************************************************************************************
 Envío de correo para nosotros
 *************************************************************************************/
-function correos_nosotros($c_Asunto, $c_DatosAlumno, $t_form){
+function correos_nosotros($c_Asunto, $c_DatosAlumno){
 // Varios destinatarios
 // $para  = 'info@trainingtic.com' . ', '; 
-$cPara  = 'info@certitransporte.com';
-
+$cPara  = 'javierdiazsoriano1@gmail.com';
 
 // $mensaje = wordwrap($mensaje, 70, "\r\n");
 
@@ -216,8 +215,8 @@ $cCabeceras  = 'MIME-Version: 1.0' . "\r\n";
 $cCabeceras .= "Content-type: text/html; charset=UTF-8" . "\r\n"; 
 /**/
 // Cabeceras adicionales
-$cCabeceras .= 'To: Certitransporte <info@certitransporte.com>' . "\r\n";
-$cCabeceras .= 'From: ' .$t_form. ' <info@certitransporte.com>' . "\r\n";
+$cCabeceras .= 'To: Forexfalcon <javierdiazsoriano1@gmail.com>' . "\r\n";
+$cCabeceras .= 'From: Forexfalcon <javierdiazsoriano1@gmail.com>' . "\r\n";
 //$cCabeceras .= 'From: Alumno US '.$cGrupo.' <oposiciones@trainingtic.com>';
 /*
 $cCabeceras .= 'Cc: redes@trainingtic.com' . "\r\n";
@@ -236,33 +235,29 @@ function correos_alumno_formación($cNombre, $cCorreo){
 $para  = $cCorreo;
 
 // título
-$título = 'Gracias por registrarse, Certitransporte';
+$título = 'Gracias por registrarse, atentamente Forexfalcon';
 
 // mensaje
-$mensaje = 'Hola '.$cNombre.', le enviamos este correo de confirmación para que sepa que nos ha llegado la solicitud';
+$mensaje = 'Hola '.$cNombre.', le enviamos este correo ...';
 
 $mensaje .= '
 
-Gracias, por darnos los requisitos para formarte.
+Gracias, ...
 
 Atentamente,
-El equipo de Certitransporte
+El equipo de Forexfalcon
 
---
-TrainingTIC
-www.certitransporte.com
-Avda. San Francisco Javier, nº 22
-Edificio HERMES, 1ª Planta, Nº 14
-41018 - Sevilla
-Teléfono: 671 355 000
-Horario: de 9:00 a 20:00 h. días laborales de lunes a viernes y sábados de 10:00 a 14:00 h.
+------------------------
+Forexfalcon
+www.forexfalcon.com
+forexfalcon@gmail.com
 ';
 //$mensaje = wordwrap($mensaje, 70, "\r\n");
 
 $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
 $cabeceras .= 'Content-type: text/plain; charset=UTF-8' . "\r\n";
 //$cabeceras .= 'To: ' . $cCorreo . "\r\n";
-$cabeceras .= 'From: Certitransporte <noreply@tecnologiayformacion.com>' . "\r\n";
+$cabeceras .= 'From: Forexfalcon <noreply@tecnologiayformacion.com>' . "\r\n";
 
 // Enviarlo
 return mail($para, $título, $mensaje, $cabeceras);

@@ -71,6 +71,15 @@ class formulariosControlador{
         header("Location: " . BASE_PATH . "/acciones?tipo=registro");
         exit;
       } else {
+        
+        $nombre_email = $nombre_registro . " " . $apellido_registro;
+        try {
+          $esta = $nombre_email;
+          correos_alumno_formación($nombre_email, $email_registro); // ver si funciona con el nuevo xampp
+        } catch (\Throwable $th) {
+          throw $th;
+        }
+
         // No existe -> creamos la cuenta
         loginModelo::setUsuario(
           $nombre_registro,
@@ -84,7 +93,7 @@ class formulariosControlador{
 
         $_SESSION['toast'] = [
           'tipo'    => 'success',
-          'mensaje' => 'Cuenta creada correctamente. ¡Ya puedes iniciar sesión!'
+          'mensaje' => $esta
         ];
 
         header("Location: " . BASE_PATH . "/acciones?tipo=inicio");
