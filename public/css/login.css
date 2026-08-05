@@ -514,7 +514,7 @@ a:hover {
   border-color: #dc3545 !important;
 }
 
-/* ── Select de prefijo telefónico (más compacto) ────────────────── */
+/* ── Select de prefijo telefónico ────────────────── */
 
 .ff-tel-prefijo {
   flex: 0 0 130px;
