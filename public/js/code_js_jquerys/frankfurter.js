@@ -65,6 +65,8 @@ async function fetchAllRates() {
       // Determinar dirección
       const direction = change > 0.01 ? 'up' : change < -0.01 ? 'down' : 'neutral';
       
+      if(direction === 'neutral') change = 0;
+
       results.push({
         ...pair,
         rate: currentRate,
