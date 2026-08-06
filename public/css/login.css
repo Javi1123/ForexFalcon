@@ -129,7 +129,7 @@ body {
   backdrop-filter: blur(12px);
   background: var(--color-azul-principal-translucido);
   border-radius: 24px;
-  border: 1px solid rgba(145, 221, 78, 0.25);
+  /* border: 1px solid rgba(145, 221, 78, 0.25); */
   box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
 }
@@ -144,7 +144,7 @@ body {
 
 .card-header {
   background: transparent;
-  border-bottom: 1px solid rgba(145, 221, 78, 0.2);
+  /* border-bottom: 1px solid rgba(145, 221, 78, 0.2); */
   padding: 1.5rem 1rem 0.5rem;
 }
 
@@ -236,7 +236,7 @@ body {
   background: transparent;
   border: none;
   border-left: 1px solid rgba(145, 221, 78, 0.3);
-  color: var(--color-v-principal);
+  color: var(--color-v-principal) !important;
   font-size: 1.1rem;
 }
 
@@ -301,9 +301,14 @@ a:hover {
   font-weight: 500;
 }
 
-.ff-tab-btn:hover:not(.ff-active) {
+/* .ff-tab-btn:hover:not(.ff-active) {
   color: #343a40;
   border-bottom-color: rgba(0,0,0,.15);
+} */
+
+.ff-tab-btn:hover:not(.ff-active) {
+  color: var(--color-n-hover);
+  border-bottom-color: rgba(251, 142, 55, 0.35);
 }
 
 /* ── Paneles ───────────────────────────────────────────── */
@@ -320,6 +325,7 @@ a:hover {
 /* ── Btn inicio sesión ───────────────────────────────────────────── */
 
 .btnInicioSesion {
+  position: relative;
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   padding: 11px 22px;
   background: rgba(145, 221, 78, 0.12);
@@ -329,13 +335,246 @@ a:hover {
   border: 1.5px solid var(--color-v-principal);
   border-radius: 10px;
   cursor: pointer; text-decoration: none;
+  overflow: hidden;
   box-shadow: 0 4px 16px rgba(145, 221, 78, 0.15);
-  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  transition: background 0.2s, box-shadow 0.4s ease, transform 0.15s;
 }
+
+/* Barrido de luz diagonal */
+.btnInicioSesion::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.btnInicioSesion:hover::before {
+  left: 130%; /* el brillo recorre todo el botón */
+}
+
 .btnInicioSesion:hover {
-  background: var(--color-v-principal);
   color: var(--color-azul-principal);
-  box-shadow: 0 6px 20px rgba(145, 221, 78, 0.35);
-  transform: translateY(-1px);
+  background: var(--color-v-principal);
+  box-shadow: 0 10px 28px rgba(145, 221, 78, 0.45);
+  transform: translateY(-2px);
 }
-.btnInicioSesion:active { transform: translateY(0); }
+
+.btnInicioSesion span {
+  position: relative;
+  z-index: 1;
+}
+
+.btnInicioSesion:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 14px rgba(145, 221, 78, 0.3);
+}
+
+
+/* ── Indicador de pasos ─────────────────────────────────── */
+.ff-steps-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 0 0 20px;
+}
+
+.ff-step-dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: rgba(238, 238, 238, 0.2);
+  transition: background 0.3s, transform 0.3s;
+}
+
+.ff-step-dot.active {
+  background: var(--color-n-principal);
+  transform: scale(1.25);
+}
+
+.ff-step-dot.done {
+  background: var(--color-v-principal);
+}
+
+.ff-step-line {
+  width: 28px; height: 1.5px;
+  background: rgba(238, 238, 238, 0.15);
+}
+
+/* ── Transición entre pasos ─────────────────────────────── */
+.ff-step {
+  animation: ffStepIn 0.3s ease;
+}
+
+@keyframes ffStepIn {
+  from { opacity: 0; transform: translateX(12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Botón "Atrás" ───────────────────────────────────────── */
+.ff-back {
+  padding: 11px 20px;
+  background: transparent;
+  color: rgba(238, 238, 238, 0.55);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 600; font-size: 0.9rem;
+  border: 1.5px solid rgba(238, 238, 238, 0.2);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.ff-back:hover {
+  color: var(--color-white-not-pure);
+  border-color: rgba(238, 238, 238, 0.4);
+}
+
+/* Tlf form registro */
+.ff-tel-prefijo {
+  flex: 0 0 110px;
+  max-width: 110px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.ff-tel-prefijo:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+/* Select de los paises*/ 
+
+/* ── Estilos para selects personalizados ──────────────────────────── */
+
+/* Estilo base para todos los selects en formularios */
+.form-floating > .form-select {
+  height: 46px;
+  min-height: 46px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 0.88rem;
+  padding: 0.9rem 2.5rem 0.3rem 0.9rem;
+  /* Quitar flecha nativa */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* Flecha personalizada verde */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2391DD4E' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Opciones del select - fondo oscuro y texto claro */
+.form-floating > .form-select option {
+  background-color: var(--color-azul-principal);
+  color: white;
+  padding: 8px 12px;
+  font-size: 0.88rem;
+}
+
+/* Hover en las opciones */
+.form-floating > .form-select option:hover,
+.form-floating > .form-select option:focus {
+  background-color: rgba(145, 221, 78, 0.2) !important;
+}
+
+/* Label flotante para selects */
+.form-floating > .form-select ~ label {
+  color: #b0b7d4;
+  font-weight: 400;
+  font-size: 0.82rem;
+  padding: 0.6rem 0.9rem;
+  transition: all 0.2s ease;
+}
+
+/* Label flotando cuando el select tiene valor o está enfocado */
+.form-floating > .form-select:focus ~ label,
+.form-floating > .form-select:not([value=""]) ~ label,
+.form-floating > .form-select:valid ~ label {
+  transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+  color: var(--color-v-principal);
+  opacity: 0.8;
+}
+
+/* Select en estado inválido */
+.form-select.is-invalid {
+  border-color: #dc3545 !important;
+}
+
+/* ── Select de prefijo telefónico ────────────────── */
+
+.ff-tel-prefijo {
+  flex: 0 0 130px;
+  max-width: 130px;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  background-color: rgba(255, 255, 255, 0.04);
+  padding-right: 2rem !important;
+  color: var(--color-shadow);
+}
+
+/* Opciones del prefijo con banderas (espacio para la bandera) */
+.ff-tel-prefijo option {
+    padding-left: 28px !important;
+    background-repeat: no-repeat;
+    background-position: 4px center;
+    background-size: 18px 12px;
+    
+}
+
+/* Ajuste responsive para móviles */
+@media (max-width: 576px) {
+  .ff-tel-prefijo {
+    flex: 0 0 110px;
+    max-width: 110px;
+    font-size: 0.78rem;
+    padding: 0.6rem 1.8rem 0.2rem 0.6rem;
+  }
+  
+  .form-floating > .form-select {
+    font-size: 0.78rem;
+    padding: 0.6rem 1.8rem 0.2rem 0.6rem;
+  }
+}
+
+/* Scrollbar personalizada */
+.form-floating > .form-select::-webkit-scrollbar {
+  width: 6px;
+}
+
+.form-floating > .form-select::-webkit-scrollbar-track {
+  background: var(--color-azul-principal);
+}
+
+.form-floating > .form-select::-webkit-scrollbar-thumb {
+  background: var(--color-v-principal);
+  border-radius: 3px;
+}
+
+.form-floating > .form-select {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-v-principal) var(--color-azul-principal);
+}
+
+/* Efecto focus en el input-group que contiene el select */
+.input-group:focus-within .ff-tel-prefijo {
+  border-color: var(--color-v-principal);
+}
+
+/* Ajuste del input de teléfono junto al select */
+.input-group .ff-tel-prefijo + .form-floating {
+  flex: 1;
+}
