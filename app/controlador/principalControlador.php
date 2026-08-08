@@ -26,7 +26,7 @@ class principalControlador{
       } else {
         // No existe -> creamos la cuenta
         loginModelo::setCorreoDescuento($email);
-
+        
         $_SESSION['toast'] = [
           'tipo'    => 'success',
           'mensaje' => 'Codigo obtenido correctamente, mira tu correo. ¡Ya puedes usarlo!'
