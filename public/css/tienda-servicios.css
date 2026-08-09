@@ -1,0 +1,156 @@
+/* ═══════════════════════════════════════════════════════
+   TIENDA — Cards de servicios (nuevo, no toca forexfalcon.css)
+   Reutiliza variables globales definidas en :root (forexfalcon.css)
+   ═══════════════════════════════════════════════════════ */
+
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  margin-top: 24px;
+}
+
+.servicio-card {
+  background: #fff;
+  border: 1px solid #e4e7f0;
+  border-radius: var(--radio-lg);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--sombra);
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+.servicio-card:hover {
+  border-color: var(--naranja);
+  box-shadow: var(--sombra-hover);
+  transform: translateY(-4px);
+}
+
+.servicio-card__icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--naranja-dim);
+  color: var(--naranja);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 18px;
+}
+
+.servicio-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--azul);
+  margin-bottom: 8px;
+}
+
+.servicio-card__desc {
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 18px;
+  flex-grow: 1;
+}
+
+.servicio-card__precio {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--naranja);
+  margin-bottom: 20px;
+}
+.servicio-card__precio .periodo {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #888;
+  margin-left: 4px;
+}
+
+.servicio-card__acciones {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+}
+
+/* El botón de pago reutiliza .btnRegistrarse (definida en forexfalcon.css) */
+.servicio-card__acciones .btnRegistrarse {
+  flex: 1;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Botón de información — icono circular, estilo propio y nuevo */
+.btn-info-servicio {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid #dfe3ee;
+  background: #f7f8fc;
+  color: var(--azul);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.btn-info-servicio:hover {
+  background: var(--verde-dim);
+  border-color: var(--verde);
+  color: var(--verde-hover);
+}
+
+@media (max-width: 1199.98px) { .servicios-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 575.98px)  { .servicios-grid { grid-template-columns: 1fr; } }
+
+/* ── Modal de información del servicio ─────────────────── */
+#modalServicioInfo .modal-content {
+  border-radius: var(--radio-lg);
+  border: none;
+}
+#modalServicioInfo .modal-header {
+  border-bottom: 1px solid #eee;
+}
+#modalServicioInfo .modal-title {
+  font-weight: 700;
+  color: var(--azul);
+}
+#modalServicioInfo .modal-body p {
+  color: #555;
+  line-height: 1.7;
+  font-size: 0.92rem;
+}
+#modalServicioInfo .servicio-caracteristicas {
+  list-style: none;
+  margin: 16px 0 4px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+#modalServicioInfo .servicio-caracteristicas li {
+  font-size: 0.88rem;
+  color: #444;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.5;
+}
+#modalServicioInfo .servicio-caracteristicas li::before {
+  content: '✓';
+  color: var(--verde);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+#modalServicioInfo .modal-precio-final {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--naranja);
+  font-size: 1.3rem;
+  margin-top: 18px;
+}

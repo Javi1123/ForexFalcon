@@ -80,13 +80,7 @@
     <nav class="mt-2">
       <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="navigation" aria-label="Main navigation" data-accordion="false" id="navigation">
         <li class="nav-item">
-          <a href="<?= BASE_PATH . "/inicio" ?>" class="nav-link">
-            <i class="fa-solid fa-house"></i>
-            <p>Inicio</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="<?= BASE_PATH . "/tienda" ?>" class="nav-link">
+          <a href="<?= BASE_PATH . "/recursos" ?>" class="nav-link">
             <i class="fa-solid fa-shop"></i>
             <p>Tienda</p>
           </a>

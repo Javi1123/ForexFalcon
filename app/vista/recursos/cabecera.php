@@ -18,4 +18,7 @@
   <!-- Forexfalcon -->
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/forexfalcon.css" ?>">
 
+  <!-- CSS y JS propios de la tienda (no modifican forexfalcon.css) -->
+  <link rel="stylesheet" href="<?= LINKS_PATH . "/css/tienda-servicios.css" ?>">
+  <script src="<?= LINKS_PATH . "/js/code_js_jquerys/tienda-servicios.js" ?>" defer></script>
 </head>
