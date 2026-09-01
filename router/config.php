@@ -2,6 +2,7 @@
 
 use App\controlador\formulariosControlador;
 use App\controlador\principalControlador;
+use App\controlador\stripeControlador;
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
@@ -30,6 +31,11 @@ switch ($uri){
   case '/recursos':
     $controlador = new principalControlador();
     $controlador-> recursos();
+    break;
+
+  case '/pago':
+    $controlador = new stripeControlador();
+    $controlador-> pago();
     break;
 
   // Acciones para formulario de inicio_de_sesion/registrarse

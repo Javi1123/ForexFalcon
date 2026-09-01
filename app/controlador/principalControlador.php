@@ -3,6 +3,7 @@
 namespace App\controlador;
 
 use \App\modelo\loginModelo;
+use \App\modelo\stripeModelo;
 
 class principalControlador{
   
@@ -53,15 +54,16 @@ class principalControlador{
       exit();
     }
 
-    // Sacamos la inicial
     $inicial = mb_strtoupper(mb_substr($_SESSION['nombre'], 0, 1));
 
-    // Generamos un color "aleatorio" pero consistente en base al nombre completo
     $nombreCompleto = $_SESSION['nombre'] . $_SESSION['apellido'];
     $hash = md5($nombreCompleto);
     $colorAvatar = '#' . substr($hash, 0, 6);
 
+    $stripe = new stripeModelo(STRIPE_SECRET_KEY);
+    $servicios = $stripe->getServicios();   // <-- ya viene formado y lleno
+
     require_once __DIR__ . '/../../app/vista/recursos_vista.php';
-  }
+}
 
 }

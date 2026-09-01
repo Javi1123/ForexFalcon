@@ -12,3 +12,4 @@ RewriteRule inicio_sesion index.php
 RewriteRule crear_cuenta index.php
 RewriteRule logout index.php
 RewriteRule recursos index.php
+RewriteRule pago index.php
