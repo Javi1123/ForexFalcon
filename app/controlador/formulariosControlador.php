@@ -74,8 +74,7 @@ class formulariosControlador{
         
         $nombre_email = $nombre_registro . " " . $apellido_registro;
         try {
-          $esta = $nombre_email;
-          correos_alumno_formación($nombre_email, $email_registro); // ver si funciona con el nuevo xampp
+          loginModelo::correo_registro($nombre_email, $email_registro); // ver si funciona con el nuevo xampp
         } catch (\Throwable $th) {
           throw $th;
         }
@@ -93,7 +92,7 @@ class formulariosControlador{
 
         $_SESSION['toast'] = [
           'tipo'    => 'success',
-          'mensaje' => $esta
+          'mensaje' => 'Gracias por reguistrarte .Ya puedes iniciar sesion.'
         ];
 
         header("Location: " . BASE_PATH . "/acciones?tipo=inicio");
