@@ -103,25 +103,50 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Botones de Atrás y Siguiente en Registro en form
+  // Mensajes de error por campo obligatorio
+  const MENSAJES_ERROR = {
+    regNombre: 'Introduce tu nombre.',
+    regApellido: 'Introduce tu apellido.',
+    regDate: 'Introduce tu fecha de nacimiento.',
+    regEmail: 'Introduce un correo electrónico válido.',
+    regTelefono: 'Introduce tu número de teléfono.',
+    regPais: 'Selecciona un país.'
+  };
+
+  function mostrarErrorCampo(campo) {
+    const contenedor = campo.closest('.input-group') || campo.closest('.form-floating');
+    if (!contenedor) return;
+
+    const errorDiv = contenedor.nextElementSibling;
+    if (errorDiv && errorDiv.id && errorDiv.id.startsWith('error')) {
+      errorDiv.textContent = MENSAJES_ERROR[campo.id] || 'Este campo es obligatorio.';
+      errorDiv.classList.remove('d-none');
+    }
+  }
+
+  // Botones de Atrás y Siguiente en Registro en form
   function validarPaso(stepNumber) {
     const step = form.querySelector(`.ff-step[data-step="${stepNumber}"]`);
-    const campos = step.querySelectorAll('input[required], input:not([type=hidden]), select');
+    const campos = step.querySelectorAll('input[required], select[required]');
     let valido = true;
+    let primerInvalido = null;
 
     campos.forEach(campo => {
-      if (campo.hasAttribute('required') || campo.value.trim() !== '') {
-        // Validación básica: campo vacío si es obligatorio
-      }
       if (!campo.checkValidity()) {
         campo.classList.add('is-invalid');
+        mostrarErrorCampo(campo);
         valido = false;
+        if (!primerInvalido) primerInvalido = campo;
       } else {
         campo.classList.remove('is-invalid');
       }
     });
 
+    if (primerInvalido) primerInvalido.focus();
+
     return valido;
   }
+
 
   // Botones "Siguiente"
   form.querySelectorAll('.ff-next').forEach(btn => {
