@@ -12,6 +12,8 @@
 
 namespace App\modelo;
 
+use App\core\DB;
+
 class stripeModelo {
   private string $secretKey;
   private string $apiBase = 'https://api.stripe.com/v1';
@@ -160,5 +162,13 @@ class stripeModelo {
     ];
 
     return $intervalos[$price['recurring']['interval']] ?? '/' . $price['recurring']['interval'];
+  }
+
+  public static function getServiciosUsuario ($email) {
+    $pdo = DB::getInstance();
+    $stmt = $pdo->prepare("SELECT * FROM suscripciones WHERE Correo = :email");
+    $stmt->bindParam(":email", $email);
+    $stmt->execute();
+    return $stmt->fetch(\PDO::FETCH_ASSOC);
   }
 }

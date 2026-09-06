@@ -3,7 +3,6 @@
 session_start();
 
 require_once __DIR__ . '/app/core/DB.php';
-require_once __DIR__ . '/app/modelo/funciones.php';
 require_once __DIR__ . '/vendor/autoload.php';
 
 // Carga las claves desde variables de entorno si existen, si no, usa el valor de ejemplo (sustitúyelo por el tuyo).

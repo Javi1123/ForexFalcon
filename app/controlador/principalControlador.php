@@ -61,7 +61,9 @@ class principalControlador{
     $colorAvatar = '#' . substr($hash, 0, 6);
 
     $stripe = new stripeModelo(STRIPE_SECRET_KEY);
-    $servicios = $stripe->getServicios();   // <-- ya viene formado y lleno
+    $servicios = $stripe->getServicios();
+    
+    $serviciosUsuario = stripeModelo::getServiciosUsuario($_SESSION['email']);
 
     require_once __DIR__ . '/../../app/vista/recursos_vista.php';
 }

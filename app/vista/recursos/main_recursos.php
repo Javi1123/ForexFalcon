@@ -13,39 +13,41 @@
 
       <div class="servicios-grid">
         <?php foreach ($servicios as $s): ?>
-          <div class="servicio-card">
-            <div class="servicio-card__icon">
-              <i class="<?= $s['icono'] ?>"></i>
-            </div>
-            <h3><?= htmlspecialchars($s['nombre']) ?></h3>
-            <p class="servicio-card__desc"><?= htmlspecialchars($s['descripcion_corta']) ?></p>
-            <div class="servicio-card__precio">
-              <?= htmlspecialchars($s['precio']) ?>
-              <span class="periodo"><?= htmlspecialchars($s['periodo']) ?></span>
-            </div>
-            <div class="servicio-card__acciones">
-              <form action="<?= BASE_PATH . "/pago?mode=" . $s['mode'] ?>" method="post">
-                <input type="hidden" name="product_id" value="<?= $s['product_id'] ?>">
+          <?php if ($servicios): ?>
+            <div class="servicio-card">
+              <div class="servicio-card__icon">
+                <i class="<?= $s['icono'] ?>"></i>
+              </div>
+              <h3><?= htmlspecialchars($s['nombre']) ?></h3>
+              <p class="servicio-card__desc"><?= htmlspecialchars($s['descripcion_corta']) ?></p>
+              <div class="servicio-card__precio">
+                <?= htmlspecialchars($s['precio']) ?>
+                <span class="periodo"><?= htmlspecialchars($s['periodo']) ?></span>
+              </div>
+              <div class="servicio-card__acciones">
+                <form action="<?= BASE_PATH . "/pago?mode=" . $s['mode'] ?>" method="post">
+                  <input type="hidden" name="product_id" value="<?= $s['product_id'] ?>">
 
-                <button type="submit" class="btnRegistrarse">
-                  Proceder con el pago
+                  <button type="submit" class="btnRegistrarse">
+                    Proceder con el pago
+                  </button>
+                </form>
+
+                <button
+                  type="button"
+                  class="btn-info-servicio"
+                  data-titulo="<?= htmlspecialchars($s['nombre']) ?>"
+                  data-descripcion="<?= htmlspecialchars($s['descripcion_larga']) ?>"
+                  data-precio="<?= htmlspecialchars($s['precio'] . ' ' . $s['periodo']) ?>"
+                  data-caracteristicas='<?= htmlspecialchars(json_encode($s['caracteristicas'], JSON_UNESCAPED_UNICODE)) ?>'
+                  aria-label="Información de <?= htmlspecialchars($s['nombre']) ?>"
+                  title="Más información"
+                >
+                  <i class="fa-solid fa-circle-info"></i>
                 </button>
-              </form>
-
-              <button
-                type="button"
-                class="btn-info-servicio"
-                data-titulo="<?= htmlspecialchars($s['nombre']) ?>"
-                data-descripcion="<?= htmlspecialchars($s['descripcion_larga']) ?>"
-                data-precio="<?= htmlspecialchars($s['precio'] . ' ' . $s['periodo']) ?>"
-                data-caracteristicas='<?= htmlspecialchars(json_encode($s['caracteristicas'], JSON_UNESCAPED_UNICODE)) ?>'
-                aria-label="Información de <?= htmlspecialchars($s['nombre']) ?>"
-                title="Más información"
-              >
-                <i class="fa-solid fa-circle-info"></i>
-              </button>
+              </div>
             </div>
-          </div>
+          <?php endif; ?>
         <?php endforeach; ?>
       </div>
 
