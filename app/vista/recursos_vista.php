@@ -14,7 +14,7 @@ echo '<!DOCTYPE html><html lang="es-es" dir="ltr">';
     echo '<div class="app-wrapper">';
         include_once("recursos/menu.php");                                               // Menú superior fijo
         include_once("recursos/main_recursos.php");                                      // Bloque central
-        include_once("recursos/pie.php");                                                // pie de página
+        // include_once("recursos/pie.php");                                                // pie de página
     echo '</div>';
     echo '</body>';
     echo '<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>';

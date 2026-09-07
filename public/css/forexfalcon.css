@@ -884,3 +884,214 @@ footer a:hover { color: var(--verde) !important; }
   padding: 4px 12px; border-radius: 6px; margin-bottom: 0.5rem;
   border: 1px solid rgba(251,142,55,0.3);
 }
+
+/* ═══════════════════════════════════════════════════════
+   SIDEBAR — Estilo ForexFalcon
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Sidebar base ────────────────────────────────────── */
+.app-sidebar {
+  background: var(--azul) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+  width: 250px !important;
+  transition: width 0.3s ease, transform 0.3s ease;
+  overflow: hidden;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;             
+  flex-direction: column;    
+}
+
+/* ── Brand / Logo ────────────────────────────────────── */
+.sidebar-brand {
+  padding: 16px 0 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+.brand-link:hover {
+  transform: scale(1.02);
+}
+
+.brand-link .zoom {
+  filter: drop-shadow(0 0 12px rgba(145, 221, 78, 0.15));
+  transition: filter 0.3s ease;
+}
+.brand-link:hover .zoom {
+  filter: drop-shadow(0 0 20px rgba(145, 221, 78, 0.25));
+}
+
+/* ── Sidebar wrapper ────────────────────────────────── */
+.sidebar-wrapper {
+  padding: 8px 12px;
+  overflow-y: auto;
+  height: calc(100vh - 90px);
+}
+
+.sidebar-wrapper::-webkit-scrollbar {
+  width: 3px;
+}
+.sidebar-wrapper::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+.sidebar-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(145, 221, 78, 0.3);
+  border-radius: 10px;
+}
+
+/* ── Navegación del sidebar ────────────────────────── */
+.sidebar-menu .nav-item {
+  margin-bottom: 2px;
+}
+
+.sidebar-menu .nav-link {
+  border-radius: 10px;
+  padding: 10px 16px;
+  color: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  position: relative;
+}
+
+.sidebar-menu .nav-link i {
+  width: 24px;
+  text-align: center;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.sidebar-menu .nav-link p {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+/* ── Hover ───────────────────────────────────────────── */
+.sidebar-menu .nav-link:hover {
+  background: rgba(145, 221, 78, 0.06);
+  color: var(--verde);
+}
+.sidebar-menu .nav-link:hover i {
+  color: var(--verde) !important;
+}
+
+/* ── Active state ────────────────────────────────────── */
+.sidebar-menu .nav-link.active {
+  background: rgba(145, 221, 78, 0.08);
+  color: var(--verde);
+}
+.sidebar-menu .nav-link.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 24px;
+  background: var(--verde);
+  border-radius: 0 4px 4px 0;
+}
+
+/* ── Badge de estado ────────────────────────────────── */
+.sidebar-menu .badge-status {
+  margin-left: auto;
+  font-size: 9px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--naranja);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+/* ── Indicador de servicio activo/inactivo ─────────── */
+.service-status {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 500;
+}
+.service-status.active {
+  color: var(--verde);
+}
+.service-status.inactive {
+  color: var(--naranja);
+}
+
+/* ── Separadores ─────────────────────────────────────── */
+.sidebar-menu .nav-divider {
+  padding: 8px 0;
+}
+.sidebar-menu .nav-divider hr {
+  border-color: rgba(255, 255, 255, 0.06);
+  margin: 0;
+}
+
+.sidebar-menu .nav-section-title {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.2);
+  padding: 8px 16px 4px;
+}
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 991.98px) {
+  .app-sidebar {
+    position: fixed !important;
+    left: -280px !important;
+    top: 0;
+    bottom: 0;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1050;
+    width: 280px !important;
+  }
+  
+  .app-sidebar.show {
+    left: 0 !important;
+  }
+  
+  .sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1049;
+    display: none;
+  }
+  .sidebar-backdrop.show {
+    display: block;
+  }
+}
+
+/* ── Scrollbar Firefox ───────────────────────────────── */
+.sidebar-wrapper {
+  padding: 8px 12px;
+  overflow-y: auto;
+  flex-grow: 1;              
+  min-height: 0;             
+}
+
+/* ── Footer del Sidebar ─────────────────────────────── */
+.app-footer {
+  padding: 12px 16px;
+  margin-top: auto;             /* Esto lo empuja hacia el fondo si usas flexbox en el contenedor padre */
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: center;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.35);
+  font-weight: 500;
+  flex-shrink: 0;   
+}
