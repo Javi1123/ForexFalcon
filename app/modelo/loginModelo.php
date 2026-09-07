@@ -3,6 +3,7 @@
 namespace App\modelo;
 
 use \App\core\DB;
+use \App\modelo\stripeModelo;
 
 class loginModelo {
 
@@ -36,12 +37,35 @@ class loginModelo {
   }
   
   /////////////////////////////////
+  // SUSCRIPCIONES
+  /////////////////////////////////
+
+  public static function getSuscripcones($email){
+    $pdo = DB::getInstance();
+    $stmt = $pdo->prepare("SELECT * FROM 'suscripciones' WHERE Correo = ':email'");
+    $stmt->execute([
+      ":email" => $email
+    ]);
+
+    return $stmt;
+  }
+
+  public static function setSuscripcones($email,$id_servicio){
+    $pdo = DB::getInstance();
+    $stmt = $pdo->prepare("INSERT INTO suscripciones (Activado, Fecha_inicio, Fecha_fin, Id_servicio, Correo) VALUES (1, NOW(), NULL, :id_servicio, :email)");
+    $stmt->execute([
+      ":email" => $email,
+      ":id_servicio" => $id_servicio
+    ]);
+
+    return $stmt;
+  }
+
+  /////////////////////////////////
   // CORREO DESCUENTO
   /////////////////////////////////
 
   public static function getCorreoDescuento($email){
-    $codigo = self::generarCupon();
-
     $pdo = DB::getInstance();
     $stmt = $pdo->prepare("SELECT * FROM  Correo_descuento WHERE Correo = :email");
     $stmt->execute([
@@ -53,14 +77,31 @@ class loginModelo {
   public static function setCorreoDescuento($email){
     $codigo = self::generarCupon();
 
+    $stripe = new stripeModelo(STRIPE_SECRET_KEY);
+
+    try{
+      $stripe->post('promotion_codes', [
+        'promotion[type]'   => 'coupon',
+        'promotion[coupon]' => 'descuento_primera_compra',
+        'code'   => $codigo,       // el texto que escribirá el cliente
+        'max_redemptions' => 1,       // ⚠️ solo se puede usar 1 vez en total
+      ]);
+    } catch (\Exception $e){
+      // Si Stripe rechaza el código (ej: ya existe ese texto),
+      // no seguimos guardando nada en tu BD.
+      error_log('Error creando promotion code en Stripe: ' . $e->getMessage());
+      throw $e;
+    }
+
     $pdo = DB::getInstance();
-    $stmt = $pdo->prepare("INSERT INTO Correo_descuento (Correo, Cupon_descuento, Porciento_descuento, Fecha_creacion, Activado, Fecha_activacion) VALUES (:email, :codigo, 10, CURDATE(), false, '')");
+    $stmt = $pdo->prepare("INSERT INTO Correo_descuento (Correo, Cupon_descuento, Nombre_descuento, Fecha_creacion) VALUES (:email, :codigo, :nombre_descuento, CURDATE())");
     $stmt->execute([
       ":email" => $email,
-      ":codigo" => $codigo
+      ":codigo" => $codigo,
+      ":nombre_descuento" => 'descuento_primera_compra'
     ]);
 
-    self::correo_descuento($email, $codigo);
+    correoModelo::correo_descuento($email, $codigo);
 
     return $stmt->fetch(\PDO::FETCH_ASSOC);
   }
@@ -76,111 +117,4 @@ class loginModelo {
 
     return $codigo;
   }
-
-  /////////////////////////////////
-  // CORREO MANDAR
-  /////////////////////////////////
-
-  public static function correo_registro($cNombre, $cCorreo){
-    // Uno o Varios destinatarios
-    $para  = $cCorreo;
-
-    // título
-    $título = 'Gracias por registrarse, atentamente Forexfalcon.';
-
-    // mensaje
-    $mensaje = 'Hola '.$cNombre.', le enviamos este correo ...';
-
-    $mensaje .= '
-
-    Gracias, ...
-
-    Atentamente,
-    El equipo de Forexfalcon
-
-    ------------------------
-    Forexfalcon
-    www.forexfalcon.com
-    forexfalcon@gmail.com
-    ';
-    //$mensaje = wordwrap($mensaje, 70, "\r\n");
-
-    $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
-    $cabeceras .= 'Content-type: text/plain; charset=UTF-8' . "\r\n";
-    //$cabeceras .= 'To: ' . $cCorreo . "\r\n";
-    $cabeceras .= 'From: Forexfalcon <noreply@tecnologiayformacion.com>' . "\r\n";
-
-    // Enviarlo
-    return mail($para, $título, $mensaje, $cabeceras);
-  }
-
-  public static function correo_nosotros($c_Asunto, $c_DatosAlumno){
-    // Varios destinatarios
-    // $para  = '---@---.com' . ', '; 
-    $cPara  = 'javierdiazsoriano1@gmail.com';
-
-    // $mensaje = wordwrap($mensaje, 70, "\r\n");
-
-    // Para enviar un correo HTML, debe establecerse la cabecera Content-type
-    $cCabeceras  = 'MIME-Version: 1.0' . "\r\n";
-    $cCabeceras .= "Content-type: text/html; charset=UTF-8" . "\r\n"; 
-    /**/
-    // Cabeceras adicionales
-    $cCabeceras .= 'To: Forexfalcon <javierdiazsoriano1@gmail.com>' . "\r\n";
-    $cCabeceras .= 'From: Forexfalcon <javierdiazsoriano1@gmail.com>' . "\r\n";
-    /*
-    $cCabeceras .= 'Cc: ---@---.com' . "\r\n";
-    $cCabeceras .= 'Bcc: ---@---.com' . "\r\n";
-    */
-
-    // Enviarlo
-    return mail($cPara, $c_Asunto, $c_DatosAlumno, $cCabeceras);
-  }
-
-  public static function correo_descuento($cCorreo, $codigo){
-    // Uno o Varios destinatarios
-    $para  = $cCorreo;
-
-    // título
-    $título = '¡Tu código de descuento exclusivo en ForexFalcon te espera!';
-
-    // mensaje
-    $mensaje = <<<EOT
-Hola,
-
-En ForexFalcon sabemos que dar el primer paso hacia la libertad financiera es una gran decisión. Por eso, queremos acompañarte con un beneficio especial.
-
-✅ CÓDIGO DE DESCUENTO: {$codigo}
-✅ DESCUENTO APLICADO: 10% en tu primera suscripción.
-
-¿Cómo canjearlo?
-1. Accede a nuestra plataforma o sección de planes.
-2. Elige el servicio que mejor se adapte a tu objetivo.
-3. Introduce el código al momento del pago y disfruta de tu descuento.
-
-Recuerda que en ForexFalcon no solo obtienes herramientas tecnológicas (bots, copy trading y análisis semanal), sino el respaldo humano de un mentor 1:1 y una comunidad colaborativa que te guiará paso a paso.
-
-No dejes pasar esta oportunidad. Tu constancia y nuestro acompañamiento son la fórmula para resultados sostenibles.
-
-¡Nos vemos dentro!
-
-Gracias,
-El equipo de ForexFalcon
-
---------------------
-ForexFalcon
-www.forexfalcon.com
-forexfalcon@gmail.com
-EOT;
-    //$mensaje = wordwrap($mensaje, 70, "\r\n");
-
-    $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
-    $cabeceras .= 'Content-type: text/plain; charset=UTF-8' . "\r\n";
-    //$cabeceras .= 'To: ' . $cCorreo . "\r\n";
-    $cabeceras .= 'From: ForexFalcon <noreply@tecnologiayformacion.com>' . "\r\n";
-
-    // Enviarlo
-    return mail($para, $título, $mensaje, $cabeceras);
-}
-
 }

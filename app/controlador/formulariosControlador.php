@@ -3,6 +3,7 @@
 namespace App\controlador;
 
 use \App\modelo\loginModelo;
+use \App\modelo\correoModelo;
 
 class formulariosControlador{
   
@@ -74,7 +75,7 @@ class formulariosControlador{
         
         $nombre_email = $nombre_registro . " " . $apellido_registro;
         try {
-          loginModelo::correo_registro($nombre_email, $email_registro); // ver si funciona con el nuevo xampp
+          correoModelo::correo_registro($nombre_email, $email_registro); // ver si funciona con el nuevo xampp
         } catch (\Throwable $th) {
           throw $th;
         }

@@ -48,7 +48,6 @@ class principalControlador{
   }
     
   public function recursos(){
-
     if(!isset($_SESSION['email'])){
       header("Location: " . BASE_PATH . '/acciones?tipo=inicio');
       exit();
@@ -66,6 +65,6 @@ class principalControlador{
     $serviciosUsuario = stripeModelo::getServiciosUsuario($_SESSION['email']);
 
     require_once __DIR__ . '/../../app/vista/recursos_vista.php';
-}
+  }
 
 }

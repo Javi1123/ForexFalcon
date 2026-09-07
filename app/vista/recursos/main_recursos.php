@@ -25,7 +25,7 @@
                 <span class="periodo"><?= htmlspecialchars($s['periodo']) ?></span>
               </div>
               <div class="servicio-card__acciones">
-                <form action="<?= BASE_PATH . "/pago?mode=" . $s['mode'] ?>" method="post">
+                <form action="<?= BASE_PATH . "/pago?mode=" . $s['mode'] . "&id_servicio=" . $s['id_servicio'] ?>" method="post">
                   <input type="hidden" name="product_id" value="<?= $s['product_id'] ?>">
 
                   <button type="submit" class="btnRegistrarse">

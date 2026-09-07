@@ -13,3 +13,4 @@ RewriteRule crear_cuenta index.php
 RewriteRule logout index.php
 RewriteRule recursos index.php
 RewriteRule pago index.php
+RewriteRule guardar index.php

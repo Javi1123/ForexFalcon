@@ -107,6 +107,7 @@ class stripeModelo {
 
       $servicios[] = [
         'mode'              => $producto['metadata']['mode'] ?? $producto['id'],
+        'id_servicio'       => $producto['metadata']['id_servicio'],
         'icono'             => $producto['metadata']['icono'] ?? 'fa-solid fa-star',
         'nombre'            => $producto['name'],
         'precio'            => $this->formatearPrecio($price),

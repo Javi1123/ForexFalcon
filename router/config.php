@@ -37,6 +37,11 @@ switch ($uri){
     $controlador = new stripeControlador();
     $controlador-> pago();
     break;
+    
+  case '/guardar':
+    $controlador = new stripeControlador();
+    $controlador-> guardarDatosPago();
+    break;
 
   // Acciones para formulario de inicio_de_sesion/registrarse
   case '/acciones':
