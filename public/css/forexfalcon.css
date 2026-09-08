@@ -800,7 +800,7 @@ nav { background-color: var(--azul) !important; }
    FOOTER
 ══════════════════════════════════════════════════════════ */
 footer {
-  background: #050b1e !important;
+  background: transparent;
 }
 footer a { text-decoration: none; }
 footer a:hover { color: var(--verde) !important; }
@@ -934,7 +934,8 @@ footer a:hover { color: var(--verde) !important; }
 .sidebar-wrapper {
   padding: 8px 12px;
   overflow-y: auto;
-  height: calc(100vh - 90px);
+  flex-grow: 1;
+  min-height: 0;
 }
 
 .sidebar-wrapper::-webkit-scrollbar {
@@ -1076,22 +1077,16 @@ footer a:hover { color: var(--verde) !important; }
   }
 }
 
-/* ── Scrollbar Firefox ───────────────────────────────── */
-.sidebar-wrapper {
-  padding: 8px 12px;
-  overflow-y: auto;
-  flex-grow: 1;              
-  min-height: 0;             
-}
 
 /* ── Footer del Sidebar ─────────────────────────────── */
 .app-footer {
   padding: 12px 16px;
-  margin-top: auto;             /* Esto lo empuja hacia el fondo si usas flexbox en el contenedor padre */
+  margin-top: auto;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   text-align: center;
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.35);
   font-weight: 500;
-  flex-shrink: 0;   
-}
+  flex-shrink: 0;
+  background: transparent !important; /* 👈 anula el fondo del footer genérico */
+} 
