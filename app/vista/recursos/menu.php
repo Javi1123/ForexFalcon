@@ -25,15 +25,15 @@
 
       <!-- Menú desplegable del perfil -->
       <li class="nav-item dropdown user-menu">
-        <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown" style="padding: 6px 14px 6px 8px; border-radius: 50px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); transition: all 0.3s ease; gap: 10px; align-items: center; display: flex; text-decoration: none; line-height: 1;">
+        <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown" style="padding: 6px 14px 6px 14px; border-radius: 50px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); transition: all 0.3s ease; gap: 10px; align-items: center; display: flex; text-decoration: none; line-height: 1;">
 
-          <!-- Avatar (con margen a la izquierda para que no toque el borde) -->
-          <span class="user-image rounded-circle shadow avatar-inicial" style="background-color: <?= $colorAvatar ?>; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-weight: bold; font-size: 14px; border: none; margin-left: 4px; flex-shrink: 0;">
+          <!-- Avatar -->
+          <span class="user-image rounded-circle shadow avatar-inicial" style="background-color: <?= $colorAvatar ?>; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-weight: bold; font-size: 14px; border: none; flex-shrink: 0;">
             <?= $inicial ?>
           </span>
 
           <!-- Nombre -->
-          <span class="d-none d-md-inline" style="color: #fff; font-weight: 500; font-size: 0.9rem; line-height: 1; display: inline-flex; align-items: center; margin-left: 2px;">
+          <span class="d-none d-md-inline" style="color: #fff; font-weight: 500; font-size: 0.9rem; line-height: 1; display: inline-flex; align-items: center;">
             <?= $_SESSION['nombre'] . " " . $_SESSION['apellido']?>
           </span>
 
@@ -220,13 +220,12 @@
         <!-- Separador -->
         <li class="nav-item" style="padding: 8px 0;">
           <hr style="border-color: rgba(255,255,255,0.06); margin: 0;">
-        </li>
+        </li> 
 
       </ul>
     </nav>
-
-    <footer class="app-footer">
-      <strong>© 2026 ForexFalcon</strong>
-    </footer>
   </div>
+  <footer class="app-footer">
+    <strong>© 2026 ForexFalcon</strong>
+  </footer>
 </aside>
