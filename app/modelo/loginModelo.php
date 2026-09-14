@@ -84,11 +84,9 @@ class loginModelo {
         'promotion[type]'   => 'coupon',
         'promotion[coupon]' => 'descuento_primera_compra',
         'code'   => $codigo,       // el texto que escribirá el cliente
-        'max_redemptions' => 1,       // ⚠️ solo se puede usar 1 vez en total
+        'max_redemptions' => 1,       // solo se puede usar 1 vez en total
       ]);
     } catch (\Exception $e){
-      // Si Stripe rechaza el código (ej: ya existe ese texto),
-      // no seguimos guardando nada en tu BD.
       error_log('Error creando promotion code en Stripe: ' . $e->getMessage());
       throw $e;
     }

@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-rc3/dist/css/adminlte.min.css"/>
 
   <!-- Forexfalcon -->
-  <link rel="stylesheet" href="<?= LINKS_PATH . "/css/forexfalcon.css" ?>">
+  <link rel="stylesheet" href="<?= LINKS_PATH . "/css/rec.css" ?>">
 
   <!-- CSS y JS propios de la tienda (no modifican forexfalcon.css) -->
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/tienda-servicios.css" ?>">

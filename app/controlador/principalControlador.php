@@ -33,8 +33,6 @@ class principalControlador{
           'mensaje' => 'Codigo obtenido correctamente, mira tu correo. ¡Ya puedes usarlo!'
         ];
 
-        // PONER FUNCION CORREO Y MANDAR CODIGO (coger codigo del $correo_encontrado)
-
         header("Location: " . BASE_PATH . "/");
         exit;
       }
