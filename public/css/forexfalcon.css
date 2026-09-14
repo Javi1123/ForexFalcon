@@ -1090,3 +1090,75 @@ footer a:hover { color: var(--verde) !important; }
   flex-shrink: 0;
   background: transparent !important; /* 👈 anula el fondo del footer genérico */
 } 
+
+/* ══════════════════════════════════════════════════════════
+   ACCIONES DE NAVBAR (login / registro / menú de usuario)
+   Altura común para que todo quede alineado entre sí
+══════════════════════════════════════════════════════════ */
+:root {
+  --nav-action-h: 40px;
+}
+
+/* Se aplica a los tres controles de la derecha del navbar */
+.btnInicioSesion,
+.btnRegistrarse,
+.user-menu-toggle {
+  height: var(--nav-action-h);
+  box-sizing: border-box;
+  line-height: 1;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* ── Menú de usuario (avatar + nombre + chevron) ─────────── */
+.user-menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px 0 6px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+.user-menu-toggle:hover,
+.user-menu-toggle[aria-expanded="true"] {
+  background: rgba(145, 221, 78, 0.08);
+  border-color: rgba(145, 221, 78, 0.3);
+}
+
+.user-menu-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.user-menu-name {
+  color: var(--blanco);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 500;
+  font-size: 0.88rem;
+  line-height: var(--nav-action-h); /* iguala la caja de texto a la altura del control → centrado vertical perfecto */
+  white-space: nowrap;
+}
+
+.user-menu-toggle .fa-chevron-down {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.4);
+  flex-shrink: 0;
+  transform: translateY(0.5px); /* corrige el offset óptico del glifo de FontAwesome */
+}
+.user-menu-toggle:hover .fa-chevron-down {
+  color: var(--verde);
+}
