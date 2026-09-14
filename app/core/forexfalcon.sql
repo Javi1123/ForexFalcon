@@ -145,3 +145,10 @@ CREATE TABLE Videos (
     ON UPDATE CASCADE,
   INDEX idx_servicio (Id_servicios)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+-- INSERT SERVICIOS - Fatal descripcion del servicio
+INSERT INTO servicios (Id_servicio, Nombre_servicio, Descripcion_servicio, Fecha_creacion, Metodo_pago, Activado) VALUES ("AP", "Análisis premium", "", NOW(), "Mensual", "Si");
+INSERT INTO servicios (Id_servicio, Nombre_servicio, Descripcion_servicio, Fecha_creacion, Metodo_pago, Activado) VALUES ("BT", "Bots de trading", "", NOW(), "Unico", "Si");
+INSERT INTO servicios (Id_servicio, Nombre_servicio, Descripcion_servicio, Fecha_creacion, Metodo_pago, Activado) VALUES ("M", "Mentorias", "", NOW(), "Unico", "Si");
+INSERT INTO servicios (Id_servicio, Nombre_servicio, Descripcion_servicio, Fecha_creacion, Metodo_pago, Activado) VALUES ("C", "Copytrading", "", NOW(), "Mensual", "Si");
