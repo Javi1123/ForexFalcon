@@ -147,6 +147,11 @@ CREATE TABLE Videos (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
+
+
+-- INSERT USUARIOS ADMINs - 
+INSERT INTO Usuarios (Correo, Nombre, Apellido, Telefono, Pais, Rol, Fecha_nacimiento, contraseña) VALUES ('admin@admin.com', 'Admin', '', '+34600000000', 'España', 'Administrador', '1995-04-12', SHA2('Contraseña123$', 256));
+
 -- INSERT SERVICIOS - Fatal descripcion del servicio
 INSERT INTO servicios (Id_servicio, Nombre_servicio, Descripcion_servicio, Fecha_creacion, Metodo_pago, Activado) VALUES ("AP", "Análisis premium", "", NOW(), "Mensual", "Si");
 INSERT INTO servicios (Id_servicio, Nombre_servicio, Descripcion_servicio, Fecha_creacion, Metodo_pago, Activado) VALUES ("BT", "Bots de trading", "", NOW(), "Unico", "Si");
