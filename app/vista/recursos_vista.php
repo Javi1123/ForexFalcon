@@ -17,7 +17,5 @@ echo '<!DOCTYPE html><html lang="es-es" dir="ltr">';
         // include_once("recursos/pie.php");                                                // pie de página
     echo '</div>';
     echo '</body>';
-    echo '<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>';
-    echo '<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js"></script>';
 echo '</html>';
 ?>

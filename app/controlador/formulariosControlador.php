@@ -75,7 +75,7 @@ class formulariosControlador{
         
         $nombre_email = $nombre_registro . " " . $apellido_registro;
         try {
-          correoModelo::correo_registro($nombre_email, $email_registro); // ver si funciona con el nuevo xampp
+          correoModelo::correo_registro($nombre_email, $email_registro);
         } catch (\Throwable $th) {
           throw $th;
         }

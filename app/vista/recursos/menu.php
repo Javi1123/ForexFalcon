@@ -60,7 +60,8 @@
 
           <!-- Botón CONFIGURACIÓN -->
           <li>
-            <a href="#" class="dropdown-item" style="display: flex !important; align-items: center !important; gap: 12px !important; padding: 10px 14px !important; border-radius: 8px !important; color: rgba(255,255,255,0.7) !important; transition: all 0.2s ease !important; text-decoration: none !important;">
+            <a href="#" id="btnAbrirConfiguracion"
+              style="display: flex !important; align-items: center !important; gap: 12px !important; padding: 10px 14px !important; border-radius: 8px !important; color: rgba(255,255,255,0.7) !important; transition: all 0.2s ease !important; text-decoration: none !important;">
               <i class="fa-solid fa-gear" style="width: 20px; text-align: center; font-size: 0.95rem; color: rgba(255,255,255,0.4); transition: color 0.2s ease;"></i>
               <span style="font-size: 0.88rem; font-weight: 500;">Configuración</span>
               <span style="margin-left: auto; font-size: 10px; color: rgba(255,255,255,0.2);">
@@ -81,74 +82,6 @@
     </ul>
   </div>
 </nav>
-
-<!-- Estilos del perfil -->
-<style>
-  /* ── Avatar ──────────────────────────────────────────── */
-  .avatar-inicial {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    color: #fff;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 1;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    transition: border-color 0.3s ease;
-  }
-  
-  .user-menu .dropdown-toggle:hover .avatar-inicial {
-    border-color: var(--verde);
-  }
-
-  .avatar-inicial-lg {
-    width: 80px;
-    height: 80px;
-    font-size: 32px;
-    border-width: 3px;
-    border-color: rgba(255, 255, 255, 0.15);
-  }
-
-  /* ── Dropdown hover effects ────────────────────────── */
-  .dropdown-item:hover {
-    background: rgba(145, 221, 78, 0.08) !important;
-    color: var(--verde) !important;
-  }
-  .dropdown-item:hover i {
-    color: var(--verde) !important;
-    opacity: 1 !important;
-  }
-
-  /* ── Cerrar sesión hover ────────────────────────────── */
-  .dropdown-item[href*="logout"]:hover {
-    background: rgba(255, 107, 107, 0.08) !important;
-    color: #ff6b6b !important;
-  }
-  .dropdown-item[href*="logout"]:hover i {
-    color: #ff6b6b !important;
-    opacity: 1 !important;
-  }
-
-  /* ── Perfil hover ───────────────────────────────────── */
-  .user-menu .dropdown-toggle:hover {
-    background: rgba(255, 255, 255, 0.08) !important;
-    border-color: rgba(145, 221, 78, 0.2) !important;
-  }
-
-  /* ── Scrollbar del dropdown ────────────────────────── */
-  .dropdown-menu::-webkit-scrollbar {
-    width: 3px;
-  }
-  .dropdown-menu::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.02);
-  }
-  .dropdown-menu::-webkit-scrollbar-thumb {
-    background: rgba(145, 221, 78, 0.3);
-    border-radius: 10px;
-  }
-</style>
 
 <!-- Sidebar con estilo ForexFalcon -->
 <aside class="app-sidebar shadow" data-bs-theme="dark" style="background: var(--azul) !important; border-right: 1px solid rgba(255,255,255,0.05);">

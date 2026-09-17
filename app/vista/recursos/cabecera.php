@@ -9,16 +9,25 @@
   <title><?php echo $TITULO; ?></title>
   <link rel="shortcut icon" href="<?= LINKS_PATH . "/imagenes/favicon.ico" ?>">
 
+  <!-- Bootstrap CSS -->
+  <link href="<?= LINKS_PATH . "/css/bootstrap.min.css" ?>" rel="stylesheet">
+  <script src="<?= LINKS_PATH . "/js/bootstrap.bundle.min.js" ?>"></script>
+
   <!-- Font Awesome Icon -->
   <script src="<?= LINKS_PATH . "/js/all.min.js" ?>"></script>
-  
-  <script src="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-rc3/dist/js/adminlte.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-rc3/dist/css/adminlte.min.css"/>
 
-  <!-- Forexfalcon -->
-  <link rel="stylesheet" href="<?= LINKS_PATH . "/css/forexfalcon.css" ?>">
+  <!-- SweetAlert2 -->
+  <script src="<?= LINKS_PATH . "/js/sweetalert2.all.min.js" ?>"></script>
 
-  <!-- CSS y JS propios de la tienda (no modifican forexfalcon.css) -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0/dist/css/adminlte.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0/dist/js/adminlte.min.js"></script>
+
+
+  <!-- CSS y JS propios de la tienda -->
+   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/rec.css" ?>">
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/tienda-servicios.css" ?>">
+  <link rel="stylesheet" href="<?= LINKS_PATH . "/css/configuracion.css" ?>">
   <script src="<?= LINKS_PATH . "/js/code_js_jquerys/tienda-servicios.js" ?>" defer></script>
+  <script src="<?= LINKS_PATH . "/js/code_js_jquerys/configuracion.js" ?>" defer></script>
 </head>

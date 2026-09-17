@@ -1,0 +1,564 @@
+/* ═══════════════════════════════════════════════════════
+   RECURSOS-FOREXFALCON — Base para el área de tienda/recursos
+   (sidebar AdminLTE, botones reutilizados por tienda-servicios.css)
+   ═══════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800;900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+/* ── Reset ─────────────────────────────────────────────── */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* ── Variables (mismas que main, duplicadas a propósito) ── */
+:root {
+    --azul: #070D25;
+    --azul-translucido: rgba(7, 13, 37, 0.82);
+    --azul2: #0b143a;
+    --azul3: #0f1a4a;
+    --verde: #91DD4E;
+    --verde-hover: #a0e069;
+    --verde-dim: rgba(145, 221, 78, 0.12);
+    --naranja: #FB8E37;
+    --naranja-hover: #d9601a;
+    --naranja-dim: rgba(251, 142, 55, 0.10);
+    --blanco: #EEEEEE;
+    --blanco-dim: rgba(238, 238, 238, 0.65);
+    --blanco-muted: rgba(238, 238, 238, 0.35);
+    --negro: #0a0d1a;
+    --sombra: 0 4px 24px rgba(0, 0, 0, 0.10);
+    --sombra-hover: 0 8px 32px rgba(0, 0, 0, 0.18);
+    --radio: 12px;
+    --radio-lg: 18px;
+}
+
+body {
+    font-family: 'Barlow', sans-serif;
+    background: #fff;
+    color: #1a1f36;
+    /* sin padding-top: aquí no hay .ticker-bar que compensar */
+}
+
+/* ── Utilidades ────────────────────────────────────────── */
+.green {
+    color: var(--verde) !important;
+}
+
+.orange {
+    color: var(--naranja) !important;
+}
+
+.negrita {
+    font-weight: 700;
+}
+
+.bg-azul {
+    background-color: var(--azul) !important;
+}
+
+.white {
+    color: var(--blanco);
+}
+
+.mono {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── Botones (necesarios porque tienda-servicios.css reutiliza .btnRegistrarse) ── */
+.btnInicioSesion {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: transparent;
+    color: var(--verde);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border: 1.5px solid rgba(145, 221, 78, 0.45);
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.btnInicioSesion:hover {
+    background: rgba(145, 221, 78, 0.1);
+    border-color: var(--verde);
+    color: var(--verde);
+}
+
+.btnRegistrarse {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: var(--naranja);
+    color: #fff;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.btnRegistrarse:hover {
+    background: var(--naranja-hover);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.btnRegistrarse:active {
+    opacity: 0.85;
+    transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════
+   HEADER 
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Avatar ──────────────────────────────────────────── */
+.avatar-inicial {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: border-color 0.3s ease;
+}
+
+.user-menu .dropdown-toggle:hover .avatar-inicial {
+    border-color: var(--verde);
+}
+
+.avatar-inicial-lg {
+    width: 80px;
+    height: 80px;
+    font-size: 32px;
+    border-width: 3px;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ── Dropdown hover effects ────────────────────────── */
+.dropdown-item:hover {
+    background: rgba(145, 221, 78, 0.08) !important;
+    color: var(--verde) !important;
+}
+
+.dropdown-item:hover i {
+    color: var(--verde) !important;
+    opacity: 1 !important;
+}
+
+/* ── Cerrar sesión hover ────────────────────────────── */
+.dropdown-item[href*="logout"]:hover {
+    background: rgba(255, 107, 107, 0.08) !important;
+    color: #ff6b6b !important;
+}
+
+.dropdown-item[href*="logout"]:hover i {
+    color: #ff6b6b !important;
+    opacity: 1 !important;
+}
+
+/* ── Perfil hover ───────────────────────────────────── */
+.user-menu .dropdown-toggle:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(145, 221, 78, 0.2) !important;
+}
+
+/* ── Scrollbar del dropdown ────────────────────────── */
+.dropdown-menu::-webkit-scrollbar {
+    width: 3px;
+}
+
+.dropdown-menu::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb {
+    background: rgba(145, 221, 78, 0.3);
+    border-radius: 10px;
+}
+
+
+/* ── Toggle del menú de usuario (avatar + nombre) ────────── */
+.user-menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 14px 4px 6px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.user-menu-toggle:hover,
+.user-menu-toggle[aria-expanded="true"] {
+    background: rgba(145, 221, 78, 0.08);
+    border-color: rgba(145, 221, 78, 0.3);
+}
+
+.user-menu-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 1;
+}
+
+.user-menu-name {
+    color: var(--blanco);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 500;
+    font-size: 0.88rem;
+    white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════
+   SIDEBAR — Estilo ForexFalcon (AdminLTE)
+   ═══════════════════════════════════════════════════════ */
+
+.app-sidebar {
+    background: var(--azul) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+    width: 250px !important;
+    transition: width 0.3s ease, transform 0.3s ease;
+    overflow: hidden;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-brand {
+    padding: 16px 0 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.brand-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.brand-link:hover {
+    transform: scale(1.02);
+}
+
+.brand-link .zoom {
+    filter: drop-shadow(0 0 12px rgba(145, 221, 78, 0.15));
+    transition: filter 0.3s ease;
+}
+
+.brand-link:hover .zoom {
+    filter: drop-shadow(0 0 20px rgba(145, 221, 78, 0.25));
+}
+
+.sidebar-wrapper {
+    padding: 8px 12px;
+    overflow-y: auto;
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.sidebar-wrapper::-webkit-scrollbar {
+    width: 3px;
+}
+
+.sidebar-wrapper::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.sidebar-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(145, 221, 78, 0.3);
+    border-radius: 10px;
+}
+
+.sidebar-menu .nav-item {
+    margin-bottom: 2px;
+}
+
+.sidebar-menu .nav-link {
+    border-radius: 10px;
+    padding: 10px 16px;
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    position: relative;
+}
+
+.sidebar-menu .nav-link i {
+    width: 24px;
+    text-align: center;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.sidebar-menu .nav-link p {
+    margin: 0;
+    font-weight: 400;
+    font-size: 0.9rem;
+}
+
+.sidebar-menu .nav-link:hover {
+    background: rgba(145, 221, 78, 0.06);
+    color: var(--verde);
+}
+
+.sidebar-menu .nav-link:hover i {
+    color: var(--verde) !important;
+}
+
+.sidebar-menu .nav-link.active {
+    background: rgba(145, 221, 78, 0.08);
+    color: var(--verde);
+}
+
+.sidebar-menu .nav-link.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 24px;
+    background: var(--verde);
+    border-radius: 0 4px 4px 0;
+}
+
+.sidebar-menu .badge-status {
+    margin-left: auto;
+    font-size: 9px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: var(--naranja);
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.service-status {
+    margin-left: auto;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.service-status.active {
+    color: var(--verde);
+}
+
+.service-status.inactive {
+    color: var(--naranja);
+}
+
+.sidebar-menu .nav-divider {
+    padding: 8px 0;
+}
+
+.sidebar-menu .nav-divider hr {
+    border-color: rgba(255, 255, 255, 0.06);
+    margin: 0;
+}
+
+.sidebar-menu .nav-section-title {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.2);
+    padding: 8px 16px 4px;
+}
+
+@media (max-width: 991.98px) {
+    .app-sidebar {
+        position: fixed !important;
+        left: -280px !important;
+        top: 0;
+        bottom: 0;
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1050;
+        width: 280px !important;
+    }
+
+    .app-sidebar.show {
+        left: 0 !important;
+    }
+
+    .sidebar-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1049;
+        display: none;
+    }
+
+    .sidebar-backdrop.show {
+        display: block;
+    }
+}
+
+.app-footer {
+    padding: 12px 16px;
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.35);
+    font-weight: 500;
+    flex-shrink: 0;
+    background: transparent !important;
+}
+
+
+
+/* ══════════════════════════════════════════════════════════
+   ANIMACIONES DE SCROLL / TOOLTIPS / MISC
+══════════════════════════════════════════════════════════ */
+.reveal {
+    opacity: 0;
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.reveal-up {
+    transform: translateY(60px);
+}
+
+.reveal-down {
+    transform: translateY(-60px);
+}
+
+.reveal-left {
+    transform: translateX(-60px);
+}
+
+.reveal-scale {
+    transform: scale(0.88);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translate(0) scale(1);
+}
+
+.delay-1 {
+    transition-delay: 0.08s;
+}
+
+.delay-2 {
+    transition-delay: 0.18s;
+}
+
+.delay-3 {
+    transition-delay: 0.28s;
+}
+
+.delay-4 {
+    transition-delay: 0.38s;
+}
+
+.delay-5 {
+    transition-delay: 0.48s;
+}
+
+.delay-6 {
+    transition-delay: 0.58s;
+}
+
+.delay-1-cards {
+    transition-delay: 0.08s;
+}
+
+.delay-2-cards {
+    transition-delay: 0.18s;
+}
+
+.delay-3-cards {
+    transition-delay: 0.28s;
+}
+
+.delay-4-cards {
+    transition-delay: 0.38s;
+}
+
+.delay-5-cards {
+    transition-delay: 0.48s;
+}
+
+.delay-6-cards {
+    transition-delay: 0.58s;
+}
+
+@media (max-width: 575.98px) {
+
+    .delay-1-cards,
+    .delay-2-cards,
+    .delay-3-cards,
+    .delay-4-cards,
+    .delay-5-cards,
+    .delay-6-cards {
+        transition-delay: 0.05s;
+    }
+}
+
+.tooltip {
+    --bs-tooltip-bg: rgba(7, 13, 37, 0.92);
+    --bs-tooltip-color: var(--bs-white);
+}
+
+.sombra {
+    box-shadow: var(--sombra);
+}
+
+.badge-gratis {
+    display: inline-block;
+    background: rgba(145, 221, 78, 0.15);
+    color: var(--verde);
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    border: 1px solid rgba(145, 221, 78, 0.3);
+}
+
+.badge-precio {
+    display: inline-block;
+    background: var(--naranja-dim);
+    color: var(--naranja);
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    border: 1px solid rgba(251, 142, 55, 0.3);
+}
