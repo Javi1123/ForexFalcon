@@ -60,7 +60,8 @@
 
           <!-- Botón CONFIGURACIÓN -->
           <li>
-            <a href="#" class="dropdown-item" style="display: flex !important; align-items: center !important; gap: 12px !important; padding: 10px 14px !important; border-radius: 8px !important; color: rgba(255,255,255,0.7) !important; transition: all 0.2s ease !important; text-decoration: none !important;">
+            <a href="#" id="btnAbrirConfiguracion"
+              style="display: flex !important; align-items: center !important; gap: 12px !important; padding: 10px 14px !important; border-radius: 8px !important; color: rgba(255,255,255,0.7) !important; transition: all 0.2s ease !important; text-decoration: none !important;">
               <i class="fa-solid fa-gear" style="width: 20px; text-align: center; font-size: 0.95rem; color: rgba(255,255,255,0.4); transition: color 0.2s ease;"></i>
               <span style="font-size: 0.88rem; font-weight: 500;">Configuración</span>
               <span style="margin-left: auto; font-size: 10px; color: rgba(255,255,255,0.2);">
