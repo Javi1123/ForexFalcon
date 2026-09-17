@@ -4,6 +4,7 @@ namespace App\controlador;
 
 use \App\modelo\loginModelo;
 use \App\modelo\correoModelo;
+use \App\modelo\actividadModelo;
 
 class formulariosControlador{
   
@@ -35,6 +36,9 @@ class formulariosControlador{
         $_SESSION['email'] = $usuario_base['Correo'];
         $_SESSION['nombre'] = $usuario_base['Nombre'];
         $_SESSION['apellido'] = $usuario_base['Apellido'];
+
+        actividadModelo::insertUltimaVezInicioSesion($_SESSION['email']);
+        actividadModelo::updateUltimaVezInicioSesion($_SESSION['email']);
 
         header("Location: " . BASE_PATH . '/recursos');
         exit();
@@ -105,6 +109,10 @@ class formulariosControlador{
   }
 
   public function logout(){
+    $email = $_SESSION['email'];
+    actividadModelo::insertUltimaVezCerroSesion($email);
+    actividadModelo::updateUltimaVezCerroSesion($email);
+
     session_unset();
     session_destroy();
     header("Location: " . BASE_PATH . '/');
