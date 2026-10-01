@@ -21,11 +21,11 @@
 
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0/dist/css/adminlte.min.css"/>
-<script src="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0/dist/js/adminlte.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0/dist/js/adminlte.min.js"></script>
 
 
   <!-- CSS y JS propios de la tienda -->
-   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/rec.css" ?>">
+  <link rel="stylesheet" href="<?= LINKS_PATH . "/css/rec.css" ?>">
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/tienda-servicios.css" ?>">
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/configuracion.css" ?>">
   <script src="<?= LINKS_PATH . "/js/code_js_jquerys/tienda-servicios.js" ?>" defer></script>
