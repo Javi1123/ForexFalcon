@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/rec.css" ?>">
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/tienda-servicios.css" ?>">
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/configuracion.css" ?>">
+  <link rel="stylesheet" href="<?= LINKS_PATH . "/css/chat.css" ?>">
   <script src="<?= LINKS_PATH . "/js/code_js_jquerys/tienda-servicios.js" ?>" defer></script>
   <script src="<?= LINKS_PATH . "/js/code_js_jquerys/configuracion.js" ?>" defer></script>
 </head>

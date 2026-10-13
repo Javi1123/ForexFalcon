@@ -14,6 +14,9 @@ RewriteRule logout index.php
 RewriteRule recursos index.php
 RewriteRule pago index.php
 RewriteRule guardar index.php
+
+# Chat de mensajería (anclada con ^ para no capturar public/.../chat.js ni chat.css)
+RewriteRule ^chat/ index.php [L]
  
 ###### Páginas de error personalizadas
 ErrorDocument 400 /forexfalcon/error.php

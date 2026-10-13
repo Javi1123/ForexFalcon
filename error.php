@@ -175,12 +175,6 @@ $TITULO      = "Error $codigo | ForexFalcon";
 <!-- ═════════ HERO DE ERROR ═════════ -->
 <section class="hero hero--error">
 
-  <div class="hero__video-wrap">
-    <video autoplay muted loop playsinline preload="auto" aria-hidden="true">
-      <source src="/forexfalcon/videos/3.webm" type="video/webm" />
-      <source src="/forexfalcon/videos/3.mp4"  type="video/mp4"  />
-    </video>
-  </div>
   <div class="hero__overlay" aria-hidden="true"></div>
   <div class="hero__grid"    aria-hidden="true"></div>
   <div class="hero__orb"     aria-hidden="true"></div>
@@ -203,7 +197,7 @@ $TITULO      = "Error $codigo | ForexFalcon";
         <span class="accent">¡Operación fallida!</span>
       </h1>
 
-      <p class="hero__body fade-up">
+      <p class="hero__body fade-up d-inline-block">
         <?= htmlspecialchars($textoError) ?>
       </p>
 

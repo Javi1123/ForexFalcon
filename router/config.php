@@ -3,6 +3,7 @@
 use App\controlador\formulariosControlador;
 use App\controlador\principalControlador;
 use App\controlador\stripeControlador;
+use App\controlador\chatControlador;
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
@@ -41,6 +42,47 @@ switch ($uri){
   case '/guardar':
     $controlador = new stripeControlador();
     $controlador-> guardarDatosPago();
+    break;
+
+  // Chat de mensajería rápida (burbuja de /recursos)
+  case '/chat/estado':
+    $controlador = new chatControlador();
+    $controlador-> estado();
+    break;
+
+  case '/chat/crear':
+    $controlador = new chatControlador();
+    $controlador-> crear();
+    break;
+
+  case '/chat/pendientes':
+    $controlador = new chatControlador();
+    $controlador-> pendientes();
+    break;
+
+  case '/chat/asignar':
+    $controlador = new chatControlador();
+    $controlador-> asignar();
+    break;
+
+  case '/chat/mensaje':
+    $controlador = new chatControlador();
+    $controlador-> mensaje();
+    break;
+
+  case '/chat/historial':
+    $controlador = new chatControlador();
+    $controlador-> historial();
+    break;
+
+  case '/chat/cerrar':
+    $controlador = new chatControlador();
+    $controlador-> cerrar();
+    break;
+
+  case '/chat/pusher_auth':
+    $controlador = new chatControlador();
+    $controlador-> pusher_auth();
     break;
 
   // Acciones para formulario de inicio_de_sesion/registrarse

@@ -206,19 +206,19 @@ CREATE TABLE Videos (
 --   - Índice en Estado para que el lobby de admins filtre rápido los chats
 --     en espera.
 -- ------------------------------------------------------------
--- CREATE TABLE Chats (
---   Id_chat INT AUTO_INCREMENT,
---   Correo_usuario VARCHAR(100) NOT NULL,
---   Correo_admin VARCHAR(100) NULL DEFAULT NULL,
---   Estado ENUM('esperando','activo','cerrado') NOT NULL DEFAULT 'esperando',
---   Fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
---   Fecha_asignacion DATETIME NULL DEFAULT NULL,
---   Fecha_cierre DATETIME NULL DEFAULT NULL,
---   PRIMARY KEY (Id_chat),
---   FOREIGN KEY (Correo_usuario) REFERENCES Usuarios(Correo) ON DELETE CASCADE,
---   FOREIGN KEY (Correo_admin) REFERENCES Usuarios(Correo) ON DELETE SET NULL,
---   INDEX idx_estado (Estado)
--- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE Chats (
+  Id_chat INT AUTO_INCREMENT,
+  Correo_usuario VARCHAR(100) NOT NULL,
+  Correo_admin VARCHAR(100) NULL DEFAULT NULL,
+  Estado ENUM('esperando','activo','cerrado') NOT NULL DEFAULT 'esperando',
+  Fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  Fecha_asignacion DATETIME NULL DEFAULT NULL,
+  Fecha_cierre DATETIME NULL DEFAULT NULL,
+  PRIMARY KEY (Id_chat),
+  FOREIGN KEY (Correo_usuario) REFERENCES Usuarios(Correo) ON DELETE CASCADE,
+  FOREIGN KEY (Correo_admin) REFERENCES Usuarios(Correo) ON DELETE SET NULL,
+  INDEX idx_estado (Estado)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ------------------------------------------------------------
 -- Tabla: Mensajes_chat
@@ -235,17 +235,17 @@ CREATE TABLE Videos (
 --   - Índice en Id_chat para traer el historial de una conversación rápido
 --     (ORDER BY Id_mensaje).
 -- ------------------------------------------------------------
--- CREATE TABLE Mensajes_chat (
---   Id_mensaje INT AUTO_INCREMENT,
---   Id_chat INT NOT NULL,
---   Correo_emisor VARCHAR(100) NOT NULL,
---   Rol_emisor ENUM('Usuario','Administrador') NOT NULL,
---   Mensaje TEXT NOT NULL,
---   Fecha_envio DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
---   PRIMARY KEY (Id_mensaje),
---   FOREIGN KEY (Id_chat) REFERENCES Chats(Id_chat) ON DELETE CASCADE,
---   INDEX idx_chat (Id_chat)
--- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE Mensajes_chat (
+  Id_mensaje INT AUTO_INCREMENT,
+  Id_chat INT NOT NULL,
+  Correo_emisor VARCHAR(100) NOT NULL,
+  Rol_emisor ENUM('Usuario','Administrador') NOT NULL,
+  Mensaje TEXT NOT NULL,
+  Fecha_envio DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (Id_mensaje),
+  FOREIGN KEY (Id_chat) REFERENCES Chats(Id_chat) ON DELETE CASCADE,
+  INDEX idx_chat (Id_chat)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 -- INSERT USUARIOS ADMINs - 

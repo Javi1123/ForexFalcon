@@ -36,6 +36,7 @@ class formulariosControlador{
         $_SESSION['email'] = $usuario_base['Correo'];
         $_SESSION['nombre'] = $usuario_base['Nombre'];
         $_SESSION['apellido'] = $usuario_base['Apellido'];
+        $_SESSION['rol'] = $usuario_base['Rol'];   // lo usa el chat para distinguir administrador / usuario
 
         actividadModelo::insertUltimaVezInicioSesion($_SESSION['email']);
         actividadModelo::updateUltimaVezInicioSesion($_SESSION['email']);
