@@ -4,6 +4,7 @@ use App\controlador\formulariosControlador;
 use App\controlador\principalControlador;
 use App\controlador\stripeControlador;
 use App\controlador\chatControlador;
+use App\controlador\adminControlador;
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
@@ -83,6 +84,37 @@ switch ($uri){
   case '/chat/pusher_auth':
     $controlador = new chatControlador();
     $controlador-> pusher_auth();
+    break;
+
+  // Administración de servicios (solo administradores): vista + acciones JSON
+  case '/admin':
+    $controlador = new adminControlador();
+    $controlador-> servicios();
+    break;
+
+  case '/admin/crear':
+    $controlador = new adminControlador();
+    $controlador-> crear();
+    break;
+
+  case '/admin/editar':
+    $controlador = new adminControlador();
+    $controlador-> editar();
+    break;
+
+  case '/admin/precio':
+    $controlador = new adminControlador();
+    $controlador-> precio();
+    break;
+
+  case '/admin/estado':
+    $controlador = new adminControlador();
+    $controlador-> estado();
+    break;
+
+  case '/admin/sincronizar':
+    $controlador = new adminControlador();
+    $controlador-> sincronizar();
     break;
 
   // Acciones para formulario de inicio_de_sesion/registrarse

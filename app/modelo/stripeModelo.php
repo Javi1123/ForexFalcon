@@ -21,6 +21,10 @@ class stripeModelo {
   public function __construct(string $secretKey)
   {
     $this->secretKey = $secretKey;
+    // Opcional: permite apuntar a otra URL (p. ej. un Stripe simulado en pruebas). En producción NO se define.
+    if (defined('STRIPE_API_BASE')) {
+      $this->apiBase = STRIPE_API_BASE;
+    }
   }
 
   /**
@@ -131,7 +135,7 @@ class stripeModelo {
   /**
    * Convierte el importe en céntimos de Stripe a un texto tipo "49€".
    */
-  private function formatearPrecio(array $price): string
+  public function formatearPrecio(array $price): string
   {
     $simbolos = ['eur' => '€', 'usd' => '$', 'gbp' => '£'];
     $simbolo  = $simbolos[$price['currency']] ?? strtoupper($price['currency']);
@@ -149,7 +153,7 @@ class stripeModelo {
    * Convierte el tipo/intervalo del precio en un texto tipo "/mes"
    * o "pago único".
    */
-  private function formatearPeriodo(array $price): string
+  public function formatearPeriodo(array $price): string
   {
     if ($price['type'] !== 'recurring') {
       return 'pago único';

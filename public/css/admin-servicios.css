@@ -1,0 +1,198 @@
+/* ═══════════════════════════════════════════════════════
+   ADMINISTRAR SERVICIOS
+   Reutiliza .servicios-grid y .servicio-card de tienda-servicios.css,
+   así que la vista es casi idéntica a la tienda. Aquí solo se añade
+   lo propio del panel: chips, botones de gestión, avisos y formularios.
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Cabecera ───────────────────────────────────────────── */
+.admin-subtitulo {
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+.badge-modo {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 10px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  vertical-align: middle;
+}
+.badge-modo--prueba { background: rgba(245, 185, 66, 0.2); color: #8a5a00; }
+.badge-modo--real   { background: rgba(229, 72, 77, 0.14); color: #b3262b; }
+
+.admin-alerta { border-radius: 12px; font-size: 0.9rem; }
+
+.admin-vacio {
+  margin-top: 28px;
+  padding: 28px;
+  text-align: center;
+  color: #6b7280;
+  background: #fff;
+  border: 1px dashed #d5d9e6;
+  border-radius: 14px;
+}
+
+.admin-seccion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 40px 0 2px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--azul);
+}
+.admin-seccion span {
+  padding: 1px 9px;
+  border-radius: 999px;
+  background: #e8eaf3;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* ── Tarjeta ────────────────────────────────────────────── */
+.servicio-card--admin .servicio-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.servicio-card--admin .servicio-card__icon { margin-bottom: 12px; flex-shrink: 0; }
+
+.servicio-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.chip-admin {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--azul);
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.chip-admin--suave { background: #eef0f7; color: var(--azul); font-family: 'Barlow', sans-serif; }
+.chip-admin--gris  { background: #d9dce6; color: #4b5160; font-family: 'Barlow', sans-serif; }
+.chip-admin--aviso { background: rgba(245, 185, 66, 0.25); color: #8a5a00; font-family: 'Barlow', sans-serif; cursor: help; }
+
+.servicio-card--archivado {
+  opacity: 0.72;
+  background: #f4f5f9;
+}
+.servicio-card--archivado:hover { transform: none; border-color: #e4e7f0; box-shadow: var(--sombra); }
+
+/* ── Botones de gestión ─────────────────────────────────── */
+.servicio-card__admin {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.btn-admin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex: 1 1 auto;
+  padding: 8px 12px;
+  border: 1.5px solid #dfe3ee;
+  border-radius: 10px;
+  background: #f7f8fc;
+  color: var(--azul);
+  font: 600 0.82rem 'Barlow', sans-serif;
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s, color 0.18s;
+}
+.btn-admin:hover:not(:disabled) { background: #eceef7; border-color: #c5cbe0; }
+.btn-admin:disabled { opacity: 0.55; cursor: wait; }
+.btn-admin:focus-visible { outline: 3px solid var(--verde); outline-offset: 2px; }
+
+.btn-admin--principal { background: var(--naranja); border-color: var(--naranja); color: var(--azul); }
+.btn-admin--principal:hover:not(:disabled) { background: var(--naranja-hover, #d9601a); border-color: var(--naranja-hover, #d9601a); color: #fff; }
+
+.btn-admin--peligro { color: #b3262b; }
+.btn-admin--peligro:hover:not(:disabled) { background: rgba(229, 72, 77, 0.1); border-color: #e5484d; }
+
+.btn-admin--aviso { flex-basis: 100%; background: rgba(245, 185, 66, 0.18); border-color: #f5b942; color: #7a4f00; }
+.btn-admin--aviso:hover:not(:disabled) { background: rgba(245, 185, 66, 0.32); }
+
+/* ── Formularios (modales) ──────────────────────────────── */
+#modalServicio .modal-content,
+#modalPrecio .modal-content {
+  border: none;
+  border-radius: var(--radio-lg);
+}
+#modalServicio .modal-header,
+#modalPrecio .modal-header { border-bottom: 1px solid #eee; }
+#modalServicio .modal-title,
+#modalPrecio .modal-title { font-weight: 700; color: var(--azul); }
+
+#modalServicio .form-label,
+#modalPrecio .form-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--azul);
+}
+#modalServicio .form-label small { font-weight: 400; color: #6b7280; }
+
+#modalServicio .form-control:focus,
+#modalServicio .form-select:focus,
+#modalPrecio .form-control:focus,
+#modalPrecio .form-select:focus {
+  border-color: var(--naranja);
+  box-shadow: 0 0 0 0.2rem rgba(251, 142, 55, 0.2);
+}
+
+.icono-selector { display: flex; align-items: center; gap: 10px; }
+.icono-prev {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--naranja-dim);
+  color: var(--naranja);
+  font-size: 18px;
+}
+
+.admin-error {
+  margin-bottom: 14px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(229, 72, 77, 0.1);
+  border: 1px solid rgba(229, 72, 77, 0.45);
+  color: #a3212a;
+  font-size: 0.88rem;
+}
+.admin-error[hidden] { display: none; }
+
+.admin-nota {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #f0f3fb;
+  color: #4b5160;
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+.admin-nota i { color: var(--azul); margin-right: 4px; }
+
+@media (max-width: 575.98px) {
+  .badge-modo { margin: 6px 0 0; display: flex; width: fit-content; }
+}
