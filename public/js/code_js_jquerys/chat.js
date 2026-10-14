@@ -504,8 +504,14 @@
     else iniciarUsuario();
   });
 
-  // WhatsApp se conectará más adelante: de momento la opción no hace nada
-  el.opcionWa.addEventListener('click', function (e) { e.preventDefault(); });
+  // WhatsApp: si hay número configurado es un enlace normal (wa.me, pestaña nueva) y no se toca.
+  // Si no lo hay, la opción sale como "Próximamente" y el click no hace nada.
+  // (Para administradores la opción no existe, por eso se comprueba que el elemento exista.)
+  if (el.opcionWa) {
+    el.opcionWa.addEventListener('click', function (e) {
+      if (el.opcionWa.getAttribute('aria-disabled') === 'true') e.preventDefault();
+    });
+  }
 
   el.nueva.addEventListener('click', function () {
     if (cfg.esAdmin) { mostrarVista('lista'); cargarLista(); }

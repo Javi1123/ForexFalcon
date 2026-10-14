@@ -19,6 +19,9 @@ define('PUSHER_KEY',     getenv('PUSHER_KEY')     ?: '79b2bbaff53a39bf6b71');
 define('PUSHER_SECRET',  getenv('PUSHER_SECRET')  ?: 'a526b64f28603cedce06');
 define('PUSHER_CLUSTER', getenv('PUSHER_CLUSTER') ?: 'eu');   // ej: 'eu', 'mt1', 'us2'...
 
+// Numero de whatsapp 
+define('WHATSAPP_NUMERO', getenv('WHATSAPP_NUMERO') ?: '34722864236');
+
 // Moneda del catálogo (código ISO en minúsculas)
 define('CURRENCY', 'eur');
 

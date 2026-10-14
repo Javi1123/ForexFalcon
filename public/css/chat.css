@@ -303,6 +303,24 @@
   font-size: 13px;
 }
 
+/* WhatsApp: es un enlace <a>, no un botón */
+a.ff-chat__option,
+a.ff-chat__option:visited,
+a.ff-chat__option:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.ff-chat__option.ff-chat__option--wa:hover {
+  border-color: var(--verde, #91DD4E);
+  background: var(--verde-dim, rgba(145, 221, 78, 0.12));
+}
+
+.ff-chat__pill--wa {
+  background: var(--verde-dim, rgba(145, 221, 78, 0.12));
+  color: var(--verde, #91DD4E);
+}
+
 /* ── Lista de chats (administrador) ─────────────────────── */
 .ff-chat__section {
   display: flex;

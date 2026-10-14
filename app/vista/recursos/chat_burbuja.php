@@ -11,6 +11,20 @@ use App\core\PusherClient;
 
 $chatEsAdmin = chatControlador::esAdmin();
 
+// WhatsApp (Click to Chat, enlace oficial wa.me). Solo se activa si WHATSAPP_NUMERO está configurado en index.php.
+$waNumero = defined('WHATSAPP_NUMERO') ? ltrim(preg_replace('/\D/', '', WHATSAPP_NUMERO), '0') : '';
+$waActivo = !$chatEsAdmin
+         && defined('WHATSAPP_NUMERO') && strpos(WHATSAPP_NUMERO, 'TU_') !== 0
+         && strlen($waNumero) >= 8 && strlen($waNumero) <= 15;
+$waUrl = '';
+if ($waActivo) {
+  $waNombre  = trim(($_SESSION['nombre'] ?? '') . ' ' . ($_SESSION['apellido'] ?? ''));
+  $waTexto   = (defined('WHATSAPP_MENSAJE') ? WHATSAPP_MENSAJE : 'Hola, necesito ayuda con ForexFalcon.')
+             . ($waNombre !== '' ? "\n\nMi nombre: {$waNombre}" : '')
+             . "\nMi correo: " . $_SESSION['email'];
+  $waUrl = 'https://wa.me/' . $waNumero . '?text=' . rawurlencode($waTexto);
+}
+
 $chatConfig = [
   'base'        => BASE_PATH,
   'csrf'        => chatControlador::tokenCsrf(),
@@ -69,7 +83,19 @@ $chatConfig = [
           <span class="ff-chat__pill ff-chat__pill--alerta" id="ffOpcionAdminPill" hidden>0</span>
         </button>
 
-        <!-- WhatsApp: se conectará más adelante -->
+        <?php if ($waActivo): ?>
+        <!-- WhatsApp: abre una conversación con el número de la empresa en una pestaña nueva -->
+        <a class="ff-chat__option ff-chat__option--wa" id="ffOpcionWhatsapp"
+           href="<?= htmlspecialchars($waUrl, ENT_QUOTES) ?>" target="_blank" rel="noopener noreferrer">
+          <span class="ff-chat__option-ico ff-chat__option-ico--wa"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></span>
+          <span class="ff-chat__option-txt">
+            <strong>WhatsApp</strong>
+            <small>Escríbenos desde tu móvil u ordenador</small>
+          </span>
+          <span class="ff-chat__pill ff-chat__pill--wa">Abrir <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
+        </a>
+        <?php elseif (!$chatEsAdmin): ?>
+        <!-- WhatsApp sin configurar (falta WHATSAPP_NUMERO en index.php) -->
         <button type="button" class="ff-chat__option ff-chat__option--off" id="ffOpcionWhatsapp" aria-disabled="true">
           <span class="ff-chat__option-ico ff-chat__option-ico--wa"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></span>
           <span class="ff-chat__option-txt">
@@ -78,6 +104,7 @@ $chatConfig = [
           </span>
           <span class="ff-chat__pill">Próximamente</span>
         </button>
+        <?php endif; ?>
       </div>
 
       <!-- Vista 2 (solo administradores): lista de chats -->
@@ -123,4 +150,9 @@ $chatConfig = [
 <script>
   window.FF_CHAT = <?= json_encode($chatConfig, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>;
 </script>
-<script src="<?= LINKS_PATH . "/js/code_js_jquerys/chat.js" ?>" defer></script>
+<?php
+// Versión = fecha de modificación de chat.js: cuando se actualiza el archivo, el navegador lo vuelve a descargar
+// en vez de seguir usando una copia antigua de la caché.
+$chatJsVersion = @filemtime(__DIR__ . '/../../../public/js/code_js_jquerys/chat.js') ?: 1;
+?>
+<script src="<?= LINKS_PATH . "/js/code_js_jquerys/chat.js?v=" . $chatJsVersion ?>" defer></script>
