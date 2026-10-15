@@ -3,6 +3,7 @@
 namespace App\modelo;
 
 use \App\core\DB;
+use \App\core\Contrasena;
 use \App\modelo\stripeModelo;
 
 class loginModelo {
@@ -33,11 +34,28 @@ class loginModelo {
     }
   }
   
+  /**
+   * Guarda un hash nuevo de la contraseña (migración SHA-256 → bcrypt, o subida de coste).
+   * El "AND contraseña = :anterior" evita pisar un cambio hecho por otra petición al mismo tiempo.
+   * Devuelve true si se actualizó la fila.
+   */
+  public static function actualizarHashContrasena($email, $hashAnterior, $hashNuevo){
+    $pdo = DB::getInstance();
+    $stmt = $pdo->prepare("UPDATE Usuarios SET contraseña = :nuevo WHERE Correo = :email AND contraseña = :anterior");
+    $stmt->execute([
+      ":nuevo"    => $hashNuevo,
+      ":email"    => $email,
+      ":anterior" => $hashAnterior
+    ]);
+
+    return $stmt->rowCount() > 0;
+  }
+  
   public static function setUsuario($nombre, $apellido, $email, $telefono, $pais, $fecha_nacimiento, $contraseña){
     $pdo = DB::getInstance();
     
     try{
-      $stmt = $pdo->prepare("INSERT INTO suarios (Correo, Nombre, Apellido, Telefono, Pais, Rol, Fecha_nacimiento, contraseña, Fecha_creacion) VALUES (:email, :nombre, :apellido, :telefono, :pais, 'Usuario', :fecha_nacimiento, SHA2(:contrasena, 256), CURDATE());");
+      $stmt = $pdo->prepare("INSERT INTO Usuarios (Correo, Nombre, Apellido, Telefono, Pais, Rol, Fecha_nacimiento, contraseña, Fecha_creacion) VALUES (:email, :nombre, :apellido, :telefono, :pais, 'Usuario', :fecha_nacimiento, :contrasena, CURDATE());");
       $stmt->execute([
         ":nombre" => $nombre,
         ":apellido" => $apellido,
@@ -45,7 +63,7 @@ class loginModelo {
         ":telefono" => $telefono,
         ":pais" => $pais,
         ":fecha_nacimiento" => $fecha_nacimiento,
-        ":contrasena" => $contraseña
+        ":contrasena" => Contrasena::hashear($contraseña)   // bcrypt con sal propia (antes: SHA2 sin sal)
       ]);
     
       return $stmt;
@@ -67,7 +85,7 @@ class loginModelo {
 
   public static function getSuscripcones($email){
     $pdo = DB::getInstance();
-    $stmt = $pdo->prepare("SELECT * FROM 'suscripciones' WHERE Correo = ':email'");
+    $stmt = $pdo->prepare("SELECT * FROM Suscripciones WHERE Correo = ':email'");
     $stmt->execute([
       ":email" => $email
     ]);
@@ -77,7 +95,7 @@ class loginModelo {
 
   public static function setSuscripcones($email,$id_servicio){
     $pdo = DB::getInstance();
-    $stmt = $pdo->prepare("INSERT INTO suscripciones (Activado, Fecha_inicio, Fecha_fin, Id_servicio, Correo) VALUES (1, NOW(), NULL, :id_servicio, :email)");
+    $stmt = $pdo->prepare("INSERT INTO Suscripciones (Activado, Fecha_inicio, Fecha_fin, Id_servicio, Correo) VALUES (1, NOW(), NULL, :id_servicio, :email)");
     $stmt->execute([
       ":email" => $email,
       ":id_servicio" => $id_servicio
@@ -93,7 +111,7 @@ class loginModelo {
   public static function getCorreoDescuento($email){
     $pdo = DB::getInstance();
     try{
-      $stmt = $pdo->prepare("SELECT * FROM  Crreo_descuento WHERE Correo = :email");
+      $stmt = $pdo->prepare("SELECT * FROM  Correo_descuento WHERE Correo = :email");
       $stmt->execute([
         ":email" => $email
       ]);

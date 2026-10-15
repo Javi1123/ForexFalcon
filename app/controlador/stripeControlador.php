@@ -57,8 +57,14 @@ class stripeControlador {
   }
 
   public function guardarDatosPago () {
+    
     $id_servicio = $_SESSION['id_servicio'];
     $email = $_SESSION['email'];
+
+    if(!$id_servicio){
+      header('Location: /forexfalcon/recursos');
+      exit;
+    }
 
     loginModelo::setSuscripcones($email,$id_servicio);
 

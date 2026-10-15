@@ -171,7 +171,7 @@ class stripeModelo {
 
   public static function getServiciosUsuario ($email) {
     $pdo = DB::getInstance();
-    $stmt = $pdo->prepare("SELECT * FROM suscripciones WHERE Correo = :email");
+    $stmt = $pdo->prepare("SELECT * FROM Suscripciones WHERE Correo = :email");
     $stmt->bindParam(":email", $email);
     $stmt->execute();
     return $stmt->fetch(\PDO::FETCH_ASSOC);
