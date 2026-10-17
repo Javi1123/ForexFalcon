@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<paises>
+  <pais nombre="Afghanistan" prefijo="+93" iso="AF"/>
+  <pais nombre="Albania" prefijo="+355" iso="AL"/>
+  <pais nombre="Algeria" prefijo="+213" iso="DZ"/>
+  <pais nombre="Andorra" prefijo="+376" iso="AD"/>
+  <pais nombre="Angola" prefijo="+244" iso="AO"/>
+  <pais nombre="Antigua and Barbuda" prefijo="+1268" iso="AG"/>
+  <pais nombre="Argentina" prefijo="+54" iso="AR"/>
+  <pais nombre="Armenia" prefijo="+374" iso="AM"/>
+  <pais nombre="Australia" prefijo="+61" iso="AU"/>
+  <pais nombre="Austria" prefijo="+43" iso="AT"/>
+  <pais nombre="Azerbaijan" prefijo="+994" iso="AZ"/>
+  <pais nombre="Bahamas" prefijo="+1242" iso="BS"/>
+  <pais nombre="Bahrain" prefijo="+973" iso="BH"/>
+  <pais nombre="Bangladesh" prefijo="+880" iso="BD"/>
+  <pais nombre="Barbados" prefijo="+1246" iso="BB"/>
+  <pais nombre="Belarus" prefijo="+375" iso="BY"/>
+  <pais nombre="Belgium" prefijo="+32" iso="BE"/>
+  <pais nombre="Belize" prefijo="+501" iso="BZ"/>
+  <pais nombre="Benin" prefijo="+229" iso="BJ"/>
+  <pais nombre="Bhutan" prefijo="+975" iso="BT"/>
+  <pais nombre="Bolivia" prefijo="+591" iso="BO"/>
+  <pais nombre="Bosnia and Herzegovina" prefijo="+387" iso="BA"/>
+  <pais nombre="Botswana" prefijo="+267" iso="BW"/>
+  <pais nombre="Brazil" prefijo="+55" iso="BR"/>
+  <pais nombre="Brunei" prefijo="+673" iso="BN"/>
+  <pais nombre="Bulgaria" prefijo="+359" iso="BG"/>
+  <pais nombre="Burkina Faso" prefijo="+226" iso="BF"/>
+  <pais nombre="Burundi" prefijo="+257" iso="BI"/>
+  <pais nombre="Cabo Verde" prefijo="+238" iso="CV"/>
+  <pais nombre="Cambodia" prefijo="+855" iso="KH"/>
+  <pais nombre="Cameroon" prefijo="+237" iso="CM"/>
+  <pais nombre="Canada" prefijo="+1" iso="CA"/>
+  <pais nombre="Central African Republic" prefijo="+236" iso="CF"/>
+  <pais nombre="Chad" prefijo="+235" iso="TD"/>
+  <pais nombre="Chile" prefijo="+56" iso="CL"/>
+  <pais nombre="China" prefijo="+86" iso="CN"/>
+  <pais nombre="Colombia" prefijo="+57" iso="CO"/>
+  <pais nombre="Comoros" prefijo="+269" iso="KM"/>
+  <pais nombre="Congo (Congo-Brazzaville)" prefijo="+242" iso="CG"/>
+  <pais nombre="Costa Rica" prefijo="+506" iso="CR"/>
+  <pais nombre="Croatia" prefijo="+385" iso="HR"/>
+  <pais nombre="Cuba" prefijo="+53" iso="CU"/>
+  <pais nombre="Cyprus" prefijo="+357" iso="CY"/>
+  <pais nombre="Czechia" prefijo="+420" iso="CZ"/>
+  <pais nombre="Denmark" prefijo="+45" iso="DK"/>
+  <pais nombre="Djibouti" prefijo="+253" iso="DJ"/>
+  <pais nombre="Dominica" prefijo="+1767" iso="DM"/>
+  <pais nombre="Dominican Republic" prefijo="+1809" iso="DO"/>
+  <pais nombre="Ecuador" prefijo="+593" iso="EC"/>
+  <pais nombre="Egypt" prefijo="+20" iso="EG"/>
+  <pais nombre="El Salvador" prefijo="+503" iso="SV"/>
+  <pais nombre="Equatorial Guinea" prefijo="+240" iso="GQ"/>
+  <pais nombre="Eritrea" prefijo="+291" iso="ER"/>
+  <pais nombre="Estonia" prefijo="+372" iso="EE"/>
+  <pais nombre="Eswatini" prefijo="+268" iso="SZ"/>
+  <pais nombre="Ethiopia" prefijo="+251" iso="ET"/>
+  <pais nombre="Fiji" prefijo="+679" iso="FJ"/>
+  <pais nombre="Finland" prefijo="+358" iso="FI"/>
+  <pais nombre="France" prefijo="+33" iso="FR"/>
+  <pais nombre="Gabon" prefijo="+241" iso="GA"/>
+  <pais nombre="Gambia" prefijo="+220" iso="GM"/>
+  <pais nombre="Georgia" prefijo="+995" iso="GE"/>
+  <pais nombre="Germany" prefijo="+49" iso="DE"/>
+  <pais nombre="Ghana" prefijo="+233" iso="GH"/>
+  <pais nombre="Greece" prefijo="+30" iso="GR"/>
+  <pais nombre="Grenada" prefijo="+1473" iso="GD"/>
+  <pais nombre="Guatemala" prefijo="+502" iso="GT"/>
+  <pais nombre="Guinea" prefijo="+224" iso="GN"/>
+  <pais nombre="Guinea-Bissau" prefijo="+245" iso="GW"/>
+  <pais nombre="Guyana" prefijo="+592" iso="GY"/>
+  <pais nombre="Haiti" prefijo="+509" iso="HT"/>
+  <pais nombre="Honduras" prefijo="+504" iso="HN"/>
+  <pais nombre="Hungary" prefijo="+36" iso="HU"/>
+  <pais nombre="Iceland" prefijo="+354" iso="IS"/>
+  <pais nombre="India" prefijo="+91" iso="IN"/>
+  <pais nombre="Indonesia" prefijo="+62" iso="ID"/>
+  <pais nombre="Iran" prefijo="+98" iso="IR"/>
+  <pais nombre="Iraq" prefijo="+964" iso="IQ"/>
+  <pais nombre="Ireland" prefijo="+353" iso="IE"/>
+  <pais nombre="Israel" prefijo="+972" iso="IL"/>
+  <pais nombre="Italy" prefijo="+39" iso="IT"/>
+  <pais nombre="Jamaica" prefijo="+1876" iso="JM"/>
+  <pais nombre="Japan" prefijo="+81" iso="JP"/>
+  <pais nombre="Jordan" prefijo="+962" iso="JO"/>
+  <pais nombre="Kazakhstan" prefijo="+7" iso="KZ"/>
+  <pais nombre="Kenya" prefijo="+254" iso="KE"/>
+  <pais nombre="Kiribati" prefijo="+686" iso="KI"/>
+  <pais nombre="Kuwait" prefijo="+965" iso="KW"/>
+  <pais nombre="Kyrgyzstan" prefijo="+996" iso="KG"/>
+  <pais nombre="Laos" prefijo="+856" iso="LA"/>
+  <pais nombre="Latvia" prefijo="+371" iso="LV"/>
+  <pais nombre="Lebanon" prefijo="+961" iso="LB"/>
+  <pais nombre="Lesotho" prefijo="+266" iso="LS"/>
+  <pais nombre="Liberia" prefijo="+231" iso="LR"/>
+  <pais nombre="Libya" prefijo="+218" iso="LY"/>
+  <pais nombre="Liechtenstein" prefijo="+423" iso="LI"/>
+  <pais nombre="Lithuania" prefijo="+370" iso="LT"/>
+  <pais nombre="Luxembourg" prefijo="+352" iso="LU"/>
+  <pais nombre="Madagascar" prefijo="+261" iso="MG"/>
+  <pais nombre="Malawi" prefijo="+265" iso="MW"/>
+  <pais nombre="Malaysia" prefijo="+60" iso="MY"/>
+  <pais nombre="Maldives" prefijo="+960" iso="MV"/>
+  <pais nombre="Mali" prefijo="+223" iso="ML"/>
+  <pais nombre="Malta" prefijo="+356" iso="MT"/>
+  <pais nombre="Marshall Islands" prefijo="+692" iso="MH"/>
+  <pais nombre="Mauritania" prefijo="+222" iso="MR"/>
+  <pais nombre="Mauritius" prefijo="+230" iso="MU"/>
+  <pais nombre="Mexico" prefijo="+52" iso="MX"/>
+  <pais nombre="Micronesia" prefijo="+691" iso="FM"/>
+  <pais nombre="Moldova" prefijo="+373" iso="MD"/>
+  <pais nombre="Monaco" prefijo="+377" iso="MC"/>
+  <pais nombre="Mongolia" prefijo="+976" iso="MN"/>
+  <pais nombre="Montenegro" prefijo="+382" iso="ME"/>
+  <pais nombre="Morocco" prefijo="+212" iso="MA"/>
+  <pais nombre="Mozambique" prefijo="+258" iso="MZ"/>
+  <pais nombre="Myanmar" prefijo="+95" iso="MM"/>
+  <pais nombre="Namibia" prefijo="+264" iso="NA"/>
+  <pais nombre="Nauru" prefijo="+674" iso="NR"/>
+  <pais nombre="Nepal" prefijo="+977" iso="NP"/>
+  <pais nombre="Netherlands" prefijo="+31" iso="NL"/>
+  <pais nombre="New Zealand" prefijo="+64" iso="NZ"/>
+  <pais nombre="Nicaragua" prefijo="+505" iso="NI"/>
+  <pais nombre="Niger" prefijo="+227" iso="NE"/>
+  <pais nombre="Nigeria" prefijo="+234" iso="NG"/>
+  <pais nombre="North Korea" prefijo="+850" iso="KP"/>
+  <pais nombre="North Macedonia" prefijo="+389" iso="MK"/>
+  <pais nombre="Norway" prefijo="+47" iso="NO"/>
+  <pais nombre="Oman" prefijo="+968" iso="OM"/>
+  <pais nombre="Pakistan" prefijo="+92" iso="PK"/>
+  <pais nombre="Palau" prefijo="+680" iso="PW"/>
+  <pais nombre="Palestine" prefijo="+970" iso="PS"/>
+  <pais nombre="Panama" prefijo="+507" iso="PA"/>
+  <pais nombre="Papua New Guinea" prefijo="+675" iso="PG"/>
+  <pais nombre="Paraguay" prefijo="+595" iso="PY"/>
+  <pais nombre="Peru" prefijo="+51" iso="PE"/>
+  <pais nombre="Philippines" prefijo="+63" iso="PH"/>
+  <pais nombre="Poland" prefijo="+48" iso="PL"/>
+  <pais nombre="Portugal" prefijo="+351" iso="PT"/>
+  <pais nombre="Qatar" prefijo="+974" iso="QA"/>
+  <pais nombre="Romania" prefijo="+40" iso="RO"/>
+  <pais nombre="Russia" prefijo="+7" iso="RU"/>
+  <pais nombre="Rwanda" prefijo="+250" iso="RW"/>
+  <pais nombre="Saint Kitts and Nevis" prefijo="+1869" iso="KN"/>
+  <pais nombre="Saint Lucia" prefijo="+1758" iso="LC"/>
+  <pais nombre="Saint Vincent and the Grenadines" prefijo="+1784" iso="VC"/>
+  <pais nombre="Samoa" prefijo="+685" iso="WS"/>
+  <pais nombre="San Marino" prefijo="+378" iso="SM"/>
+  <pais nombre="Sao Tome and Principe" prefijo="+239" iso="ST"/>
+  <pais nombre="Saudi Arabia" prefijo="+966" iso="SA"/>
+  <pais nombre="Senegal" prefijo="+221" iso="SN"/>
+  <pais nombre="Serbia" prefijo="+381" iso="RS"/>
+  <pais nombre="Seychelles" prefijo="+248" iso="SC"/>
+  <pais nombre="Sierra Leone" prefijo="+232" iso="SL"/>
+  <pais nombre="Singapore" prefijo="+65" iso="SG"/>
+  <pais nombre="Slovakia" prefijo="+421" iso="SK"/>
+  <pais nombre="Slovenia" prefijo="+386" iso="SI"/>
+  <pais nombre="Solomon Islands" prefijo="+677" iso="SB"/>
+  <pais nombre="Somalia" prefijo="+252" iso="SO"/>
+  <pais nombre="South Africa" prefijo="+27" iso="ZA"/>
+  <pais nombre="South Korea" prefijo="+82" iso="KR"/>
+  <pais nombre="South Sudan" prefijo="+211" iso="SS"/>
+  <pais nombre="Spain" prefijo="+34" iso="ES"/>
+  <pais nombre="Sri Lanka" prefijo="+94" iso="LK"/>
+  <pais nombre="Sudan" prefijo="+249" iso="SD"/>
+  <pais nombre="Suriname" prefijo="+597" iso="SR"/>
+  <pais nombre="Sweden" prefijo="+46" iso="SE"/>
+  <pais nombre="Switzerland" prefijo="+41" iso="CH"/>
+  <pais nombre="Syria" prefijo="+963" iso="SY"/>
+  <pais nombre="Taiwan" prefijo="+886" iso="TW"/>
+  <pais nombre="Tajikistan" prefijo="+992" iso="TJ"/>
+  <pais nombre="Tanzania" prefijo="+255" iso="TZ"/>
+  <pais nombre="Thailand" prefijo="+66" iso="TH"/>
+  <pais nombre="Timor-Leste" prefijo="+670" iso="TL"/>
+  <pais nombre="Togo" prefijo="+228" iso="TG"/>
+  <pais nombre="Tonga" prefijo="+676" iso="TO"/>
+  <pais nombre="Trinidad and Tobago" prefijo="+1868" iso="TT"/>
+  <pais nombre="Tunisia" prefijo="+216" iso="TN"/>
+  <pais nombre="Turkey" prefijo="+90" iso="TR"/>
+  <pais nombre="Turkmenistan" prefijo="+993" iso="TM"/>
+  <pais nombre="Tuvalu" prefijo="+688" iso="TV"/>
+  <pais nombre="Uganda" prefijo="+256" iso="UG"/>
+  <pais nombre="Ukraine" prefijo="+380" iso="UA"/>
+  <pais nombre="United Arab Emirates" prefijo="+971" iso="AE"/>
+  <pais nombre="United Kingdom" prefijo="+44" iso="GB"/>
+  <pais nombre="United States" prefijo="+1" iso="US"/>
+  <pais nombre="Uruguay" prefijo="+598" iso="UY"/>
+  <pais nombre="Uzbekistan" prefijo="+998" iso="UZ"/>
+  <pais nombre="Vanuatu" prefijo="+678" iso="VU"/>
+  <pais nombre="Vatican City" prefijo="+379" iso="VA"/>
+  <pais nombre="Venezuela" prefijo="+58" iso="VE"/>
+  <pais nombre="Vietnam" prefijo="+84" iso="VN"/>
+  <pais nombre="Yemen" prefijo="+967" iso="YE"/>
+  <pais nombre="Zambia" prefijo="+260" iso="ZM"/>
+  <pais nombre="Zimbabwe" prefijo="+263" iso="ZW"/>
+</paises>

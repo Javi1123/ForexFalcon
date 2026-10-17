@@ -4,7 +4,7 @@
 $DESCRIPCION = "forexfalcon.com";
 $CLAVES = "formaci&oacute;n, cursos, certificado, 'certificado de transporte', Sevilla, Transporte, Transportista";
 $AUTOR = "ForexFalcon";
-$TITULO = "Recuros - ForexFalcon";
+$TITULO = "Recursos - ForexFalcon";
 $ACTIVO = 10;
 
 // Empezamos
