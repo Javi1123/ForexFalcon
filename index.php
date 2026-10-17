@@ -11,6 +11,17 @@ define('STRIPE_PUBLISHABLE_KEY', getenv('STRIPE_PUBLISHABLE_KEY') ?: 'pk_test_51
 define('SITE_URL', 'http://localhost/forexfalcon');   // en local
 // define('SITE_URL', 'https://forexfalcon.com');      // en producción
 
+// Chat de mensajería (Pusher Channels). Claves en https://dashboard.pusher.com → tu app → "App Keys".
+// Igual que Stripe: se leen de variables de entorno si existen; si no, sustituye los TU_... por los tuyos.
+// Mientras sigan los TU_..., la burbuja del chat se muestra pero avisa de que falta configurarlo.
+define('PUSHER_APP_ID',  getenv('PUSHER_APP_ID')  ?: '2194277');
+define('PUSHER_KEY',     getenv('PUSHER_KEY')     ?: '79b2bbaff53a39bf6b71');
+define('PUSHER_SECRET',  getenv('PUSHER_SECRET')  ?: 'a526b64f28603cedce06');
+define('PUSHER_CLUSTER', getenv('PUSHER_CLUSTER') ?: 'eu');   // ej: 'eu', 'mt1', 'us2'...
+
+// Numero de whatsapp 
+define('WHATSAPP_NUMERO', getenv('WHATSAPP_NUMERO') ?: '34722864236');
+
 // Moneda del catálogo (código ISO en minúsculas)
 define('CURRENCY', 'eur');
 

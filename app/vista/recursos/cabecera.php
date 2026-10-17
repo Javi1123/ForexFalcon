@@ -24,9 +24,13 @@
   <script src="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0/dist/js/adminlte.min.js"></script>
 
   <!-- CSS y JS propios de la tienda -->
-   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/rec.css" ?>">
+  <link rel="stylesheet" href="<?= LINKS_PATH . "/css/rec.css" ?>">
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/tienda-servicios.css" ?>">
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/configuracion.css" ?>">
+  <link rel="stylesheet" href="<?= LINKS_PATH . "/css/chat.css" ?>">
+  <?php if (!empty($vistaAdmin)): ?>
+  <link rel="stylesheet" href="<?= LINKS_PATH . "/css/admin-servicios.css" ?>">
+  <?php endif; ?>
   <script src="<?= LINKS_PATH . "/js/code_js_jquerys/tienda-servicios.js" ?>" defer></script>
   <script src="<?= LINKS_PATH . "/js/code_js_jquerys/configuracion.js" ?>" defer></script>
 </head>

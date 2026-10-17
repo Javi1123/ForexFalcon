@@ -3,6 +3,7 @@
 namespace App\modelo;
 
 use \App\core\DB;
+use \App\core\Contrasena;
 use \App\modelo\stripeModelo;
 
 class loginModelo {
@@ -12,28 +13,70 @@ class loginModelo {
   /////////////////////////////////
 
   public static function getUsuario($email){
+    $tipo = $_GET["tipo"];
     $pdo = DB::getInstance();
-    $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE Correo = :email");
-    $stmt->bindParam(":email", $email);
-    $stmt->execute();
-    return $stmt->fetch(\PDO::FETCH_ASSOC);
+
+    try {
+      $stmt = $pdo->prepare("SELECT * FROM Usuarios WHERE Correo = :email");
+      $stmt->bindParam(":email", $email);
+      $stmt->execute();
+
+      return $stmt->fetch(\PDO::FETCH_ASSOC);
+
+    } catch (\Throwable $th) {
+      $_SESSION['toast'] = [
+        'tipo'     => 'error',
+        'mensaje'  => 'No se han podido verificar correctamente los datos del usuario. Inténtalo de nuevo.'
+      ];
+
+      header("Location: " . BASE_PATH . '/acciones?tipo=' . $tipo );
+      exit();
+    }
+  }
+  
+  /**
+   * Guarda un hash nuevo de la contraseña (migración SHA-256 → bcrypt, o subida de coste).
+   * El "AND contraseña = :anterior" evita pisar un cambio hecho por otra petición al mismo tiempo.
+   * Devuelve true si se actualizó la fila.
+   */
+  public static function actualizarHashContrasena($email, $hashAnterior, $hashNuevo){
+    $pdo = DB::getInstance();
+    $stmt = $pdo->prepare("UPDATE Usuarios SET contraseña = :nuevo WHERE Correo = :email AND contraseña = :anterior");
+    $stmt->execute([
+      ":nuevo"    => $hashNuevo,
+      ":email"    => $email,
+      ":anterior" => $hashAnterior
+    ]);
+
+    return $stmt->rowCount() > 0;
   }
   
   public static function setUsuario($nombre, $apellido, $email, $telefono, $pais, $fecha_nacimiento, $contraseña){
     $pdo = DB::getInstance();
     
-    $stmt = $pdo->prepare("INSERT INTO Usuarios (Correo, Nombre, Apellido, Telefono, Pais, Rol, Fecha_nacimiento, contraseña, Fecha_creacion) VALUES (:email, :nombre, :apellido, :telefono, :pais, 'Usuario', :fecha_nacimiento, SHA2(:contrasena, 256), CURDATE());");
-    $stmt->execute([
-      ":nombre" => $nombre,
-      ":apellido" => $apellido,
-      ":email" => $email,
-      ":telefono" => $telefono,
-      ":pais" => $pais,
-      ":fecha_nacimiento" => $fecha_nacimiento,
-      ":contrasena" => $contraseña
-    ]);
-  
-    return $stmt;
+    try{
+      $stmt = $pdo->prepare("INSERT INTO Usuarios (Correo, Nombre, Apellido, Telefono, Pais, Rol, Fecha_nacimiento, contraseña, Fecha_creacion) VALUES (:email, :nombre, :apellido, :telefono, :pais, 'Usuario', :fecha_nacimiento, :contrasena, CURDATE());");
+      $stmt->execute([
+        ":nombre" => $nombre,
+        ":apellido" => $apellido,
+        ":email" => $email,
+        ":telefono" => $telefono,
+        ":pais" => $pais,
+        ":fecha_nacimiento" => $fecha_nacimiento,
+        ":contrasena" => Contrasena::hashear($contraseña)   // bcrypt con sal propia (antes: SHA2 sin sal)
+      ]);
+    
+      return $stmt;
+
+    } catch (\Throwable $th) {
+      $_SESSION['toast'] = [
+        'tipo'     => 'error',
+        'mensaje'  => 'No se han podido insertar correctamente los datos del usuario. Inténtalo de nuevo.'
+      ];
+
+      header("Location: " . BASE_PATH . '/acciones?tipo=registro');
+      exit();
+    }
   }
   
   /////////////////////////////////
@@ -42,7 +85,7 @@ class loginModelo {
 
   public static function getSuscripcones($email){
     $pdo = DB::getInstance();
-    $stmt = $pdo->prepare("SELECT * FROM 'suscripciones' WHERE Correo = ':email'");
+    $stmt = $pdo->prepare("SELECT * FROM Suscripciones WHERE Correo = ':email'");
     $stmt->execute([
       ":email" => $email
     ]);
@@ -52,7 +95,7 @@ class loginModelo {
 
   public static function setSuscripcones($email,$id_servicio){
     $pdo = DB::getInstance();
-    $stmt = $pdo->prepare("INSERT INTO suscripciones (Activado, Fecha_inicio, Fecha_fin, Id_servicio, Correo) VALUES (1, NOW(), NULL, :id_servicio, :email)");
+    $stmt = $pdo->prepare("INSERT INTO Suscripciones (Activado, Fecha_inicio, Fecha_fin, Id_servicio, Correo) VALUES (1, NOW(), NULL, :id_servicio, :email)");
     $stmt->execute([
       ":email" => $email,
       ":id_servicio" => $id_servicio
@@ -67,17 +110,29 @@ class loginModelo {
 
   public static function getCorreoDescuento($email){
     $pdo = DB::getInstance();
-    $stmt = $pdo->prepare("SELECT * FROM  Correo_descuento WHERE Correo = :email");
-    $stmt->execute([
-      ":email" => $email
-    ]);
-    return $stmt->fetch(\PDO::FETCH_ASSOC);
+    try{
+      $stmt = $pdo->prepare("SELECT * FROM  Correo_descuento WHERE Correo = :email");
+      $stmt->execute([
+        ":email" => $email
+      ]);
+
+      return $stmt->fetch(\PDO::FETCH_ASSOC);
+
+    } catch (\Throwable $th) {
+      $_SESSION['toast'] = [
+        'tipo'     => 'error',
+        'mensaje'  => 'No se han podido verificar correctamente los datos del correo para el descuento. Inténtalo más tarde.'
+      ];
+
+      header("Location: " . BASE_PATH . '/');
+      exit();
+    }
   }
 
   public static function setCorreoDescuento($email){
-    $codigo = self::generarCupon();
-
     $stripe = new stripeModelo(STRIPE_SECRET_KEY);
+    $codigo = self::generarCupon();
+    $pdo = DB::getInstance();
 
     try{
       $stripe->post('promotion_codes', [
@@ -86,22 +141,36 @@ class loginModelo {
         'code'   => $codigo,       // el texto que escribirá el cliente
         'max_redemptions' => 1,       // solo se puede usar 1 vez en total
       ]);
-    } catch (\Exception $e){
-      error_log('Error creando promotion code en Stripe: ' . $e->getMessage());
-      throw $e;
+    } catch (\Exception $th){
+      $_SESSION['toast'] = [
+        'tipo'     => 'error',
+        'mensaje'  => 'No se han podido crear la promotion. Inténtalo más tarde.'
+      ];
+
+      header("Location: " . BASE_PATH . '/');
+      exit();
     }
 
-    $pdo = DB::getInstance();
-    $stmt = $pdo->prepare("INSERT INTO Correo_descuento (Correo, Cupon_descuento, Nombre_descuento, Fecha_creacion) VALUES (:email, :codigo, :nombre_descuento, CURDATE())");
-    $stmt->execute([
-      ":email" => $email,
-      ":codigo" => $codigo,
-      ":nombre_descuento" => 'descuento_primera_compra'
-    ]);
+    try{
+      $stmt = $pdo->prepare("INSERT INTO Correo_descuento (Correo, Cupon_descuento, Nombre_descuento, Fecha_creacion) VALUES (:email, :codigo, :nombre_descuento, CURDATE())");
+      $stmt->execute([
+        ":email" => $email,
+        ":codigo" => $codigo,
+        ":nombre_descuento" => 'descuento_primera_compra'
+      ]);
 
-    correoModelo::correo_descuento($email, $codigo);
+      correoModelo::correo_descuento($email, $codigo);
 
-    return $stmt->fetch(\PDO::FETCH_ASSOC);
+      return $stmt->fetch(\PDO::FETCH_ASSOC);
+    } catch (\Throwable $th) {
+      $_SESSION['toast'] = [
+        'tipo'     => 'error',
+        'mensaje'  => 'No se han podido insertar correctamente los datos del correo para el descuento. Inténtalo más tarde.'
+      ];
+
+      header("Location: " . BASE_PATH . '/');
+      exit();
+    }
   }
 
   static function generarCupon($longitud = 8) {

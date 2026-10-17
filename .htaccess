@@ -1,16 +1,30 @@
 ###### Encendemos el rewrite
 RewriteEngine On
-
+ 
 ###### Redirigimos a de la URL_falsa URL_verdadera
-
+ 
 # Acciones index 
 RewriteRule quienes_somos index.php
-
+ 
 # Formulario inicio sesion
-RewriteRule acciones index.php
-RewriteRule inicio_sesion index.php
-RewriteRule crear_cuenta index.php
-RewriteRule logout index.php
-RewriteRule recursos index.php
-RewriteRule pago index.php
-RewriteRule guardar index.php
+RewriteRule ^acciones index.php
+RewriteRule ^inicio_sesion index.php
+RewriteRule ^crear_cuenta index.php
+RewriteRule ^logout index.php
+RewriteRule ^recursos index.php
+RewriteRule ^pago index.php
+RewriteRule ^guardar index.php
+RewriteRule ^admin index.php
+
+# Chat de mensajería (anclada con ^ para no capturar public/.../chat.js ni chat.css)
+RewriteRule ^chat/ index.php [L]
+
+# Administración de servicios (anclada con ^ para no capturar public/css/admin-servicios.css)
+ 
+###### Páginas de error personalizadas
+ErrorDocument 400 /forexfalcon/error.php
+ErrorDocument 401 /forexfalcon/error.php
+ErrorDocument 403 /forexfalcon/error.php
+ErrorDocument 404 /forexfalcon/error.php
+ErrorDocument 500 /forexfalcon/error.php
+ErrorDocument 503 /forexfalcon/error.php

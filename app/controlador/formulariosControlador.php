@@ -4,6 +4,8 @@ namespace App\controlador;
 
 use \App\modelo\loginModelo;
 use \App\modelo\correoModelo;
+use \App\modelo\actividadModelo;
+use \App\core\Contrasena;
 
 class formulariosControlador{
   
@@ -30,15 +32,39 @@ class formulariosControlador{
       $contraseña = $_POST['contraseña_login'] ?? "";
 
       $usuario_base = loginModelo::getUsuario($email);
+      $hashGuardado = (string) ($usuario_base['contraseña'] ?? '');
 
-      if($usuario_base && hash('sha256', $contraseña) === $usuario_base['contraseña']){
+      if($usuario_base && Contrasena::verificar($contraseña, $hashGuardado)){
+        // Migración transparente: si la contraseña seguía guardada con el hash antiguo (SHA-256 sin sal),
+        // ahora que sabemos cuál es, se vuelve a guardar con bcrypt. Si falla, no impide entrar.
+        if (Contrasena::necesitaActualizar($hashGuardado)) {
+          try {
+            loginModelo::actualizarHashContrasena($usuario_base['Correo'], $hashGuardado, Contrasena::hashear($contraseña));
+          } catch (\Throwable $e) {
+            error_log('No se pudo actualizar el hash de ' . $usuario_base['Correo'] . ': ' . $e->getMessage());
+          }
+        }
+
+        // Contra el robo de sesión (session fixation): al iniciar sesión se cambia el identificador de sesión.
+        // El que tuviera el navegador antes de entrar (y que alguien pudo haber fijado) deja de valer.
+        session_regenerate_id(true);
+
         $_SESSION['email'] = $usuario_base['Correo'];
         $_SESSION['nombre'] = $usuario_base['Nombre'];
         $_SESSION['apellido'] = $usuario_base['Apellido'];
+        $_SESSION['rol'] = $usuario_base['Rol'];   // lo usa el chat para distinguir administrador / usuario
+
+        actividadModelo::insertUltimaVezInicioSesion($_SESSION['email']);
+        actividadModelo::updateUltimaVezInicioSesion($_SESSION['email']);
 
         header("Location: " . BASE_PATH . '/recursos');
         exit();
       } else {
+        if (!$usuario_base) {
+          // Correo que no existe: se gasta el mismo tiempo que con uno real para que no se pueda adivinar
+          // qué correos tienen cuenta midiendo cuánto tarda en responder.
+          Contrasena::simularVerificacion($contraseña);
+        }
         $errorLogin = "El correo o la contraseña son incorrectos.";
       }
     }
@@ -105,6 +131,10 @@ class formulariosControlador{
   }
 
   public function logout(){
+    $email = $_SESSION['email'];
+    actividadModelo::insertUltimaVezCerroSesion($email);
+    actividadModelo::updateUltimaVezCerroSesion($email);
+
     session_unset();
     session_destroy();
     header("Location: " . BASE_PATH . '/');

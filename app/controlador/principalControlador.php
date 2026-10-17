@@ -4,6 +4,7 @@ namespace App\controlador;
 
 use \App\modelo\loginModelo;
 use \App\modelo\stripeModelo;
+use \App\controlador\chatControlador;
 
 class principalControlador{
   
@@ -48,6 +49,9 @@ class principalControlador{
   public function recursos(){
     if(!isset($_SESSION['email'])){
       header("Location: " . BASE_PATH . '/acciones?tipo=inicio');
+      exit();
+    } else if(chatControlador::esAdmin()){
+      header("Location: " . BASE_PATH . '/admin');
       exit();
     }
 
