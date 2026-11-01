@@ -6,16 +6,17 @@ use App\core\DB;
 use App\modelo\stripeModelo;
 use App\modelo\stripeAdminModelo;
 use App\modelo\adminServiciosModelo;
+use App\modelo\videoModelo;
 
 /**
  * Administración de servicios (solo Administrador / Superusuario).
  *
- *   GET  /admin             → la vista (casi igual que /recursos, con botones de gestión)
- *   POST /admin/crear       → nuevo servicio (producto + precio en Stripe, fila en Servicios)
- *   POST /admin/editar      → nombre, descripciones, icono, características
- *   POST /admin/precio      → cambiar precio / tipo de cobro
- *   POST /admin/estado      → archivar (activo=0) o restaurar (activo=1)
- *   POST /admin/sincronizar → crea/actualiza la fila de la BD a partir de Stripe
+ *   GET  /admin/servicios             → la vista (casi igual que /recursos, con botones de gestión)
+ *   POST /admin/servicios/crear       → nuevo servicio (producto + precio en Stripe, fila en Servicios)
+ *   POST /admin/servicios/editar      → nombre, descripciones, icono, características
+ *   POST /admin/servicios/precio      → cambiar precio / tipo de cobro
+ *   POST /admin/servicios/estado      → archivar (activo=0) o restaurar (activo=1)
+ *   POST /admin/servicios/sincronizar → crea/actualiza la fila de la BD a partir de Stripe
  *
  * Reglas de seguridad:
  *  - Hace falta sesión y rol de administrador, tanto en la vista como en cada acción.
@@ -73,6 +74,24 @@ class adminControlador {
     }
 
     $sync = adminServiciosModelo::existentes();
+
+    // Tipo de cada servicio (columna nueva). Si todavía no se ha ejecutado la migración SQL, se avisa en pantalla
+    // en vez de romper la página.
+    $tipos = [];
+    $falloMigracion = false;
+    try {
+      $tipos = adminServiciosModelo::tipos();
+    } catch (\PDOException $e) {
+      $falloMigracion = true;
+      error_log('Admin servicios: ' . $e->getMessage());
+    }
+
+    $videosPorServicio = [];
+    try {
+      $videosPorServicio = videoModelo::contarPorServicio();
+    } catch (\Throwable $e) {
+      error_log('Admin servicios (vídeos): ' . $e->getMessage());
+    }
     $modoPrueba = strpos(STRIPE_SECRET_KEY, 'sk_test_') === 0;
     $adminCsrf = self::tokenCsrf();
 
@@ -94,7 +113,7 @@ class adminControlador {
 
       $metodo = adminServiciosModelo::metodoDesdeTipo($d['tipo']);
       $producto = $this->transaccion(
-        function () use ($codigo, $d, $metodo) { adminServiciosModelo::insertar($codigo, $d['nombre'], $d['corta'], $metodo); },
+        function () use ($codigo, $d, $metodo) { adminServiciosModelo::insertar($codigo, $d['nombre'], $d['corta'], $metodo, $d['tipo_servicio'] ?? 'video'); },
         function () use ($admin, $codigo, $d) { return $admin->crear($codigo, $d); },
         // si Stripe llegó a crearlo pero la BD falló al confirmar, se archiva para no dejarlo a la venta
         function ($creado) use ($admin) { $admin->cambiarActivo($creado['product_id'], false); }
@@ -121,7 +140,7 @@ class adminControlador {
       $metodo = adminServiciosModelo::metodoDesdeTipo($actual['tipo']);
       $this->transaccion(
         function () use ($codigo, $d, $metodo, $actual) {
-          adminServiciosModelo::guardar($codigo, $d['nombre'], $d['corta'], $metodo, $actual['activo'] ? 1 : 0);
+          adminServiciosModelo::guardar($codigo, $d['nombre'], $d['corta'], $metodo, $actual['activo'] ? 1 : 0, $d['tipo_servicio']);
         },
         function () use ($admin, $pid, $d, $codigoNuevo) { $admin->actualizar($pid, $d, $codigoNuevo); }
       );
@@ -246,9 +265,19 @@ class adminControlador {
       throw new \InvalidArgumentException('El código solo puede tener letras y números (máximo 20).');
     }
 
+    // Tipo de servicio: al crear, 'video' si no se indica; al editar, si no se indica NO se cambia (null).
+    $tipoServicio = $this->texto($in, 'tipo_servicio');
+    if ($tipoServicio !== '' && !in_array($tipoServicio, adminServiciosModelo::TIPOS, true)) {
+      throw new \InvalidArgumentException('El tipo de servicio no es válido: elige vídeo, imágenes o chat.');
+    }
+    if ($tipoServicio === '') {
+      $tipoServicio = $conPrecio ? 'video' : null;
+    }
+
     $datos = [
       'nombre' => $nombre, 'corta' => $corta, 'larga' => $larga, 'icono' => $icono,
       'caracteristicas' => $caracteristicas, 'codigo' => $codigo, 'tipo' => 'unico', 'cents' => 0,
+      'tipo_servicio' => $tipoServicio,
     ];
 
     if ($conPrecio) {
@@ -293,7 +322,7 @@ class adminControlador {
     return $codigo;
   }
 
-  private function texto(array $in, string $clave): string {
+  protected function texto(array $in, string $clave): string {
     return (isset($in[$clave]) && is_string($in[$clave])) ? trim($in[$clave]) : '';
   }
 
@@ -366,7 +395,7 @@ class adminControlador {
   }
 
   /** Comprueba sesión + rol + POST + CSRF, ejecuta la acción y responde JSON. */
-  private function accion(callable $accion): void {
+  protected function accion(callable $accion): void {
     if (empty($_SESSION['email'])) {
       $this->responder(['error' => 'Tu sesión ha caducado. Vuelve a iniciar sesión.'], 401);
     }
@@ -395,8 +424,11 @@ class adminControlador {
   }
 
   /** Mensaje apto para mostrar al administrador sin filtrar detalles internos. */
-  private function mensajeError(\Throwable $e): string {
+  protected function mensajeError(\Throwable $e): string {
     if ($e instanceof \PDOException) {
+      if ($e->getCode() === '42S22' && strpos($e->getMessage(), 'Tipo_servicio') !== false) {
+        return 'Falta ejecutar la migración de la base de datos (app/core/migracion_tipo_servicio.sql).';
+      }
       return 'No se pudo guardar en la base de datos.';
     }
     if ($e instanceof \Exception) {
@@ -405,7 +437,7 @@ class adminControlador {
     return 'No se pudo conectar con Stripe. Inténtalo de nuevo en unos segundos.';
   }
 
-  private function responder(array $datos, int $codigo = 200): void {
+  protected function responder(array $datos, int $codigo = 200): void {
     http_response_code($codigo);
     header('Content-Type: application/json; charset=utf-8');
     header('Cache-Control: no-store');

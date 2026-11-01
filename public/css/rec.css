@@ -410,6 +410,9 @@ body {
         width: 280px !important;
     }
 
+    /* AdminLTE abre/cierra la barra poniendo la clase "sidebar-open" en el <body> (botón de hamburguesa).
+       Antes solo se mostraba con ".show", que ningún script añade, y en móvil no se podía abrir nunca. */
+    .sidebar-open .app-sidebar,
     .app-sidebar.show {
         left: 0 !important;
     }

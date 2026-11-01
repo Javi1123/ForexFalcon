@@ -32,6 +32,9 @@
   <?php if (!empty($vistaAdmin)): ?>
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/admin-servicios.css" ?>">
   <?php endif; ?>
+  <?php if (!empty($vistaServicio)): ?>
+  <link rel="stylesheet" href="<?= LINKS_PATH . "/css/servicio.css" ?>">
+  <?php endif; ?>
   <script src="<?= LINKS_PATH . "/js/code_js_jquerys/tienda-servicios.js" ?>" defer></script>
   <script src="<?= LINKS_PATH . "/js/code_js_jquerys/configuracion.js" ?>" defer></script>
 </head>

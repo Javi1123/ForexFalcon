@@ -116,6 +116,7 @@ CREATE TABLE Servicios (
   Descripcion_servicio TEXT NOT NULL,
   Fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   Metodo_pago ENUM('Unico','Mensual','Semanal','Anual') NOT NULL DEFAULT 'Mensual',
+  Tipo_servicio ENUM('video','imagenes','chat') NOT NULL DEFAULT 'video',
   Activado TINYINT(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (Id_servicio)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

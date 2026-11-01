@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════
-   ADMINISTRAR SERVICIOS (/admin)
+   ADMINISTRAR SERVICIOS (/admin/servicios)
    JS "vanilla". Cada botón llama a una acción JSON del servidor,
    que cambia Stripe y la base de datos a la vez. Al terminar bien,
    se recarga la página para ver las tarjetas actualizadas.
@@ -131,6 +131,7 @@
     $('svcGrupoPrecio').hidden = false;
     $('svcGuardar').textContent = 'Crear servicio';
     elegirIcono('fa-solid fa-star');
+    $('svcTipoServicio').value = 'video';
     $('svcLargaContador').textContent = '0';
     contarCaracteristicas();
     modalServicio.show();
@@ -153,6 +154,7 @@
     $('svcGrupoPrecio').hidden = true;           // el precio se cambia con su propio botón
     $('svcGuardar').textContent = 'Guardar cambios';
     elegirIcono(s.icono);
+    $('svcTipoServicio').value = s.tipo_servicio || 'video';
     contarCaracteristicas();
     modalServicio.show();
     setTimeout(function () { $('svcNombre').focus(); }, 300);
@@ -184,6 +186,7 @@
       descripcion_corta: $('svcCorta').value,
       descripcion_larga: $('svcLarga').value,
       icono: $('svcIcono').value,
+      tipo_servicio: $('svcTipoServicio').value,
       caracteristicas: $('svcCaracteristicas').value
     };
 
@@ -193,10 +196,10 @@
       datos.id_servicio = $('svcCodigo').value.trim();
       datos.importe = $('svcImporte').value;
       datos.tipo = $('svcTipo').value;
-      ruta = '/admin/crear';
+      ruta = '/admin/servicios/crear';
     } else {
       datos.product_id = estado.producto.product_id;
-      ruta = '/admin/editar';
+      ruta = '/admin/servicios/editar';
     }
 
     var desbloquear = bloquear($('svcGuardar'), 'Guardando…');
@@ -215,7 +218,7 @@
     if (!$('prcImporte').value.trim()) { mostrarError('prcError', 'Indica el nuevo precio.'); $('prcImporte').focus(); return; }
 
     var desbloquear = bloquear($('prcGuardar'), 'Cambiando…');
-    api('/admin/precio', {
+    api('/admin/servicios/precio', {
       product_id: estado.producto.product_id,
       importe: $('prcImporte').value,
       tipo: $('prcTipo').value
@@ -246,7 +249,7 @@
 
   function cambiarEstado(s, activo, boton) {
     boton.disabled = true;
-    return api('/admin/estado', { product_id: s.product_id, activo: activo })
+    return api('/admin/servicios/estado', { product_id: s.product_id, activo: activo })
       .then(function (r) { return exito(r.mensaje); })
       .catch(function (err) {
         boton.disabled = false;
@@ -256,7 +259,7 @@
 
   function sincronizar(s, boton) {
     boton.disabled = true;
-    return api('/admin/sincronizar', { product_id: s.product_id })
+    return api('/admin/servicios/sincronizar', { product_id: s.product_id })
       .then(function (r) { return exito(r.mensaje); })
       .catch(function (err) {
         boton.disabled = false;

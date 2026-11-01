@@ -86,6 +86,7 @@
   white-space: nowrap;
 }
 .chip-admin--suave { background: #eef0f7; color: var(--azul); font-family: 'Barlow', sans-serif; }
+.chip-admin--tipo  { background: var(--naranja-dim); color: #a85a14; font-family: 'Barlow', sans-serif; }
 .chip-admin--gris  { background: #d9dce6; color: #4b5160; font-family: 'Barlow', sans-serif; }
 .chip-admin--aviso { background: rgba(245, 185, 66, 0.25); color: #8a5a00; font-family: 'Barlow', sans-serif; cursor: help; }
 
@@ -119,6 +120,8 @@
   transition: background 0.18s, border-color 0.18s, color 0.18s;
 }
 .btn-admin:hover:not(:disabled) { background: #eceef7; border-color: #c5cbe0; }
+a.btn-admin { text-decoration: none; }
+.btn-admin--videos { flex-basis: 100%; }
 .btn-admin:disabled { opacity: 0.55; cursor: wait; }
 .btn-admin:focus-visible { outline: 3px solid var(--verde); outline-offset: 2px; }
 
@@ -196,3 +199,98 @@
 @media (max-width: 575.98px) {
   .badge-modo { margin: 6px 0 0; display: flex; width: fit-content; }
 }
+
+/* ═══════════════════════════════════════════════════════
+   ADMINISTRAR VÍDEOS DE UN SERVICIO (/admin/videos)
+   ═══════════════════════════════════════════════════════ */
+
+.admin-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #6b7280;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.admin-volver:hover { color: var(--naranja); }
+
+.admin-panel {
+  margin-bottom: 24px;
+  padding: 22px 24px;
+  background: #fff;
+  border: 1px solid #e4e7f0;
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra);
+}
+.admin-panel > h4 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 18px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--azul);
+}
+.admin-panel > h4 i { color: var(--naranja); }
+.admin-panel .form-label { font-size: 0.85rem; font-weight: 600; color: var(--azul); }
+.admin-panel .form-control:focus {
+  border-color: var(--naranja);
+  box-shadow: 0 0 0 0.2rem rgba(251, 142, 55, 0.2);
+}
+.admin-panel .admin-vacio { margin: 0; }
+
+.admin-contador {
+  padding: 1px 9px;
+  border-radius: 999px;
+  background: #e8eaf3;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.subida-progreso { margin-top: 18px; }
+.subida-progreso .progress { height: 12px; border-radius: 999px; background: #eceef7; }
+.subida-progreso .progress-bar { background: var(--naranja); transition: width 0.2s ease; }
+.subida-estado { margin-top: 8px; font-size: 0.85rem; color: #4b5160; }
+.subida-progreso[hidden] { display: none; }
+
+.subida-botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+.subida-botones [hidden] { display: none; }
+
+.admin-tabla { margin-bottom: 0; }
+.admin-tabla th {
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #6b7280;
+  white-space: nowrap;
+}
+.admin-tabla td { font-size: 0.92rem; }
+.admin-tabla__nombre { font-weight: 600; color: var(--azul); }
+.admin-tabla__acciones { white-space: nowrap; }
+.admin-tabla__acciones .btn-admin { flex: 0 0 auto; padding: 6px 10px; margin-left: 4px; }
+
+@media (max-width: 767.98px) {
+  .admin-panel { padding: 18px 16px; }
+  .admin-tabla__acciones { white-space: normal; }
+}
+
+/* Detalles de pulido */
+.admin-subtitulo code {
+  padding: 1px 7px;
+  border-radius: 6px;
+  background: #eceef7;
+  color: var(--azul);
+  font-size: 0.8rem;
+}
+.admin-panel .btnRegistrarse:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+/* Misma altura en la zona de icono + etiquetas, para que los títulos queden alineados entre tarjetas */
+.servicio-card--admin .servicio-card__top { min-height: 84px; }

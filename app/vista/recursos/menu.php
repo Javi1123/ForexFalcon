@@ -97,55 +97,66 @@
         
         <!-- Tienda -->
         <li class="nav-item">
-          <a href="<?= BASE_PATH . "/recursos" ?>" class="nav-link active" style="border-radius: 10px; padding: 10px 16px; color: rgba(255,255,255,0.7); transition: all 0.3s ease; display: flex; align-items: center; gap: 12px;">
+          <a href="<?= BASE_PATH . "/recursos" ?>" class="nav-link <?= empty($vistaAdmin) && empty($vistaServicio) ? 'active' : '' ?>" style="border-radius: 10px; padding: 10px 16px; color: rgba(255,255,255,0.7); transition: all 0.3s ease; display: flex; align-items: center; gap: 12px;">
             <i class="fa-solid fa-shop" style="color: var(--verde); font-size: 1rem; width: 20px; text-align: center;"></i>
             <p style="margin: 0; font-weight: 500; font-size: 0.9rem; flex: 1;">Tienda</p>
           </a>
         </li>
+
+        <?php if (\App\controlador\chatControlador::esAdmin()): ?>
+        <!-- Administrar servicios (solo administradores) -->
+        <li class="nav-item">
+          <a href="<?= BASE_PATH . "/admin/servicios" ?>" class="nav-link <?= !empty($vistaAdmin) ? 'active' : '' ?>" style="border-radius: 10px; padding: 10px 16px; color: rgba(255,255,255,0.7); transition: all 0.3s ease; display: flex; align-items: center; gap: 12px;">
+            <i class="fa-solid fa-sliders" style="color: var(--naranja); font-size: 1rem; width: 20px; text-align: center;"></i>
+            <p style="margin: 0; font-weight: 500; font-size: 0.9rem; flex: 1;">Administrar servicios</p>
+          </a>
+        </li>
+        <?php endif; ?>
 
         <!-- Separador -->
         <li class="nav-item" style="padding: 8px 0;">
           <hr style="border-color: rgba(255,255,255,0.06); margin: 0;">
         </li>
 
-        <!-- Sección: Mis servicios -->
+        <?php
+        // Servicios que el usuario tiene contratados (tabla Suscripciones, solo las vigentes).
+        // Si la consulta fallara, la barra lateral sigue funcionando: solo se queda sin esta lista.
+        $esAdminMenu = \App\controlador\chatControlador::esAdmin();
+        $misServicios = [];
+        if (!$esAdminMenu) {
+          try {
+            $misServicios = \App\modelo\suscripcionModelo::activasDeUsuario($_SESSION['email']);
+          } catch (\Throwable $e) {
+            error_log('Menú: no se pudieron leer las suscripciones: ' . $e->getMessage());
+          }
+        }
+        $iconosMenu = ['video' => 'fa-solid fa-circle-play', 'imagenes' => 'fa-solid fa-images', 'chat' => 'fa-solid fa-comments'];
+        ?>
+        <?php if (!$esAdminMenu): ?>
+        <!-- Sección: Mis servicios (suscripciones vigentes del usuario) -->
         <li class="nav-item" style="padding-top: 12px;">
           <span class="nav-section-title" style="display: block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.2); padding: 0 16px 8px;">
             Mis Servicios
           </span>
         </li>
 
+        <?php foreach ($misServicios as $ms):
+          $esActivoMenu = !empty($servicioActivo) && strtoupper($servicioActivo) === strtoupper($ms['Id_servicio']); ?>
         <li class="nav-item">
-          <a href="#" class="nav-link" style="border-radius: 10px; padding: 10px 16px; color: rgba(255,255,255,0.4); transition: all 0.3s ease; display: flex; align-items: center; gap: 12px;">
-            <i class="fa-solid fa-copy" style="color: var(--verde); font-size: 1rem; width: 20px; text-align: center;"></i>
-            <p style="margin: 0; font-weight: 400; font-size: 0.9rem; flex: 1;">CopyTrading</p>
-            <span class="service-status active" style="font-size: 9px; color: var(--verde); font-weight: 500;">● Activo</span>
+          <a href="<?= BASE_PATH . '/servicio?id=' . rawurlencode($ms['Id_servicio']) ?>" class="nav-link <?= $esActivoMenu ? 'active' : '' ?>" style="border-radius: 10px; padding: 10px 16px; color: rgba(255,255,255,0.7); transition: all 0.3s ease; display: flex; align-items: center; gap: 12px;">
+            <i class="<?= $iconosMenu[$ms['Tipo_servicio']] ?? $iconosMenu['video'] ?>" style="color: var(--verde); font-size: 1rem; width: 20px; text-align: center;"></i>
+            <p style="margin: 0; font-weight: 500; font-size: 0.9rem; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><?= htmlspecialchars($ms['Nombre_servicio']) ?></p>
           </a>
         </li>
+        <?php endforeach; ?>
 
-        <li class="nav-item">
-          <a href="#" class="nav-link" style="border-radius: 10px; padding: 10px 16px; color: rgba(255,255,255,0.4); transition: all 0.3s ease; display: flex; align-items: center; gap: 12px;">
-            <i class="fa-solid fa-user-graduate" style="color: var(--naranja-dim); font-size: 1rem; width: 20px; text-align: center;"></i>
-            <p style="margin: 0; font-weight: 400; font-size: 0.9rem; flex: 1;">Mentorías</p>
-            <span class="service-status inactive" style="font-size: 9px; color: var(--naranja); font-weight: 500;">○ Inactivo</span>
-          </a>
+        <?php if (!$misServicios): ?>
+        <li class="nav-item" style="padding: 4px 16px 0;">
+          <span style="display: block; font-size: 0.8rem; color: rgba(255,255,255,0.4); line-height: 1.5; margin-bottom: 4px;">Aún no tienes servicios contratados.</span>
+          <a href="<?= BASE_PATH . '/recursos' ?>" style="font-size: 0.8rem; color: var(--naranja);">Ver la tienda →</a>
         </li>
-
-        <li class="nav-item">
-          <a href="#" class="nav-link" style="border-radius: 10px; padding: 10px 16px; color: rgba(255,255,255,0.4); transition: all 0.3s ease; display: flex; align-items: center; gap: 12px;">
-            <i class="fa-solid fa-microchip" style="color: var(--naranja-dim); font-size: 1rem; width: 20px; text-align: center;"></i>
-            <p style="margin: 0; font-weight: 400; font-size: 0.9rem; flex: 1;">Bots</p>
-            <span class="service-status inactive" style="font-size: 9px; color: var(--naranja); font-weight: 500;">○ Inactivo</span>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a href="#" class="nav-link" style="border-radius: 10px; padding: 10px 16px; color: rgba(255,255,255,0.4); transition: all 0.3s ease; display: flex; align-items: center; gap: 12px;">
-            <i class="fa-solid fa-gem" style="color: var(--naranja-dim); font-size: 1rem; width: 20px; text-align: center;"></i>
-            <p style="margin: 0; font-weight: 400; font-size: 0.9rem; flex: 1;">Análisis Premium</p>
-            <span class="service-status inactive" style="font-size: 9px; color: var(--naranja); font-weight: 500;">○ Inactivo</span>
-          </a>
-        </li>
+        <?php endif; ?>
+        <?php endif; ?>
 
         <!-- Separador -->
         <li class="nav-item" style="padding: 8px 0;">

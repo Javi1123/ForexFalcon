@@ -5,6 +5,9 @@ use App\controlador\principalControlador;
 use App\controlador\stripeControlador;
 use App\controlador\chatControlador;
 use App\controlador\adminControlador;
+use App\controlador\adminVideosControlador;
+use App\controlador\servicioControlador;
+use App\controlador\videoControlador;
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
@@ -87,34 +90,71 @@ switch ($uri){
     break;
 
   // Administración de servicios (solo administradores): vista + acciones JSON
-  case '/admin':
+  case '/admin/servicios':
     $controlador = new adminControlador();
     $controlador-> servicios();
     break;
 
-  case '/admin/crear':
+  case '/admin/servicios/crear':
     $controlador = new adminControlador();
     $controlador-> crear();
     break;
 
-  case '/admin/editar':
+  case '/admin/servicios/editar':
     $controlador = new adminControlador();
     $controlador-> editar();
     break;
 
-  case '/admin/precio':
+  case '/admin/servicios/precio':
     $controlador = new adminControlador();
     $controlador-> precio();
     break;
 
-  case '/admin/estado':
+  case '/admin/servicios/estado':
     $controlador = new adminControlador();
     $controlador-> estado();
     break;
 
-  case '/admin/sincronizar':
+  case '/admin/servicios/sincronizar':
     $controlador = new adminControlador();
     $controlador-> sincronizar();
+    break;
+
+  // Página de un servicio contratado (la barra lateral enlaza aquí) y entrega protegida de vídeos
+  case '/servicio':
+    $controlador = new servicioControlador();
+    $controlador-> ver();
+    break;
+
+  case '/video/ver':
+    $controlador = new videoControlador();
+    $controlador-> ver();
+    break;
+
+  // Vídeos de un servicio (solo administradores): vista + acciones JSON
+  case '/admin/videos':
+    $controlador = new adminVideosControlador();
+    $controlador-> pagina();
+    break;
+
+  case '/admin/videos/subir':
+    $controlador = new adminVideosControlador();
+    $controlador-> subir();
+    break;
+
+  case '/admin/videos/cancelar':
+    $controlador = new adminVideosControlador();
+    $controlador-> cancelar();
+    break;
+
+  case '/admin/videos/renombrar':
+    $controlador = new adminVideosControlador();
+    $controlador-> renombrar();
+    break;
+
+  case '/admin/videos/eliminar':
+    $controlador = new adminVideosControlador();
+    $controlador-> eliminar();
     break;
 
   // Acciones para formulario de inicio_de_sesion/registrarse

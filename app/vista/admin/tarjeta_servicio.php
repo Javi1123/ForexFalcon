@@ -6,7 +6,14 @@
 $codigo = strtoupper($s['id_servicio']);
 $enBd = $codigo !== '' && isset($sync[$codigo]);
 $etiquetasTipo = ['unico' => 'Pago único', 'semanal' => 'Semanal', 'mensual' => 'Mensual', 'anual' => 'Anual'];
-$datos = $s + ['en_bd' => $enBd];
+$tipoServicio = $tipos[$codigo] ?? null;
+$infoTipo = [
+  'video'    => ['Vídeos',   'fa-solid fa-circle-play'],
+  'imagenes' => ['Imágenes', 'fa-solid fa-images'],
+  'chat'     => ['Chat',     'fa-solid fa-comments'],
+][$tipoServicio] ?? null;
+$numVideos = $videosPorServicio[$codigo] ?? 0;
+$datos = $s + ['en_bd' => $enBd, 'tipo_servicio' => $tipoServicio];
 $flagsJson = JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT;
 ?>
 <div class="servicio-card servicio-card--admin<?= $archivado ? ' servicio-card--archivado' : '' ?>"
@@ -21,6 +28,11 @@ $flagsJson = JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APO
         <?= $codigo !== '' ? htmlspecialchars($codigo) : 'Sin código' ?>
       </span>
       <span class="chip-admin chip-admin--suave"><?= htmlspecialchars($etiquetasTipo[$s['tipo']] ?? $s['tipo']) ?></span>
+      <?php if ($infoTipo): ?>
+        <span class="chip-admin chip-admin--tipo" title="Tipo de servicio: qué contenido ve el usuario suscrito">
+          <i class="<?= $infoTipo[1] ?>"></i> <?= $infoTipo[0] ?>
+        </span>
+      <?php endif; ?>
       <?php if ($archivado): ?>
         <span class="chip-admin chip-admin--gris">Archivado</span>
       <?php endif; ?>
@@ -54,6 +66,11 @@ $flagsJson = JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APO
       <button type="button" class="btn-admin btn-admin--peligro" data-accion="archivar">
         <i class="fa-solid fa-box-archive"></i> Archivar
       </button>
+    <?php endif; ?>
+    <?php if ($tipoServicio === 'video' && $enBd): ?>
+      <a class="btn-admin btn-admin--videos" href="<?= BASE_PATH . '/admin/videos?servicio=' . rawurlencode($codigo) ?>">
+        <i class="fa-solid fa-film"></i> Vídeos (<?= (int) $numVideos ?>)
+      </a>
     <?php endif; ?>
     <?php if (!$enBd && $codigo !== ''): ?>
       <button type="button" class="btn-admin btn-admin--aviso" data-accion="sincronizar">

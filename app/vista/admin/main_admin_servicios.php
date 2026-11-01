@@ -2,20 +2,20 @@
 // Iconos que se pueden elegir (Font Awesome gratuito). Si un producto ya tenía otro, el JS lo conserva.
 $iconosDisponibles = [
   'fa-solid fa-star'           => 'Estrella',
-  'fa-solid fa-copy'           => 'Copiar',
-  'fa-solid fa-user-graduate'  => 'Graduado',
-  'fa-solid fa-microchip'      => 'Chip',
-  'fa-solid fa-gem'            => 'Gema',
+  'fa-solid fa-copy'           => 'Copiar (copytrading)',
+  'fa-solid fa-user-graduate'  => 'Graduado (mentorías)',
+  'fa-solid fa-microchip'      => 'Chip (bots)',
+  'fa-solid fa-gem'            => 'Gema (premium)',
   'fa-solid fa-chart-line'     => 'Gráfico',
   'fa-solid fa-robot'          => 'Robot',
-  'fa-solid fa-graduation-cap' => 'Birrete',
+  'fa-solid fa-graduation-cap' => 'Birrete (formación)',
   'fa-solid fa-rocket'         => 'Cohete',
   'fa-solid fa-bolt'           => 'Rayo',
   'fa-solid fa-shield-halved'  => 'Escudo',
   'fa-solid fa-coins'          => 'Monedas',
   'fa-solid fa-crown'          => 'Corona',
   'fa-solid fa-book'           => 'Libro',
-  'fa-solid fa-bell'           => 'Campana',
+  'fa-solid fa-bell'           => 'Campana (alertas)',
   'fa-solid fa-handshake'      => 'Apretón de manos',
 ];
 $simboloMoneda = ['eur' => '€', 'usd' => '$', 'gbp' => '£'][defined('CURRENCY') ? CURRENCY : 'eur'] ?? '€';
@@ -33,11 +33,11 @@ foreach (array_merge($activos, $archivados) as $x) {
             Administrar servicios
             <?php if ($modoPrueba): ?>
               <span class="badge-modo badge-modo--prueba" title="Estás usando una clave de prueba (sk_test_): no se cobra dinero real.">
-                Modo prueba
+                <i class="fa-brands fa-stripe-s"></i> Modo prueba
               </span>
             <?php else: ?>
               <span class="badge-modo badge-modo--real" title="Estás usando la clave real de Stripe: los cambios afectan a la tienda en producción.">
-                Modo real
+                <i class="fa-brands fa-stripe-s"></i> Modo real
               </span>
             <?php endif; ?>
           </h3>
@@ -59,6 +59,15 @@ foreach (array_merge($activos, $archivados) as $x) {
         <div class="alert alert-danger admin-alerta" role="alert">
           <i class="fa-solid fa-circle-exclamation me-2"></i>
           No se pudieron cargar los servicios de Stripe: <?= htmlspecialchars($errorStripe) ?>
+        </div>
+      <?php endif; ?>
+
+      <?php if (!empty($falloMigracion)): ?>
+        <div class="alert alert-danger admin-alerta" role="alert">
+          <i class="fa-solid fa-database me-2"></i>
+          <strong>Falta actualizar la base de datos.</strong> Ejecuta una vez el archivo
+          <code>app/core/migracion_tipo_servicio.sql</code> (phpMyAdmin → tu base de datos → pestaña SQL).
+          Añade la columna <code>Tipo_servicio</code> a la tabla <code>Servicios</code>. Hasta entonces no se puede elegir el tipo de servicio.
         </div>
       <?php endif; ?>
 
@@ -135,6 +144,16 @@ foreach (array_merge($activos, $archivados) as $x) {
                 <?php endforeach; ?>
               </select>
             </div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label" for="svcTipoServicio">Tipo de servicio</label>
+            <select class="form-select" id="svcTipoServicio" aria-describedby="svcTipoServicioAyuda">
+              <option value="video">Vídeos</option>
+              <option value="imagenes">Imágenes</option>
+              <option value="chat">Chat</option>
+            </select>
+            <div class="form-text" id="svcTipoServicioAyuda">Qué contenido ve el usuario suscrito.</div>
           </div>
 
           <div class="col-12">

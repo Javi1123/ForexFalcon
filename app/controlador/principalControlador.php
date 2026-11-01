@@ -51,7 +51,7 @@ class principalControlador{
       header("Location: " . BASE_PATH . '/acciones?tipo=inicio');
       exit();
     } else if(chatControlador::esAdmin()){
-      header("Location: " . BASE_PATH . '/admin');
+      header("Location: " . BASE_PATH . '/admin/servicios');
       exit();
     }
 

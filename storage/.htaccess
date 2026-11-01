@@ -1,0 +1,8 @@
+# Los vídeos solo se sirven a través de /video/ver (que comprueba la suscripción).
+# Este archivo impide que alguien los abra escribiendo su dirección en el navegador.
+<IfModule mod_authz_core.c>
+  Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+  Deny from all
+</IfModule>
