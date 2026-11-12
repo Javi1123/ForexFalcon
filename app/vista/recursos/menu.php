@@ -95,9 +95,19 @@
     <nav class="mt-2">
       <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="navigation" aria-label="Main navigation" data-accordion="false" id="navigation">
         
+        <?php if (!\App\controlador\chatControlador::esAdmin()): ?>
+        <!-- Inicio (bienvenida) -->
+        <li class="nav-item">
+          <a href="<?= BASE_PATH . "/recursos" ?>" class="nav-link <?= !empty($vistaBienvenida) ? 'active' : '' ?>" style="border-radius: 10px; padding: 10px 16px; color: rgba(255,255,255,0.7); transition: all 0.3s ease; display: flex; align-items: center; gap: 12px;">
+            <i class="fa-solid fa-house" style="color: var(--verde); font-size: 1rem; width: 20px; text-align: center;"></i>
+            <p style="margin: 0; font-weight: 500; font-size: 0.9rem; flex: 1;">Inicio</p>
+          </a>
+        </li>
+        <?php endif; ?>
+
         <!-- Tienda -->
         <li class="nav-item">
-          <a href="<?= BASE_PATH . "/recursos" ?>" class="nav-link <?= empty($vistaAdmin) && empty($vistaServicio) ? 'active' : '' ?>" style="border-radius: 10px; padding: 10px 16px; color: rgba(255,255,255,0.7); transition: all 0.3s ease; display: flex; align-items: center; gap: 12px;">
+          <a href="<?= BASE_PATH . "/tienda" ?>" class="nav-link <?= empty($vistaAdmin) && empty($vistaServicio) && empty($vistaBienvenida) ? 'active' : '' ?>" style="border-radius: 10px; padding: 10px 16px; color: rgba(255,255,255,0.7); transition: all 0.3s ease; display: flex; align-items: center; gap: 12px;">
             <i class="fa-solid fa-shop" style="color: var(--verde); font-size: 1rem; width: 20px; text-align: center;"></i>
             <p style="margin: 0; font-weight: 500; font-size: 0.9rem; flex: 1;">Tienda</p>
           </a>
@@ -153,7 +163,7 @@
         <?php if (!$misServicios): ?>
         <li class="nav-item" style="padding: 4px 16px 0;">
           <span style="display: block; font-size: 0.8rem; color: rgba(255,255,255,0.4); line-height: 1.5; margin-bottom: 4px;">Aún no tienes servicios contratados.</span>
-          <a href="<?= BASE_PATH . '/recursos' ?>" style="font-size: 0.8rem; color: var(--naranja);">Ver la tienda →</a>
+          <a href="<?= BASE_PATH . '/tienda' ?>" style="font-size: 0.8rem; color: var(--naranja);">Ver la tienda →</a>
         </li>
         <?php endif; ?>
         <?php endif; ?>

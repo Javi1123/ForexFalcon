@@ -13,6 +13,9 @@ RewriteRule crear_cuenta index.php
 RewriteRule logout index.php
 RewriteRule recursos index.php
 RewriteRule pago index.php
+
+# Tienda (anclada con ^ para no capturar public/css/tienda-servicios.css ni tienda-servicios.js)
+RewriteRule ^tienda($|/) index.php [L]
 RewriteRule guardar index.php
 
 # Chat de mensajería (anclada con ^ para no capturar public/.../chat.js ni chat.css)

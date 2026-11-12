@@ -32,9 +32,13 @@
   <?php if (!empty($vistaAdmin)): ?>
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/admin-servicios.css" ?>">
   <?php endif; ?>
+  <?php if (!empty($vistaBienvenida)): ?>
+  <link rel="stylesheet" href="<?= LINKS_PATH . "/css/bienvenida.css?v=" . (@filemtime(__DIR__ . '/../../../public/css/bienvenida.css') ?: 1) ?>">
+  <?php endif; ?>
   <?php if (!empty($vistaServicio)): ?>
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/servicio.css" ?>">
   <?php endif; ?>
+  <link rel="stylesheet" href="<?= LINKS_PATH . "/css/recursos-animaciones.css?v=" . (@filemtime(__DIR__ . '/../../../public/css/recursos-animaciones.css') ?: 1) ?>">
   <script src="<?= LINKS_PATH . "/js/code_js_jquerys/tienda-servicios.js" ?>" defer></script>
   <script src="<?= LINKS_PATH . "/js/code_js_jquerys/configuracion.js" ?>" defer></script>
 </head>

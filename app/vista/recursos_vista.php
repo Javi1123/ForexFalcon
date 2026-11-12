@@ -13,7 +13,7 @@ echo '<!DOCTYPE html><html lang="es-es" dir="ltr">';
     echo '<body class="layout-fixed sidebar-expand-lg bg-body-tertiary p-0">';
     echo '<div class="app-wrapper">';
         include_once("recursos/menu.php");                                               // Menú superior fijo
-        include_once("recursos/main_recursos.php");                                      // Bloque central
+        include_once(!empty($vistaBienvenida) ? "recursos/main_bienvenida.php" : "recursos/main_recursos.php"); // Bloque central (bienvenida o tienda)
         include_once("recursos/chat_burbuja.php");                                       // Burbuja de mensajería (abajo a la derecha)
         include_once("recursos/pie.php");                                                // pie de página
     echo '</div>';

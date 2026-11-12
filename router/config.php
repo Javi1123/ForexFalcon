@@ -38,6 +38,11 @@ switch ($uri){
     $controlador-> recursos();
     break;
 
+  case '/tienda':
+    $controlador = new principalControlador();
+    $controlador-> tienda();
+    break;
+
   case '/pago':
     $controlador = new stripeControlador();
     $controlador-> pago();

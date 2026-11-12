@@ -1,0 +1,154 @@
+/* ═══════════════════════════════════════════════════════
+   ANIMACIONES DE LA ZONA PRIVADA (/recursos, /tienda, /servicio, /admin/*)
+   Barra lateral, barra superior, menú de perfil y contenido.
+   Se carga la última para sobrescribir las transiciones secas de AdminLTE/rec.css.
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  --ease-suave: cubic-bezier(.22, .8, .3, 1);      /* arranque rápido, frenada larga */
+  --ease-elastico: cubic-bezier(.34, 1.56, .64, 1); /* pequeño rebote */
+  --dur-barra: .45s;
+}
+
+/* ── 1. Barra lateral: abrir/cerrar fluido ─────────────── */
+
+/* Escritorio: AdminLTE cambia margin-left al plegar; rec.css se lo cargaba (solo animaba width/transform). */
+.app-sidebar {
+  transition:
+    margin-left var(--dur-barra) var(--ease-suave),
+    left var(--dur-barra) var(--ease-suave),
+    transform var(--dur-barra) var(--ease-suave),
+    box-shadow var(--dur-barra) ease,
+    opacity .3s ease !important;
+  will-change: margin-left, left;
+}
+
+/* Móvil: el panel se desliza y proyecta sombra solo mientras está abierto */
+@media (max-width: 991.98px) {
+  .app-sidebar { box-shadow: none; }
+  .sidebar-open .app-sidebar { box-shadow: 12px 0 40px rgba(0, 0, 0, .35); }
+}
+
+/* Fondo oscuro tras el menú móvil: aparece con fundido en lugar de golpe */
+.sidebar-overlay { animation-duration: .4s !important; animation-timing-function: ease !important; }
+
+/* El contenido de la barra "entra" un instante después, escalonado */
+.sidebar-open .app-sidebar .sidebar-menu > .nav-item,
+.sidebar-open .app-sidebar .sidebar-brand {
+  animation: ff-entra-izq .5s var(--ease-suave) both;
+}
+.sidebar-open .app-sidebar .sidebar-menu > .nav-item:nth-child(1) { animation-delay: .08s; }
+.sidebar-open .app-sidebar .sidebar-menu > .nav-item:nth-child(2) { animation-delay: .12s; }
+.sidebar-open .app-sidebar .sidebar-menu > .nav-item:nth-child(3) { animation-delay: .16s; }
+.sidebar-open .app-sidebar .sidebar-menu > .nav-item:nth-child(4) { animation-delay: .20s; }
+.sidebar-open .app-sidebar .sidebar-menu > .nav-item:nth-child(5) { animation-delay: .24s; }
+.sidebar-open .app-sidebar .sidebar-menu > .nav-item:nth-child(n+6) { animation-delay: .28s; }
+
+/* ── 2. Entradas de la barra lateral al cargar la página ── */
+.app-sidebar .sidebar-brand { animation: ff-entra-izq .6s var(--ease-suave) both; }
+.app-sidebar .sidebar-menu > .nav-item { animation: ff-entra-izq .55s var(--ease-suave) both; }
+.app-sidebar .sidebar-menu > .nav-item:nth-child(1) { animation-delay: .10s; }
+.app-sidebar .sidebar-menu > .nav-item:nth-child(2) { animation-delay: .16s; }
+.app-sidebar .sidebar-menu > .nav-item:nth-child(3) { animation-delay: .22s; }
+.app-sidebar .sidebar-menu > .nav-item:nth-child(4) { animation-delay: .28s; }
+.app-sidebar .sidebar-menu > .nav-item:nth-child(5) { animation-delay: .34s; }
+.app-sidebar .sidebar-menu > .nav-item:nth-child(6) { animation-delay: .40s; }
+.app-sidebar .sidebar-menu > .nav-item:nth-child(n+7) { animation-delay: .46s; }
+
+/* ── 3. Enlaces del menú: hover, pulsación e indicador activo ── */
+.app-sidebar .sidebar-menu .nav-link {
+  position: relative;
+  transition: background .35s ease, color .35s ease, transform .35s var(--ease-suave), padding-left .35s var(--ease-suave) !important;
+}
+.app-sidebar .sidebar-menu .nav-link:hover { transform: translateX(5px); background: rgba(255, 255, 255, .06); color: #fff !important; }
+.app-sidebar .sidebar-menu .nav-link:active { transform: translateX(5px) scale(.97); }
+.app-sidebar .sidebar-menu .nav-link i { transition: transform .45s var(--ease-elastico), color .3s ease !important; }
+.app-sidebar .sidebar-menu .nav-link:hover i { transform: scale(1.25) rotate(-6deg); }
+
+/* Barrita lateral del enlace activo: crece desde el centro */
+.app-sidebar .sidebar-menu .nav-link::before {
+  content: ''; position: absolute; left: -12px; top: 50%;
+  width: 3px; height: 60%; border-radius: 0 3px 3px 0;
+  background: var(--verde);
+  transform: translateY(-50%) scaleY(0); transform-origin: center;
+  transition: transform .4s var(--ease-elastico);
+}
+.app-sidebar .sidebar-menu .nav-link.active::before { transform: translateY(-50%) scaleY(1); }
+
+/* Logo */
+.app-sidebar .brand-link .zoom { transition: transform .5s var(--ease-elastico), filter .4s ease !important; }
+.app-sidebar .brand-link:hover .zoom { transform: scale(1.12) rotate(-3deg); }
+
+/* ── 4. Barra superior ──────────────────────────────────── */
+.app-header { animation: ff-entra-abajo .6s var(--ease-suave) both; }
+
+.app-header .nav-link,
+.app-header .user-menu-toggle {
+  transition: color .3s ease, background .3s ease, transform .3s var(--ease-suave) !important;
+}
+.app-header .nav-link:hover { transform: translateY(-1px); color: var(--verde) !important; }
+
+/* Hamburguesa: gira un poco al pulsarla */
+.app-header [data-lte-toggle="sidebar"] i { transition: transform .45s var(--ease-elastico); }
+.app-header [data-lte-toggle="sidebar"]:hover i { transform: scale(1.15); }
+.app-header [data-lte-toggle="sidebar"]:active i { transform: rotate(90deg) scale(.9); }
+
+/* Avatar y flecha del perfil */
+.app-header .user-menu-avatar { transition: transform .4s var(--ease-elastico), box-shadow .3s ease; }
+.app-header .user-menu-toggle:hover .user-menu-avatar { transform: scale(1.1); box-shadow: 0 0 0 3px rgba(145, 221, 78, .35); }
+.app-header .user-menu-toggle::after { transition: transform .35s var(--ease-suave); }
+.app-header .user-menu-toggle[aria-expanded="true"]::after { transform: rotate(180deg); }
+
+/* ── 5. Menú desplegable del perfil: aparece con fundido + escala ── */
+.app-header .dropdown-menu {
+  display: block;                       /* siempre en el DOM para poder animar la salida */
+  visibility: hidden; opacity: 0; pointer-events: none;
+  transform: translateY(-10px) scale(.96); transform-origin: top right;
+  transition: opacity .3s ease, transform .35s var(--ease-suave), visibility 0s linear .35s;
+}
+.app-header .dropdown-menu.show {
+  visibility: visible; opacity: 1; pointer-events: auto;
+  transform: none;
+  transition: opacity .3s ease, transform .35s var(--ease-suave), visibility 0s;
+}
+.app-header .dropdown-menu.show > li { animation: ff-entra-abajo .4s var(--ease-suave) both; }
+.app-header .dropdown-menu.show > li:nth-child(2) { animation-delay: .05s; }
+.app-header .dropdown-menu.show > li:nth-child(3) { animation-delay: .10s; }
+.app-header .dropdown-menu.show > li:nth-child(4) { animation-delay: .15s; }
+.app-header .dropdown-menu a { transition: background .25s ease, transform .3s var(--ease-suave) !important; }
+.app-header .dropdown-menu li:not(.user-header) a:hover { background: rgba(255, 255, 255, .06) !important; transform: translateX(4px); }
+
+/* ── 6. Contenido principal ─────────────────────────────── */
+.app-main .app-content-header { animation: ff-entra-abajo .6s var(--ease-suave) .05s both; }
+
+/* Tarjetas de la tienda y del panel de administración: entrada escalonada + hover suave */
+.servicios-grid > * { animation: ff-sube .6s var(--ease-suave) backwards; }
+.servicios-grid > *:nth-child(1) { animation-delay: .10s; }
+.servicios-grid > *:nth-child(2) { animation-delay: .18s; }
+.servicios-grid > *:nth-child(3) { animation-delay: .26s; }
+.servicios-grid > *:nth-child(4) { animation-delay: .34s; }
+.servicios-grid > *:nth-child(5) { animation-delay: .42s; }
+.servicios-grid > *:nth-child(n+6) { animation-delay: .5s; }
+.servicio-card { transition: transform .4s var(--ease-suave), box-shadow .4s ease !important; }
+.servicio-card:hover { transform: translateY(-6px); }
+
+/* Página de servicio (reproductor y lista de vídeos) */
+.servicio-video, .servicio-lista, .servicio-titulo { animation: ff-sube .6s var(--ease-suave) .1s both; }
+
+/* Botones de la zona: pulsación suave */
+.app-main .btnRegistrarse { transition: transform .25s var(--ease-suave), box-shadow .25s ease, background .25s ease !important; }
+.app-main .btnRegistrarse:active { transform: scale(.97); }
+
+/* ── Fotogramas ─────────────────────────────────────────── */
+@keyframes ff-entra-izq    { from { opacity: 0; transform: translateX(-18px); } to { opacity: 1; transform: none; } }
+@keyframes ff-entra-abajo  { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: none; } }
+@keyframes ff-sube         { from { opacity: 0; transform: translateY(22px); }  to { opacity: 1; transform: none; } }
+
+/* Quien prefiere menos movimiento no ve animaciones */
+@media (prefers-reduced-motion: reduce) {
+  .app-sidebar, .app-sidebar *, .app-header, .app-header *, .app-main *, .sidebar-overlay {
+    animation: none !important;
+    transition-duration: .01ms !important;
+    transition-delay: 0s !important;
+  }
+}

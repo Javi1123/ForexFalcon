@@ -27,7 +27,7 @@ class stripeControlador {
       $session = $stripe->post('checkout/sessions', [
         'mode'                        => $mode === 'unico' ? 'payment' : 'subscription',
         'success_url'                 => SITE_URL . '/guardar',
-        'cancel_url'                  => SITE_URL . '/recursos',
+        'cancel_url'                  => SITE_URL . '/tienda',
         'customer_email'           => $_SESSION['email'],                                // <-- precarga el email en Checkout
         // Muestra el campo "¿Tienes un código promocional?"
         // en la página de pago de Stripe.
@@ -51,7 +51,7 @@ class stripeControlador {
       exit;
       
     } catch (\Exception $e) {
-      header('Location: /forexfalcon/recursos');
+      header('Location: /forexfalcon/tienda');
       exit;
     }
   }

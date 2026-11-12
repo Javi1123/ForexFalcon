@@ -137,7 +137,7 @@ class formulariosControlador{
 
     session_unset();
     session_destroy();
-    header("Location: " . BASE_PATH . '/');
+    header("Location: " . BASE_PATH . '/acciones?tipo=inicio');
     exit();
   }
 

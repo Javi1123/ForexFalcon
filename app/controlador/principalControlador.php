@@ -46,14 +46,24 @@ class principalControlador{
     require_once __DIR__ . '/../../app/vista/quienes_somos_vista.php';
   }
     
+  // /recursos: página de bienvenida de la zona privada
   public function recursos(){
-    if(!isset($_SESSION['email'])){
-      header("Location: " . BASE_PATH . '/acciones?tipo=inicio');
-      exit();
-    } else if(chatControlador::esAdmin()){
-      header("Location: " . BASE_PATH . '/admin/servicios');
-      exit();
-    }
+    $this->comprobarAcceso();
+
+    $vistaBienvenida = true;
+
+    $inicial = mb_strtoupper(mb_substr($_SESSION['nombre'], 0, 1));
+
+    $nombreCompleto = $_SESSION['nombre'] . $_SESSION['apellido'];
+    $hash = md5($nombreCompleto);
+    $colorAvatar = '#' . substr($hash, 0, 6);
+
+    require_once __DIR__ . '/../../app/vista/recursos_vista.php';
+  }
+
+  // /tienda: la tienda de servicios (antes estaba en /recursos)
+  public function tienda(){
+    $this->comprobarAcceso();
 
     $inicial = mb_strtoupper(mb_substr($_SESSION['nombre'], 0, 1));
 
@@ -67,6 +77,17 @@ class principalControlador{
     $serviciosUsuario = stripeModelo::getServiciosUsuario($_SESSION['email']);
 
     require_once __DIR__ . '/../../app/vista/recursos_vista.php';
+  }
+
+  // Sin sesión -> login; administradores -> su panel
+  private function comprobarAcceso(){
+    if(!isset($_SESSION['email'])){
+      header("Location: " . BASE_PATH . '/acciones?tipo=inicio');
+      exit();
+    } else if(chatControlador::esAdmin()){
+      header("Location: " . BASE_PATH . '/admin/servicios');
+      exit();
+    }
   }
 
 }
