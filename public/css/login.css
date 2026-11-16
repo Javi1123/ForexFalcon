@@ -694,3 +694,59 @@ a:hover {
   .ff-reglas, .ff-reglas-titulo { transition: none; }
 }
 
+/* ── Botón "Continuar con Google" ──────────────────────── */
+.ff-separador {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 2px 0 14px;
+  color: var(--color-azul-principal-not-pure2);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.ff-separador::before,
+.ff-separador::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.ff-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 22px;
+  margin-bottom: 8px;
+  background: #ffffff;
+  color: #1f1f1f;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1.5px solid #ffffff;
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: background .2s ease, transform .15s ease, box-shadow .3s ease;
+}
+
+.ff-google:hover,
+.ff-google:focus-visible {
+  background: #f1f3f4;
+  color: #1f1f1f;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.ff-google-g {
+  flex: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ff-google { transition: none; }
+}
+

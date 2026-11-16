@@ -21,6 +21,9 @@ RewriteRule guardar index.php
 # Chat de mensajería (anclada con ^ para no capturar public/.../chat.js ni chat.css)
 RewriteRule ^chat/ index.php [L]
 
+# Inicio de sesión con Google (anclada con ^)
+RewriteRule ^google/ index.php [L]
+
 # Administración de servicios (anclada con ^ para no capturar public/css/admin-servicios.css)
 RewriteRule ^admin($|/) index.php [L]
 

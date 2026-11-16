@@ -1,6 +1,7 @@
 <?php
 
 use App\controlador\formulariosControlador;
+use App\controlador\googleControlador;
 use App\controlador\principalControlador;
 use App\controlador\stripeControlador;
 use App\controlador\chatControlador;
@@ -202,6 +203,17 @@ switch ($uri){
   case '/admin/videos/eliminar':
     $controlador = new adminVideosControlador();
     $controlador-> eliminar();
+    break;
+
+  // Inicio de sesión con Google
+  case '/google/inicio':
+    $controlador = new googleControlador();
+    $controlador-> inicio();
+    break;
+
+  case '/google/callback':
+    $controlador = new googleControlador();
+    $controlador-> callback();
     break;
 
   // Acciones para formulario de inicio_de_sesion/registrarse

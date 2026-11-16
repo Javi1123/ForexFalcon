@@ -5,6 +5,8 @@ session_start();
 require_once __DIR__ . '/app/core/DB.php';
 require_once __DIR__ . '/vendor/autoload.php';
 
+$secrets = require __DIR__ . '/secrets.php';
+
 // Carga las claves desde variables de entorno si existen, si no, usa el valor de ejemplo (sustitúyelo por el tuyo).
 define('STRIPE_SECRET_KEY', getenv('STRIPE_SECRET_KEY') ?: 'sk_test_51U15FfLpYszdSk8wSfbQDeliZuQW2lzNkpfOJLy9bc3SVJW68VwkkAwDyOd9OMSRCe3RkxtZMTK72oJHWsdg7YMP00PxctUOlj');
 define('STRIPE_PUBLISHABLE_KEY', getenv('STRIPE_PUBLISHABLE_KEY') ?: 'pk_test_51U15FfLpYszdSk8w0IJjtFKjrBVEvFCT7XXHrmEud4LGORhVdtJNI7TXny6BSKwBZVGlCdrxDMmM5BdKErcisHyu00DYSzb67L');
@@ -18,6 +20,10 @@ define('PUSHER_APP_ID',  getenv('PUSHER_APP_ID')  ?: '2194277');
 define('PUSHER_KEY',     getenv('PUSHER_KEY')     ?: '79b2bbaff53a39bf6b71');
 define('PUSHER_SECRET',  getenv('PUSHER_SECRET')  ?: 'a526b64f28603cedce06');
 define('PUSHER_CLUSTER', getenv('PUSHER_CLUSTER') ?: 'eu');   // ej: 'eu', 'mt1', 'us2'...
+
+// Google Cloud Console para iniciar sesion con google
+$clientId     = $secrets['google_client_id'];
+$clientSecret = $secrets['google_client_secret'];
 
 // Numero de whatsapp 
 define('WHATSAPP_NUMERO', getenv('WHATSAPP_NUMERO') ?: '34722864236');
