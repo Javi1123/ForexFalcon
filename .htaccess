@@ -22,7 +22,7 @@ RewriteRule guardar index.php
 RewriteRule ^chat/ index.php [L]
 
 # Administración de servicios (anclada con ^ para no capturar public/css/admin-servicios.css)
-RewriteRule ^admin/ index.php [L]
+RewriteRule ^admin($|/) index.php [L]
 
 # Página de servicio y vídeos protegidos (^ y ($|/) para no capturar archivos como servicios.css)
 RewriteRule ^(servicio|video)($|/) index.php [L]

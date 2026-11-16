@@ -104,6 +104,7 @@
   display: block;                       /* siempre en el DOM para poder animar la salida */
   visibility: hidden; opacity: 0; pointer-events: none;
   transform: translateY(-10px) scale(.96); transform-origin: top right;
+  right: 0; left: auto;                /* cerrado, queda anclado a la derecha del botón: si no, ensancha la página */
   transition: opacity .3s ease, transform .35s var(--ease-suave), visibility 0s linear .35s;
 }
 .app-header .dropdown-menu.show {

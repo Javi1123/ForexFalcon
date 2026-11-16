@@ -6,6 +6,7 @@ $extensiones = '.' . implode(', .', $config['extensiones']);
 <main class="app-main">
   <div class="app-content-header">
     <div class="container-fluid">
+      <?php $adminSeccion = 'servicios'; $heroTitulo = ''; include __DIR__ . '/cabecera_seccion.php'; ?>
       <div class="row align-items-center">
         <div class="col-sm-8">
           <a class="admin-volver" href="<?= BASE_PATH . '/admin/servicios' ?>">

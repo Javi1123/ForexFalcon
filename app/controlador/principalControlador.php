@@ -65,6 +65,8 @@ class principalControlador{
   public function tienda(){
     $this->comprobarAcceso();
 
+    $vistaTienda = true;
+
     $inicial = mb_strtoupper(mb_substr($_SESSION['nombre'], 0, 1));
 
     $nombreCompleto = $_SESSION['nombre'] . $_SESSION['apellido'];
@@ -76,16 +78,34 @@ class principalControlador{
     
     $serviciosUsuario = stripeModelo::getServiciosUsuario($_SESSION['email']);
 
+    // Datos extra para enriquecer la tienda. Si algo falla, la tienda se muestra igual (solo sin estos detalles).
+    $tiposServicio = [];      // CÓDIGO => 'video' | 'imagenes' | 'chat'
+    $contratados   = [];      // CÓDIGO => true (suscripciones vigentes del usuario)
+    try {
+      $tiposServicio = \App\modelo\adminServiciosModelo::tipos();
+      foreach (\App\modelo\suscripcionModelo::activasDeUsuario($_SESSION['email']) as $c) {
+        $contratados[strtoupper($c['Id_servicio'])] = true;
+      }
+    } catch (\Throwable $e) {
+      error_log('Tienda: no se pudieron leer tipos/suscripciones: ' . $e->getMessage());
+    }
+
     require_once __DIR__ . '/../../app/vista/recursos_vista.php';
   }
 
   // Sin sesión -> login; administradores -> su panel
   private function comprobarAcceso(){
     if(!isset($_SESSION['email'])){
+      $_SESSION['toast'] = [
+        'tipo'    => 'error',
+        'icono'   => 'fa-user-lock',
+        'titulo'  => 'Sin sesión',
+        'mensaje' => 'No has iniciado sesión, así que no puedes entrar en tu zona privada. Inicia sesión para continuar.'
+      ];
       header("Location: " . BASE_PATH . '/acciones?tipo=inicio');
       exit();
     } else if(chatControlador::esAdmin()){
-      header("Location: " . BASE_PATH . '/admin/servicios');
+      header("Location: " . BASE_PATH . '/admin');
       exit();
     }
   }

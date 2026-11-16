@@ -13,8 +13,8 @@
   <script src="<?= LINKS_PATH . "/js/all.min.js" ?>" defer></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-rc3/dist/css/adminlte.min.css" crossorigin="anonymous" />
 
-  <script src="<?= LINKS_PATH . "/js/code_js_jquerys/fomularios.js" ?>" defer></script>
-  <link rel="stylesheet" href="<?= LINKS_PATH . "/css/login.css" ?>">
+  <script src="<?= LINKS_PATH . "/js/code_js_jquerys/fomularios.js?v=" . @filemtime(dirname(__DIR__, 2) . "/public/js/code_js_jquerys/fomularios.js") ?>" defer></script>
+  <link rel="stylesheet" href="<?= LINKS_PATH . "/css/login.css?v=" . @filemtime(dirname(__DIR__, 2) . "/public/css/login.css") ?>">
   
 </head>
 
@@ -235,6 +235,12 @@
               </div>
               <div id="errorConfirmaContraseñaRegistro" class="invalid-feedback d-block mb-2 d-none"></div>
 
+              <!-- Requisitos que aún le faltan a la contraseña (se rellena en fomularios.js) -->
+              <div id="reglasContrasena" class="ff-reglas d-none" role="status" aria-live="polite">
+                <p class="ff-reglas-titulo" id="reglasTitulo"></p>
+                <ul class="ff-reglas-lista" id="reglasLista"></ul>
+              </div>
+
               <div class="d-flex gap-2 my-3">
                 <button type="button" class="btn ff-back w-50" data-back="2">
                   <span>Atrás</span>
@@ -260,9 +266,9 @@
   <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
     <div id="registroToast" class="toast align-items-center text-white <?= $toast['tipo'] === 'error' ? 'bg-danger' : 'bg-success' ?> border-0" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="d-flex">
-        <div class="toast-body">
-          <i class="fa-solid <?= $toast['tipo'] === 'error' ? 'fa-circle-exclamation' : 'fa-circle-check' ?> me-2"></i>
-          <?= htmlspecialchars($toast['mensaje']) ?>
+        <div class="toast-body d-flex align-items-start">
+          <i class="fa-solid <?= htmlspecialchars($toast['icono'] ?? ($toast['tipo'] === 'error' ? 'fa-circle-exclamation' : 'fa-circle-check')) ?> me-2 mt-1"></i>
+          <span><?php if (!empty($toast['titulo'])): ?><strong class="d-block"><?= htmlspecialchars($toast['titulo']) ?></strong><?php endif; ?><?= htmlspecialchars($toast['mensaje']) ?></span>
         </div>
         <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
@@ -273,7 +279,7 @@
     document.addEventListener('DOMContentLoaded', function () {
       const toastEl = document.getElementById('registroToast');
       if (toastEl) {
-        const toast = new bootstrap.Toast(toastEl, { delay: 4000 });
+        const toast = new bootstrap.Toast(toastEl, { delay: 3000 });
         toast.show();
       }
     });

@@ -95,13 +95,8 @@
     <nav class="mt-2">
       <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="navigation" aria-label="Main navigation" data-accordion="false" id="navigation">
 
-        <!-- Administrar servicios (solo administradores) -->
-        <li class="nav-item">
-          <a href="<?= BASE_PATH . "/admin" ?>" class="nav-link <?= !empty($vistaAdmin) ? 'active' : '' ?>" style="border-radius: 10px; padding: 10px 16px; color: rgba(255,255,255,0.7); transition: all 0.3s ease; display: flex; align-items: center; gap: 12px;">
-            <i class="fa-solid fa-sliders" style="color: var(--naranja); font-size: 1rem; width: 20px; text-align: center;"></i>
-            <p style="margin: 0; font-weight: 500; font-size: 0.9rem; flex: 1;">Administrar servicios</p>
-          </a>
-        </li>
+        <!-- Enlaces de administración -->
+        <?php include __DIR__ . '/enlaces_admin.php'; ?>
 
         <?php if (!\App\controlador\chatControlador::esAdmin()): ?>
         <!-- Separador -->

@@ -27,6 +27,7 @@ foreach (array_merge($activos, $archivados) as $x) {
 <main class="app-main">
   <div class="app-content-header">
     <div class="container-fluid">
+      <?php $adminSeccion = 'servicios'; $heroTitulo = ''; include __DIR__ . '/cabecera_seccion.php'; ?>
       <div class="row align-items-center">
         <div class="col-sm-8">
           <h3 class="mb-0">

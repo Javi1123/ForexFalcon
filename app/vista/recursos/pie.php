@@ -3,12 +3,13 @@
   unset($_SESSION['toast']); // Se elimina para que no vuelva a aparecer al refrescar
 ?>
 
-<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
+<!-- Abajo a la derecha, justo por encima de la burbuja de chat para no taparla -->
+<div class="toast-container position-fixed end-0 p-3" style="z-index: 9999; bottom: 84px">
   <div id="registroToast" class="toast align-items-center text-white <?= $toast['tipo'] === 'error' ? 'bg-danger' : 'bg-success' ?> border-0" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
-      <div class="toast-body">
-        <i class="fa-solid <?= $toast['tipo'] === 'error' ? 'fa-circle-exclamation' : 'fa-circle-check' ?> me-2"></i>
-        <?= htmlspecialchars($toast['mensaje']) ?>
+      <div class="toast-body d-flex align-items-start">
+        <i class="fa-solid <?= htmlspecialchars($toast['icono'] ?? ($toast['tipo'] === 'error' ? 'fa-circle-exclamation' : 'fa-circle-check')) ?> me-2 mt-1"></i>
+        <span><?php if (!empty($toast['titulo'])): ?><strong class="d-block"><?= htmlspecialchars($toast['titulo']) ?></strong><?php endif; ?><?= htmlspecialchars($toast['mensaje']) ?></span>
       </div>
       <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
@@ -19,7 +20,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     const toastEl = document.getElementById('registroToast');
     if (toastEl) {
-      const toast = new bootstrap.Toast(toastEl, { delay: 4000 });
+      const toast = new bootstrap.Toast(toastEl, { delay: 3000 });
       toast.show();
     }
   });

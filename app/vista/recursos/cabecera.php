@@ -31,14 +31,18 @@
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/chat.css" ?>">
   <?php if (!empty($vistaAdmin)): ?>
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/admin-servicios.css" ?>">
+  <link rel="stylesheet" href="<?= LINKS_PATH . "/css/admin-comun.css?v=" . (@filemtime(__DIR__ . '/../../../public/css/admin-comun.css') ?: 1) ?>">
   <?php endif; ?>
   <?php if (!empty($vistaBienvenida)): ?>
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/bienvenida.css?v=" . (@filemtime(__DIR__ . '/../../../public/css/bienvenida.css') ?: 1) ?>">
+  <?php endif; ?>
+  <?php if (!empty($vistaTienda)): ?>
+  <link rel="stylesheet" href="<?= LINKS_PATH . "/css/tienda.css?v=" . (@filemtime(__DIR__ . '/../../../public/css/tienda.css') ?: 1) ?>">
   <?php endif; ?>
   <?php if (!empty($vistaServicio)): ?>
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/servicio.css" ?>">
   <?php endif; ?>
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/recursos-animaciones.css?v=" . (@filemtime(__DIR__ . '/../../../public/css/recursos-animaciones.css') ?: 1) ?>">
-  <script src="<?= LINKS_PATH . "/js/code_js_jquerys/tienda-servicios.js" ?>" defer></script>
+  <script src="<?= LINKS_PATH . "/js/code_js_jquerys/tienda-servicios.js?v=" . (@filemtime(__DIR__ . '/../../../public/js/code_js_jquerys/tienda-servicios.js') ?: 1) ?>" defer></script>
   <script src="<?= LINKS_PATH . "/js/code_js_jquerys/configuracion.js" ?>" defer></script>
 </head>

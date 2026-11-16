@@ -618,3 +618,79 @@ a:hover {
 .input-group .ff-tel-prefijo + .form-floating {
   flex: 1;
 }
+
+/* ── Requisitos de la contraseña (registro) ────────────── */
+.ff-reglas {
+  margin: 4px 0 6px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(251, 142, 55, 0.10);
+  border: 1px solid rgba(251, 142, 55, 0.45);
+  color: #f3f4f8;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  transition: background-color .3s ease, border-color .3s ease;
+}
+
+.ff-reglas-titulo {
+  margin: 0 0 6px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--color-n-principal);
+  transition: color .3s ease;
+}
+
+.ff-reglas-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.ff-reglas-lista:empty {
+  display: none;
+}
+
+.ff-reglas-lista li {
+  position: relative;
+  padding-left: 20px;
+}
+
+.ff-reglas-lista li::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 0.45em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid var(--color-n-principal);
+  box-sizing: border-box;
+}
+
+.ff-regla-nueva {
+  animation: ffReglaEntra .28s ease both;
+}
+
+@keyframes ffReglaEntra {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Todo cumplido: el recuadro pasa a verde */
+.ff-reglas.ff-reglas-ok {
+  background: rgba(145, 221, 78, 0.12);
+  border-color: rgba(145, 221, 78, 0.55);
+}
+
+.ff-reglas.ff-reglas-ok .ff-reglas-titulo {
+  margin: 0;
+  color: var(--color-v-principal);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ff-regla-nueva { animation: none; }
+  .ff-reglas, .ff-reglas-titulo { transition: none; }
+}
+

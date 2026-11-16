@@ -53,6 +53,9 @@ const ffClearPanel = (panelId) => {
     el.textContent = "";
     el.classList.add("d-none");
   }
+
+  // Recalcula el recuadro de requisitos de la contraseña (los campos ya están vacíos)
+  panel.querySelector("#regPassword")?.dispatchEvent(new Event("input"));
 };
 
 const ffShowTab = (targetId) => {
@@ -359,8 +362,66 @@ campos.forEach(function (campo) {
 });
 
 
+// Requisitos de la contraseña en directo (registro)
+const REGLAS_CONTRASENA = [
+  { texto: "Mínimo 8 caracteres",                         ok: (p) => p.length >= 8 },
+  { texto: "Una letra mayúscula (A-Z)",                   ok: (p) => /[A-Z]/.test(p) },
+  { texto: "Una letra minúscula (a-z)",                   ok: (p) => /[a-z]/.test(p) },
+  { texto: "Un número (0-9)",                             ok: (p) => /[0-9]/.test(p) },
+  { texto: "Un carácter especial (!@#$%&*...)",           ok: (p) => /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(p) },
+  { texto: "Sin espacios",                                ok: (p) => !/\s/.test(p) },
+  { texto: "Máximo 64 caracteres",                        ok: (p) => p.length <= 64 },
+];
+
+const iniciarReglasContrasena = () => {
+  const pass    = document.querySelector("#regPassword");
+  const confirm = document.querySelector("#regPasswordConfirm");
+  const caja    = document.querySelector("#reglasContrasena");
+  const titulo  = document.querySelector("#reglasTitulo");
+  const lista   = document.querySelector("#reglasLista");
+  if (!pass || !confirm || !caja || !titulo || !lista) return;
+
+  let pintadas = new Set();
+
+  const actualizar = () => {
+    const p = pass.value;
+    const c = confirm.value;
+
+    const vacio = p === "" && c === "";
+    const faltan = REGLAS_CONTRASENA.filter((r) => !r.ok(p)).map((r) => r.texto);
+    // La coincidencia se exige siempre (con los dos campos vacíos aparece como requisito inicial)
+    if (c !== p || vacio) {
+      faltan.push(p !== "" && c === "" ? "Repite la contraseña en «Confirmar contraseña»" : "Las dos contraseñas deben ser iguales");
+    }
+
+    const completa = faltan.length === 0;
+    caja.classList.remove("d-none");
+    caja.classList.toggle("ff-reglas-ok", completa);
+
+    titulo.textContent = completa
+      ? "¡Contraseña válida! Ya puedes crear tu cuenta."
+      : vacio ? "Tu contraseña debe tener:"
+      : (faltan.length === 1 ? "Te falta 1 requisito:" : `Te faltan ${faltan.length} requisitos:`);
+
+    // Reconstruimos la lista; solo animamos los que aparecen por primera vez
+    lista.replaceChildren();
+    const nuevas = new Set();
+    for (const texto of faltan) {
+      const li = document.createElement("li");
+      li.textContent = texto;
+      if (!pintadas.has(texto)) li.classList.add("ff-regla-nueva");
+      lista.appendChild(li);
+      nuevas.add(texto);
+    }
+    pintadas = nuevas;
+  };
+
+  pass.addEventListener("input", actualizar);
+  confirm.addEventListener("input", actualizar);
+  actualizar();
+};
+
+iniciarReglasContrasena();
+
 // Valicadiones
 validaciones();
-
-
-

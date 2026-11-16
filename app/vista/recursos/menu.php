@@ -105,6 +105,7 @@
         </li>
         <?php endif; ?>
 
+        <?php if (!\App\controlador\chatControlador::esAdmin()): ?>
         <!-- Tienda -->
         <li class="nav-item">
           <a href="<?= BASE_PATH . "/tienda" ?>" class="nav-link <?= empty($vistaAdmin) && empty($vistaServicio) && empty($vistaBienvenida) ? 'active' : '' ?>" style="border-radius: 10px; padding: 10px 16px; color: rgba(255,255,255,0.7); transition: all 0.3s ease; display: flex; align-items: center; gap: 12px;">
@@ -112,15 +113,10 @@
             <p style="margin: 0; font-weight: 500; font-size: 0.9rem; flex: 1;">Tienda</p>
           </a>
         </li>
+        <?php endif; ?>
 
         <?php if (\App\controlador\chatControlador::esAdmin()): ?>
-        <!-- Administrar servicios (solo administradores) -->
-        <li class="nav-item">
-          <a href="<?= BASE_PATH . "/admin/servicios" ?>" class="nav-link <?= !empty($vistaAdmin) ? 'active' : '' ?>" style="border-radius: 10px; padding: 10px 16px; color: rgba(255,255,255,0.7); transition: all 0.3s ease; display: flex; align-items: center; gap: 12px;">
-            <i class="fa-solid fa-sliders" style="color: var(--naranja); font-size: 1rem; width: 20px; text-align: center;"></i>
-            <p style="margin: 0; font-weight: 500; font-size: 0.9rem; flex: 1;">Administrar servicios</p>
-          </a>
-        </li>
+        <?php include __DIR__ . '/../admin/enlaces_admin.php'; ?>
         <?php endif; ?>
 
         <!-- Separador -->

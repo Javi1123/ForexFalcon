@@ -57,6 +57,13 @@ class formulariosControlador{
         actividadModelo::insertUltimaVezInicioSesion($_SESSION['email']);
         actividadModelo::updateUltimaVezInicioSesion($_SESSION['email']);
 
+        $_SESSION['toast'] = [
+          'tipo'    => 'success',
+          'icono'   => 'fa-circle-check',
+          'titulo'  => 'Sesión iniciada',
+          'mensaje' => 'Hola, ' . $_SESSION['nombre'] . '. Has entrado con ' . $_SESSION['email'] . '. Ya puedes ver tus servicios y la tienda.'
+        ];
+
         header("Location: " . BASE_PATH . '/recursos');
         exit();
       } else {
@@ -131,12 +138,33 @@ class formulariosControlador{
   }
 
   public function logout(){
-    $email = $_SESSION['email'];
-    actividadModelo::insertUltimaVezCerroSesion($email);
-    actividadModelo::updateUltimaVezCerroSesion($email);
+    $email = $_SESSION['email'] ?? null;
+    $nombre = $_SESSION['nombre'] ?? '';
+    if ($email) {
+      actividadModelo::insertUltimaVezCerroSesion($email);
+      actividadModelo::updateUltimaVezCerroSesion($email);
+    }
 
     session_unset();
     session_destroy();
+
+    // La sesión anterior ya no existe: se abre una nueva (con otro identificador) solo para llevar el aviso
+    session_start();
+    session_regenerate_id(true);
+    $_SESSION['toast'] = $email
+      ? [
+          'tipo'    => 'error',   // rojo
+          'icono'   => 'fa-right-from-bracket',
+          'titulo'  => 'Sesión cerrada',
+          'mensaje' => 'Hasta pronto, ' . $nombre . '. Tu sesión se ha cerrado correctamente. Inicia sesión de nuevo para volver a tu zona privada.'
+        ]
+      : [
+          'tipo'    => 'error',
+          'icono'   => 'fa-user-lock',
+          'titulo'  => 'Sin sesión',
+          'mensaje' => 'No tenías ninguna sesión iniciada. Inicia sesión para entrar en tu zona privada.'
+        ];
+
     header("Location: " . BASE_PATH . '/acciones?tipo=inicio');
     exit();
   }

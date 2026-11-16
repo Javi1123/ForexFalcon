@@ -6,6 +6,7 @@ use App\controlador\stripeControlador;
 use App\controlador\chatControlador;
 use App\controlador\adminControlador;
 use App\controlador\adminVideosControlador;
+use App\controlador\adminUsuariosControlador;
 use App\controlador\servicioControlador;
 use App\controlador\videoControlador;
 
@@ -92,6 +93,47 @@ switch ($uri){
   case '/chat/pusher_auth':
     $controlador = new chatControlador();
     $controlador-> pusher_auth();
+    break;
+
+  // Panel de administración, usuarios y actividad (solo administradores)
+  case '/admin':
+    $controlador = new adminUsuariosControlador();
+    $controlador-> panel();
+    break;
+
+  case '/admin/usuarios':
+    $controlador = new adminUsuariosControlador();
+    $controlador-> usuarios();
+    break;
+
+  case '/admin/usuarios/ficha':
+    $controlador = new adminUsuariosControlador();
+    $controlador-> ficha();
+    break;
+
+  case '/admin/usuarios/editar':
+    $controlador = new adminUsuariosControlador();
+    $controlador-> editar();
+    break;
+
+  case '/admin/usuarios/rol':
+    $controlador = new adminUsuariosControlador();
+    $controlador-> rol();
+    break;
+
+  case '/admin/usuarios/eliminar':
+    $controlador = new adminUsuariosControlador();
+    $controlador-> eliminar();
+    break;
+
+  case '/admin/actividad':
+    $controlador = new adminUsuariosControlador();
+    $controlador-> actividad();
+    break;
+
+  case '/admin/actividad/exportar':
+    $controlador = new adminUsuariosControlador();
+    $controlador-> exportar();
     break;
 
   // Administración de servicios (solo administradores): vista + acciones JSON
