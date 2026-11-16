@@ -248,6 +248,30 @@ CREATE TABLE Mensajes_chat (
   INDEX idx_chat (Id_chat)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- ------------------------------------------------------------
+-- Tabla: Restablecer_contrasena  (enlaces de "he olvidado mi contraseña")
+--   - Token_hash: SHA-256 del token. El token en claro solo existe en el correo que se envía al usuario;
+--     si alguien viera esta tabla no podría construir ningún enlace.
+--   - Fecha_expira: el enlace caduca (60 min). Usado: un enlace solo vale una vez.
+--   - Correo: FK a Usuarios con ON DELETE CASCADE (si se borra el usuario se borran sus enlaces).
+-- Ejecútalo una vez en tu base de datos existente (también está al final de forexfalcon.sql).
+-- ------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS Restablecer_contrasena (
+  Id_restablecer INT AUTO_INCREMENT,
+  Correo VARCHAR(100) NOT NULL,
+  Token_hash CHAR(64) NOT NULL,
+  Fecha_creacion DATETIME NOT NULL,
+  Fecha_expira DATETIME NOT NULL,
+  Usado TINYINT(1) NOT NULL DEFAULT 0,
+  Ip_address VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (Id_restablecer),
+  UNIQUE KEY uq_token_hash (Token_hash),
+  INDEX idx_correo_fecha (Correo, Fecha_creacion),
+  FOREIGN KEY (Correo) REFERENCES Usuarios(Correo)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 -- INSERT USUARIOS ADMINs - 
 INSERT INTO Usuarios (Correo, Nombre, Apellido, Telefono, Pais, Rol, Fecha_nacimiento, contraseña) VALUES ('admin@admin.com', 'Admin', '', '+34600000000', 'España', 'Administrador', '1995-04-12', SHA2('Contraseña123$', 256));

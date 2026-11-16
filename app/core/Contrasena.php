@@ -31,6 +31,21 @@ class Contrasena {
    */
   private const HASH_DE_RELLENO = '$2y$12$uTqJFob7F73z5xGmxVqiUuA7XtfZUYvbX37ph5lwoKPd4V3c3ivgm';
 
+  /**
+   * Política de contraseñas (la misma que comprueba el formulario de registro en el navegador).
+   * Devuelve el mensaje del primer requisito que no se cumple, o null si la contraseña es válida.
+   */
+  public static function errorDePolitica(string $c): ?string {
+    if (strlen($c) < 8)                                               return 'Debe tener al menos 8 caracteres.';
+    if (strlen($c) > 64)                                              return 'No puede tener más de 64 caracteres.';
+    if (!preg_match('/[A-Z]/', $c))                                   return 'Debe contener al menos una mayúscula.';
+    if (!preg_match('/[a-z]/', $c))                                   return 'Debe contener al menos una minúscula.';
+    if (!preg_match('/[0-9]/', $c))                                   return 'Debe contener al menos un número.';
+    if (!preg_match('/[!@#$%^&*()_+\-=\[\]{};\':"\\\\|,.<>\/?]/', $c)) return 'Debe contener al menos un carácter especial (!@#$...).';
+    if (preg_match('/\s/', $c))                                       return 'No puede contener espacios.';
+    return null;
+  }
+
   /** Hash bcrypt listo para guardar en la base de datos (60 caracteres). */
   public static function hashear(string $contrasena): string {
     return password_hash($contrasena, PASSWORD_BCRYPT, ['cost' => self::COSTE]);

@@ -115,6 +115,63 @@ class correoModelo {
   }
 
   //////////////////////////////////////////////////////
+  // CORREO RESTABLECER CONTRASEÑA
+  //////////////////////////////////////////////////////
+
+  /** $enlace es la URL completa con el token; solo se manda por correo, nunca se muestra en la web. */
+  public static function correo_restablecer($cCorreo, $cNombre, string $enlace, int $minutos = 60){
+    $nombre = trim((string) $cNombre);
+    $titulo = 'Restablece tu contraseña de ForexFalcon';
+
+    $html  = self::titulo('Restablece tu contraseña');
+    $html .= self::parrafo('Hola' . ($nombre !== '' ? ' <strong>' . self::e($nombre) . '</strong>' : '') . ', hemos recibido una solicitud para cambiar la contraseña de tu cuenta de ForexFalcon.');
+    $html .= self::parrafo('Pulsa el botón para elegir una contraseña nueva. Por seguridad, el enlace <strong>caduca en ' . (int) $minutos . ' minutos</strong> y solo se puede usar una vez.');
+    $html .= self::boton('Crear nueva contraseña', $enlace);
+    $html .= self::nota('Si el botón no funciona, copia y pega esta dirección en tu navegador:<br><span style="word-break:break-all;color:' . self::TEXTO . ';">' . self::e($enlace) . '</span>');
+    $html .= self::nota('<strong>¿No has sido tú?</strong> Ignora este mensaje: tu contraseña actual no cambia mientras no uses el enlace. Si te llegan estos correos sin pedirlos, escríbenos a ' . self::e(self::CONTACTO_CORREO) . '.');
+
+    $texto = "Restablece tu contraseña
+
+"
+      . "Hola" . ($nombre !== '' ? " $nombre" : '') . ", hemos recibido una solicitud para cambiar la contraseña de tu cuenta de ForexFalcon.
+
+"
+      . "Abre este enlace para elegir una contraseña nueva (caduca en $minutos minutos y solo se puede usar una vez):
+$enlace
+
+"
+      . "¿No has sido tú? Ignora este mensaje: tu contraseña actual no cambia mientras no uses el enlace.";
+
+    return self::enviar($cCorreo, $titulo, self::plantilla($titulo, 'Enlace para elegir una contraseña nueva (caduca en ' . (int) $minutos . ' minutos).', $html), $texto);
+  }
+
+  /** Aviso de que la contraseña se ha cambiado (para detectar cambios que no hizo el dueño de la cuenta). */
+  public static function correo_contrasena_cambiada($cCorreo, $cNombre){
+    $nombre = trim((string) $cNombre);
+    $titulo = 'Tu contraseña de ForexFalcon se ha cambiado';
+    $cuando = date('d/m/Y \a \l\a\s H:i');
+    $url    = self::url('/acciones?tipo=inicio');
+
+    $html  = self::titulo('Tu contraseña se ha cambiado');
+    $html .= self::parrafo('Hola' . ($nombre !== '' ? ' <strong>' . self::e($nombre) . '</strong>' : '') . ', te confirmamos que la contraseña de tu cuenta se cambió el ' . self::e($cuando) . '.');
+    $html .= self::boton('Iniciar sesión', $url);
+    $html .= self::nota('<strong>¿No has sido tú?</strong> Restablece tu contraseña de inmediato desde «¿Has olvidado tu contraseña?» y escríbenos a ' . self::e(self::CONTACTO_CORREO) . '.');
+
+    $texto = "Tu contraseña se ha cambiado
+
+"
+      . "Hola" . ($nombre !== '' ? " $nombre" : '') . ", te confirmamos que la contraseña de tu cuenta se cambió el $cuando.
+
+"
+      . "Iniciar sesión: $url
+
+"
+      . "¿No has sido tú? Restablece tu contraseña de inmediato y escríbenos a " . self::CONTACTO_CORREO . ".";
+
+    return self::enviar($cCorreo, $titulo, self::plantilla($titulo, 'Te confirmamos el cambio de contraseña de tu cuenta.', $html), $texto);
+  }
+
+  //////////////////////////////////////////////////////
   // PLANTILLA Y ENVÍO
   //////////////////////////////////////////////////////
 
@@ -246,8 +303,15 @@ HTML;
     return htmlspecialchars((string) $v, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
   }
 
-  /** URL absoluta del sitio (dominio + BASE_PATH de la aplicación). */
+  /**
+   * URL absoluta del sitio. Usa SITE_URL de index.php (que ya incluye la ruta base, p. ej. http://localhost/forexfalcon)
+   * para que los enlaces de los correos funcionen igual en local y en producción.
+   * Si no existe, recurre a URL_SITIO / dominio por defecto + BASE_PATH.
+   */
   private static function url(string $ruta): string {
+    if (defined('SITE_URL') && SITE_URL !== '') {
+      return rtrim(SITE_URL, '/') . $ruta;
+    }
     $dominio = defined('URL_SITIO') ? URL_SITIO : (getenv('URL_SITIO') ?: 'https://' . self::CONTACTO_WEB);
     $base    = defined('BASE_PATH') ? BASE_PATH : '';
     return rtrim($dominio, '/') . $base . $ruta;

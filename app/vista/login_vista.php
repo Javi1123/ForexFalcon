@@ -87,6 +87,7 @@
             </div>
 
             <div id="errorContraseña" class="invalid-feedback d-block mb-2 <?= empty($errorLogin) ? 'd-none' : '' ?>"><?= htmlspecialchars($errorLogin) ?></div>
+            <a href="<?= BASE_PATH . '/recuperar' ?>" class="ff-olvido">¿Has olvidado tu contraseña?</a>
             
             <button type="submit" id="btnInicioSesion" class="btn btnInicioSesion w-100 my-3">
               <span>Iniciar sesión</span>

@@ -750,3 +750,73 @@ a:hover {
   .ff-google { transition: none; }
 }
 
+/* ── Restablecer contraseña ────────────────────────────── */
+.ff-reset-icono {
+  width: 56px;
+  height: 56px;
+  margin: 4px auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  color: var(--color-v-principal);
+  background: rgba(145, 221, 78, 0.12);
+  border: 1.5px solid rgba(145, 221, 78, 0.5);
+}
+
+.ff-reset-icono-error {
+  color: #ff8d84;
+  background: rgba(220, 53, 69, 0.14);
+  border-color: rgba(220, 53, 69, 0.55);
+}
+
+.ff-reset-titulo {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.ff-reset-texto {
+  margin: 0 0 16px;
+  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #c4c8d8;
+}
+
+.ff-reset-volver {
+  display: block;
+  text-align: center;
+  margin: 2px 0 8px;
+  font-size: 0.85rem;
+  color: #c4c8d8;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+.ff-reset-volver:hover,
+.ff-reset-volver:focus-visible {
+  color: var(--color-n-principal);
+}
+
+.ff-ojo {
+  cursor: pointer;
+}
+
+/* Enlace "¿Has olvidado tu contraseña?" bajo el campo de contraseña del login */
+.ff-olvido {
+  display: block;
+  text-align: right;
+  margin: 2px 4px 0;
+  font-size: 0.8rem;
+  color: #c4c8d8;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+.ff-olvido:hover,
+.ff-olvido:focus-visible {
+  color: var(--color-n-principal);
+  text-decoration: underline;
+}
+

@@ -2,6 +2,7 @@
 
 use App\controlador\formulariosControlador;
 use App\controlador\googleControlador;
+use App\controlador\restablecerControlador;
 use App\controlador\principalControlador;
 use App\controlador\stripeControlador;
 use App\controlador\chatControlador;
@@ -203,6 +204,17 @@ switch ($uri){
   case '/admin/videos/eliminar':
     $controlador = new adminVideosControlador();
     $controlador-> eliminar();
+    break;
+
+  // Restablecer contraseña (solo se llega al formulario con el enlace enviado por correo)
+  case '/recuperar':
+    $controlador = new restablecerControlador();
+    $controlador-> solicitar();
+    break;
+
+  case '/restablecer':
+    $controlador = new restablecerControlador();
+    $controlador-> restablecer();
     break;
 
   // Inicio de sesión con Google
