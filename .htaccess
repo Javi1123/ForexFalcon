@@ -21,6 +21,9 @@ RewriteRule guardar index.php
 # Chat de mensajería (anclada con ^ para no capturar public/.../chat.js ni chat.css)
 RewriteRule ^chat/ index.php [L]
 
+# Configuración de la cuenta (anclada con ^ para no capturar public/css/configuracion.css ni configuracion.js)
+RewriteRule ^configuracion/ index.php [L]
+
 # Restablecer contraseña (anclada con ^ para no capturar public/js/.../restablecer.js)
 RewriteRule ^(recuperar|restablecer)($|/) index.php [L]
 

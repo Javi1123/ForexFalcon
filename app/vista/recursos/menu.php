@@ -34,7 +34,7 @@
 
           <!-- Nombre -->
           <span class="user-menu-name d-none d-md-inline">
-            <?= $_SESSION['nombre'] . " " . $_SESSION['apellido'] ?>
+            <span data-ff-nombre><?= $_SESSION['nombre'] . " " . $_SESSION['apellido'] ?></span>
           </span>
 
         </a>
@@ -48,7 +48,7 @@
               <?= $inicial ?>
             </span>
             <p style="color: #fff; font-weight: 600; font-size: 0.95rem; margin: 12px 0 0 0;">
-              <?= $_SESSION['nombre'] . " " . $_SESSION['apellido']?>
+              <span data-ff-nombre><?= $_SESSION['nombre'] . " " . $_SESSION['apellido']?></span>
             </p>
             <small style="color: rgba(255,255,255,0.4); font-size: 0.75rem;">
               <i class="fa-regular fa-envelope me-1"></i> <?= $_SESSION['email'] ?? 'usuario@forexfalcon.com' ?>

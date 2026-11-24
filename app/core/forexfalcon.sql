@@ -249,6 +249,29 @@ CREATE TABLE Mensajes_chat (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ------------------------------------------------------------
+-- Tabla: Verificacion_correo  (verificación del correo desde Configuración → Seguridad)
+--   - Una fila por usuario. Codigo_hash: hash bcrypt del código de 6 dígitos (el código en claro solo viaja por correo).
+--   - Fecha_expira: el código caduca (10 min). Intentos: tras 5 fallos el código se invalida.
+--   - Fecha_envio / Envios_hora / Inicio_ventana: límite anti-abuso de envíos (1 por minuto, 5 por hora).
+--   - Verificado_en: cuándo se verificó (NULL = sin verificar).
+-- Ejecútalo una vez en tu base de datos existente.
+-- ------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS Verificacion_correo (
+  Correo VARCHAR(100) NOT NULL,
+  Codigo_hash VARCHAR(255) NULL DEFAULT NULL,
+  Fecha_expira DATETIME NULL DEFAULT NULL,
+  Intentos TINYINT UNSIGNED NOT NULL DEFAULT 0,
+  Fecha_envio DATETIME NULL DEFAULT NULL,
+  Envios_hora TINYINT UNSIGNED NOT NULL DEFAULT 0,
+  Inicio_ventana DATETIME NULL DEFAULT NULL,
+  Verificado_en DATETIME NULL DEFAULT NULL,
+  PRIMARY KEY (Correo),
+  FOREIGN KEY (Correo) REFERENCES Usuarios(Correo)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ------------------------------------------------------------
 -- Tabla: Restablecer_contrasena  (enlaces de "he olvidado mi contraseña")
 --   - Token_hash: SHA-256 del token. El token en claro solo existe en el correo que se envía al usuario;
 --     si alguien viera esta tabla no podría construir ningún enlace.

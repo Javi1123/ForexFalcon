@@ -3,6 +3,7 @@
 use App\controlador\formulariosControlador;
 use App\controlador\googleControlador;
 use App\controlador\restablecerControlador;
+use App\controlador\configuracionControlador;
 use App\controlador\principalControlador;
 use App\controlador\stripeControlador;
 use App\controlador\chatControlador;
@@ -204,6 +205,32 @@ switch ($uri){
   case '/admin/videos/eliminar':
     $controlador = new adminVideosControlador();
     $controlador-> eliminar();
+    break;
+
+  // Configuración de la cuenta (ventana del menú del perfil; usuarios y administradores)
+  case '/configuracion/datos':
+    $controlador = new configuracionControlador();
+    $controlador-> datos();
+    break;
+
+  case '/configuracion/guardar':
+    $controlador = new configuracionControlador();
+    $controlador-> guardar();
+    break;
+
+  case '/configuracion/contrasena':
+    $controlador = new configuracionControlador();
+    $controlador-> contrasena();
+    break;
+
+  case '/configuracion/correo/enviar':
+    $controlador = new configuracionControlador();
+    $controlador-> correoEnviar();
+    break;
+
+  case '/configuracion/correo/confirmar':
+    $controlador = new configuracionControlador();
+    $controlador-> correoConfirmar();
     break;
 
   // Restablecer contraseña (solo se llega al formulario con el enlace enviado por correo)

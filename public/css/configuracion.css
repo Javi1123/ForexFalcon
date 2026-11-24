@@ -4,7 +4,7 @@
    ═══════════════════════════════════════════════════════ */
 
 .config-modal-dialog {
-  max-width: 760px;
+  max-width: 800px;
 }
 
 .config-modal-content {
@@ -53,14 +53,20 @@
   color: #fff;
 }
 
-/* ── Body: nav lateral + contenido ──────────────────── */
+/* ── Body: nav lateral + contenido ──────────────────────
+   Altura FIJA: así el popup no "salta" de tamaño al cambiar
+   entre Información y Seguridad; lo que sobre, scroll vertical
+   dentro del panel. */
 .config-modal-body {
   display: flex;
-  min-height: 420px;
+  height: 520px;
+  height: min(520px, calc(100vh - 150px));
+  height: min(520px, calc(100dvh - 150px));
+  overflow: hidden;
 }
 
 .config-modal-nav {
-  flex: 0 0 210px;
+  flex: 0 0 220px;
   background: rgba(255, 255, 255, 0.02);
   border-right: 1px solid rgba(255, 255, 255, 0.06);
   padding: 14px;
@@ -73,11 +79,13 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  width: 100%;
   padding: 11px 12px;
   border: none;
   background: transparent;
   border-radius: 10px;
   text-align: left;
+  font-family: 'Barlow', sans-serif;
   cursor: pointer;
   position: relative;
   transition: background 0.2s ease;
@@ -115,16 +123,20 @@
   color: var(--azul);
 }
 
-.config-nav-text { display: flex; flex-direction: column; line-height: 1.25; }
+.config-nav-text { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
 .config-nav-text strong { font-size: 0.85rem; color: rgba(255, 255, 255, 0.8); font-weight: 600; }
 .config-nav-text small { font-size: 0.72rem; color: rgba(255, 255, 255, 0.3); margin-top: 1px; }
 .config-nav-item.active .config-nav-text strong { color: #fff; }
 
 /* ── Panel de contenido ──────────────────────────────── */
 .config-modal-content-panel {
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 0;            /* evita que el contenido ensanche el panel */
   padding: 28px 30px;
   overflow-y: auto;
+  overflow-x: hidden;      /* solo vertical — nada de scroll lateral */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
 }
 
 .config-panel { display: none; }
@@ -135,40 +147,83 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* Título + descripción de cada panel */
+.config-panel-head { margin-bottom: 24px; }
+.config-panel-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 1.1rem;
+  color: #fff;
+  margin: 0;
+}
+.config-panel-desc {
+  margin: 4px 0 0;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
 /* ── Formulario ──────────────────────────────────────── */
 .config-form-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* minmax(0,…): los selects largos no estiran la columna */
   gap: 18px;
 }
 .config-field--full { grid-column: 1 / -1; }
 
-.config-field { display: flex; flex-direction: column; gap: 6px; }
+.config-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .config-field label {
+  margin: 0;
   font-size: 0.78rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.55);
 }
-.config-field input,
-.config-field select {
-  padding: 10px 13px;
+
+/* Control base (input / select): misma altura en todos para que las filas queden alineadas */
+.config-control {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  padding: 0 14px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.03);
   color: #fff;
   font-family: 'Barlow', sans-serif;
-  font-size: 0.88rem;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
-.config-field input::placeholder { color: rgba(255, 255, 255, 0.25); }
-.config-field input:focus,
-.config-field select:focus {
+.config-control::placeholder { color: rgba(255, 255, 255, 0.25); }
+.config-control:focus {
   outline: none;
   border-color: var(--verde);
-  background: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.05);
 }
-.config-field select option { background: var(--azul2); color: #fff; }
 
+/* Select con flecha propia */
+.config-control--select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 38px;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2391DD4E' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+.config-control--select option { background: var(--azul2); color: #fff; }
+
+/* Autocompletado del navegador: que no pinte el campo de blanco */
+.config-control:-webkit-autofill,
+.config-tel-input:-webkit-autofill {
+  -webkit-text-fill-color: #fff;
+  caret-color: #fff;
+  box-shadow: 0 0 0 100px var(--azul2) inset;
+}
+
+/* Botón principal (naranja) */
 .config-form-actions {
   margin-top: 26px;
   padding-top: 20px;
@@ -180,32 +235,361 @@
 .config-btn-guardar {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 11px 26px;
+  height: 44px;
+  padding: 0 26px;
   background: var(--naranja);
   color: #fff;
   font-family: 'Barlow', sans-serif;
   font-weight: 700;
   font-size: 0.88rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
+  white-space: nowrap;
   transition: background 0.2s ease, transform 0.15s ease;
 }
 .config-btn-guardar:hover { background: var(--naranja-hover); transform: translateY(-1px); }
 
+/* ── Teléfono con prefijo (país + número) ────────────── */
+.config-tel-group {
+  display: flex;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.03);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+.config-tel-group:focus-within {
+  border-color: var(--verde);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.config-tel-prefijo {
+  flex: 0 0 112px;
+  width: 112px;
+  height: 100%;
+  margin: 0;
+  padding: 0 28px 0 12px;
+  border: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: transparent;
+  color: #fff;
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.86rem;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2391DD4E' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+.config-tel-prefijo:focus { outline: none; }
+.config-tel-prefijo option { background: var(--azul2); color: #fff; }
+
+.config-tel-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0 14px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.9rem;
+}
+.config-tel-input:focus { outline: none; }
+.config-tel-input::placeholder { color: rgba(255, 255, 255, 0.25); }
+
+/* ═══════════════════════════════════════════════════════
+   SEGURIDAD — tarjetas desplegables
+   ═══════════════════════════════════════════════════════ */
+.config-sec-list { display: flex; flex-direction: column; gap: 14px; }
+
+.config-sec-card {
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.025);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.config-sec-card.is-open {
+  border-color: rgba(145, 221, 78, 0.35);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.config-sec-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+}
+
+.config-sec-icon {
+  flex: 0 0 40px;
+  width: 40px; height: 40px;
+  border-radius: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--verde-dim);
+  color: var(--verde);
+  font-size: 16px;
+}
+
+.config-sec-info { flex: 1 1 auto; min-width: 0; }
+.config-sec-title-row { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 10px; }
+.config-sec-title { margin: 0; font-size: 0.92rem; font-weight: 700; color: #fff; }
+.config-sec-desc {
+  margin: 3px 0 0;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Estado: Sin verificar / Verificado */
+.config-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+.config-badge--pendiente { color: var(--naranja); background: var(--naranja-dim); }
+.config-badge--ok        { color: var(--verde);   background: var(--verde-dim); }
+
+/* Botón secundario (contorno verde) */
+.config-btn-sec {
+  flex: 0 0 auto;
+  min-width: 96px;
+  height: 38px;
+  padding: 0 16px;
+  border: 1px solid rgba(145, 221, 78, 0.45);
+  border-radius: 9px;
+  background: transparent;
+  color: var(--verde);
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.config-btn-sec:hover { background: var(--verde-dim); }
+.config-sec-card.is-open .config-btn-sec {
+  border-color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.7);
+}
+.config-sec-card.is-open .config-btn-sec:hover { background: rgba(255, 255, 255, 0.06); }
+
+/* Zona desplegable */
+.config-sec-detail {
+  display: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.config-sec-card.is-open .config-sec-detail {
+  display: block;
+  animation: configFadeIn 0.25s ease both;
+}
+/* 72px = padding de la cabecera (18) + icono (40) + hueco (14): alinea el contenido con el texto */
+.config-sec-detail-inner { padding: 18px 18px 20px 72px; }
+
+.config-sec-note {
+  margin: 0 0 14px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Código de verificación */
+.config-code-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px; }
+.config-code-row .config-field { flex: 1 1 180px; }
+
+.config-code-input {
+  text-align: center;
+  letter-spacing: 0.45em;
+  padding-left: 0.45em;    /* compensa el espaciado final para que quede centrado */
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.config-code-input::placeholder { letter-spacing: 0.45em; }
+
+.config-link-btn {
+  margin-top: 12px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--verde);
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.config-link-btn:hover { text-decoration: underline; }
+
+/* Cambio de contraseña */
+.config-pass-form { display: flex; flex-direction: column; gap: 14px; max-width: 380px; }
+.config-pass-wrap { position: relative; }
+.config-control--pass { padding-right: 46px; }
+
+.config-eye {
+  position: absolute;
+  top: 50%; right: 7px;
+  transform: translateY(-50%);
+  width: 32px; height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+.config-eye:hover { color: #fff; background: rgba(255, 255, 255, 0.06); }
+.config-eye .config-eye-show,
+.config-eye .config-eye-hide { display: inline-flex; }
+.config-eye .config-eye-hide { display: none; }
+.config-eye.is-visible { color: var(--verde); }
+.config-eye.is-visible .config-eye-show { display: none; }
+.config-eye.is-visible .config-eye-hide { display: inline-flex; }
+
+.config-pass-hint {
+  margin: 0;
+  font-size: 0.74rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.35);
+}
+.config-pass-form .config-btn-guardar { align-self: flex-start; margin-top: 4px; }
+
+/* ── Accesibilidad: foco visible en botones ──────────── */
+.config-nav-item:focus-visible,
+.config-btn-sec:focus-visible,
+.config-btn-guardar:focus-visible,
+.config-link-btn:focus-visible,
+.config-eye:focus-visible,
+.config-modal-close:focus-visible {
+  outline: 2px solid var(--verde);
+  outline-offset: 2px;
+}
+
 /* ── Responsive ──────────────────────────────────────── */
 @media (max-width: 575.98px) {
-  .config-modal-body { flex-direction: column; }
+  .config-modal-header { padding: 16px 18px; }
+
+  .config-modal-body {
+    flex-direction: column;
+    height: calc(100vh - 110px);
+    height: calc(100dvh - 110px);
+  }
   .config-modal-nav {
-    flex-direction: row;
     flex: 0 0 auto;
+    flex-direction: row;
     overflow-x: auto;
+    padding: 10px;
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   }
-  .config-nav-item { flex: 1 0 auto; }
+  .config-nav-item { flex: 1 0 auto; width: auto; }
   .config-nav-text small { display: none; }
-  .config-modal-content-panel { padding: 20px; }
-  .config-form-grid { grid-template-columns: 1fr; }
+
+  .config-modal-content-panel { flex: 1 1 0; min-height: 0; padding: 20px; }
+  .config-form-grid { grid-template-columns: minmax(0, 1fr); }
+
+  .config-sec-head { flex-wrap: wrap; }
+  .config-sec-info { flex-basis: calc(100% - 56px); }
+  .config-btn-sec { width: 100%; }
+  .config-sec-detail-inner { padding: 16px 18px 18px; }
+  .config-pass-form { max-width: none; }
+  .config-pass-form .config-btn-guardar { align-self: stretch; }
 }
+
+/* ═══════════════════════════════════════════════════════
+   CONEXIÓN CON EL SERVIDOR — estados añadidos
+   ═══════════════════════════════════════════════════════ */
+
+/* Rol de la cuenta (Usuario / Administrador / Superusuario), junto al título del panel */
+.config-role {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.07);
+}
+.config-role:empty { display: none; }
+.config-role--admin { color: var(--naranja); background: var(--naranja-dim); }
+
+/* Campo de solo lectura (correo) */
+.config-control--readonly,
+.config-control[readonly] {
+  color: rgba(255, 255, 255, 0.55);
+  background-color: rgba(255, 255, 255, 0.015);
+  cursor: not-allowed;
+}
+.config-control--readonly:focus,
+.config-control[readonly]:focus {
+  border-color: rgba(255, 255, 255, 0.08);
+  background-color: rgba(255, 255, 255, 0.015);
+}
+.config-field-note {
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* Línea de estado de cada formulario: vacía = oculta */
+.config-msg {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  font-weight: 600;
+}
+.config-msg:empty { display: none; }
+.config-msg--ok    { color: var(--verde); }
+.config-msg--error { color: #ff8d84; }
+
+/* En el formulario de cuenta el mensaje va a la izquierda del botón */
+.config-form-actions { align-items: center; gap: 16px; }
+.config-form-actions .config-msg { margin-right: auto; }
+.config-code-row + .config-link-btn { display: inline-block; }
+.config-sec-detail-inner .config-msg { margin-top: 12px; }
+.config-pass-form .config-msg { margin-top: -2px; }
+
+/* Botones deshabilitados (petición en curso / función no disponible) */
+.config-btn-guardar:disabled,
+.config-btn-sec:disabled,
+.config-link-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+.config-btn-guardar:disabled:hover { background: var(--naranja); transform: none; }
+.config-btn-sec:disabled:hover { background: transparent; }
+.config-link-btn:disabled { text-decoration: none; }
+
+/* Correo ya verificado: sin botón (se ve la insignia verde) */
+.config-sec-card.is-verified .config-btn-sec { display: none; }
+
+@media (max-width: 575.98px) {
+  .config-form-actions { flex-direction: column-reverse; align-items: stretch; }
+  .config-form-actions .config-msg { margin-right: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .config-panel.active,
+  .config-sec-card.is-open .config-sec-detail { animation: none; }
+}
+

@@ -27,7 +27,7 @@
   <!-- CSS y JS propios de la tienda -->
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/rec.css" ?>">
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/tienda-servicios.css" ?>">
-  <link rel="stylesheet" href="<?= LINKS_PATH . "/css/configuracion.css" ?>">
+  <link rel="stylesheet" href="<?= LINKS_PATH . "/css/configuracion.css?v=" . @filemtime(dirname(__DIR__, 3) . "/public/css/configuracion.css") ?>">
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/chat.css" ?>">
   <?php if (!empty($vistaAdmin)): ?>
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/admin-servicios.css" ?>">
@@ -44,5 +44,5 @@
   <?php endif; ?>
   <link rel="stylesheet" href="<?= LINKS_PATH . "/css/recursos-animaciones.css?v=" . (@filemtime(__DIR__ . '/../../../public/css/recursos-animaciones.css') ?: 1) ?>">
   <script src="<?= LINKS_PATH . "/js/code_js_jquerys/tienda-servicios.js?v=" . (@filemtime(__DIR__ . '/../../../public/js/code_js_jquerys/tienda-servicios.js') ?: 1) ?>" defer></script>
-  <script src="<?= LINKS_PATH . "/js/code_js_jquerys/configuracion.js" ?>" defer></script>
+  <script src="<?= LINKS_PATH . "/js/code_js_jquerys/configuracion.js?v=" . @filemtime(dirname(__DIR__, 3) . "/public/js/code_js_jquerys/configuracion.js") ?>" defer></script>
 </head>

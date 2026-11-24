@@ -1,3 +1,11 @@
+<?php
+// Datos para la ventana de Configuración (usuarios y administradores): ruta base y token CSRF de la sesión
+if (!empty($_SESSION['email'])): ?>
+<script>
+  window.FF_CFG = <?= json_encode(['base' => BASE_PATH, 'csrf' => \App\controlador\configuracionControlador::tokenCsrf()]) ?>;
+</script>
+<?php endif; ?>
+
 <?php if (isset($_SESSION['toast'])): 
   $toast = $_SESSION['toast'];
   unset($_SESSION['toast']); // Se elimina para que no vuelva a aparecer al refrescar

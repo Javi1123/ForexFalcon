@@ -172,6 +172,27 @@ $enlace
   }
 
   //////////////////////////////////////////////////////
+  // CORREO CÓDIGO DE VERIFICACIÓN (Configuración → Seguridad)
+  //////////////////////////////////////////////////////
+
+  public static function correo_codigo_verificacion($cCorreo, $cNombre, string $codigo, int $minutos = 10){
+    $nombre = trim((string) $cNombre);
+    $titulo = 'Tu código de verificación de ForexFalcon';
+
+    $html  = self::titulo('Verifica tu correo');
+    $html .= self::parrafo('Hola' . ($nombre !== '' ? ' <strong>' . self::e($nombre) . '</strong>' : '') . ', has pedido verificar el correo de tu cuenta. Escribe este código en la ventana de <strong>Configuración → Seguridad</strong>:');
+    $html .= self::codigo($codigo, 'Caduca en ' . (int) $minutos . ' minutos', 'Código de verificación');
+    $html .= self::nota('<strong>¿No lo has pedido tú?</strong> Ignora este mensaje y no compartas el código con nadie: nadie de ForexFalcon te lo pedirá. Si te llegan estos correos sin pedirlos, escríbenos a ' . self::e(self::CONTACTO_CORREO) . '.');
+
+    $texto = "Verifica tu correo\n\n"
+      . "Hola" . ($nombre !== '' ? " $nombre" : '') . ", has pedido verificar el correo de tu cuenta. Escribe este código en Configuración > Seguridad:\n\n"
+      . "CÓDIGO: $codigo\n(Caduca en $minutos minutos)\n\n"
+      . "¿No lo has pedido tú? Ignora este mensaje y no compartas el código con nadie.";
+
+    return self::enviar($cCorreo, $titulo, self::plantilla($titulo, 'Tu código es ' . $codigo . ' (caduca en ' . (int) $minutos . ' minutos).', $html), $texto);
+  }
+
+  //////////////////////////////////////////////////////
   // PLANTILLA Y ENVÍO
   //////////////////////////////////////////////////////
 
@@ -289,10 +310,10 @@ HTML;
   }
 
   /** Caja destacada con el código de descuento. */
-  private static function codigo(string $codigo, string $detalle): string {
+  private static function codigo(string $codigo, string $detalle, string $etiqueta = 'Tu código de descuento'): string {
     return '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:6px 0 22px;">'
       . '<tr><td align="center" style="background:#FFF6EC;border:2px dashed ' . self::NARANJA . ';border-radius:14px;padding:22px 16px;">'
-      . '<div style="font-family:' . self::fuente() . ';font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:' . self::SUAVE . ';margin-bottom:8px;">Tu código de descuento</div>'
+      . '<div style="font-family:' . self::fuente() . ';font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:' . self::SUAVE . ';margin-bottom:8px;">' . self::e($etiqueta) . '</div>'
       . '<div style="font-family:\'Courier New\',Courier,monospace;font-size:30px;font-weight:800;letter-spacing:3px;color:' . self::AZUL . ';">' . self::e($codigo) . '</div>'
       . '<div style="font-family:' . self::fuente() . ';font-size:14px;color:' . self::TEXTO . ';margin-top:10px;">' . self::e($detalle) . '</div>'
       . '</td></tr></table>';
